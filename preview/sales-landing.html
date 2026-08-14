@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1341 день в изоляции — продающая версия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#08080a; --graphite:#121216; --panel:#18181c; --steel:#2a2a2f;
+    --mist:#93908a; --bone:#eae6de; --ember:#c2361c; --ember-bright:#e2571f;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--void); color:var(--bone); font-family:'Lora',Georgia,serif; line-height:1.7; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.disp{font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:.02em; margin:0;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  .wrap-narrow{max-width:760px; margin:0 auto; padding:0 24px;}
+  .kicker{font-family:'Oswald',sans-serif; color:var(--ember-bright); letter-spacing:.2em; font-size:12px; text-transform:uppercase; font-weight:600;}
+  .balance{text-wrap:balance;}
+  .py{padding:100px 0;}
+  .graphite{background:var(--graphite);}
+  .center{display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;}
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal.d1{transition-delay:.12s;} .reveal.d2{transition-delay:.24s;} .reveal.d3{transition-delay:.36s;}
+
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:.08em; font-weight:500; padding:18px 38px; font-size:16px; border-radius:2px; text-decoration:none; cursor:pointer; transition:transform .2s ease, background .2s ease;}
+  .btn-primary{background:var(--ember); color:#fff; box-shadow:0 10px 30px -6px rgba(194,54,28,.55); border:none;}
+  .btn-primary:hover{background:var(--ember-bright); transform:translateY(-2px);}
+  .btn-ghost{background:transparent; border:1px solid var(--steel); color:var(--bone);}
+
+  /* HOOK */
+  #hook{min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden; padding:120px 0 60px;
+    background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(194,54,28,.12), transparent 60%), linear-gradient(180deg,#08080a,#101012 55%,#08080a);}
+  .hook-grid{display:grid; grid-template-columns:1fr; gap:48px; align-items:center; width:100%;}
+  .hook-book-col{order:1; display:flex; flex-direction:column; align-items:center;}
+  .hook-text-col{order:2; text-align:center;}
+  @media(min-width:900px){
+    .hook-grid{grid-template-columns:1.05fr 0.95fr; gap:40px;}
+    .hook-text-col{order:1; text-align:left;}
+    .hook-book-col{order:2;}
+  }
+  .hook-line{font-weight:700; line-height:1.15; font-size:clamp(1.7rem,4.6vw,3.2rem);}
+  .hook-line.dim{color:var(--mist); font-weight:500;}
+  .hook-line.accent{color:var(--ember-bright);}
+  .hook-note{max-width:560px; margin:32px auto 0; font-size:16.5px; color:rgba(234,230,222,.85);}
+  @media(min-width:900px){.hook-note{margin:32px 0 0;}}
+  .hook-book{width:min(58vw,220px);}
+  @media(min-width:900px){.hook-book{width:min(26vw,300px);}}
+  .hook-book .book3d{width:100%; height:0; padding-bottom:153.6%;}
+  .hook-book .book3d > *{position:absolute;}
+  .hook-book .spine, .hook-book .front{position:absolute;}
+
+  /* story */
+  .story-text{font-size:19px; max-width:680px; margin:0 auto;}
+  .story-text + .story-text{margin-top:22px;}
+  .story-escalate{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:20px; letter-spacing:.03em; color:var(--mist); margin:32px 0;}
+  .story-turn{font-style:italic; font-size:21px; color:var(--bone); max-width:600px; margin:32px auto 0;}
+
+  /* agitate */
+  .agitate-list{list-style:none; padding:0; margin:32px auto 0; max-width:420px; text-align:left;}
+  .agitate-list li{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:17px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.06); color:var(--bone);}
+
+  /* mechanism */
+  .mech-box{border:1px solid var(--steel); border-radius:6px; padding:40px; margin-top:40px; background:var(--panel);}
+
+  /* credibility */
+  .cred-grid{display:grid; gap:40px; align-items:start;}
+  @media(min-width:860px){.cred-grid{grid-template-columns:280px 1fr;}}
+  .cred-list{list-style:none; padding:0; margin:0;}
+  .cred-list li{display:flex; gap:14px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,.06);}
+  .cred-list .ico{flex-shrink:0; width:28px; height:28px; border-radius:50%; background:rgba(194,54,28,.15); color:var(--ember-bright); display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-size:13px; font-weight:700;}
+
+  .photo-row{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:48px;}
+  @media(max-width:700px){.photo-row{grid-template-columns:1fr;}}
+  .photo-slot{aspect-ratio:4/5; border:1px dashed var(--steel); border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:20px; text-align:center; color:var(--mist); background:rgba(255,255,255,.02);}
+  .photo-slot .plus{font-size:28px; font-family:'Oswald',sans-serif; color:var(--steel);}
+  .photo-slot .label{font-family:'Oswald',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.08em;}
+  .photo-card{position:relative; aspect-ratio:4/5; border-radius:6px; overflow:hidden; background:var(--panel);}
+  .photo-card img{width:100%; height:100%; object-fit:cover; display:block;}
+  .photo-card .cap{position:absolute; left:0; right:0; bottom:0; padding:14px 14px 12px; background:linear-gradient(180deg, transparent, rgba(0,0,0,.85) 70%); font-family:'Oswald',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--bone);}
+  .photo-card.wide{aspect-ratio:16/10;}
+
+  /* value stack */
+  .stack-item{display:flex; gap:16px; padding:20px 0; border-bottom:1px solid rgba(255,255,255,.06);}
+  .stack-item .check{flex-shrink:0; color:var(--ember-bright); font-family:'Oswald',sans-serif; font-weight:700; font-size:18px;}
+  .stack-item p{margin:0;}
+  .stack-item .h{font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:15px; margin-bottom:4px; color:var(--bone);}
+  .stack-item .s{color:var(--mist); font-size:15px;}
+
+  .cost-line{font-size:22px; font-style:italic; max-width:600px; margin:0 auto;}
+  .price{font-family:'Oswald',sans-serif; font-size:44px; font-weight:700; color:var(--ember-bright);}
+
+  .filter-grid{display:grid; gap:32px;}
+  @media(min-width:768px){.filter-grid{grid-template-columns:1fr 1fr;}}
+  .filter-col ul{list-style:none; padding:0; margin:24px 0 0;}
+  .filter-col li{border-left:2px solid var(--ember); padding-left:16px; margin-bottom:14px; line-height:1.6;}
+  .filter-col.neg li{border-left-color:var(--steel); color:var(--mist);}
+
+  .scene{perspective:1800px; display:flex; justify-content:center;}
+  .book3d{position:relative; width:230px; height:354px; transform-style:preserve-3d; transform:rotateY(-24deg) rotateX(2deg);}
+  .book3d .spine{position:absolute; left:0; top:0; width:30px; height:100%; transform-origin:left center; transform:rotateY(-90deg); overflow:hidden; filter:brightness(.85);}
+  .book3d .spine img{height:100%; width:100%; object-fit:cover;}
+  .book3d .front{position:absolute; inset:0; overflow:hidden; box-shadow:0 40px 80px -18px rgba(0,0,0,.7);}
+  .book3d .front img{width:100%; height:100%; object-fit:cover;}
+
+  footer{border-top:1px solid rgba(255,255,255,.05); padding:48px 0; font-size:13px; color:var(--mist); text-align:center;}
+  #sticky-cta{position:fixed; left:0; right:0; bottom:0; z-index:40; background:rgba(8,8,10,.95); border-top:1px solid rgba(255,255,255,.1); padding:12px 16px; backdrop-filter:blur(6px); display:none;}
+  @media(max-width:767px){#sticky-cta{display:block;} body{padding-bottom:70px;}}
+  #sticky-cta .btn{width:100%;}
+  .story-photos{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:40px auto 0; max-width:680px;}
+  @media(max-width:600px){.story-photos{grid-template-columns:1fr;}}
+  .story-photo{position:relative; border-radius:4px; overflow:hidden; aspect-ratio:4/3; filter:grayscale(.25) contrast(1.05);}
+  .story-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .story-photo .cap{position:absolute; left:0; right:0; bottom:0; padding:10px 12px; background:linear-gradient(180deg, transparent, rgba(0,0,0,.9) 75%); font-family:'Oswald',sans-serif; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--mist);}
+  .badge-note{margin:20px auto 0; padding:12px 18px; border:1px solid var(--steel); border-radius:4px; font-family:'Oswald',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--mist); display:inline-block;}
+</style>
+</head>
+<body>
+
+<div class="wrap" style="text-align:center;"><div class="badge-note">Продающая версия · сторителлинг · для оценки тона и структуры оффера</div></div>
+
+<section id="hook">
+  <div class="wrap hook-grid">
+    <div class="hook-book-col reveal in">
+      <div class="scene hook-book">
+        <div class="book3d">
+          <div class="spine"><img src="cover-spine.jpg" alt=""></div>
+          <div class="front"><img src="cover-front.jpg" alt="Обложка книги «1341 день в изоляции»"></div>
+        </div>
+      </div>
+      <div class="shadow-ellipse" style="width:70%; margin-top:6px;"></div>
+    </div>
+    <div class="hook-text-col">
+      <div class="kicker reveal in">Прежде чем читать дальше</div>
+      <p class="disp hook-line dim reveal in d1" style="margin-top:28px;">В момент поражения</p>
+      <p class="disp hook-line reveal in d2">вы не поднимаетесь до уровня своих ожиданий.</p>
+      <p class="disp hook-line accent reveal in d3">Вы падаете до уровня своей подготовленности.</p>
+      <p class="hook-note reveal in d3">Это не мотивационная фраза. Это то, что проверено на практике — человеком, который провёл 1341 день в плену и вышел из него сильнее, чем зашёл. Он записал систему в книгу. Она перед вами.</p>
+      <div style="margin-top:44px;" class="reveal in d3">
+        <a href="#story" class="btn btn-primary">Смотреть, как это работает</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story" class="py graphite">
+  <div class="wrap-narrow" style="text-align:center;">
+    <div class="kicker reveal">История</div>
+    <p class="story-text reveal" style="margin-top:32px;">
+      Чистый четверг, 28 апреля 2016 года. Я иду по границе между Украиной и самопровозглашённой ДНР с коробкой в руках. Внутри — не обогреватель. Через несколько часов меня возьмут.
+    </p>
+    <p class="story-text reveal d1">Я ещё не знаю, что впереди — 1341 день, о которых тогда невозможно было даже подумать.</p>
+    <p class="story-escalate reveal d2">Допросы. Пытки. «Яма». Потеря имени, статуса, всего, чем я был.</p>
+    <p class="story-turn reveal d3">Но решающим оказалось не это. Решающим оказалось то, что было внутри меня ещё до того, как за мной закрылась дверь.</p>
+
+    <div class="story-photos">
+      <div class="story-photo reveal">
+        <img src="photos/cell-room.jpg" alt="Комната изоляции">
+        <div class="cap">Место, где я провёл часть из 1341 дня</div>
+      </div>
+      <div class="story-photo reveal d1">
+        <img src="photos/cell-table.jpg" alt="Стол с проводами в комнате допроса">
+        <div class="cap">То же место, другой угол</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py center">
+  <div class="wrap-narrow">
+    <p class="story-text reveal balance">Вам не нужен плен, чтобы столкнуться с тем же вопросом.</p>
+    <ul class="agitate-list reveal d1">
+      <li>Развод</li>
+      <li>Банкротство</li>
+      <li>Диагноз</li>
+      <li>Потеря работы</li>
+      <li>Предательство</li>
+      <li>Провал, после которого, кажется, невозможно подняться</li>
+    </ul>
+    <p class="story-text reveal d2" style="margin-top:32px;">В такой момент не помогают ни мотивационные цитаты, ни сила воли, о которой вы читали в книгах. Помогает только то, что вы успели построить внутри себя заранее.</p>
+    <p class="disp reveal d3 balance" style="margin-top:40px; font-size:clamp(22px,3.2vw,30px); font-weight:600; color:var(--ember-bright);">
+      Готовность нельзя купить в момент, когда она внезапно понадобилась.<br>Её можно только успеть создать заранее.
+    </p>
+  </div>
+</section>
+
+<section class="py graphite">
+  <div class="wrap-narrow" style="text-align:center;">
+    <div class="kicker reveal">Что это на самом деле</div>
+    <div class="mech-box reveal d1">
+      <p class="story-text" style="margin:0;">«1341 день в изоляции» — не биография. Внутри — система «Неуязвимость»: набор решений, выкованных там, где ценой ошибки была жизнь.</p>
+      <p class="story-text" style="margin-top:16px;">Ни один приём в этой книге не придуман в аудитории и не вычитан в кабинете психолога. Каждый — проверен в «яме».</p>
+    </div>
+  </div>
+</section>
+
+<section class="py">
+  <div class="wrap">
+    <div class="cred-grid">
+      <div class="reveal">
+        <img src="photos/portrait-hires.jpg" alt="Максим Теорентер" style="border-radius:4px; box-shadow:0 20px 50px rgba(0,0,0,.5); aspect-ratio:4/5; object-fit:cover; width:100%;">
+      </div>
+      <div class="reveal d1">
+        <div class="kicker">Почему стоит слушать именно этого человека</div>
+        <ul class="cred-list" style="margin-top:24px;">
+          <li><span class="ico">✓</span><span>Мастер спорта по американскому футболу — восьмикратный чемпион Украины и СНГ</span></li>
+          <li><span class="ico">✓</span><span>Кандидат в мастера спорта по тяжёлой атлетике, пауэрлифтингу и гиревому спорту</span></li>
+          <li><span class="ico">✓</span><span>Кандидат в мастера спорта по грэпплингу и боевому самбо</span></li>
+          <li><span class="ico">✓</span><span>Магистр в управлении, психологический профайлер</span></li>
+          <li><span class="ico">✓</span><span>Certified Master Hypnotherapist — American Academy of Hypnosis (Майами, США)</span></li>
+          <li><span class="ico">✓</span><span>1341 день в плену в самопровозглашённой ДНР — допросы, пытки, «яма»</span></li>
+          <li><span class="ico">✓</span><span>Сегодня — практикующий гипнотерапевт, автор проекта «Кузня»</span></li>
+        </ul>
+        <p style="margin-top:24px; color:var(--mist); font-style:italic;">Тело и психику тренировал на пределе задолго до плена — и именно это, по его словам, стало единственным, что помогло устоять.</p>
+        <p style="margin-top:20px; font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:13px; letter-spacing:.08em; color:var(--bone);">Это база. Дальше — то, что из неё получилось.</p>
+      </div>
+    </div>
+
+    <div class="photo-row">
+      <div class="photo-card reveal">
+        <img src="photos/sambo-certificate.jpg" alt="Максим Теорентер с сертификатом чемпионата по боевому самбо">
+        <div class="cap">Чемпионат Донецкой области по боевому самбо</div>
+      </div>
+      <div class="photo-card reveal d1">
+        <img src="photos/football-team.jpg" alt="Команда по американскому футболу — чемпионат Украины">
+        <div class="cap">Чемпион Украины по американскому футболу</div>
+      </div>
+      <div class="photo-card reveal d2">
+        <img src="photos/hypnosis-cert.jpg" alt="Сертификат American Academy of Hypnosis">
+        <div class="cap">Certified Master Hypnotherapist — American Academy of Hypnosis</div>
+      </div>
+      <div class="photo-card wide reveal" style="grid-column:span 2;">
+        <img src="photos/medals-diplomas.jpg" alt="Медали и дипломы Максима Теорентера">
+        <div class="cap">Медали и дипломы за годы соревнований</div>
+      </div>
+      <div class="photo-card reveal d1">
+        <img src="photos/training-snow.jpg" alt="Максим Теорентер, тренировка на морозе">
+        <div class="cap">Дисциплина, которая была задолго до плена</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py graphite">
+  <div class="wrap-narrow">
+    <div class="kicker reveal" style="text-align:center; display:block;">Система «Неуязвимость» изнутри</div>
+    <div style="margin-top:40px;">
+      <div class="stack-item reveal">
+        <span class="check">✓</span>
+        <div><p class="h">Систему из 13 глав</p><p class="s">Написана не теоретиком, а тем, кто прошёл через предельные обстоятельства и остался жив, физически и как личность.</p></div>
+      </div>
+      <div class="stack-item reveal d1">
+        <span class="check">✓</span>
+        <div><p class="h">47 стихотворений, написанных в плену</p><p class="s">Не для красоты — как техника удержания рассудка, когда больше нечем было держаться.</p></div>
+      </div>
+      <div class="stack-item reveal d2">
+        <span class="check">✓</span>
+        <div><p class="h">Конкретные приёмы, а не советы</p><p class="s">Как управлять собой, когда нельзя управлять обстоятельствами. Как не отдавать страху право решать. Как удерживать смысл, когда его, кажется, не осталось.</p></div>
+      </div>
+      <div class="stack-item reveal d3">
+        <span class="check">✓</span>
+        <div><p class="h">Ответ на вопрос, который вы не задаёте вслух</p><p class="s">«Что будет со мной, если всё рухнет?»</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="py center">
+  <div class="wrap-narrow">
+    <div class="scene reveal">
+      <div class="book3d">
+        <div class="spine"><img src="cover-spine.jpg" alt=""></div>
+        <div class="front"><img src="cover-front.jpg" alt="Обложка книги «1341 день в изоляции»"></div>
+      </div>
+    </div>
+    <p class="disp reveal" style="font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--mist);">13 глав · 47 стихотворений · система «Неуязвимость» целиком</p>
+    <p class="cost-line reveal d1" style="margin-top:20px;">Терапия, которая учит тому же, стоит месяцы работы и не одну тысячу долларов.</p>
+    <p class="cost-line reveal d2" style="margin-top:12px;">Эта книга стоит $10 — потому что автор сознательно сделал её доступной, а не потому что она стоит дёшево.</p>
+    <div class="price reveal d3" style="margin-top:32px;">$10</div>
+    <a href="#" class="btn btn-primary reveal d3" style="margin-top:28px;">Начать готовиться — $10</a>
+    <p class="reveal d3" style="margin-top:14px; font-size:12px; color:var(--mist);">Цифровая версия · моментальный доступ после оплаты</p>
+  </div>
+</section>
+
+<section class="py graphite center">
+  <div class="wrap-narrow">
+    <p class="disp reveal balance" style="font-size:clamp(20px,3.4vw,28px); font-weight:600;">
+      Вопрос не в том, можете ли вы себе позволить эту книгу.
+    </p>
+    <p class="disp reveal d1 balance" style="margin-top:8px; font-size:clamp(20px,3.4vw,28px); font-weight:600; color:var(--ember-bright);">
+      Вопрос в том, можете ли вы позволить себе оказаться неподготовленным, когда придёт ваш момент.
+    </p>
+  </div>
+</section>
+
+<section class="py">
+  <div class="wrap">
+    <div class="filter-grid">
+      <div class="filter-col">
+        <div class="kicker reveal">Эта книга — для тех, кто</div>
+        <ul>
+          <li class="reveal">Проходит кризис или начинает жизнь заново</li>
+          <li class="reveal d1">Строит бизнес или карьеру в условиях неопределённости</li>
+          <li class="reveal d2">Пережил серьёзное потрясение и до сих пор носит его в себе</li>
+          <li class="reveal d3">Хочет стать психологически устойчивее — не на словах</li>
+        </ul>
+      </div>
+      <div class="filter-col neg">
+        <p class="disp reveal" style="font-size:12px; letter-spacing:.14em; color:var(--mist); text-transform:uppercase; font-weight:600;">Может не подойти, если вы ищете</p>
+        <ul>
+          <li class="reveal">Волшебную таблетку или мотивационные лозунги</li>
+          <li class="reveal d1">Обещание жизни без боли</li>
+          <li class="reveal d2">Теорию от человека, который сам не проходил ничего подобного</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py graphite center">
+  <div class="wrap-narrow">
+    <p class="disp reveal" style="font-size:clamp(18px,3vw,24px); color:var(--mist);">В момент поражения вы упадёте до уровня своей подготовленности.</p>
+    <p class="disp reveal d1" style="margin-top:8px; font-size:clamp(18px,3vw,24px);">Начните готовиться сейчас — пока это ваш выбор, а не чрезвычайная необходимость.</p>
+    <div class="reveal d2" style="margin-top:40px;">
+      <div class="price">$10</div>
+      <a href="#" class="btn btn-primary" style="margin-top:24px;">Да, я хочу быть готов</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Максим Теорентер. Книга основана на реальных событиях. 18+</div>
+</footer>
+
+<div id="sticky-cta"><a href="#" class="btn btn-primary">Получить книгу · $10</a></div>
+
+<script>
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>
