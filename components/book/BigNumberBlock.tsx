@@ -36,7 +36,7 @@ export function BigNumberBlock() {
                 <div className="font-display text-xl font-semibold text-flame md:text-3xl">
                   {stat.value}
                 </div>
-                <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-mist">
+                <div className="mt-1 text-[13px] uppercase tracking-[0.16em] text-mist">
                   {stat.label}
                 </div>
               </div>

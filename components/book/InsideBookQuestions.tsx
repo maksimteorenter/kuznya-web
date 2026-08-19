@@ -34,7 +34,7 @@ export function InsideBookQuestions() {
           {QUESTIONS.map((q, i) => (
             <FadeIn key={q} delay={i * 0.04}>
               <div className="flex gap-5 border-t border-white/12 py-4 last:border-b">
-                <span className="shrink-0 pt-1.5 font-display text-xs tabular-nums text-blood">
+                <span className="shrink-0 pt-1.5 font-display text-[13px] tabular-nums text-blood">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p className="text-balance font-editorial text-lg italic leading-snug text-bone md:text-xl">

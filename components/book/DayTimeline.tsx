@@ -33,7 +33,7 @@ export function DayTimeline() {
                   aria-hidden="true"
                 />
                 <p
-                  className={`font-display text-xs uppercase tracking-[0.18em] ${
+                  className={`font-display text-[13px] uppercase tracking-[0.18em] ${
                     s.final ? "text-blood" : "text-inkFaint"
                   }`}
                 >

@@ -12,7 +12,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-container items-center justify-between px-6 md:px-10">
         <Link
           href="/"
-          className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-ink"
+          className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-ink"
         >
           Кузня
         </Link>
@@ -22,7 +22,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="font-display text-xs uppercase tracking-[0.14em] text-inkFaint transition-colors hover:text-ink"
+              className="font-display text-[13px] uppercase tracking-[0.14em] text-inkFaint transition-colors hover:text-ink"
             >
               {item.label}
               {item.comingSoon && (

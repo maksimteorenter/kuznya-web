@@ -23,7 +23,7 @@ export function WhatsInsideBlock() {
                 <div className="font-display text-5xl font-bold tabular-nums leading-none text-ink">
                   {s.value}
                 </div>
-                <div className="mt-2 font-display text-xs uppercase tracking-[0.18em] text-inkFaint">
+                <div className="mt-2 font-display text-[13px] uppercase tracking-[0.18em] text-inkFaint">
                   {s.label}
                 </div>
               </div>
@@ -32,7 +32,7 @@ export function WhatsInsideBlock() {
         </FadeIn>
 
         <FadeIn delay={0.2} className="mt-14">
-          <p className="font-display text-xs uppercase tracking-[0.2em] text-inkFaint">
+          <p className="font-display text-[13px] uppercase tracking-[0.16em] text-inkFaint">
             Оглавление
           </p>
           <ol className="mt-6 grid gap-x-12 gap-y-0 sm:grid-cols-2">
@@ -41,7 +41,7 @@ export function WhatsInsideBlock() {
                 key={c}
                 className="flex items-baseline gap-4 border-t border-ink/12 py-3.5"
               >
-                <span className="font-display text-xs tabular-nums text-blood">
+                <span className="font-display text-[13px] tabular-nums text-blood">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="text-[15px] text-ink">{c}</span>

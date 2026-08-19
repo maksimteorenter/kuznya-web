@@ -53,14 +53,14 @@ export function PromiseBlock() {
             <FadeIn key={p.title} delay={i * 0.06}>
               <div className="border-t-2 border-ink pt-5">
                 <div className="flex items-baseline gap-3">
-                  <span className="font-display text-xs tabular-nums text-blood">
+                  <span className="font-display text-[13px] tabular-nums text-blood">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="font-display text-lg font-bold uppercase tracking-[0.04em] text-ink">
                     {p.title}
                   </h3>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-inkSoft">{p.text}</p>
+                <p className="mt-3 text-[15px] leading-relaxed text-inkSoft">{p.text}</p>
               </div>
             </FadeIn>
           ))}

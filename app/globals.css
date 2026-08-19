@@ -47,8 +47,10 @@ body {
 .kicker {
   font-family: var(--font-oswald);
   text-transform: uppercase;
-  letter-spacing: 0.24em;
-  font-size: 0.72rem;
+  /* Wide tracking on small caps is the main thing that hurt legibility here,
+     so this is both larger and less spaced out than the first pass. */
+  letter-spacing: 0.16em;
+  font-size: 0.875rem;
   font-weight: 600;
   color: theme("colors.blood.DEFAULT");
 }

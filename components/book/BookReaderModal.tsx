@@ -165,7 +165,7 @@ export function BookReaderModal({
 
             <p
               aria-live="polite"
-              className="mt-4 font-display text-xs uppercase tracking-[0.14em] tabular-nums text-mist"
+              className="mt-4 font-display text-[13px] uppercase tracking-[0.14em] tabular-nums text-mist"
             >
               Страница {index + 1} из {PAGES.length}
             </p>
@@ -177,7 +177,7 @@ export function BookReaderModal({
                 transition={{ delay: 0.2 }}
                 className="mt-8 flex flex-col items-center gap-3 text-center"
               >
-                <p className="max-w-sm text-balance text-sm leading-relaxed text-bone/90">
+                <p className="max-w-sm text-balance text-[15px] leading-relaxed text-bone/90">
                   Это первые страницы. Дальше — ещё {BOOK.pages - 9} страниц
                   истории.
                 </p>

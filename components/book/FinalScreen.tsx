@@ -72,7 +72,7 @@ export function FinalScreen() {
             Получить книгу — {BOOK.price}
           </Button>
 
-          <p className="mt-4 font-display text-[11px] uppercase tracking-[0.2em] text-mist">
+          <p className="mt-4 font-display text-[13px] uppercase tracking-[0.16em] text-mist">
             {BOOK.formats.map((f) => f.label).join(" · ")} · моментальный доступ
           </p>
         </FadeIn>

@@ -58,23 +58,17 @@ export function Hero() {
             className="photo-bw-hard object-cover object-[52%_12%]"
           />
 
-          {/* The red slash — one deliberate cut down the far edge of the frame.
-              Kept off the face on purpose: it should read as a mark on the
-              image, not as damage to the man in it. */}
+          {/* Censor bar across the eyes. The book is about a man stripped of
+              his name and identity, so the mark lands exactly where identity
+              is read. It wipes in from the left like a stamp. */}
           <motion.div
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 0.9, delay: 0.9, ease }}
-            className="pointer-events-none absolute -top-[10%] right-[3%] h-[130%] w-[86px] origin-top bg-blood/90 mix-blend-multiply md:w-[120px]"
-            style={{ transform: "rotate(14deg)" }}
-            aria-hidden="true"
-          />
-          <motion.div
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 0.9, delay: 1.02, ease }}
-            className="pointer-events-none absolute -top-[10%] right-[13%] h-[130%] w-[14px] origin-top bg-blood-dark/90 mix-blend-multiply md:w-[18px]"
-            style={{ transform: "rotate(14deg)" }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.55, delay: 1.15, ease: [0.2, 0.9, 0.3, 1] }}
+            /* Hidden on phones: there the photo sits under a heavy scrim, so
+               the bar reads as a stain behind the headline rather than a mark
+               on the face. It only earns its place on the desktop split. */
+            className="pointer-events-none absolute hidden bg-blood md:block md:left-[51%] md:top-[25.4%] md:h-[4.4%] md:w-[28%] md:origin-left"
             aria-hidden="true"
           />
 
@@ -130,7 +124,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-6 font-display text-[11px] font-medium uppercase tracking-[0.28em] text-inkFaint"
+            className="mt-6 font-display text-sm font-medium uppercase tracking-[0.16em] text-inkFaint"
           >
             {BOOK.author} · Мемуары
           </motion.p>
@@ -150,7 +144,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 1.1, ease }}
-            className="mt-7 max-w-[430px] text-balance leading-relaxed text-inkSoft"
+            className="mt-7 max-w-[440px] text-balance text-[17px] leading-relaxed text-inkSoft"
           >
             {BOOK.days} день в плену. Реальная история человека, у которого
             забрали свободу, имя и любые планы — и который искал, что
@@ -175,7 +169,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.9, delay: 1.5 }}
-            className="mt-8 font-display text-[10px] uppercase tracking-[0.26em] text-inkFaint"
+            className="mt-8 font-display text-[13px] uppercase tracking-[0.16em] text-inkFaint"
           >
             Основано на реальных событиях
           </motion.p>

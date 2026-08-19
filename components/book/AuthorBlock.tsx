@@ -61,14 +61,14 @@ export function AuthorBlock() {
             </FadeIn>
 
             <FadeIn delay={0.2} className="mt-10">
-              <p className="font-display text-xs uppercase tracking-[0.2em] text-mist">
+              <p className="font-display text-[13px] uppercase tracking-[0.16em] text-mist">
                 Проверяемые факты
               </p>
               <ul className="mt-5 grid gap-x-10 gap-y-0 sm:grid-cols-2">
                 {AUTHOR_FACTS.map((fact) => (
                   <li
                     key={fact}
-                    className="border-t border-white/12 py-3.5 text-sm leading-relaxed text-bone/90"
+                    className="border-t border-white/12 py-3.5 text-[15px] leading-relaxed text-bone/90"
                   >
                     {fact}
                   </li>

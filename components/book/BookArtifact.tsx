@@ -41,7 +41,7 @@ export function BookArtifact() {
                 <span className="font-display text-6xl font-bold leading-none tabular-nums text-blood">
                   {BOOK.price}
                 </span>
-                <span className="pb-1.5 font-display text-xs uppercase tracking-[0.18em] text-inkFaint">
+                <span className="pb-1.5 font-display text-[13px] uppercase tracking-[0.18em] text-inkFaint">
                   разовый платёж
                 </span>
               </div>
@@ -84,7 +84,7 @@ export function BookArtifact() {
               <Button href={BOOK.checkoutUrl} size="lg" className="mt-10">
                 Получить книгу — {BOOK.price}
               </Button>
-              <p className="mt-3 font-display text-[11px] uppercase tracking-[0.16em] text-inkFaint">
+              <p className="mt-3 font-display text-[13px] uppercase tracking-[0.16em] text-inkFaint">
                 {BOOK.formats.map((f) => f.label).join(" · ")} · моментальный
                 доступ
               </p>

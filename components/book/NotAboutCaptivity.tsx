@@ -44,7 +44,7 @@ export function NotAboutCaptivity() {
                 key={q}
                 className="flex gap-5 border-t border-ink/12 py-4 last:border-b"
               >
-                <span className="shrink-0 pt-1 font-display text-xs tabular-nums text-blood">
+                <span className="shrink-0 pt-1 font-display text-[13px] tabular-nums text-blood">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="text-balance leading-relaxed text-ink">{q}</span>

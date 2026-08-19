@@ -17,7 +17,7 @@ export function InteractiveBookMockup() {
       >
         <BookMockup3D />
         <span className="pointer-events-none absolute inset-x-0 -bottom-2 flex justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="rounded-sm bg-blood px-4 py-2 font-display text-xs uppercase tracking-[0.14em] text-white shadow-lg">
+          <span className="rounded-sm bg-blood px-4 py-2 font-display text-[13px] uppercase tracking-[0.14em] text-white shadow-lg">
             Читать первые страницы →
           </span>
         </span>

@@ -16,7 +16,7 @@ export function StoryTimeline() {
             <FadeIn key={i} delay={i * 0.06}>
               <div className="flex flex-col gap-2 border-l-2 border-steel pl-6 md:flex-row md:items-baseline md:gap-8">
                 {f.date ? (
-                  <span className="shrink-0 font-display text-xs uppercase tracking-[0.14em] text-flame md:w-40">
+                  <span className="shrink-0 font-display text-[13px] uppercase tracking-[0.14em] text-flame md:w-40">
                     {f.date}
                   </span>
                 ) : (

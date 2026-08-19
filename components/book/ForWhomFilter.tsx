@@ -25,7 +25,7 @@ export function ForWhomFilter() {
 
           <div>
             <FadeIn>
-              <span className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-mist">
+              <span className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-mist">
                 Может не подойти, если вы ищете
               </span>
             </FadeIn>

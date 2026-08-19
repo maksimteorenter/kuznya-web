@@ -47,7 +47,7 @@ export function NumberTimeline() {
           </AnimatePresence>
         </div>
 
-        <span className="font-display text-sm uppercase tracking-[0.2em] text-mist">
+        <span className="font-display text-sm uppercase tracking-[0.16em] text-mist">
           {isFinal ? "дней в изоляции" : "дней"}
         </span>
 

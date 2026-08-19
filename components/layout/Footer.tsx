@@ -7,10 +7,10 @@ export function Footer() {
       <div className="mx-auto max-w-container px-6 md:px-10">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
-            <div className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-bone">
+            <div className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-bone">
               {SITE.name}
             </div>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-mist">
+            <p className="mt-3 max-w-xs text-[15px] leading-relaxed text-mist">
               {SITE.tagline}
             </p>
           </div>
@@ -21,7 +21,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="font-display text-xs uppercase tracking-[0.1em] text-mist transition-colors hover:text-bone"
+                    className="font-display text-[13px] uppercase tracking-[0.1em] text-mist transition-colors hover:text-bone"
                   >
                     {item.label}
                   </Link>
@@ -31,7 +31,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-white/5 pt-6 text-xs text-mist md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 flex flex-col gap-2 border-t border-white/5 pt-6 text-[13px] text-mist md:flex-row md:items-center md:justify-between">
           <span>© {new Date().getFullYear()} Максим Теорентер. Все права защищены.</span>
           <span>Книга основана на реальных событиях. Содержит описание насилия. 18+</span>
         </div>

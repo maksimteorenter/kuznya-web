@@ -30,8 +30,8 @@ const variants: Record<NonNullable<ButtonProps["variant"]>, string> = {
 
 const sizes: Record<NonNullable<ButtonProps["size"]>, string> = {
   // min-h keeps every button above the 44px touch-target floor.
-  md: "min-h-[44px] px-7 py-3 text-[13px]",
-  lg: "min-h-[52px] px-9 py-4 text-sm",
+  md: "min-h-[46px] px-7 py-3 text-sm",
+  lg: "min-h-[54px] px-9 py-4 text-[15px]",
 };
 
 export function Button({
