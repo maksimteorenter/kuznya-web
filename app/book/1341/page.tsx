@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/book/Hero";
-import { NumberTimeline } from "@/components/book/NumberTimeline";
-import { AfterTimelinePhrase } from "@/components/book/AfterTimelinePhrase";
-import { NotAPrison } from "@/components/book/NotAPrison";
-import { StoryTimeline } from "@/components/book/StoryTimeline";
-import { BigNumberBlock } from "@/components/book/BigNumberBlock";
-import { TurningPoint } from "@/components/book/TurningPoint";
-import { WhatBookGives } from "@/components/book/WhatBookGives";
-import { InvulnerabilityBlock } from "@/components/book/InvulnerabilityBlock";
-import { ForWhomFilter } from "@/components/book/ForWhomFilter";
-import { BookArtifact } from "@/components/book/BookArtifact";
-import { MeaningOfPurchase } from "@/components/book/MeaningOfPurchase";
+import { NumberRevealBlock } from "@/components/book/NumberRevealBlock";
+import { NotAboutCaptivity } from "@/components/book/NotAboutCaptivity";
+import { PainBlock } from "@/components/book/PainBlock";
+import { DidntKnowBlock } from "@/components/book/DidntKnowBlock";
+import { PromiseBlock } from "@/components/book/PromiseBlock";
+import { NotAManualBlock } from "@/components/book/NotAManualBlock";
+import { InsideBookQuestions } from "@/components/book/InsideBookQuestions";
+import { DayTimeline } from "@/components/book/DayTimeline";
+import { WhoShouldReadBlock } from "@/components/book/WhoShouldReadBlock";
+import { WhatsInsideBlock } from "@/components/book/WhatsInsideBlock";
 import { AuthorBlock } from "@/components/book/AuthorBlock";
-import { QuoteScreen } from "@/components/book/QuoteScreen";
-import { ForgeBridge } from "@/components/book/ForgeBridge";
+import { BookArtifact } from "@/components/book/BookArtifact";
+import { DontBuyBlock } from "@/components/book/DontBuyBlock";
+import { FaqSection } from "@/components/book/FaqSection";
 import { FinalScreen } from "@/components/book/FinalScreen";
 import { StickyMobileCTA } from "@/components/book/StickyMobileCTA";
-import { BOOK, QUOTES } from "@/lib/content";
+import { BOOK } from "@/lib/content";
 
-const title = "1341 день в изоляции — Как стать неуязвимым | Максим Теорентер";
+const title = "1341 день в плену — Как выжить там, где у тебя забрали всё | Максим Теорентер";
 const description =
   "Книга о 1341 дне плена, внутренней свободе, психологической устойчивости и способности человека сохранить себя в предельных обстоятельствах.";
 
@@ -68,7 +68,7 @@ const jsonLd = {
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
     // TODO: replace with the real checkout URL once payment is wired up.
-    url: "https://kuznya.com/book/1341",
+    url: "https://teorentermaksim.com/book/1341",
   },
 };
 
@@ -82,22 +82,20 @@ export default function BookPage() {
       />
 
       <Hero />
-      <NumberTimeline />
-      <AfterTimelinePhrase />
-      <NotAPrison />
-      <StoryTimeline />
-      <BigNumberBlock />
-      <TurningPoint />
-      <QuoteScreen quote={QUOTES[0]} />
-      <WhatBookGives />
-      <QuoteScreen quote={QUOTES[1]} />
-      <InvulnerabilityBlock />
-      <ForWhomFilter />
-      <QuoteScreen quote={QUOTES[2]} />
-      <BookArtifact />
-      <MeaningOfPurchase />
+      <NumberRevealBlock />
+      <NotAboutCaptivity />
+      <PainBlock />
+      <DidntKnowBlock />
+      <PromiseBlock />
+      <NotAManualBlock />
+      <InsideBookQuestions />
+      <DayTimeline />
+      <WhoShouldReadBlock />
+      <WhatsInsideBlock />
       <AuthorBlock />
-      <ForgeBridge />
+      <BookArtifact />
+      <DontBuyBlock />
+      <FaqSection />
       <FinalScreen />
       <div className="h-20 md:hidden" aria-hidden="true" />
       <StickyMobileCTA />

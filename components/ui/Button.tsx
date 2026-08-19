@@ -8,6 +8,7 @@ type ButtonProps = {
   size?: "md" | "lg";
   external?: boolean;
   className?: string;
+  onClick?: () => void;
 };
 
 const base =
@@ -32,6 +33,7 @@ export function Button({
   size = "md",
   external = false,
   className = "",
+  onClick,
 }: ButtonProps) {
   const cls = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
 
@@ -42,6 +44,7 @@ export function Button({
         className={cls}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
+        onClick={onClick}
       >
         {children}
       </a>
@@ -49,7 +52,7 @@ export function Button({
   }
 
   return (
-    <Link href={href} className={cls}>
+    <Link href={href} className={cls} onClick={onClick}>
       {children}
     </Link>
   );

@@ -28,8 +28,28 @@ export function AuthorBlock() {
               <h2 className="mt-4 font-display text-3xl font-semibold uppercase text-bone md:text-4xl">
                 {BOOK.author}
               </h2>
-              <p className="mt-5 max-w-prose text-balance text-lg italic leading-relaxed text-mist">
+              <p className="mt-5 max-w-prose text-balance font-editorial text-xl italic leading-relaxed text-bone">
                 {AUTHOR_LEDE}
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.1} className="mt-8 max-w-prose space-y-4 text-balance leading-relaxed text-mist">
+              <p>Я мог бы перечислить здесь регалии. Но для этой книги важнее другое.</p>
+              <p className="text-bone/90">
+                {BOOK.arrestDate} года моя прежняя жизнь закончилась. Впереди
+                были дни, количество которых я тогда не знал. В конечном
+                итоге их оказалось: <span className="text-ember-bright">{BOOK.days}</span>.
+              </p>
+              <p>
+                Эта книга появилась не потому, что мне хотелось написать
+                очередную историю успеха. Мне хотелось зафиксировать то, что
+                происходит с человеком, когда привычная жизнь исчезает — и
+                ему приходится заново искать опору внутри себя. Что
+                работало. Что не работало. Где я ошибался. Чего боялся.
+              </p>
+              <p className="font-editorial text-lg italic text-bone">
+                Эта книга — разговор с человеком, который однажды тоже может
+                оказаться перед обстоятельствами сильнее его планов.
               </p>
             </FadeIn>
 

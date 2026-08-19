@@ -2,43 +2,51 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { AUTHOR_FACTS, AUTHOR_LEDE, BOOK } from "@/lib/content";
+import { FadeIn } from "@/components/motion/FadeIn";
+import { ScrollParallax } from "@/components/motion/ScrollParallax";
+import { AUTHOR_FACTS, BOOK } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Автор" };
 
 export default function AboutPage() {
   return (
-    <Section bare className="vignette flex min-h-[90vh] items-center">
-      <Container>
-        <div className="grid gap-14 md:grid-cols-[280px_1fr] md:items-start">
-          <div className="relative aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-sm shadow-2xl">
-            <Image
-              src="/images/author.jpg"
-              alt={BOOK.author}
-              fill
-              sizes="280px"
-              className="object-cover"
-            />
-          </div>
-          <div>
-            <span className="kicker">Автор</span>
-            <h1 className="mt-4 font-display text-4xl font-semibold uppercase text-bone md:text-5xl">
-              {BOOK.author}
-            </h1>
-            <p className="mt-6 max-w-prose text-lg italic text-mist">{AUTHOR_LEDE}</p>
-            <ul className="mt-10 space-y-4">
-              {AUTHOR_FACTS.map((fact) => (
-                <li
-                  key={fact}
-                  className="border-l-2 border-ember pl-4 text-sm leading-relaxed text-bone/90"
-                >
+    <>
+      <Section bare className="flex min-h-[100svh] items-center justify-center bg-void py-16">
+        <Container className="flex justify-center">
+          <FadeIn>
+            <ScrollParallax strength={18} className="w-full max-w-[560px]">
+              <div className="relative overflow-hidden rounded-2xl shadow-[0_60px_120px_-30px_rgba(0,0,0,0.7)]">
+                <Image
+                  src="/images/about-hero.jpg"
+                  alt={BOOK.author}
+                  width={1024}
+                  height={1536}
+                  sizes="(max-width: 640px) 92vw, 560px"
+                  className="h-auto w-full"
+                  priority
+                />
+              </div>
+            </ScrollParallax>
+          </FadeIn>
+        </Container>
+      </Section>
+
+      <Section tone="graphite">
+        <Container className="max-w-3xl">
+          <FadeIn>
+            <span className="kicker">Регалии</span>
+          </FadeIn>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+            {AUTHOR_FACTS.map((fact, i) => (
+              <FadeIn key={fact} delay={i * 0.05}>
+                <li className="border-l-2 border-ember pl-4 text-sm leading-relaxed text-bone/90">
                   {fact}
                 </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Container>
-    </Section>
+              </FadeIn>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+    </>
   );
 }

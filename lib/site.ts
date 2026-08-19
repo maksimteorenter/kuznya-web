@@ -20,6 +20,6 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const SITE = {
   name: "Кузня",
-  domain: "kuznya.com", // TODO: confirm final domain before deploy
+  domain: "teorentermaksim.com",
   tagline: "Место, где человек не ищет себя. Он создаёт себя.",
 };

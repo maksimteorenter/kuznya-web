@@ -1,26 +1,51 @@
 import type { Metadata } from "next";
-import { Oswald, Lora } from "next/font/google";
+import localFont from "next/font/local";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
-const oswald = Oswald({
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
+// Self-hosted (not next/font/google): this environment's dev server cannot
+// reach Google Fonts at runtime, which was causing multi-minute compiles and
+// intermittent 500s. Local files avoid any network dependency.
+const oswald = localFont({
+  src: [
+    { path: "../public/fonts/Oswald-400.ttf", weight: "400", style: "normal" },
+    { path: "../public/fonts/Oswald-500.ttf", weight: "500", style: "normal" },
+    { path: "../public/fonts/Oswald-600.ttf", weight: "600", style: "normal" },
+    { path: "../public/fonts/Oswald-700.ttf", weight: "700", style: "normal" },
+  ],
   variable: "--font-oswald",
   display: "swap",
 });
 
-const lora = Lora({
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-lora",
+// Editorial voice — quotes, philosophical statements, the author's inner
+// monologue. Contrasts with Oswald's industrial display weight.
+const garamond = localFont({
+  src: [
+    { path: "../public/fonts/CormorantGaramond-400.ttf", weight: "400", style: "normal" },
+    { path: "../public/fonts/CormorantGaramond-500.ttf", weight: "500", style: "normal" },
+    { path: "../public/fonts/CormorantGaramond-600.ttf", weight: "600", style: "normal" },
+    { path: "../public/fonts/CormorantGaramond-400-Italic.ttf", weight: "400", style: "italic" },
+    { path: "../public/fonts/CormorantGaramond-500-Italic.ttf", weight: "500", style: "italic" },
+  ],
+  variable: "--font-garamond",
+  display: "swap",
+});
+
+// UI voice — body copy, buttons, nav, FAQ, technical detail.
+const inter = localFont({
+  src: [
+    { path: "../public/fonts/Inter-400.ttf", weight: "400", style: "normal" },
+    { path: "../public/fonts/Inter-500.ttf", weight: "500", style: "normal" },
+    { path: "../public/fonts/Inter-600.ttf", weight: "600", style: "normal" },
+    { path: "../public/fonts/Inter-700.ttf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kuznya.com"), // TODO: confirm final domain
+  metadataBase: new URL("https://teorentermaksim.com"),
   title: {
     default: "Кузня — место, где человек создаёт себя",
     template: "%s | Кузня",
@@ -35,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={`${oswald.variable} ${lora.variable}`}>
+    <html lang="ru" className={`${oswald.variable} ${garamond.variable} ${inter.variable}`}>
       <body className="min-h-screen bg-void font-body text-bone antialiased">
         <div className="grain-overlay" aria-hidden="true" />
         <Header />
