@@ -14,7 +14,7 @@ const STATS = [
 
 export function BigNumberBlock() {
   return (
-    <Section tone="graphite" bare className="flex min-h-[90vh] flex-col items-center justify-center text-center">
+    <Section tone="deep" bare className="flex min-h-[90vh] flex-col items-center justify-center text-center">
       <Container>
         <FadeIn>
           <span className="kicker">Попробуй представить {BOOK.days} день</span>
@@ -33,7 +33,7 @@ export function BigNumberBlock() {
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-3 gap-4 border-t border-steel pt-8">
             {STATS.map((stat) => (
               <div key={stat.label}>
-                <div className="font-display text-xl font-semibold text-ember-bright md:text-3xl">
+                <div className="font-display text-xl font-semibold text-flame md:text-3xl">
                   {stat.value}
                 </div>
                 <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-mist">

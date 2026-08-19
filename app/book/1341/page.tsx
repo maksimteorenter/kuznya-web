@@ -81,15 +81,19 @@ export default function BookPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      {/* Sales order: hook the pain, make it theirs, land the number, reframe
+          what the book actually is, show what holds a person, prove the author,
+          then price, objections, FAQ, close. Tones alternate paper/deep so the
+          whole page reads as one black-and-white system while scrolling. */}
       <Hero />
+      <PainBlock />
       <NumberRevealBlock />
       <NotAboutCaptivity />
-      <PainBlock />
       <DidntKnowBlock />
       <PromiseBlock />
-      <NotAManualBlock />
       <InsideBookQuestions />
       <DayTimeline />
+      <NotAManualBlock />
       <WhoShouldReadBlock />
       <WhatsInsideBlock />
       <AuthorBlock />

@@ -1,39 +1,32 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { SectionHead } from "@/components/ui/SectionHead";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { AUTHOR_FACTS, AUTHOR_LEDE, BOOK } from "@/lib/content";
+import { AUTHOR_FACTS, BOOK } from "@/lib/content";
 
 export function AuthorBlock() {
   return (
-    <Section>
+    <Section tone="deep">
       <Container>
-        <div className="grid gap-14 md:grid-cols-[300px_1fr] md:items-start">
+        <div className="grid gap-14 md:grid-cols-[320px_1fr] md:items-start">
           <FadeIn>
-            <div className="relative w-full max-w-[300px] pl-6 pt-8">
-              {/* Number behind — bleeds out from under the portrait's top-left corner */}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute -left-2 -top-6 select-none font-display font-bold leading-none text-bone/[0.07]"
-                style={{ fontSize: "clamp(6rem, 16vw, 9.5rem)" }}
-              >
-                {BOOK.days}
-              </span>
-              <div className="relative z-10 aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
+            <div className="relative">
+              <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="/images/author-portrait-formal.jpg"
+                  src="/images/hero-portrait.jpg"
                   alt={BOOK.author}
                   fill
-                  sizes="300px"
-                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 320px"
+                  className="photo-bw object-cover object-[58%_20%]"
                 />
               </div>
-              {/* Number in front — a fragment threading over the portrait's bottom-right corner */}
+              {/* The number cuts the frame, the way the red slash does in the hero */}
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -bottom-5 -right-3 z-20 select-none font-display font-bold leading-none text-ember-bright"
-                style={{ fontSize: "clamp(2rem, 5vw, 2.75rem)" }}
+                className="pointer-events-none absolute -bottom-4 -right-2 select-none font-display font-bold leading-none text-blood"
+                style={{ fontSize: "clamp(2.2rem, 5vw, 3rem)" }}
               >
                 {BOOK.days}
               </span>
@@ -41,45 +34,47 @@ export function AuthorBlock() {
           </FadeIn>
 
           <div>
-            <FadeIn>
-              <span className="kicker">Автор</span>
-              <h2 className="mt-4 font-display text-3xl font-semibold uppercase text-bone md:text-4xl">
-                {BOOK.author}
-              </h2>
-              <p className="mt-5 max-w-prose text-balance font-editorial text-xl italic leading-relaxed text-bone">
-                {AUTHOR_LEDE}
-              </p>
-            </FadeIn>
+            <SectionHead label="Кто это написал">{BOOK.author}</SectionHead>
 
-            <FadeIn delay={0.1} className="mt-8 max-w-prose space-y-4 text-balance leading-relaxed text-mist">
-              <p>Я мог бы перечислить здесь регалии. Но для этой книги важнее другое.</p>
-              <p className="text-bone/90">
-                {BOOK.arrestDate} года моя прежняя жизнь закончилась. Впереди
-                были дни, количество которых я тогда не знал. В конечном
-                итоге их оказалось: <span className="text-ember-bright">{BOOK.days}</span>.
+            <FadeIn delay={0.1} className="mt-8 space-y-5">
+              <p className="max-w-prose font-editorial text-2xl italic leading-snug text-bone">
+                Я мог бы перечислить здесь регалии. Но для этой книги важнее
+                другое.
               </p>
-              <p>
-                Эта книга появилась не потому, что мне хотелось написать
-                очередную историю успеха. Мне хотелось зафиксировать то, что
+              <p className="max-w-prose leading-relaxed text-mist">
+                <span className="text-bone">{BOOK.arrestDate} года</span> моя
+                прежняя жизнь закончилась. Впереди были дни, количество
+                которых я тогда не знал. В итоге их оказалось{" "}
+                <span className="font-semibold text-blood">{BOOK.days}</span>.
+              </p>
+              <p className="max-w-prose leading-relaxed text-mist">
+                Эта книга появилась не потому, что мне захотелось написать
+                очередную историю успеха. Мне хотелось зафиксировать, что
                 происходит с человеком, когда привычная жизнь исчезает — и
                 ему приходится заново искать опору внутри себя. Что
                 работало. Что не работало. Где я ошибался. Чего боялся.
               </p>
-              <p className="font-editorial text-lg italic text-bone">
-                Эта книга — разговор с человеком, который однажды тоже может
+              <p className="max-w-prose font-editorial text-xl italic leading-snug text-bone">
+                Это разговор с человеком, который однажды тоже может
                 оказаться перед обстоятельствами сильнее его планов.
               </p>
             </FadeIn>
 
-            <ul className="mt-10 grid gap-4 sm:grid-cols-2">
-              {AUTHOR_FACTS.map((fact, i) => (
-                <FadeIn key={fact} delay={i * 0.05}>
-                  <li className="border-l-2 border-gold/50 pl-4 text-sm leading-relaxed text-bone/90">
+            <FadeIn delay={0.2} className="mt-10">
+              <p className="font-display text-xs uppercase tracking-[0.2em] text-mist">
+                Проверяемые факты
+              </p>
+              <ul className="mt-5 grid gap-x-10 gap-y-0 sm:grid-cols-2">
+                {AUTHOR_FACTS.map((fact) => (
+                  <li
+                    key={fact}
+                    className="border-t border-white/12 py-3.5 text-sm leading-relaxed text-bone/90"
+                  >
                     {fact}
                   </li>
-                </FadeIn>
-              ))}
-            </ul>
+                ))}
+              </ul>
+            </FadeIn>
 
             <FadeIn delay={0.3} className="mt-10">
               <Button href="/about" variant="ghost">

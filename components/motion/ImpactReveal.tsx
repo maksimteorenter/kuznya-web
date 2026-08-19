@@ -13,7 +13,7 @@ export function ImpactReveal({
   children,
   delay = 0,
   className = "",
-  lineClassName = "bg-ember-bright",
+  lineClassName = "bg-blood",
 }: {
   children: ReactNode;
   delay?: number;

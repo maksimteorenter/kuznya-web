@@ -14,24 +14,26 @@
 
 html {
   scroll-behavior: smooth;
-  background: #101113;
+  background: theme("colors.paper");
+  /* Native controls and scrollbars must match the page, not the OS default. */
+  color-scheme: light;
 }
 
 body {
-  background-color: theme("colors.void");
-  color: theme("colors.bone");
+  background-color: theme("colors.paper");
+  color: theme("colors.ink");
   font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: theme("colors.ember.DEFAULT");
+  background: theme("colors.blood.DEFAULT");
   color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid theme("colors.ember.bright");
+  outline: 2px solid theme("colors.blood.DEFAULT");
   outline-offset: 3px;
 }
 
@@ -40,21 +42,30 @@ body {
   text-wrap: balance;
 }
 
+/* Small uppercase label. Inherits color so it works on either ground —
+   set text-blood (light sections) or text-blood/paper (dark) at the call site. */
 .kicker {
   font-family: var(--font-oswald);
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.75rem;
+  letter-spacing: 0.24em;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: theme("colors.ember.bright");
+  color: theme("colors.blood.DEFAULT");
 }
 
-/* Film grain overlay: static, low-cost, no JS. A tiny tiled noise SVG. */
+/* On black, the red only reaches 3.16:1 — fine for the rule bar (a graphic,
+   3:1 threshold) but not for this small label. The bar above it carries the
+   accent instead, and the label switches to a colour that actually passes. */
+.tone-deep .kicker {
+  color: theme("colors.mist");
+}
+
+/* Film grain: only over dark sections, where it reads as film stock.
+   On paper it would look like dirt, so it is opt-in per section. */
 .grain-overlay {
   pointer-events: none;
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: 60;
   opacity: 0.05;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
@@ -75,37 +86,18 @@ body {
   }
 }
 
-/* Vignette used behind hero / dark cinematic sections */
-.vignette {
-  background:
-    radial-gradient(ellipse 120% 80% at 50% -10%, rgba(141, 31, 36, 0.08), transparent 60%),
-    radial-gradient(ellipse 100% 60% at 50% 110%, rgba(0, 0, 0, 0.55), transparent 60%),
-    linear-gradient(180deg, #101113 0%, #191b1e 50%, #101113 100%);
+/* The one accent rule. A short red bar that marks the start of a block. */
+.blood-rule {
+  width: 64px;
+  height: 5px;
+  background: theme("colors.blood.DEFAULT");
 }
 
-/* Aged brass — fine lines, separators, small labels. Use sparingly. */
-.brass-rule {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #B3945E 15%, #B3945E 85%, transparent);
-  opacity: 0.55;
+/* Photography treatment: every photo on this site is black and white.
+   Red is the only color allowed on the page. */
+.photo-bw {
+  filter: grayscale(1) contrast(1.28);
 }
-
-/* Section atmosphere: replaces flat solid backgrounds with a faint directional
-   warmth (brass + oxide-red glows) so 15 stacked blocks don't read as one
-   flat slab. Orientation alternates by tone for rhythm as you scroll. */
-.section-atmosphere-void {
-  background:
-    radial-gradient(ellipse 85% 55% at 12% -5%, rgba(179, 148, 94, 0.06), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 88% 105%, rgba(141, 31, 36, 0.08), transparent 60%),
-    #101113;
-}
-.section-atmosphere-graphite {
-  background:
-    radial-gradient(ellipse 85% 55% at 88% -5%, rgba(179, 148, 94, 0.055), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 12% 105%, rgba(141, 31, 36, 0.07), transparent 60%),
-    #191b1e;
-}
-
-.text-brass {
-  color: theme("colors.gold");
+.photo-bw-hard {
+  filter: grayscale(1) contrast(1.45) brightness(0.92);
 }

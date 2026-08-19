@@ -1,58 +1,61 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { SectionHead } from "@/components/ui/SectionHead";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { RevealText } from "@/components/motion/RevealText";
 import { BOOK } from "@/lib/content";
 
 export function DidntKnowBlock() {
   return (
-    <Section tone="graphite">
-      <Container className="max-w-2xl">
-        <FadeIn>
-          <h2 className="text-balance font-display text-3xl font-bold uppercase leading-tight text-bone md:text-4xl">
-            Я не знал, что это будет {BOOK.days} день
-          </h2>
-        </FadeIn>
+    <Section tone="deep">
+      <Container className="max-w-3xl">
+        <SectionHead label="Поворотный момент">
+          Я не знал, что это будет {BOOK.days} день
+        </SectionHead>
 
-        <FadeIn delay={0.15} className="mt-8 space-y-4 text-balance leading-relaxed text-mist">
-          <p>В этом одна из самых тяжёлых частей истории.</p>
-          <p>
-            Если бы человек заранее знал: «тебе нужно выдержать ровно
-            столько», — у него хотя бы была бы точка на горизонте. Но когда
-            этой точки нет, начинается совсем другая борьба.
+        <FadeIn delay={0.1} className="mt-10 space-y-5">
+          <p className="max-w-prose leading-relaxed text-mist">
+            Это одна из самых тяжёлых частей истории — и самая недооценённая.
           </p>
-          <p>Ты просыпаешься утром. И не знаешь: ещё день? месяц? год? несколько лет?</p>
-        </FadeIn>
-
-        <FadeIn delay={0.3} className="mt-8">
-          <p className="text-balance leading-relaxed text-bone/90">
-            Именно тогда я начал понимать одну вещь:
+          <p className="max-w-prose leading-relaxed text-mist">
+            Если бы человеку заранее сказали: «продержись ровно столько» — у
+            него была бы точка на горизонте. Можно рассчитать силы. Можно
+            терпеть. Но когда точки нет, начинается совсем другая борьба.
+          </p>
+          <p className="max-w-prose leading-relaxed text-bone">
+            Ты просыпаешься утром и не знаешь: ещё день? месяц? год?
+            несколько лет? Никогда?
           </p>
         </FadeIn>
 
-        <RevealText
-          as="p"
-          delay={0.1}
-          className="mt-4 text-balance font-display text-xl font-bold uppercase leading-snug text-ember-bright md:text-2xl"
-        >
-          Если я не могу управлять тем, что происходит снаружи, мне
-          придётся научиться управлять тем, что происходит внутри.
-        </RevealText>
+        <FadeIn delay={0.2} className="mt-12 border-t border-white/15 pt-10">
+          <p className="max-w-prose leading-relaxed text-mist">
+            Именно тогда до меня дошла одна вещь, вокруг которой потом
+            выстроилось всё остальное:
+          </p>
+          <p
+            className="mt-6 max-w-3xl text-balance font-display font-bold uppercase leading-[1.14] text-blood"
+            style={{ fontSize: "clamp(1.4rem, 3vw, 2.3rem)" }}
+          >
+            Если я не могу управлять тем, что снаружи — мне придётся
+            научиться управлять тем, что внутри
+          </p>
+        </FadeIn>
 
-        <FadeIn delay={0.2} className="mt-10 space-y-4 text-balance leading-relaxed text-mist">
-          <p>Не всегда получалось. Были страх. Злость. Усталость. Отчаяние. Внутренние провалы.</p>
-          <p>
+        <FadeIn delay={0.3} className="mt-12 space-y-5">
+          <p className="max-w-prose leading-relaxed text-mist">
+            Не всегда получалось. Были страх, злость, усталость, отчаяние и
+            откровенные провалы. Я не буду делать вид, что прошёл это
+            красиво.
+          </p>
+          <p className="max-w-prose leading-relaxed text-mist">
             Но постепенно начали появляться правила. Способы держать
             внимание. Способы возвращать себя в настоящее. Способы
-            переживать неопределённость. Способы сохранять смысл. Способы
-            проживать следующий день.
+            переживать неопределённость. Способы не потерять смысл. Способы
+            прожить следующий день.
           </p>
-        </FadeIn>
-
-        <FadeIn delay={0.35} className="mt-8 border-t border-gold/30 pt-8">
-          <p className="text-balance font-editorial text-xl italic text-bone">
+          <p className="max-w-prose font-editorial text-2xl italic leading-snug text-bone">
             Не красивые теории. То, что приходилось проверять собственной
-            жизнью.
+            жизнью — потому что проверить больше было нечем.
           </p>
         </FadeIn>
       </Container>

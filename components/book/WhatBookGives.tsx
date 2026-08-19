@@ -6,7 +6,7 @@ import { WHAT_BOOK_GIVES } from "@/lib/content";
 
 export function WhatBookGives() {
   return (
-    <Section tone="graphite">
+    <Section tone="deep">
       <Container>
         <FadeIn>
           <span className="kicker">Система внутренних опор</span>
@@ -19,7 +19,7 @@ export function WhatBookGives() {
           {WHAT_BOOK_GIVES.map((item, i) => (
             <FadeIn key={item} delay={i * 0.04}>
               <div className="flex gap-4 border-b border-white/5 pb-6">
-                <span className="mt-1 font-display text-xs text-ember-bright">
+                <span className="mt-1 font-display text-xs text-flame">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p className="text-balance leading-relaxed text-bone/90">{item}</p>

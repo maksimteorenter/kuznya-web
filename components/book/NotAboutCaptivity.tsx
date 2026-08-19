@@ -1,60 +1,69 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { SectionHead } from "@/components/ui/SectionHead";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { RevealText } from "@/components/motion/RevealText";
 import { BOOK } from "@/lib/content";
 
 const QUESTIONS = [
-  "Что происходит с твоим сознанием, когда исчезает привычный мир?",
-  "Как страх меняет мышление?",
-  "Почему неопределённость иногда оказывается тяжелее физического испытания?",
-  "На что опереться, когда привычных опор больше нет?",
-  "Как заставить себя прожить ещё один день?",
+  "Что происходит с сознанием, когда привычный мир исчезает за один день?",
+  "Как страх меняет мышление — и когда он начинает помогать?",
+  "Почему неопределённость выматывает сильнее, чем физическая боль?",
+  "На что опереться, когда все привычные опоры отобрали?",
+  "Как заставить себя прожить ещё один день, если он ничем не отличается от предыдущего?",
 ];
 
 export function NotAboutCaptivity() {
   return (
-    <Section bare className="flex min-h-[90vh] flex-col items-center justify-center text-center">
-      <Container className="max-w-2xl">
-        <RevealText
-          as="h2"
-          className="text-balance font-display text-3xl font-bold uppercase leading-tight text-bone md:text-4xl"
-        >
+    <Section tone="paper">
+      <Container className="max-w-3xl">
+        <SectionHead label="Важное уточнение">
           Ты думаешь, это книга о плене?
-        </RevealText>
+        </SectionHead>
 
-        <FadeIn delay={0.2} className="mt-8">
-          <p className="text-balance leading-relaxed text-mist">Не совсем.</p>
-          <p className="mt-2 text-balance font-editorial text-2xl italic text-bone md:text-3xl">
-            Плен — обстоятельство.
+        <FadeIn delay={0.1} className="mt-10">
+          <p className="max-w-prose leading-relaxed text-inkSoft">Не совсем.</p>
+          <p className="mt-4 max-w-prose text-balance font-editorial text-3xl italic leading-snug text-ink md:text-4xl">
+            Плен — это только обстоятельство.
           </p>
-          <p className="mt-4 text-balance font-display text-xl font-bold uppercase text-bone md:text-2xl">
-            Главная история происходит внутри человека.
+          <p
+            className="mt-6 max-w-prose text-balance font-display font-bold uppercase leading-tight text-ink"
+            style={{ fontSize: "clamp(1.3rem, 2.6vw, 1.9rem)" }}
+          >
+            Всё главное происходит внутри человека
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.35} className="mx-auto mt-12 max-w-lg space-y-3">
-          {QUESTIONS.map((q) => (
-            <p key={q} className="text-balance leading-relaxed text-mist">
-              {q}
-            </p>
-          ))}
-          <p className="text-balance leading-relaxed text-mist">
-            А потом ещё один?
+        <FadeIn delay={0.2} className="mt-12">
+          <p className="max-w-prose leading-relaxed text-inkSoft">
+            Поэтому книга отвечает не на вопрос «как сидят в подвале ДНР».
+            Она отвечает на вопросы, которые рано или поздно достают каждого:
           </p>
-          <p className="text-balance leading-relaxed text-mist">И ещё?</p>
+          <ul className="mt-7 space-y-0">
+            {QUESTIONS.map((q, i) => (
+              <li
+                key={q}
+                className="flex gap-5 border-t border-ink/12 py-4 last:border-b"
+              >
+                <span className="shrink-0 pt-1 font-display text-xs tabular-nums text-blood">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-balance leading-relaxed text-ink">{q}</span>
+              </li>
+            ))}
+          </ul>
         </FadeIn>
 
-        <FadeIn delay={0.5} className="mt-10">
-          <p className="text-balance leading-relaxed text-bone/90">
-            И что происходит, если таких дней становится…
+        <FadeIn delay={0.3} className="mt-12">
+          <p className="max-w-prose leading-relaxed text-inkSoft">
+            А потом ещё один такой день. И ещё. И что происходит с человеком,
+            если их набирается
           </p>
-          <span
-            className="mt-2 block font-display font-bold text-ember-bright"
-            style={{ fontSize: "clamp(3rem, 10vw, 6rem)" }}
+          <p
+            className="mt-3 font-display font-bold leading-none text-blood"
+            style={{ fontSize: "clamp(3.5rem, 11vw, 7rem)", letterSpacing: "-0.03em" }}
           >
             {BOOK.days}?
-          </span>
+          </p>
         </FadeIn>
       </Container>
     </Section>

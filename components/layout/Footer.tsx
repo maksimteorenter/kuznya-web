@@ -3,7 +3,7 @@ import { NAV_ITEMS, SITE } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-void py-16">
+    <footer className="bg-deep py-16 text-bone">
       <div className="mx-auto max-w-container px-6 md:px-10">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>

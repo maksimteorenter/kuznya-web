@@ -5,7 +5,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 
 export function ForgeBridge() {
   return (
-    <Section tone="graphite" bare className="flex min-h-[70vh] items-center">
+    <Section tone="deep" bare className="flex min-h-[70vh] items-center">
       <Container className="text-center">
         <FadeIn>
           <p className="text-balance text-lg text-mist">

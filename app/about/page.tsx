@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: "Автор" };
 export default function AboutPage() {
   return (
     <>
-      <Section bare className="flex min-h-[100svh] items-center justify-center bg-void py-16">
+      <Section bare tone="deep" className="flex min-h-[100svh] items-center justify-center py-24 pt-32">
         <Container className="flex justify-center">
           <FadeIn>
             <ScrollParallax strength={18} className="w-full max-w-[560px]">
@@ -31,7 +31,7 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section tone="graphite">
+      <Section tone="deep">
         <Container className="max-w-3xl">
           <FadeIn>
             <span className="kicker">Регалии</span>
@@ -39,7 +39,7 @@ export default function AboutPage() {
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
             {AUTHOR_FACTS.map((fact, i) => (
               <FadeIn key={fact} delay={i * 0.05}>
-                <li className="border-l-2 border-gold/50 pl-4 text-sm leading-relaxed text-bone/90">
+                <li className="border-t border-white/12 py-3.5 text-sm leading-relaxed text-bone/90">
                   {fact}
                 </li>
               </FadeIn>

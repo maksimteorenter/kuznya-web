@@ -4,7 +4,7 @@ import { RevealText } from "@/components/motion/RevealText";
 
 export function QuoteScreen({ quote }: { quote: string }) {
   return (
-    <Section bare tone="graphite" className="flex min-h-[60vh] items-center">
+    <Section bare tone="deep" className="flex min-h-[60vh] items-center">
       <Container>
         <RevealText
           as="p"

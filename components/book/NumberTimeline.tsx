@@ -38,7 +38,7 @@ export function NumberTimeline() {
               exit={{ opacity: 0, y: -24, scale: 0.96 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className={`font-display font-bold leading-none ${
-                isFinal ? "text-ember-bright" : "text-bone"
+                isFinal ? "text-flame" : "text-bone"
               }`}
               style={{ fontSize: "clamp(4.5rem, 15vw, 10rem)" }}
             >

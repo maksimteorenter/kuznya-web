@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { BOOK } from "@/lib/content";
@@ -23,13 +23,55 @@ export function BookReaderModal({
 }) {
   const [index, setIndex] = useState(0);
   const isLast = index === PAGES.length - 1;
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
 
-  function next() {
-    if (index < PAGES.length - 1) setIndex(index + 1);
-  }
-  function prev() {
-    if (index > 0) setIndex(index - 1);
-  }
+  const next = useCallback(
+    () => setIndex((i) => (i < PAGES.length - 1 ? i + 1 : i)),
+    [],
+  );
+  const prev = useCallback(() => setIndex((i) => (i > 0 ? i - 1 : i)), []);
+
+  // Escape closes, arrows page, Tab is trapped, and focus is restored on exit.
+  useEffect(() => {
+    if (!open) return;
+    restoreFocusRef.current = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "Tab" && dialogRef.current) {
+        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prevOverflow;
+      restoreFocusRef.current?.focus();
+    };
+  }, [open, onClose, next, prev]);
 
   return (
     <AnimatePresence>
@@ -39,36 +81,39 @@ export function BookReaderModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-void/95 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center overscroll-contain bg-deep/[0.97] p-4 backdrop-blur-sm"
           onClick={onClose}
         >
-          <button
-            onClick={onClose}
-            aria-label="Закрыть"
-            className="absolute right-5 top-5 font-display text-sm uppercase tracking-[0.14em] text-mist transition-colors hover:text-bone"
-          >
-            Закрыть ✕
-          </button>
-
           <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Отрывок книги «${BOOK.title}»`}
             className="flex w-full max-w-4xl flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <span className="kicker">
-              Читаете отрывок · {BOOK.title}
-            </span>
+            <button
+              ref={closeRef}
+              onClick={onClose}
+              aria-label="Закрыть"
+              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center font-display text-2xl text-mist transition-colors [touch-action:manipulation] hover:text-bone"
+            >
+              ✕
+            </button>
+
+            <p className="kicker">Отрывок · {BOOK.title}</p>
 
             <div className="relative mt-6 flex w-full items-center justify-center">
               <button
                 onClick={prev}
                 disabled={index === 0}
                 aria-label="Предыдущая страница"
-                className="hidden shrink-0 px-4 font-display text-3xl text-mist transition-colors hover:text-ember-bright disabled:opacity-20 disabled:hover:text-mist sm:block"
+                className="hidden h-11 w-11 shrink-0 items-center justify-center font-display text-3xl text-mist transition-colors hover:text-blood disabled:opacity-20 sm:flex"
               >
                 ‹
               </button>
 
-              <div className="relative aspect-[520/760] w-full max-w-[420px] overflow-hidden rounded-sm shadow-[0_40px_90px_-20px_rgba(0,0,0,0.8)]">
+              <div className="relative aspect-[520/760] w-full max-w-[420px] overflow-hidden shadow-[0_40px_90px_-20px_rgba(0,0,0,0.8)]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={index}
@@ -81,10 +126,10 @@ export function BookReaderModal({
                   >
                     <Image
                       src={PAGES[index]}
-                      alt={`Страница ${index + 1}`}
+                      alt={`Страница ${index + 1} из ${PAGES.length}`}
                       fill
                       sizes="420px"
-                      className="object-contain bg-bone"
+                      className="bg-paper object-contain"
                       priority
                     />
                   </motion.div>
@@ -95,33 +140,35 @@ export function BookReaderModal({
                 onClick={next}
                 disabled={isLast}
                 aria-label="Следующая страница"
-                className="hidden shrink-0 px-4 font-display text-3xl text-mist transition-colors hover:text-ember-bright disabled:opacity-20 disabled:hover:text-mist sm:block"
+                className="hidden h-11 w-11 shrink-0 items-center justify-center font-display text-3xl text-mist transition-colors hover:text-blood disabled:opacity-20 sm:flex"
               >
                 ›
               </button>
             </div>
 
-            {/* Mobile nav */}
-            <div className="mt-4 flex items-center gap-6 sm:hidden">
+            <div className="mt-4 flex items-center gap-4 sm:hidden">
               <button
                 onClick={prev}
                 disabled={index === 0}
-                className="font-display text-sm uppercase tracking-[0.1em] text-mist disabled:opacity-20"
+                className="min-h-[44px] px-4 font-display text-sm uppercase tracking-[0.1em] text-mist [touch-action:manipulation] disabled:opacity-20"
               >
                 ← Назад
               </button>
               <button
                 onClick={next}
                 disabled={isLast}
-                className="font-display text-sm uppercase tracking-[0.1em] text-mist disabled:opacity-20"
+                className="min-h-[44px] px-4 font-display text-sm uppercase tracking-[0.1em] text-mist [touch-action:manipulation] disabled:opacity-20"
               >
                 Дальше →
               </button>
             </div>
 
-            <span className="mt-4 font-display text-xs uppercase tracking-[0.14em] text-mist">
+            <p
+              aria-live="polite"
+              className="mt-4 font-display text-xs uppercase tracking-[0.14em] tabular-nums text-mist"
+            >
               Страница {index + 1} из {PAGES.length}
-            </span>
+            </p>
 
             {isLast && (
               <motion.div
@@ -131,8 +178,8 @@ export function BookReaderModal({
                 className="mt-8 flex flex-col items-center gap-3 text-center"
               >
                 <p className="max-w-sm text-balance text-sm leading-relaxed text-bone/90">
-                  Это первые страницы. Дальше — ещё {BOOK.pages - 9}{" "}
-                  страниц истории.
+                  Это первые страницы. Дальше — ещё {BOOK.pages - 9} страниц
+                  истории.
                 </p>
                 <Button href="#price" size="lg" onClick={onClose}>
                   Получить книгу — {BOOK.price}

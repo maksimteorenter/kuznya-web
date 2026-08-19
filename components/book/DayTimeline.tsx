@@ -1,65 +1,68 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { SectionHead } from "@/components/ui/SectionHead";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { RevealText } from "@/components/motion/RevealText";
 import { BOOK } from "@/lib/content";
 
 const STEPS = [
-  { day: "День 1", text: "Ты ещё думаешь категориями вчерашней жизни." },
-  { day: "День 30", text: "Начинаешь понимать, что это не эпизод." },
-  { day: "День 100", text: "Время начинает ощущаться иначе." },
-  { day: "День 365", text: "Прошёл год. Но история не закончилась." },
-  { day: "День 700", text: "Ты уже не тот человек, который вошёл сюда." },
-  { day: "День 1000", text: "Само число кажется невозможным." },
-  { day: `День ${BOOK.days}`, text: "Дверь однажды открывается.", final: true },
+  { day: "1", text: "Ты ещё думаешь категориями вчерашней жизни." },
+  { day: "30", text: "Начинаешь понимать, что это не эпизод." },
+  { day: "100", text: "Время начинает ощущаться иначе." },
+  { day: "365", text: "Прошёл год. История не закончилась." },
+  { day: "700", text: "Ты уже не тот человек, который вошёл сюда." },
+  { day: "1000", text: "Само число кажется невозможным." },
+  { day: String(BOOK.days), text: "Дверь однажды открывается.", final: true },
 ];
 
 export function DayTimeline() {
   return (
-    <Section>
-      <Container className="max-w-xl">
-        <FadeIn>
-          <span className="kicker">{BOOK.days} день — это не одна история</span>
-        </FadeIn>
+    <Section tone="paper">
+      <Container className="max-w-2xl">
+        <SectionHead label={`${BOOK.days} день — это не одна история`}>
+          Человек меняется не сразу. Он меняется послойно
+        </SectionHead>
 
-        <div className="mt-14 space-y-10 border-l-2 border-steel pl-8">
+        <ol className="mt-14 border-l-2 border-ink/15 pl-8">
           {STEPS.map((s, i) => (
             <FadeIn key={s.day} delay={i * 0.06}>
-              <div className="relative">
+              <li className={`relative ${i === STEPS.length - 1 ? "" : "pb-10"}`}>
                 <span
-                  className={`absolute -left-[calc(2rem+5px)] top-1.5 h-2.5 w-2.5 rounded-full ${
-                    s.final ? "bg-ember-bright" : "bg-gold"
+                  className={`absolute -left-[calc(2rem+6px)] top-2 h-3 w-3 rounded-full ring-4 ring-paper ${
+                    s.final ? "bg-blood" : "bg-ink/35"
                   }`}
                   aria-hidden="true"
                 />
                 <p
-                  className={`font-display text-sm uppercase tracking-[0.14em] ${
-                    s.final ? "text-ember-bright" : "text-gold"
+                  className={`font-display text-xs uppercase tracking-[0.18em] ${
+                    s.final ? "text-blood" : "text-inkFaint"
                   }`}
                 >
-                  {s.day}
+                  День <span className="tabular-nums">{s.day}</span>
                 </p>
-                <p className="mt-1 text-balance text-lg leading-snug text-bone/90">
+                <p
+                  className={`mt-1.5 text-balance leading-snug ${
+                    s.final
+                      ? "font-display text-xl font-bold uppercase text-ink md:text-2xl"
+                      : "text-lg text-ink"
+                  }`}
+                >
                   {s.text}
                 </p>
-              </div>
+              </li>
             </FadeIn>
           ))}
-        </div>
+        </ol>
 
-        <FadeIn delay={0.5} className="mt-14 border-t border-steel pt-8">
-          <p className="text-balance leading-relaxed text-bone/90">
-            Но главный вопрос:
+        <FadeIn delay={0.4} className="mt-14 border-t border-ink/15 pt-10">
+          <p className="leading-relaxed text-inkSoft">
+            Дата освобождения — {BOOK.releaseDate}. Но это не конец истории, а
+            только момент, когда начинается главный вопрос:
           </p>
-          <RevealText
-            as="p"
-            delay={0.1}
-            className="mt-3 text-balance font-display text-xl font-bold uppercase leading-snug text-bone md:text-2xl"
+          <p
+            className="mt-5 text-balance font-display font-bold uppercase leading-tight text-ink"
+            style={{ fontSize: "clamp(1.3rem, 2.8vw, 2rem)" }}
           >
-            Какой человек выходит из неё?
-          </RevealText>
-          <p className="mt-4 text-balance leading-relaxed text-mist">
-            Ответ находится в книге.
+            Каким человеком ты оттуда выйдешь?
           </p>
         </FadeIn>
       </Container>

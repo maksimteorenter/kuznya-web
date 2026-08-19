@@ -1,61 +1,79 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { RevealText } from "@/components/motion/RevealText";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { BOOK } from "@/lib/content";
 
 export function FinalScreen() {
   return (
-    <Section bare className="flex min-h-[100svh] flex-col items-center justify-center text-center">
-      <Container className="max-w-xl">
+    <Section
+      bare
+      tone="deep"
+      className="flex min-h-[100svh] flex-col items-center justify-center py-24 text-center"
+    >
+      {/* The portrait returns, almost gone — the story closing where it opened */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/images/hero-portrait.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="photo-bw-hard object-cover object-[58%_18%] opacity-[0.16]"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(11,11,12,0.55), #0B0B0C 78%)",
+          }}
+        />
+      </div>
+
+      <Container className="relative max-w-2xl">
         <FadeIn>
           <p className="text-balance leading-relaxed text-mist">
             Представь: у тебя забрали привычную жизнь. Ты не знаешь, когда
             вернёшься. Не знаешь, сколько это продлится. Не можешь изменить
-            большую часть происходящего.
+            почти ничего из происходящего.
           </p>
           <p className="mt-4 text-balance leading-relaxed text-mist">
             Проходит день. Неделя. Месяц. Год. Ещё год. Ещё…
           </p>
         </FadeIn>
 
-        <RevealText
-          as="p"
-          delay={0.2}
-          className="mt-10 text-balance font-display text-2xl font-bold uppercase leading-tight text-bone md:text-3xl"
-        >
-          Что ты будешь делать, чтобы не потерять себя?
-        </RevealText>
-
-        <FadeIn delay={0.4} className="mt-8">
-          <p className="text-balance leading-relaxed text-bone/90">
-            Мне понадобился{" "}
-            <span className="text-ember-bright">{BOOK.days} день</span>,
-            чтобы сформировать свой ответ. Тебе не обязательно проходить
-            этот путь самому.
+        <FadeIn delay={0.2}>
+          <p
+            className="mt-12 text-balance font-display font-bold uppercase leading-[1.1] text-bone"
+            style={{ fontSize: "clamp(1.6rem, 4vw, 2.9rem)" }}
+          >
+            Что ты будешь делать, чтобы{" "}
+            <span className="text-blood">не потерять себя</span>?
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.6} className="mt-14 border-t border-gold/30 pt-10">
-          <h2 className="font-display text-2xl font-bold uppercase text-bone md:text-3xl">
+        <FadeIn delay={0.35} className="mt-8">
+          <p className="mx-auto max-w-md text-balance leading-relaxed text-bone/90">
+            Мне понадобился {BOOK.days} день, чтобы собрать свой ответ. Тебе
+            не обязательно проходить этот путь самому — достаточно прочитать,
+            как его прошёл я.
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.5} className="mt-14 border-t border-white/15 pt-12">
+          <h2 className="font-display text-2xl font-bold uppercase leading-tight text-bone md:text-3xl">
             {BOOK.title}
           </h2>
-          <p className="mt-2 max-w-md mx-auto text-balance font-editorial text-lg italic text-mist">
-            Реальная история о свободе, страхе, выборе и человеке, у
-            которого оставался последний рубеж — он сам.
+          <p className="mx-auto mt-3 max-w-md text-balance font-editorial text-lg italic leading-snug text-mist">
+            {BOOK.subtitle}
           </p>
 
-          <div className="mt-8 font-display text-3xl font-bold text-ember-bright">
-            {BOOK.price}
-          </div>
-
-          <Button href={BOOK.checkoutUrl} size="lg" className="mt-8">
+          <Button href={BOOK.checkoutUrl} size="lg" className="mt-10">
             Получить книгу — {BOOK.price}
           </Button>
 
-          <p className="mt-4 text-xs uppercase tracking-[0.1em] text-mist">
-            Основано на реальных событиях
+          <p className="mt-4 font-display text-[11px] uppercase tracking-[0.2em] text-mist">
+            {BOOK.formats.map((f) => f.label).join(" · ")} · моментальный доступ
           </p>
         </FadeIn>
       </Container>

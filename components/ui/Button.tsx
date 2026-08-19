@@ -4,6 +4,11 @@ import type { ReactNode } from "react";
 type ButtonProps = {
   href: string;
   children: ReactNode;
+  /**
+   * `primary` is the red fill and is the only thing that sells — one per screen.
+   * `ghost` is an outline that inherits the surrounding ink color, so it works
+   * on paper and on deep sections without needing a separate variant.
+   */
   variant?: "primary" | "ghost";
   size?: "md" | "lg";
   external?: boolean;
@@ -12,18 +17,21 @@ type ButtonProps = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 font-display uppercase tracking-[0.08em] font-medium transition-all duration-200 rounded-sm";
+  "inline-flex items-center justify-center gap-2 font-display font-medium uppercase tracking-[0.1em] " +
+  "transition-[background-color,color,border-color,transform] duration-200 " +
+  "[touch-action:manipulation] focus-visible:outline-2 focus-visible:outline-offset-[3px] active:translate-y-px";
 
 const variants: Record<NonNullable<ButtonProps["variant"]>, string> = {
-  primary:
-    "bg-ember text-white shadow-[0_10px_30px_-6px_rgba(194,54,28,0.55)] hover:bg-ember-bright hover:-translate-y-0.5",
+  // White on #C1121F measures 6.3:1 — passes AA on either ground.
+  primary: "bg-blood text-white hover:bg-blood-dark focus-visible:outline-blood",
   ghost:
-    "bg-transparent border border-steel text-bone hover:border-ember-bright hover:text-ember-bright",
+    "border border-current/40 text-current hover:border-current hover:bg-current/5 focus-visible:outline-current",
 };
 
 const sizes: Record<NonNullable<ButtonProps["size"]>, string> = {
-  md: "px-7 py-3.5 text-sm",
-  lg: "px-9 py-4 text-base",
+  // min-h keeps every button above the 44px touch-target floor.
+  md: "min-h-[44px] px-7 py-3 text-[13px]",
+  lg: "min-h-[52px] px-9 py-4 text-sm",
 };
 
 export function Button({

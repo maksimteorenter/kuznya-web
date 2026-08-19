@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import "./globals.css";
 
 // Self-hosted (not next/font/google): this environment's dev server cannot
@@ -52,6 +53,8 @@ export const metadata: Metadata = {
   },
   description:
     "Кузня — книги, программы и сообщество для тех, кто строит внутреннюю опору в предельных обстоятельствах.",
+  // Matches the paper ground so mobile browser chrome does not clash.
+  themeColor: "#EDEAE4",
 };
 
 export default function RootLayout({
@@ -61,11 +64,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru" className={`${oswald.variable} ${garamond.variable} ${inter.variable}`}>
-      <body className="min-h-screen bg-void font-body text-bone antialiased">
-        <div className="grain-overlay" aria-hidden="true" />
-        <Header />
-        <main className="pt-16">{children}</main>
-        <Footer />
+      <body className="min-h-screen bg-paper font-body text-ink antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-blood focus:px-4 focus:py-2 focus:font-display focus:text-sm focus:uppercase focus:tracking-[0.1em] focus:text-white"
+        >
+          К содержанию
+        </a>
+        <MotionProvider>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { SectionHead } from "@/components/ui/SectionHead";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { BOOK } from "@/lib/content";
 
@@ -40,20 +41,20 @@ const FAQ = [
 
 export function FaqSection() {
   return (
-    <Section>
+    <Section tone="paper">
       <Container className="max-w-3xl">
-        <FadeIn>
-          <span className="kicker">Частые вопросы</span>
-        </FadeIn>
+        <SectionHead label="Частые вопросы">
+          Что обычно спрашивают перед покупкой
+        </SectionHead>
 
-        <div className="mt-10 divide-y divide-steel border-t border-steel">
+        <div className="mt-12 border-t border-ink/15">
           {FAQ.map((item, i) => (
             <FadeIn key={item.q} delay={i * 0.04}>
-              <div className="py-6">
-                <h3 className="font-display text-base font-semibold uppercase tracking-[0.02em] text-bone md:text-lg">
+              <div className="border-b border-ink/15 py-6">
+                <h3 className="font-display text-base font-semibold uppercase tracking-[0.02em] text-ink md:text-lg">
                   {item.q}
                 </h3>
-                <p className="mt-2 max-w-prose leading-relaxed text-mist">
+                <p className="mt-2 max-w-prose leading-relaxed text-inkSoft">
                   {item.a}
                 </p>
               </div>

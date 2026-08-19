@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Контакты" };
 
 export default function ContactPage() {
   return (
-    <Section bare className="vignette flex min-h-[70vh] items-center">
+    <Section bare className="flex min-h-[70vh] items-center pt-16">
       <Container>
         <span className="kicker">Контакты</span>
         <h1 className="mt-6 font-display text-4xl font-semibold uppercase text-bone md:text-5xl">

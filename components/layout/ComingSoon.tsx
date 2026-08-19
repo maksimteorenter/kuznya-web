@@ -12,7 +12,7 @@ export function ComingSoon({
   description: string;
 }) {
   return (
-    <Section bare className="vignette flex min-h-[80vh] items-center">
+    <Section bare className="flex min-h-[80vh] items-center pt-16">
       <Container>
         <span className="kicker">{kicker}</span>
         <h1 className="mt-6 max-w-2xl font-display text-4xl font-semibold uppercase leading-tight text-bone md:text-6xl">

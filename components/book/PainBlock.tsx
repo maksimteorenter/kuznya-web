@@ -1,74 +1,72 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { SectionHead } from "@/components/ui/SectionHead";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { RevealText } from "@/components/motion/RevealText";
+import { BOOK } from "@/lib/content";
 
 const CIRCUMSTANCES = [
-  "Потеря бизнеса.",
-  "Война.",
-  "Предательство.",
-  "Развод.",
-  "Долги.",
-  "Одиночество.",
-  "Потеря близкого.",
+  "Потеря бизнеса",
+  "Война",
+  "Предательство",
+  "Развод",
+  "Долги",
+  "Одиночество",
+  "Потеря близкого",
+  "Болезнь",
 ];
 
 export function PainBlock() {
   return (
-    <Section tone="graphite">
+    <Section id="story" tone="paper">
       <Container className="max-w-3xl">
-        <FadeIn>
-          <h2 className="text-balance font-display text-3xl font-bold uppercase leading-tight text-bone md:text-4xl">
-            У каждого своя камера
-          </h2>
-        </FadeIn>
+        <SectionHead label="Сначала — про тебя">
+          У каждого своя камера
+        </SectionHead>
 
-        <FadeIn delay={0.15} className="mt-8">
-          <p className="text-balance leading-relaxed text-mist">
+        <FadeIn delay={0.1} className="mt-10">
+          <p className="max-w-prose text-balance leading-relaxed text-inkSoft">
             Тебе не обязательно оказаться за закрытой дверью, чтобы однажды
-            почувствовать:
+            проснуться с мыслью:
           </p>
-          <p className="mt-3 text-balance font-editorial text-2xl italic leading-snug text-bone md:text-3xl">
+          <p className="mt-4 max-w-prose text-balance font-editorial text-3xl italic leading-snug text-ink md:text-4xl">
             «Я не знаю, что делать дальше».
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.3} className="mt-10">
-          <p className="text-balance leading-relaxed text-mist">
-            Для одного это потеря бизнеса. Для другого — война. Для
-            третьего — предательство.
+        <FadeIn delay={0.2} className="mt-12">
+          <p className="max-w-prose text-balance leading-relaxed text-inkSoft">
+            Дверь запирается по-разному.
           </p>
-          <div className="mt-4 flex flex-wrap gap-x-3 gap-y-2">
+          <ul className="mt-5 flex flex-wrap gap-2">
             {CIRCUMSTANCES.map((c) => (
-              <span
+              <li
                 key={c}
-                className="rounded-sm border border-steel px-3 py-1.5 font-display text-sm uppercase tracking-wide text-bone/90"
+                className="border border-ink/20 px-3.5 py-2 font-display text-[13px] uppercase tracking-[0.06em] text-ink"
               >
                 {c}
-              </span>
+              </li>
             ))}
-          </div>
-          <p className="mt-6 text-balance leading-relaxed text-mist">
-            Крах всего, что ещё вчера казалось стабильным.
-          </p>
-          <p className="mt-2 text-balance leading-relaxed text-mist">
-            Обстоятельства разные. Но вопрос практически всегда один:
+          </ul>
+          <p className="mt-7 max-w-prose text-balance leading-relaxed text-inkSoft">
+            Обстоятельства у всех разные. Крах приходит по своему графику и в
+            своей форме. Но вопрос под ним почти всегда один и тот же — и он
+            неудобный:
           </p>
         </FadeIn>
 
-        <RevealText
-          as="p"
-          delay={0.1}
-          className="mt-8 text-balance font-display text-2xl font-bold uppercase leading-tight text-bone md:text-3xl"
-        >
-          Что делать, когда ты не можешь быстро изменить то, что происходит
-          снаружи?
-        </RevealText>
-
-        <FadeIn delay={0.2} className="mt-10 border-t border-steel pt-8">
-          <p className="text-balance leading-relaxed text-bone/90">
-            У меня было <span className="text-ember-bright">1341 день</span>,
-            чтобы искать на него ответ.
+        <FadeIn delay={0.3} className="mt-10 border-t border-ink/15 pt-10">
+          <p
+            className="max-w-3xl text-balance font-display font-bold uppercase leading-[1.12] text-ink"
+            style={{ fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)" }}
+          >
+            Что делать, когда ты{" "}
+            <span className="text-blood">не можешь изменить</span> то, что
+            происходит снаружи?
+          </p>
+          <p className="mt-6 max-w-prose text-balance leading-relaxed text-inkSoft">
+            Большинство книг отвечают на это теорией. У меня было{" "}
+            <span className="font-semibold text-ink">{BOOK.days} день</span>,
+            чтобы проверить ответ на себе — без права выйти, если не сработает.
           </p>
         </FadeIn>
       </Container>

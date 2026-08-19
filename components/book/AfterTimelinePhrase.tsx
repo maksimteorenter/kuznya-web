@@ -4,7 +4,7 @@ import { RevealText } from "@/components/motion/RevealText";
 
 export function AfterTimelinePhrase() {
   return (
-    <Section tone="graphite" className="flex items-center">
+    <Section tone="deep" className="flex items-center">
       <Container>
         <RevealText
           as="p"

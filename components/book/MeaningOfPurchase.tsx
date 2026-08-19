@@ -17,7 +17,7 @@ export function MeaningOfPurchase() {
             превратить пережитое одним человеком в знание, способное помочь
             другим.
           </p>
-          <p className="mt-8 font-display text-sm uppercase tracking-[0.14em] text-ember-bright">
+          <p className="mt-8 font-display text-sm uppercase tracking-[0.14em] text-flame">
             Спасибо каждому, кто становится частью этого пути.
           </p>
         </FadeIn>
