@@ -51,7 +51,7 @@ export function FinalScreen() {
           </div>
 
           <Button href={BOOK.checkoutUrl} size="lg" className="mt-8">
-            Начать читать — {BOOK.price}
+            Получить книгу — {BOOK.price}
           </Button>
 
           <p className="mt-4 text-xs uppercase tracking-[0.1em] text-mist">

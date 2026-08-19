@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { BOOK } from "@/lib/content";
 
 const PILLARS = [
   {
@@ -64,7 +65,7 @@ export function PromiseBlock() {
             кабинете и не на тренинге, а внутри реальных обстоятельств.
           </p>
           <Button href="#price" className="mt-8">
-            Хочу прочитать
+            Получить книгу — {BOOK.price}
           </Button>
         </FadeIn>
       </Container>

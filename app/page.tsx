@@ -63,7 +63,7 @@ export default function HomePage() {
               тех, кто хочет управлять собой, а не обстоятельствами.
             </p>
             <Button href="/about" variant="ghost" className="mt-8">
-              Об авторе
+              Подробнее об авторе
             </Button>
           </FadeIn>
         </Container>
