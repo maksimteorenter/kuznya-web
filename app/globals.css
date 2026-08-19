@@ -90,6 +90,22 @@ body {
   opacity: 0.55;
 }
 
+/* Section atmosphere: replaces flat solid backgrounds with a faint directional
+   warmth (brass + oxide-red glows) so 15 stacked blocks don't read as one
+   flat slab. Orientation alternates by tone for rhythm as you scroll. */
+.section-atmosphere-void {
+  background:
+    radial-gradient(ellipse 85% 55% at 12% -5%, rgba(179, 148, 94, 0.06), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 88% 105%, rgba(141, 31, 36, 0.08), transparent 60%),
+    #101113;
+}
+.section-atmosphere-graphite {
+  background:
+    radial-gradient(ellipse 85% 55% at 88% -5%, rgba(179, 148, 94, 0.055), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 12% 105%, rgba(141, 31, 36, 0.07), transparent 60%),
+    #191b1e;
+}
+
 .text-brass {
   color: theme("colors.gold");
 }

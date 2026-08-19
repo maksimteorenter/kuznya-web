@@ -30,7 +30,7 @@ export function WhoShouldReadBlock() {
         <ul className="mt-8 grid gap-3 sm:grid-cols-2">
           {REASONS.map((r, i) => (
             <FadeIn key={r} delay={i * 0.03}>
-              <li className="border-l-2 border-ember pl-4 text-sm leading-relaxed text-bone/90">
+              <li className="border-l-2 border-gold/50 pl-4 text-sm leading-relaxed text-bone/90">
                 {r}
               </li>
             </FadeIn>

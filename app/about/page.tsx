@@ -39,7 +39,7 @@ export default function AboutPage() {
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
             {AUTHOR_FACTS.map((fact, i) => (
               <FadeIn key={fact} delay={i * 0.05}>
-                <li className="border-l-2 border-ember pl-4 text-sm leading-relaxed text-bone/90">
+                <li className="border-l-2 border-gold/50 pl-4 text-sm leading-relaxed text-bone/90">
                   {fact}
                 </li>
               </FadeIn>

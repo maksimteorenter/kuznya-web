@@ -3,6 +3,7 @@ import { Section } from "@/components/ui/Section";
 import { RevealText } from "@/components/motion/RevealText";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { ImpactReveal } from "@/components/motion/ImpactReveal";
+import { PhotoMaskNumber } from "@/components/motion/PhotoMaskNumber";
 import { BOOK } from "@/lib/content";
 
 const HOURS = (BOOK.days * 24).toLocaleString("ru-RU");
@@ -21,14 +22,18 @@ export function NumberRevealBlock() {
 
         <div className="mt-8 flex justify-center">
           <ImpactReveal delay={0.15}>
-            <span
-              className="block font-display font-bold leading-none text-bone"
+            <PhotoMaskNumber
+              value={String(BOOK.days)}
+              photoSrc="/images/author-portrait-formal.jpg"
+              photoPosition="center 20%"
+              className="font-display font-bold leading-none text-bone"
               style={{ fontSize: "clamp(5rem, 16vw, 12rem)" }}
-            >
-              {BOOK.days}
-            </span>
+            />
           </ImpactReveal>
         </div>
+        <p className="mt-3 text-[11px] uppercase tracking-[0.2em] text-mist/70">
+          {BOOK.days} — не абстракция. Это дни одного человека.
+        </p>
 
         <FadeIn delay={0.3} className="mt-6 space-y-1">
           <p className="font-display text-xl font-semibold text-ember-bright md:text-2xl">

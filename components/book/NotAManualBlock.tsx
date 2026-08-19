@@ -45,7 +45,7 @@ export function NotAManualBlock() {
         <RevealText
           as="p"
           delay={0.1}
-          className="mt-6 text-balance font-display text-2xl font-bold uppercase leading-tight text-bone md:text-3xl"
+          className="mt-6 text-balance font-display text-2xl font-bold uppercase leading-tight text-ember-bright md:text-3xl"
         >
           «А что держит меня, когда всё идёт не по плану?»
         </RevealText>

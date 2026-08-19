@@ -37,7 +37,7 @@ export function PromiseBlock() {
         <FadeIn>
           <span className="kicker">Главная интрига</span>
           <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl font-bold uppercase leading-tight text-bone md:text-4xl">
-            Что помогает человеку не сломаться?
+            Что помогает человеку <span className="text-ember-bright">не сломаться</span>?
           </h2>
           <p className="mt-4 max-w-prose text-balance leading-relaxed text-mist">
             Не существует одной волшебной фразы. Сила складывается из

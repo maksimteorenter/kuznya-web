@@ -11,14 +11,32 @@ export function AuthorBlock() {
       <Container>
         <div className="grid gap-14 md:grid-cols-[300px_1fr] md:items-start">
           <FadeIn>
-            <div className="relative aspect-[4/5] w-full max-w-[300px] overflow-hidden rounded-sm shadow-2xl">
-              <Image
-                src="/images/author.jpg"
-                alt={BOOK.author}
-                fill
-                sizes="300px"
-                className="object-cover"
-              />
+            <div className="relative w-full max-w-[300px] pl-6 pt-8">
+              {/* Number behind — bleeds out from under the portrait's top-left corner */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-2 -top-6 select-none font-display font-bold leading-none text-bone/[0.07]"
+                style={{ fontSize: "clamp(6rem, 16vw, 9.5rem)" }}
+              >
+                {BOOK.days}
+              </span>
+              <div className="relative z-10 aspect-[4/5] overflow-hidden rounded-sm shadow-2xl">
+                <Image
+                  src="/images/author-portrait-formal.jpg"
+                  alt={BOOK.author}
+                  fill
+                  sizes="300px"
+                  className="object-cover"
+                />
+              </div>
+              {/* Number in front — a fragment threading over the portrait's bottom-right corner */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-5 -right-3 z-20 select-none font-display font-bold leading-none text-ember-bright"
+                style={{ fontSize: "clamp(2rem, 5vw, 2.75rem)" }}
+              >
+                {BOOK.days}
+              </span>
             </div>
           </FadeIn>
 
@@ -56,7 +74,7 @@ export function AuthorBlock() {
             <ul className="mt-10 grid gap-4 sm:grid-cols-2">
               {AUTHOR_FACTS.map((fact, i) => (
                 <FadeIn key={fact} delay={i * 0.05}>
-                  <li className="border-l-2 border-ember pl-4 text-sm leading-relaxed text-bone/90">
+                  <li className="border-l-2 border-gold/50 pl-4 text-sm leading-relaxed text-bone/90">
                     {fact}
                   </li>
                 </FadeIn>

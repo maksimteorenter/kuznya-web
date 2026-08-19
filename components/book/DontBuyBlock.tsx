@@ -41,7 +41,7 @@ export function DontBuyBlock() {
             слой за слоем всё привычное,
           </p>
           <p className="mt-4 text-balance leading-relaxed text-bone/90">
-            тогда открой первую страницу. А дальше решишь сам.
+            тогда <span className="text-ember-bright">открой первую страницу</span>. А дальше решишь сам.
           </p>
         </FadeIn>
       </Container>
