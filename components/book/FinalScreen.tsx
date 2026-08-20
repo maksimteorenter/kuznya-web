@@ -28,6 +28,14 @@ export function FinalScreen() {
               "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(11,11,12,0.55), #0B0B0C 78%)",
           }}
         />
+        {/* A slow red ember under the closing CTA — the forge, not an alarm. */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[45%] motion-safe:animate-[glowPulse_8s_ease-in-out_infinite]"
+          style={{
+            background:
+              "radial-gradient(ellipse 55% 70% at 50% 100%, rgba(193,18,31,0.22), transparent 70%)",
+          }}
+        />
       </div>
 
       <Container className="relative max-w-2xl">

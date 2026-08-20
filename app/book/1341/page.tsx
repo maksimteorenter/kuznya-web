@@ -17,6 +17,7 @@ import { DontBuyBlock } from "@/components/book/DontBuyBlock";
 import { FaqSection } from "@/components/book/FaqSection";
 import { FinalScreen } from "@/components/book/FinalScreen";
 import { StickyMobileCTA } from "@/components/book/StickyMobileCTA";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { BOOK } from "@/lib/content";
 
 const title = "1341 день в плену — Как выжить там, где у тебя забрали всё | Максим Теорентер";
@@ -86,6 +87,7 @@ export default function BookPage() {
           what the book actually is, show what holds a person, prove the author,
           then price, objections, FAQ, close. Tones alternate paper/deep so the
           whole page reads as one black-and-white system while scrolling. */}
+      <ScrollProgress />
       <Hero />
       <PainBlock />
       <NumberRevealBlock />

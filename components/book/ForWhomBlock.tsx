@@ -33,8 +33,8 @@ export function ForWhomBlock() {
         <div className="mt-14 grid gap-x-12 gap-y-12 md:grid-cols-2">
           {AUDIENCES.map((a, i) => (
             <FadeIn key={a.title} delay={i * 0.07}>
-              <div className="border-t-2 border-blood pt-5">
-                <h3 className="font-display text-xl font-bold uppercase tracking-[0.02em] text-ink">
+              <div className="group border-t-2 border-blood pt-5 transition-transform duration-300 ease-out hover:-translate-y-1 motion-reduce:transform-none">
+                <h3 className="font-display text-xl font-bold uppercase tracking-[0.02em] text-ink transition-colors duration-300 group-hover:text-blood">
                   {a.title}
                 </h3>
                 <p className="mt-3 max-w-prose leading-relaxed text-inkSoft">

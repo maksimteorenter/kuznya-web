@@ -60,6 +60,10 @@ const config: Config = {
         widest2: "0.22em",
       },
       keyframes: {
+        glowPulse: {
+          "0%, 100%": { opacity: "0.55" },
+          "50%": { opacity: "1" },
+        },
         grain: {
           "0%, 100%": { transform: "translate(0, 0)" },
           "10%": { transform: "translate(-2%, -4%)" },

@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { ReadExcerptButton } from "@/components/book/ReadExcerptButton";
 import { BOOK } from "@/lib/content";
@@ -40,14 +41,26 @@ function SetType({
 }
 
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  // Scroll-linked drift: the photo and the numeral move at different speeds,
+  // so the hero has real depth as it leaves the screen. Motion values only —
+  // no re-renders, no layout work.
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const photoY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+  const numeralY = useTransform(scrollYProgress, [0, 1], ["0%", "-140%"]);
+
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-paper">
+    <section ref={ref} className="relative min-h-[100svh] overflow-hidden bg-paper">
       {/* Portrait occupies the right half; black and white, hard contrast. */}
       <div className="absolute inset-y-0 right-0 w-full md:w-[56%]">
         <motion.div
           initial={{ scale: 1.06, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.6, ease }}
+          style={{ y: photoY }}
           className="relative h-full w-full"
         >
           <Image
@@ -58,6 +71,9 @@ export function Hero() {
             sizes="(max-width: 768px) 100vw, 56vw"
             className="photo-bw object-cover object-[52%_12%]"
           />
+          {/* Film grain over the photo: hides the softness of the source frame
+              and reads as stock, not compression. */}
+          <div className="grain-overlay opacity-[0.09]" aria-hidden="true" />
 
           {/* Censor bar across the eyes. The book is about a man stripped of
               his name and identity, so the mark lands exactly where identity
@@ -99,20 +115,27 @@ export function Hero() {
 
       {/* 1341 sits low over the darkest part of the frame, where knocked-out
           paper actually reads against the photo. */}
-      <motion.span
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.35, ease }}
+      {/* Outer layer carries the scroll parallax, inner one the entrance —
+          they'd fight over the same transform on a single element. */}
+      <motion.div
+        style={{ y: numeralY }}
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-10 right-8 z-20 hidden select-none font-display font-bold leading-none text-paper md:right-16 md:block"
-        style={{
-          fontSize: "clamp(3rem, 7vw, 6.5rem)",
-          letterSpacing: "-0.02em",
-          textShadow: "0 2px 30px rgba(11,11,12,0.55)",
-        }}
+        className="pointer-events-none absolute bottom-10 right-8 z-20 hidden md:right-16 md:block"
       >
-        {BOOK.days}
-      </motion.span>
+        <motion.span
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.35, ease }}
+          className="block select-none font-display font-bold leading-none text-paper"
+          style={{
+            fontSize: "clamp(3rem, 7vw, 6.5rem)",
+            letterSpacing: "-0.02em",
+            textShadow: "0 2px 30px rgba(11,11,12,0.55)",
+          }}
+        >
+          {BOOK.days}
+        </motion.span>
+      </motion.div>
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-container items-center px-6 md:px-10">
         <div className="w-full max-w-[560px] py-24 md:py-0">

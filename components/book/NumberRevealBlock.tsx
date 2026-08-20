@@ -15,12 +15,22 @@ export function NumberRevealBlock() {
           <p className="kicker">Попробуй это представить</p>
         </FadeIn>
 
-        <div className="mt-8 flex justify-center">
+        <div className="relative mt-8 flex justify-center">
+          {/* Slow red breathing behind the numeral — the one place the deep
+              section is allowed to glow. Pure opacity keyframes on a gradient. */}
+          <div
+            aria-hidden="true"
+            className="absolute left-1/2 top-1/2 h-[130%] w-[85%] max-w-[900px] -translate-x-1/2 -translate-y-1/2 motion-safe:animate-[glowPulse_7s_ease-in-out_infinite]"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(193,18,31,0.28), transparent 70%)",
+            }}
+          />
           <PhotoMaskNumber
             value={String(BOOK.days)}
             photoSrc="/images/hero-portrait.jpg"
             photoPosition="center 25%"
-            className="font-display font-bold leading-none text-bone"
+            className="relative font-display font-bold leading-none text-bone"
             style={{ fontSize: "clamp(5rem, 17vw, 13rem)", letterSpacing: "-0.03em" }}
           />
         </div>

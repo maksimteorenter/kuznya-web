@@ -51,7 +51,7 @@ export function PromiseBlock() {
         <div className="mt-16 grid gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {PILLARS.map((p, i) => (
             <FadeIn key={p.title} delay={i * 0.06}>
-              <div className="border-t-2 border-ink pt-5">
+              <div className="group border-t-2 border-ink pt-5 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-blood motion-reduce:transform-none">
                 <div className="flex items-baseline gap-3">
                   <span className="font-display text-[13px] tabular-nums text-blood">
                     {String(i + 1).padStart(2, "0")}
