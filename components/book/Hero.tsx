@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import { ReadExcerptButton } from "@/components/book/ReadExcerptButton";
 import { BOOK } from "@/lib/content";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -55,7 +56,7 @@ export function Hero() {
             fill
             priority
             sizes="(max-width: 768px) 100vw, 56vw"
-            className="photo-bw-hard object-cover object-[52%_12%]"
+            className="photo-bw object-cover object-[52%_12%]"
           />
 
           {/* Censor bar across the eyes. The book is about a man stripped of
@@ -77,7 +78,7 @@ export function Hero() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, #EDEAE4 0%, rgba(237,234,228,0.88) 16%, rgba(237,234,228,0) 52%)",
+                "linear-gradient(90deg, #EDEAE4 0%, rgba(237,234,228,0.82) 13%, rgba(237,234,228,0.25) 34%, rgba(237,234,228,0) 46%)",
             }}
             aria-hidden="true"
           />
@@ -126,7 +127,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-6 font-display text-sm font-medium uppercase tracking-[0.16em] text-inkFaint"
           >
-            {BOOK.author} · Мемуары
+            Коуч-наставник · Основатель клуба «Кузня»
           </motion.p>
 
           <h1
@@ -160,9 +161,7 @@ export function Hero() {
             <Button href="#price" size="lg">
               Получить книгу — {BOOK.price}
             </Button>
-            <Button href="#story" variant="ghost" size="lg">
-              Читать отрывок
-            </Button>
+            <ReadExcerptButton size="lg" />
           </motion.div>
 
           <motion.p

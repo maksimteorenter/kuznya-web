@@ -25,7 +25,7 @@ export default function HomePage() {
             alt=""
             fill
             sizes="100vw"
-            className="photo-bw-hard object-cover object-[58%_18%]"
+            className="photo-bw object-cover object-[58%_14%]"
             priority
           />
           <div
@@ -35,10 +35,10 @@ export default function HomePage() {
                 "linear-gradient(0deg, #0B0B0C 6%, rgba(11,11,12,0.72) 40%, rgba(11,11,12,0.25) 68%, rgba(11,11,12,0.5) 100%)",
             }}
           />
-          {/* The signature red cut */}
+          {/* Same censor bar as the book page — square to the frame, no
+              diagonals anywhere on the site. */}
           <div
-            className="pointer-events-none absolute -top-[10%] right-[18%] h-[130%] w-[90px] bg-blood mix-blend-multiply md:w-[130px]"
-            style={{ transform: "rotate(14deg)" }}
+            className="pointer-events-none absolute hidden bg-blood md:block md:left-[46.5%] md:top-[22.5%] md:h-[4.2%] md:w-[15%]"
             aria-hidden="true"
           />
         </div>
