@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import { EyeBar } from "@/components/book/EyeBar";
 import { ReadExcerptButton } from "@/components/book/ReadExcerptButton";
 import { BOOK } from "@/lib/content";
 
@@ -75,21 +76,11 @@ export function Hero() {
               and reads as stock, not compression. */}
           <div className="grain-overlay opacity-[0.09]" aria-hidden="true" />
 
-          {/* Censor bar across the eyes. The book is about a man stripped of
-              his name and identity, so the mark lands exactly where identity
-              is read. It wipes in from the left like a stamp. */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.55, delay: 1.15, ease: [0.2, 0.9, 0.3, 1] }}
-            /* Translucent, not opaque: the eyes have to read through the red,
-               the way the reference poster does it. `multiply` keeps the
-               darks of the eyes punching through the colour.
-               Hidden on phones, where the photo sits under a heavy scrim and
-               the bar would look like a stain behind the headline. */
-            className="pointer-events-none absolute hidden bg-blood mix-blend-multiply md:block md:left-[51%] md:top-[25.8%] md:h-[4.6%] md:w-[28%] md:origin-left"
-            aria-hidden="true"
-          />
+          {/* Censor bar across the eyes — anchored to the photograph itself,
+              so it stays on the eyes at any viewport size. Hidden on phones,
+              where the photo sits under a heavy scrim and the bar would read
+              as a stain behind the headline. */}
+          <EyeBar objectX={0.52} objectY={0.12} className="hidden md:block" />
 
           {/* Paper bleeds over the photo so the headline never fights it. */}
           <div

@@ -6,6 +6,7 @@ import { SectionHead } from "@/components/ui/SectionHead";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { BookMockup3D } from "@/components/book/BookMockup3D";
+import { EyeBar } from "@/components/book/EyeBar";
 import { BOOK } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -35,12 +36,9 @@ export default function HomePage() {
                 "linear-gradient(0deg, #0B0B0C 6%, rgba(11,11,12,0.72) 40%, rgba(11,11,12,0.25) 68%, rgba(11,11,12,0.5) 100%)",
             }}
           />
-          {/* Same censor bar as the book page — square to the frame, no
-              diagonals anywhere on the site. */}
-          <div
-            className="pointer-events-none absolute hidden bg-blood md:block md:left-[46.5%] md:top-[22.5%] md:h-[4.2%] md:w-[15%]"
-            aria-hidden="true"
-          />
+          {/* Same censor bar as the book page — anchored to the photo, so it
+              stays on the eyes at any viewport size. */}
+          <EyeBar objectX={0.58} objectY={0.14} delay={0.6} className="hidden md:block" />
         </div>
 
         <Container className="relative z-10 pb-20 pt-40">
