@@ -8,6 +8,7 @@ import { PromiseBlock } from "@/components/book/PromiseBlock";
 import { NotAManualBlock } from "@/components/book/NotAManualBlock";
 import { InsideBookQuestions } from "@/components/book/InsideBookQuestions";
 import { DayTimeline } from "@/components/book/DayTimeline";
+import { ForWhomBlock } from "@/components/book/ForWhomBlock";
 import { WhoShouldReadBlock } from "@/components/book/WhoShouldReadBlock";
 import { WhatsInsideBlock } from "@/components/book/WhatsInsideBlock";
 import { AuthorBlock } from "@/components/book/AuthorBlock";
@@ -94,6 +95,7 @@ export default function BookPage() {
       <InsideBookQuestions />
       <DayTimeline />
       <NotAManualBlock />
+      <ForWhomBlock />
       <WhoShouldReadBlock />
       <WhatsInsideBlock />
       <AuthorBlock />

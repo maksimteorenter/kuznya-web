@@ -17,15 +17,20 @@ type ButtonProps = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 font-display font-medium uppercase tracking-[0.1em] " +
-  "transition-[background-color,color,border-color,transform] duration-200 " +
-  "[touch-action:manipulation] focus-visible:outline-2 focus-visible:outline-offset-[3px] active:translate-y-px";
+  "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full " +
+  "font-display font-medium uppercase tracking-[0.1em] " +
+  // Only transform/opacity/colour animate, so the hover stays cheap.
+  "transition-[background-color,color,border-color,transform,box-shadow] duration-200 ease-out " +
+  "[touch-action:manipulation] focus-visible:outline-2 focus-visible:outline-offset-[3px] " +
+  "hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transform-none";
 
 const variants: Record<NonNullable<ButtonProps["variant"]>, string> = {
   // White on #C1121F measures 6.3:1 — passes AA on either ground.
-  primary: "bg-blood text-white hover:bg-blood-dark focus-visible:outline-blood",
+  primary:
+    "bg-blood text-white shadow-[0_6px_20px_-8px_rgba(193,18,31,0.75)] " +
+    "hover:bg-blood-dark hover:shadow-[0_12px_28px_-10px_rgba(193,18,31,0.9)] focus-visible:outline-blood",
   ghost:
-    "border border-current/40 text-current hover:border-current hover:bg-current/5 focus-visible:outline-current",
+    "border border-current/40 text-current hover:border-current hover:bg-current/[0.06] focus-visible:outline-current",
 };
 
 const sizes: Record<NonNullable<ButtonProps["size"]>, string> = {
@@ -33,6 +38,15 @@ const sizes: Record<NonNullable<ButtonProps["size"]>, string> = {
   md: "min-h-[46px] px-7 py-3 text-sm",
   lg: "min-h-[54px] px-9 py-4 text-[15px]",
 };
+
+/** Shared so real `<button>` elements can look identical without duplicating the classes. */
+export function buttonClasses(
+  variant: NonNullable<ButtonProps["variant"]> = "primary",
+  size: NonNullable<ButtonProps["size"]> = "md",
+  className = "",
+) {
+  return `${base} ${variants[variant]} ${sizes[size]} ${className}`;
+}
 
 export function Button({
   href,

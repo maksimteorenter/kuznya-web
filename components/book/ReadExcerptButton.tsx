@@ -1,41 +1,57 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { BookReaderModal } from "@/components/book/BookReaderModal";
+import { buttonClasses } from "@/components/ui/Button";
 
 /**
- * "Read an excerpt" has to actually open the reader. It previously scrolled to
+ * "Read an excerpt" has to actually open the reader — it previously scrolled to
  * a text section, which is not what the label promises.
+ *
+ * `withCover` adds a small cover thumbnail beside it that opens the same
+ * reader, so the book itself is clickable next to the buy button.
  */
 export function ReadExcerptButton({
   className = "",
   size = "lg",
+  withCover = false,
 }: {
   className?: string;
   size?: "md" | "lg";
+  withCover?: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
-  const base =
-    "inline-flex items-center justify-center gap-2 font-display font-medium uppercase tracking-[0.1em] " +
-    "transition-[background-color,color,border-color,transform] duration-200 " +
-    "[touch-action:manipulation] focus-visible:outline-2 focus-visible:outline-offset-[3px] " +
-    "focus-visible:outline-current active:translate-y-px " +
-    "border border-current/40 text-current hover:border-current hover:bg-current/5";
-  const sizes =
-    size === "lg"
-      ? "min-h-[54px] px-9 py-4 text-[15px]"
-      : "min-h-[46px] px-7 py-3 text-sm";
-
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className={`${base} ${sizes} ${className}`}
-      >
-        Читать отрывок
-      </button>
+      <div className="flex items-center gap-4">
+        {withCover && (
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label="Открыть первые страницы книги"
+            className="group relative h-[54px] w-[38px] shrink-0 overflow-hidden rounded-md shadow-[0_6px_18px_-6px_rgba(11,11,12,0.5)] outline-offset-[3px] transition-transform duration-200 ease-out hover:-translate-y-0.5 hover:rotate-[-3deg] focus-visible:outline-2 focus-visible:outline-blood motion-reduce:transform-none"
+          >
+            <Image
+              src="/images/cover-front.jpg"
+              alt=""
+              fill
+              sizes="38px"
+              className="object-cover"
+            />
+          </button>
+        )}
+
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className={buttonClasses("ghost", size, className)}
+        >
+          Читать отрывок
+        </button>
+      </div>
+
       <BookReaderModal open={open} onClose={() => setOpen(false)} />
     </>
   );

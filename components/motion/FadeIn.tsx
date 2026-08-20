@@ -18,10 +18,13 @@ export function FadeIn({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: "-10% 0px -10% 0px" }}
-      transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
+      // A touch of scale with the rise gives the block weight as it lands,
+      // instead of just appearing. Transform + opacity only, so it stays on
+      // the compositor and costs nothing at scroll time.
+      initial={{ opacity: 0, y, scale: 0.985 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once, margin: "-12% 0px -12% 0px" }}
+      transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}

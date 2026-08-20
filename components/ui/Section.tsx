@@ -22,9 +22,11 @@ export function Section({
   tone = "paper",
 }: SectionProps) {
   const isDeep = tone === "deep";
+  // Flat fills read as cheap at this size. Each tone gets a faint directional
+  // wash so the ground has some depth — pure CSS gradients, no extra bytes.
   const toneClass = isDeep
-    ? "tone-deep bg-deep text-bone"
-    : "tone-paper bg-paper text-ink";
+    ? "tone-deep ground-deep text-bone"
+    : "tone-paper ground-paper text-ink";
   const padding = bare ? "" : "py-24 md:py-36";
 
   return (

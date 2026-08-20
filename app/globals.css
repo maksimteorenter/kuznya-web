@@ -88,6 +88,22 @@ body {
   }
 }
 
+/* Depth without noise: a faint vignette plus a barely-there warm/cool wash, so
+   the two grounds have some body instead of reading as flat swatches.
+   Gradients only — nothing here costs a request or a repaint. */
+.ground-paper {
+  background:
+    radial-gradient(ellipse 90% 60% at 15% 0%, rgba(255, 255, 255, 0.75), transparent 60%),
+    radial-gradient(ellipse 80% 55% at 90% 100%, rgba(193, 18, 31, 0.045), transparent 62%),
+    linear-gradient(180deg, #F1EEE9 0%, #EDEAE4 45%, #E7E3DB 100%);
+}
+.ground-deep {
+  background:
+    radial-gradient(ellipse 85% 55% at 85% 0%, rgba(255, 255, 255, 0.06), transparent 58%),
+    radial-gradient(ellipse 75% 50% at 10% 100%, rgba(193, 18, 31, 0.1), transparent 62%),
+    linear-gradient(180deg, #121214 0%, #0B0B0C 50%, #0E0E10 100%);
+}
+
 /* The one accent rule. A short red bar that marks the start of a block. */
 .blood-rule {
   width: 64px;

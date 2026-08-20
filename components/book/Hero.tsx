@@ -66,10 +66,12 @@ export function Hero() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.55, delay: 1.15, ease: [0.2, 0.9, 0.3, 1] }}
-            /* Hidden on phones: there the photo sits under a heavy scrim, so
-               the bar reads as a stain behind the headline rather than a mark
-               on the face. It only earns its place on the desktop split. */
-            className="pointer-events-none absolute hidden bg-blood md:block md:left-[51%] md:top-[25.4%] md:h-[4.4%] md:w-[28%] md:origin-left"
+            /* Translucent, not opaque: the eyes have to read through the red,
+               the way the reference poster does it. `multiply` keeps the
+               darks of the eyes punching through the colour.
+               Hidden on phones, where the photo sits under a heavy scrim and
+               the bar would look like a stain behind the headline. */
+            className="pointer-events-none absolute hidden bg-blood mix-blend-multiply md:block md:left-[51%] md:top-[25.8%] md:h-[4.6%] md:w-[28%] md:origin-left"
             aria-hidden="true"
           />
 
@@ -161,7 +163,7 @@ export function Hero() {
             <Button href="#price" size="lg">
               Получить книгу — {BOOK.price}
             </Button>
-            <ReadExcerptButton size="lg" />
+            <ReadExcerptButton size="lg" withCover />
           </motion.div>
 
           <motion.p

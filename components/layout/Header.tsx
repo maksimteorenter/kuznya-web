@@ -12,9 +12,14 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-container items-center justify-between px-6 md:px-10">
         <Link
           href="/"
-          className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-ink"
+          className="flex flex-col leading-none transition-opacity hover:opacity-75"
         >
-          Кузня
+          <span className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-ink">
+            Максим Теорентер
+          </span>
+          <span className="mt-[3px] font-display text-[11px] uppercase tracking-[0.18em] text-blood">
+            Клуб «Кузня Силы»
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
