@@ -23,6 +23,9 @@ body {
   background-color: theme("colors.paper");
   color: theme("colors.ink");
   font-family: var(--font-inter);
+  /* Medium as the floor, not regular: the owner wants effortless reading for
+     weaker eyes, and Inter 500 stays clean while carrying more ink. */
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

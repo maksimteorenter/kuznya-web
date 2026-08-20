@@ -55,8 +55,28 @@ export function Hero() {
 
   return (
     <section ref={ref} className="relative min-h-[100svh] overflow-hidden bg-paper">
-      {/* Portrait occupies the right half; black and white, hard contrast. */}
-      <div className="absolute inset-y-0 right-0 w-full md:w-[56%]">
+      {/* Phones: the poster leads — photo with the eye bar as its own block,
+          then the copy on clean paper. No scrim fighting the face. */}
+      <div className="relative h-[44svh] w-full overflow-hidden md:hidden">
+        <Image
+          src="/images/hero-portrait.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="photo-bw object-cover object-[52%_12%]"
+        />
+        <div className="grain-overlay opacity-[0.09]" aria-hidden="true" />
+        <EyeBar objectX={0.52} objectY={0.12} delay={0.7} />
+        <div
+          className="absolute inset-x-0 bottom-0 h-14"
+          style={{ background: "linear-gradient(180deg, transparent, #EDEAE4)" }}
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* Desktop: portrait occupies the right half; black and white, hard contrast. */}
+      <div className="absolute inset-y-0 right-0 hidden md:block md:w-[56%]">
         <motion.div
           initial={{ scale: 1.06, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -69,7 +89,7 @@ export function Hero() {
             alt=""
             fill
             priority
-            sizes="(max-width: 768px) 100vw, 56vw"
+            sizes="56vw"
             className="photo-bw object-cover object-[52%_12%]"
           />
           {/* Film grain over the photo: hides the softness of the source frame
@@ -77,10 +97,8 @@ export function Hero() {
           <div className="grain-overlay opacity-[0.09]" aria-hidden="true" />
 
           {/* Censor bar across the eyes — anchored to the photograph itself,
-              so it stays on the eyes at any viewport size. Hidden on phones,
-              where the photo sits under a heavy scrim and the bar would read
-              as a stain behind the headline. */}
-          <EyeBar objectX={0.52} objectY={0.12} className="hidden md:block" />
+              so it stays on the eyes at any viewport size. */}
+          <EyeBar objectX={0.52} objectY={0.12} />
 
           {/* Paper bleeds over the photo so the headline never fights it. */}
           <div
@@ -88,16 +106,6 @@ export function Hero() {
             style={{
               background:
                 "linear-gradient(90deg, #EDEAE4 0%, rgba(237,234,228,0.82) 13%, rgba(237,234,228,0.25) 34%, rgba(237,234,228,0) 46%)",
-            }}
-            aria-hidden="true"
-          />
-          {/* On phones the photo sits directly under the copy, so it needs a
-              much heavier scrim than the desktop side-by-side layout. */}
-          <div
-            className="absolute inset-0 md:hidden"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(237,234,228,0.95) 0%, rgba(237,234,228,0.9) 55%, rgba(237,234,228,0.72) 80%, rgba(237,234,228,0.55) 100%)",
             }}
             aria-hidden="true"
           />
@@ -128,8 +136,8 @@ export function Hero() {
         </motion.span>
       </motion.div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-container items-center px-6 md:px-10">
-        <div className="w-full max-w-[560px] py-24 md:py-0">
+      <div className="relative z-10 mx-auto flex w-full max-w-container items-start px-6 md:min-h-[100svh] md:items-center md:px-10">
+        <div className="w-full max-w-[560px] pb-24 pt-8 md:py-0">
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
@@ -164,8 +172,9 @@ export function Hero() {
             className="mt-7 max-w-[440px] text-balance text-[17px] leading-relaxed text-inkSoft"
           >
             {BOOK.days} день в плену. Реальная история человека, у которого
-            забрали свободу, имя и любые планы — и который искал, что
-            остаётся, когда не остаётся ничего.
+            забрали свободу, имя и любые планы, а его самого разломали по
+            запчастям. Он собрал себя заново — и в этой книге передаёт тебе,
+            как выйти из любой сложной ситуации.
           </motion.p>
 
           <motion.div

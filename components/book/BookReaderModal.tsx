@@ -114,6 +114,13 @@ export function BookReaderModal({
               </button>
 
               <div className="relative aspect-[520/760] w-full max-w-[420px] overflow-hidden shadow-[0_40px_90px_-20px_rgba(0,0,0,0.8)]">
+                {/* All pages mount hidden as soon as the reader opens, so
+                    flipping never waits on the image pipeline. */}
+                <div className="hidden" aria-hidden="true">
+                  {PAGES.map((p) => (
+                    <Image key={p} src={p} alt="" width={520} height={760} sizes="420px" priority />
+                  ))}
+                </div>
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={index}

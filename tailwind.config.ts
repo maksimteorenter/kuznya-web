@@ -15,7 +15,7 @@ const config: Config = {
         paper: "#EDEAE4",
         paperDim: "#E2DED6",
         ink: "#111111",
-        inkSoft: "#3B3A38",
+        inkSoft: "#33312E",
         // Small uppercase labels sit here. Darkened twice: first to clear AA
         // (#6E6B66 was 4.42:1), then again because at 13px the labels still
         // read as washed out. Now 7.4:1 on paper.
@@ -34,7 +34,7 @@ const config: Config = {
         steel: "#33363a",
         // Secondary text on the deep sections. Lifted from #8E8B85 (5.8:1) so
         // small labels on black read as clearly as body copy does. Now 8.6:1.
-        mist: "#ADA9A2",
+        mist: "#B6B2AB",
         bone: "#F5F3EF",
         ember: {
           DEFAULT: "#C1121F",

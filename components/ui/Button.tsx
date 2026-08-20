@@ -18,7 +18,7 @@ type ButtonProps = {
 
 const base =
   "group/btn relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full " +
-  "font-display font-medium uppercase tracking-[0.1em] " +
+  "font-display font-semibold uppercase tracking-[0.1em] " +
   // Only transform/opacity/colour animate, so the hover stays cheap.
   "transition-[background-color,color,border-color,transform,box-shadow] duration-200 ease-out " +
   "[touch-action:manipulation] focus-visible:outline-2 focus-visible:outline-offset-[3px] " +

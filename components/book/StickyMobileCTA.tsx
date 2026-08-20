@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
@@ -25,9 +26,21 @@ export function StickyMobileCTA() {
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="fixed inset-x-0 bottom-0 z-40 border-t border-ink/15 bg-paper/95 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur md:hidden"
         >
-          <Button href={BOOK.checkoutUrl} className="w-full">
-            Получить книгу — {BOOK.price}
-          </Button>
+          <div className="flex items-center gap-3">
+            {/* The product itself rides on the bar — the cover, not an icon. */}
+            <div className="relative h-[46px] w-[32px] shrink-0 overflow-hidden rounded-[5px] shadow-[0_4px_12px_-4px_rgba(11,11,12,0.5)]">
+              <Image
+                src="/images/cover-front.jpg"
+                alt=""
+                fill
+                sizes="32px"
+                className="object-cover"
+              />
+            </div>
+            <Button href={BOOK.checkoutUrl} className="flex-1">
+              Получить книгу — {BOOK.price}
+            </Button>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
