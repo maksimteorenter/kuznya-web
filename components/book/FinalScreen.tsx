@@ -4,6 +4,7 @@ import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { BOOK } from "@/lib/content";
+import { KUZNYA_TELEGRAM_URL } from "@/lib/site";
 import { T, type Locale } from "@/lib/i18n";
 
 export function FinalScreen({ locale = "ru" }: { locale?: Locale }) {
@@ -79,6 +80,18 @@ export function FinalScreen({ locale = "ru" }: { locale?: Locale }) {
           <p className="mt-4 font-display text-[13px] uppercase tracking-[0.16em] text-mist">
             {t.final.formats}
           </p>
+
+          <div className="mx-auto mt-10 max-w-sm rounded-lg border border-white/10 bg-white/[0.03] px-6 py-5">
+            <p className="text-[14px] leading-relaxed text-bone/80">{t.final.clubNote}</p>
+            <a
+              href={KUZNYA_TELEGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-block font-display text-[13px] uppercase tracking-[0.14em] text-blood transition-colors hover:text-bone"
+            >
+              {t.final.clubCta} →
+            </a>
+          </div>
         </FadeIn>
       </Container>
     </Section>

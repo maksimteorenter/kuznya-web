@@ -18,13 +18,24 @@ export function Footer() {
           <nav aria-label="Карта сайта">
             <ul className="grid grid-cols-2 gap-x-10 gap-y-3">
               {NAV_ITEMS.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="font-display text-[13px] uppercase tracking-[0.1em] text-mist transition-colors hover:text-bone"
-                  >
-                    {item.label}
-                  </Link>
+                <li key={item.id}>
+                  {item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display text-[13px] uppercase tracking-[0.1em] text-mist transition-colors hover:text-bone"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="font-display text-[13px] uppercase tracking-[0.1em] text-mist transition-colors hover:text-bone"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -39,7 +50,7 @@ export function Footer() {
           </nav>
           <div className="mt-4 flex flex-col gap-2 text-[13px] text-mist md:flex-row md:items-center md:justify-between">
             <span>© {new Date().getFullYear()} Максим Теорентер. Все права защищены.</span>
-            <span>Книга основана на реальных событиях. Содержит описание насилия. 18+</span>
+            <span>Книга основана на реальных событиях 2016–2019 годов в застенках МГБ ДНР. Содержит описание насилия. 18+</span>
           </div>
         </div>
       </div>

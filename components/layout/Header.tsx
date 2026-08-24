@@ -32,18 +32,30 @@ export function Header({ locale }: { locale?: Locale } = {}) {
 
         <div className="hidden items-center gap-8 md:flex">
         <nav className="flex items-center gap-8">
-          {NAV_ITEMS.slice(1).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="font-display text-[13px] uppercase tracking-[0.14em] text-inkFaint transition-colors hover:text-ink"
-            >
-              {t.items[item.href] ?? item.label}
-              {item.comingSoon && (
-                <span className="ml-1 text-[9px] text-blood">•</span>
-              )}
-            </Link>
-          ))}
+          {NAV_ITEMS.slice(1).map((item) =>
+            item.external ? (
+              <a
+                key={item.id}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-display text-[13px] uppercase tracking-[0.14em] text-inkFaint transition-colors hover:text-ink"
+              >
+                {t.items[item.id] ?? item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.id}
+                href={item.href}
+                className="font-display text-[13px] uppercase tracking-[0.14em] text-inkFaint transition-colors hover:text-ink"
+              >
+                {t.items[item.id] ?? item.label}
+                {item.comingSoon && (
+                  <span className="ml-1 text-[9px] text-blood">•</span>
+                )}
+              </Link>
+            )
+          )}
         </nav>
         <LocaleSwitch locale={active} />
         </div>
@@ -72,14 +84,26 @@ export function Header({ locale }: { locale?: Locale } = {}) {
         <nav className="border-t border-ink/10 bg-paper px-6 py-6 md:hidden">
           <ul className="flex flex-col gap-5">
             {NAV_ITEMS.slice(1).map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block py-1 font-display text-sm uppercase tracking-[0.14em] text-ink"
-                >
-                  {t.items[item.href] ?? item.label}
-                </Link>
+              <li key={item.id}>
+                {item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                    className="block py-1 font-display text-sm uppercase tracking-[0.14em] text-ink"
+                  >
+                    {t.items[item.id] ?? item.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="block py-1 font-display text-sm uppercase tracking-[0.14em] text-ink"
+                  >
+                    {t.items[item.id] ?? item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
