@@ -18,7 +18,9 @@ import { FaqSection } from "@/components/book/FaqSection";
 import { FinalScreen } from "@/components/book/FinalScreen";
 import { StickyMobileCTA } from "@/components/book/StickyMobileCTA";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
+import { ScrollDepth } from "@/components/analytics/ScrollDepth";
 import { BOOK } from "@/lib/content";
+import { FAQ } from "@/components/book/FaqSection";
 
 const title = "1341 день в плену — Как выжить там, где у тебя забрали всё | Максим Теорентер";
 const description =
@@ -49,6 +51,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/book/1341",
+    languages: {
+      ru: "/book/1341",
+      uk: "/ua/book/1341",
+      "x-default": "/book/1341",
+    },
   },
 };
 
@@ -70,8 +77,18 @@ const jsonLd = {
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
     // TODO: replace with the real checkout URL once payment is wired up.
-    url: "https://teorentermaksim.com/book/1341",
+    url: "https://www.teorentermaksim.com/book/1341",
   },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
 };
 
 export default function BookPage() {
@@ -82,12 +99,18 @@ export default function BookPage() {
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       {/* Sales order: hook the pain, make it theirs, land the number, reframe
           what the book actually is, show what holds a person, prove the author,
           then price, objections, FAQ, close. Tones alternate paper/deep so the
           whole page reads as one black-and-white system while scrolling. */}
       <ScrollProgress />
+      <ScrollDepth />
       <Hero />
       <PainBlock />
       <NumberRevealBlock />

@@ -122,3 +122,11 @@ body {
 .photo-bw-hard {
   filter: grayscale(1) contrast(1.45) brightness(0.92);
 }
+
+/* Legal documents: readable defaults without pulling in a prose plugin. */
+.prose-legal h1 { font-family: var(--font-oswald); font-size: 1.9rem; line-height: 1.15; text-transform: uppercase; letter-spacing: -0.005em; margin: 0 0 0.4rem; }
+.prose-legal h2 { font-family: var(--font-oswald); font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.02em; margin: 2.2rem 0 0.6rem; }
+.prose-legal p, .prose-legal li { color: theme("colors.inkSoft"); line-height: 1.7; }
+.prose-legal ul { padding-left: 1.2rem; }
+.prose-legal .updated { font-size: 0.85rem; color: theme("colors.inkFaint"); margin-bottom: 2rem; }
+.prose-legal .req { background: #F5F3EF; border: 1px solid rgba(21,20,18,0.12); border-radius: 8px; padding: 1rem 1.2rem; font-size: 0.95rem; }

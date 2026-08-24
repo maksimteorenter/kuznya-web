@@ -31,9 +31,16 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-white/5 pt-6 text-[13px] text-mist md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} Максим Теорентер. Все права защищены.</span>
-          <span>Книга основана на реальных событиях. Содержит описание насилия. 18+</span>
+        <div className="mt-14 border-t border-white/5 pt-6">
+          <nav aria-label="Правовая информация" className="flex flex-wrap gap-x-6 gap-y-2 text-[13px]">
+            <Link href="/legal/oferta" className="text-mist transition-colors hover:text-bone">Публичная оферта</Link>
+            <Link href="/legal/refund" className="text-mist transition-colors hover:text-bone">Условия возврата</Link>
+            <Link href="/legal/privacy" className="text-mist transition-colors hover:text-bone">Конфиденциальность</Link>
+          </nav>
+          <div className="mt-4 flex flex-col gap-2 text-[13px] text-mist md:flex-row md:items-center md:justify-between">
+            <span>© {new Date().getFullYear()} Максим Теорентер. Все права защищены.</span>
+            <span>Книга основана на реальных событиях. Содержит описание насилия. 18+</span>
+          </div>
         </div>
       </div>
     </footer>

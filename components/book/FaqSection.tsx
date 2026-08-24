@@ -4,7 +4,7 @@ import { SectionHead } from "@/components/ui/SectionHead";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { BOOK } from "@/lib/content";
 
-const FAQ = [
+export const FAQ = [
   {
     q: "Это тяжёлая книга?",
     a: "Да, местами. Но она не о том, как ломать человека, — она о том, что помогает не сломаться. Разговор ведётся с уважением к теме, а не для шока.",

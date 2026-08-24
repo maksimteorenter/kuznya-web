@@ -2,10 +2,18 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { NAV_ITEMS } from "@/lib/site";
+import { LocaleSwitch } from "@/components/layout/LocaleSwitch";
+import { T, type Locale } from "@/lib/i18n";
 
-export function Header() {
+export function Header({ locale }: { locale?: Locale } = {}) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  // The header lives in the root layout, so it derives the language from the
+  // URL rather than being told — one less thing every page has to remember.
+  const active: Locale = locale ?? (pathname?.startsWith("/ua") ? "uk" : "ru");
+  const t = T[active].nav;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-paper/85 backdrop-blur-md">
@@ -18,24 +26,27 @@ export function Header() {
             Максим Теорентер
           </span>
           <span className="mt-[3px] font-display text-[11px] uppercase tracking-[0.18em] text-blood">
-            Клуб «Кузня Силы»
+            {t.club}
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
+        <nav className="flex items-center gap-8">
           {NAV_ITEMS.slice(1).map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className="font-display text-[13px] uppercase tracking-[0.14em] text-inkFaint transition-colors hover:text-ink"
             >
-              {item.label}
+              {t.items[item.href] ?? item.label}
               {item.comingSoon && (
                 <span className="ml-1 text-[9px] text-blood">•</span>
               )}
             </Link>
           ))}
         </nav>
+        <LocaleSwitch locale={active} />
+        </div>
 
         <button
           type="button"
@@ -67,11 +78,14 @@ export function Header() {
                   onClick={() => setOpen(false)}
                   className="block py-1 font-display text-sm uppercase tracking-[0.14em] text-ink"
                 >
-                  {item.label}
+                  {t.items[item.href] ?? item.label}
                 </Link>
               </li>
             ))}
           </ul>
+          <div className="mt-6">
+            <LocaleSwitch locale={active} />
+          </div>
         </nav>
       )}
     </header>

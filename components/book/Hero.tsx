@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { EyeBar } from "@/components/book/EyeBar";
 import { ReadExcerptButton } from "@/components/book/ReadExcerptButton";
 import { BOOK } from "@/lib/content";
+import { T, type Locale } from "@/lib/i18n";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -41,7 +42,8 @@ function SetType({
   );
 }
 
-export function Hero() {
+export function Hero({ locale = "ru" }: { locale?: Locale }) {
+  const t = T[locale].hero;
   const ref = useRef<HTMLElement>(null);
   // Scroll-linked drift: the photo and the numeral move at different speeds,
   // so the hero has real depth as it leaves the screen. Motion values only —
@@ -151,18 +153,18 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-6 font-display text-sm font-medium uppercase tracking-[0.16em] text-inkFaint"
           >
-            Коуч-наставник · Основатель клуба «Кузня»
+            {t.role}
           </motion.p>
 
           <h1
             className="mt-5 font-display font-bold uppercase leading-[1.06] text-ink"
             style={{ fontSize: "clamp(1.8rem, 5.2vw, 3.9rem)", letterSpacing: "-0.01em" }}
           >
-            <SetType text="Что ты будешь делать," delay={0.35} />
+            <SetType text={t.h1[0]} delay={0.35} />
             <br />
-            <SetType text="когда у тебя заберут" delay={0.5} />
+            <SetType text={t.h1[1]} delay={0.5} />
             <br />
-            <SetType text="всё?" delay={0.72} red />
+            <SetType text={t.h1Red} delay={0.72} red />
           </h1>
 
           <motion.p
@@ -171,10 +173,7 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 1.1, ease }}
             className="mt-7 max-w-[440px] text-balance text-[17px] leading-relaxed text-inkSoft"
           >
-            {BOOK.days} день в плену. Реальная история человека, у которого
-            забрали свободу, имя и любые планы, а его самого разломали по
-            запчастям. Он собрал себя заново — и в этой книге передаёт тебе,
-            как выйти из любой сложной ситуации.
+            {t.lede}
           </motion.p>
 
           <motion.div
@@ -183,10 +182,10 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 1.25, ease }}
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
-            <Button href="#price" size="lg">
-              Получить книгу — {BOOK.price}
+            <Button href="#price" size="lg" dataTrack="cta_to_price">
+              {t.buy} — {BOOK.price}
             </Button>
-            <ReadExcerptButton size="lg" withCover />
+            <ReadExcerptButton size="lg" withCover locale={locale} />
           </motion.div>
 
           <motion.p
@@ -195,7 +194,7 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 1.5 }}
             className="mt-8 font-display text-[13px] uppercase tracking-[0.16em] text-inkFaint"
           >
-            Основано на реальных событиях
+            {t.basedOn}
           </motion.p>
         </div>
       </div>

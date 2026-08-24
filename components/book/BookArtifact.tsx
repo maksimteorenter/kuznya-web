@@ -4,35 +4,25 @@ import { SectionHead } from "@/components/ui/SectionHead";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { InteractiveBookMockup } from "@/components/book/InteractiveBookMockup";
-import { BOOK, CHAPTERS } from "@/lib/content";
+import { BOOK } from "@/lib/content";
+import { T, type Locale } from "@/lib/i18n";
 
-const INCLUDED = [
-  `${BOOK.pages} страниц: полная история от ареста до возвращения домой`,
-  `${CHAPTERS.length} глав — от «Ада на земле» до «Как течёт время»`,
-  `${BOOK.poemsCount} стихотворений, написанных там же, внутри`,
-  "Система внутренних опор, собранная не в кабинете, а под нагрузкой",
-  "Цифровая версия — доступ сразу после оплаты",
-];
-
-export function BookArtifact() {
+export function BookArtifact({ locale = "ru" }: { locale?: Locale }) {
+  const t = T[locale].price;
+  const INCLUDED = t.included;
   return (
     <Section id="price" tone="paper">
       <Container>
         <div className="grid items-start gap-16 md:grid-cols-[auto_1fr]">
           <FadeIn className="flex justify-center md:justify-start">
-            <InteractiveBookMockup />
+            <InteractiveBookMockup locale={locale} />
           </FadeIn>
 
           <div>
-            <SectionHead label="Предложение">
-              Сколько стоит {BOOK.days} день опыта?
-            </SectionHead>
+            <SectionHead label={t.label}>{t.head}</SectionHead>
 
             <FadeIn delay={0.1}>
-              <p className="mt-8 max-w-prose leading-relaxed text-inkSoft">
-                У этого опыта цены нет. Заплачено другим. Но у книги цена
-                есть — и она специально такая, чтобы решение не пришлось
-                обдумывать неделю.
+              <p className="mt-8 max-w-prose leading-relaxed text-inkSoft">{t.lede}
               </p>
             </FadeIn>
 
@@ -42,7 +32,7 @@ export function BookArtifact() {
                   {BOOK.price}
                 </span>
                 <span className="pb-1.5 font-display text-[13px] uppercase tracking-[0.18em] text-inkFaint">
-                  разовый платёж
+                  {t.oneTime}
                 </span>
               </div>
             </FadeIn>
@@ -67,26 +57,23 @@ export function BookArtifact() {
             </FadeIn>
 
             <FadeIn delay={0.25}>
-              <p className="mt-8 max-w-prose leading-relaxed text-inkSoft">
-                За эти деньги ты не получаешь обещание стать «неуязвимым».
-                Ты получаешь возможность пройти {BOOK.days} дней рядом с
-                человеком, который их действительно прожил: увидеть его
-                решения, ошибки, страх и способы адаптации — и сделать
-                собственные выводы.
+              <p className="mt-8 max-w-prose leading-relaxed text-inkSoft">{t.body}
               </p>
-              <p className="mt-4 max-w-prose text-balance font-editorial text-lg italic leading-snug text-ink">
-                Возможно, некоторые из них однажды окажутся важнее стоимости
-                этой книги.
+              <p className="mt-4 max-w-prose text-balance font-editorial text-lg italic leading-snug text-ink">{t.note}
               </p>
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <Button href={BOOK.checkoutUrl} size="lg" className="mt-10">
-                Получить книгу — {BOOK.price}
+              <Button href={BOOK.checkoutUrl} size="lg" className="mt-10" dataTrack="checkout_click">
+                {T[locale].hero.buy} — {BOOK.price}
               </Button>
               <p className="mt-3 font-display text-[13px] uppercase tracking-[0.16em] text-inkFaint">
-                {BOOK.formats.map((f) => f.label).join(" · ")} · моментальный
-                доступ
+                {t.formats}
+              </p>
+              {/* Risk reversal sits with the price, where the hesitation is. */}
+              <p className="mt-3 flex items-center gap-2 text-[14px] text-inkSoft">
+                <span className="h-1.5 w-1.5 shrink-0 bg-blood" aria-hidden="true" />
+                {t.guarantee}
               </p>
             </FadeIn>
           </div>

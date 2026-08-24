@@ -14,6 +14,8 @@ type ButtonProps = {
   external?: boolean;
   className?: string;
   onClick?: () => void;
+  /** Analytics event name; picked up by the global [data-track] delegate. */
+  dataTrack?: string;
 };
 
 const base =
@@ -56,6 +58,7 @@ export function Button({
   external = false,
   className = "",
   onClick,
+  dataTrack,
 }: ButtonProps) {
   const cls = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
 
@@ -67,6 +70,7 @@ export function Button({
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
         onClick={onClick}
+        data-track={dataTrack}
       >
         {children}
       </a>
@@ -74,7 +78,7 @@ export function Button({
   }
 
   return (
-    <Link href={href} className={cls} onClick={onClick}>
+    <Link href={href} className={cls} onClick={onClick} data-track={dataTrack}>
       {children}
     </Link>
   );

@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { BookReaderModal } from "@/components/book/BookReaderModal";
 import { buttonClasses } from "@/components/ui/Button";
+import { track } from "@/lib/track";
+import { T, type Locale } from "@/lib/i18n";
 
 /**
  * "Read an excerpt" has to actually open the reader — it previously scrolled to
@@ -16,12 +18,15 @@ export function ReadExcerptButton({
   className = "",
   size = "lg",
   withCover = false,
+  locale = "ru",
 }: {
   className?: string;
   size?: "md" | "lg";
   withCover?: boolean;
+  locale?: Locale;
 }) {
   const [open, setOpen] = useState(false);
+  const t = T[locale];
 
   return (
     <>
@@ -29,8 +34,8 @@ export function ReadExcerptButton({
         {withCover && (
           <button
             type="button"
-            onClick={() => setOpen(true)}
-            aria-label="Открыть первые страницы книги"
+            onClick={() => { track("reader_open", { source: "cover_thumb" }); setOpen(true); }}
+            aria-label={t.hero.excerpt}
             className="group relative h-[54px] w-[38px] shrink-0 overflow-hidden rounded-md shadow-[0_6px_18px_-6px_rgba(11,11,12,0.5)] outline-offset-[3px] transition-transform duration-200 ease-out hover:-translate-y-0.5 hover:rotate-[-3deg] focus-visible:outline-2 focus-visible:outline-blood motion-reduce:transform-none"
           >
             <Image
@@ -45,14 +50,14 @@ export function ReadExcerptButton({
 
         <button
           type="button"
-          onClick={() => setOpen(true)}
+          onClick={() => { track("reader_open", { source: "button" }); setOpen(true); }}
           className={buttonClasses("ghost", size, className)}
         >
-          Читать отрывок
+          {t.hero.excerpt}
         </button>
       </div>
 
-      <BookReaderModal open={open} onClose={() => setOpen(false)} />
+      <BookReaderModal open={open} onClose={() => setOpen(false)} locale={locale} />
     </>
   );
 }

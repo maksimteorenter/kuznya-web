@@ -5,6 +5,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { BOOK } from "@/lib/content";
+import { track } from "@/lib/track";
+import { T, type Locale } from "@/lib/i18n";
 
 const PAGES = [
   "/preview-pages/page-005.jpg",
@@ -17,10 +19,13 @@ const PAGES = [
 export function BookReaderModal({
   open,
   onClose,
+  locale = "ru",
 }: {
   open: boolean;
   onClose: () => void;
+  locale?: Locale;
 }) {
+  const t = T[locale];
   const [index, setIndex] = useState(0);
   const isLast = index === PAGES.length - 1;
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -28,7 +33,15 @@ export function BookReaderModal({
   const restoreFocusRef = useRef<HTMLElement | null>(null);
 
   const next = useCallback(
-    () => setIndex((i) => (i < PAGES.length - 1 ? i + 1 : i)),
+    () =>
+      setIndex((i) => {
+        const n = i < PAGES.length - 1 ? i + 1 : i;
+        if (n !== i) {
+          track("reader_page", { page: n + 1 });
+          if (n === PAGES.length - 1) track("reader_finish");
+        }
+        return n;
+      }),
     [],
   );
   const prev = useCallback(() => setIndex((i) => (i > 0 ? i - 1 : i)), []);
@@ -88,26 +101,26 @@ export function BookReaderModal({
             ref={dialogRef}
             role="dialog"
             aria-modal="true"
-            aria-label={`Отрывок книги «${BOOK.title}»`}
+            aria-label={`${t.reader.label} · ${t.bookTitle}`}
             className="flex w-full max-w-4xl flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               ref={closeRef}
               onClick={onClose}
-              aria-label="Закрыть"
+              aria-label={t.reader.close}
               className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center font-display text-2xl text-mist transition-colors [touch-action:manipulation] hover:text-bone"
             >
               ✕
             </button>
 
-            <p className="kicker">Отрывок · {BOOK.title}</p>
+            <p className="kicker">{t.reader.label} · {t.bookTitle}</p>
 
             <div className="relative mt-6 flex w-full items-center justify-center">
               <button
                 onClick={prev}
                 disabled={index === 0}
-                aria-label="Предыдущая страница"
+                aria-label={t.reader.prev}
                 className="hidden h-11 w-11 shrink-0 items-center justify-center font-display text-3xl text-mist transition-colors hover:text-blood disabled:opacity-20 sm:flex"
               >
                 ‹
@@ -133,7 +146,7 @@ export function BookReaderModal({
                   >
                     <Image
                       src={PAGES[index]}
-                      alt={`Страница ${index + 1} из ${PAGES.length}`}
+                      alt={`${t.reader.page} ${index + 1} ${t.reader.of} ${PAGES.length}`}
                       fill
                       sizes="420px"
                       className="bg-paper object-contain"
@@ -146,7 +159,7 @@ export function BookReaderModal({
               <button
                 onClick={next}
                 disabled={isLast}
-                aria-label="Следующая страница"
+                aria-label={t.reader.next}
                 className="hidden h-11 w-11 shrink-0 items-center justify-center font-display text-3xl text-mist transition-colors hover:text-blood disabled:opacity-20 sm:flex"
               >
                 ›
@@ -159,14 +172,14 @@ export function BookReaderModal({
                 disabled={index === 0}
                 className="min-h-[44px] px-4 font-display text-sm uppercase tracking-[0.1em] text-mist [touch-action:manipulation] disabled:opacity-20"
               >
-                ← Назад
+                ← {t.reader.prev}
               </button>
               <button
                 onClick={next}
                 disabled={isLast}
                 className="min-h-[44px] px-4 font-display text-sm uppercase tracking-[0.1em] text-mist [touch-action:manipulation] disabled:opacity-20"
               >
-                Дальше →
+                {t.reader.next} →
               </button>
             </div>
 
@@ -174,7 +187,7 @@ export function BookReaderModal({
               aria-live="polite"
               className="mt-4 font-display text-[13px] uppercase tracking-[0.14em] tabular-nums text-mist"
             >
-              Страница {index + 1} из {PAGES.length}
+              {t.reader.page} {index + 1} {t.reader.of} {PAGES.length}
             </p>
 
             {isLast && (
@@ -185,11 +198,10 @@ export function BookReaderModal({
                 className="mt-8 flex flex-col items-center gap-3 text-center"
               >
                 <p className="max-w-sm text-balance text-[15px] leading-relaxed text-bone/90">
-                  Это первые страницы. Дальше — ещё {BOOK.pages - 9} страниц
-                  истории.
+                  {t.reader.lastNote} {BOOK.pages - 9}.
                 </p>
-                <Button href="#price" size="lg" onClick={onClose}>
-                  Получить книгу — {BOOK.price}
+                <Button href="#price" size="lg" onClick={onClose} dataTrack="cta_to_price">
+                  {t.hero.buy} — {BOOK.price}
                 </Button>
               </motion.div>
             )}

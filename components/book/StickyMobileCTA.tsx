@@ -5,8 +5,10 @@ import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { BOOK } from "@/lib/content";
+import { T, type Locale } from "@/lib/i18n";
 
-export function StickyMobileCTA() {
+export function StickyMobileCTA({ locale = "ru" }: { locale?: Locale }) {
+  const t = T[locale];
   const [visible, setVisible] = useState(false);
   const { scrollY } = useScroll();
 
@@ -37,8 +39,8 @@ export function StickyMobileCTA() {
                 className="object-cover"
               />
             </div>
-            <Button href={BOOK.checkoutUrl} className="flex-1">
-              Получить книгу — {BOOK.price}
+            <Button href={BOOK.checkoutUrl} className="flex-1" dataTrack="checkout_click">
+              {t.hero.buy} — {BOOK.price}
             </Button>
           </div>
         </motion.div>

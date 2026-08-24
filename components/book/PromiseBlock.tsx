@@ -4,47 +4,20 @@ import { SectionHead } from "@/components/ui/SectionHead";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { BOOK } from "@/lib/content";
+import { T, type Locale } from "@/lib/i18n";
 
-const PILLARS = [
-  {
-    title: "Тело",
-    text: "Когда мир сужается до нескольких метров, тело остаётся одной из немногих территорий, которыми ещё можно управлять.",
-  },
-  {
-    title: "Внимание",
-    text: "Страх никуда не денется. Вопрос в том, чему именно ты позволяешь занимать своё сознание все двадцать четыре часа.",
-  },
-  {
-    title: "Дисциплина",
-    text: "Когда невозможно строить планы на годы, решающим становится то, что ты делаешь в ближайший час.",
-  },
-  {
-    title: "Смысл",
-    text: "Человеку необходимо понимать, ради чего он проживает следующий день. Без этого ломаются быстрее всего.",
-  },
-  {
-    title: "Вера",
-    text: "Когда логика перестаёт давать ответы, нужна внутренняя система координат, которая держит без доказательств.",
-  },
-  {
-    title: "Выбор",
-    text: "Иногда свобода сжимается до одного-единственного права: выбрать собственную реакцию на происходящее.",
-  },
-];
-
-export function PromiseBlock() {
+export function PromiseBlock({ locale = "ru" }: { locale?: Locale }) {
+  const t = T[locale].promise;
+  const PILLARS = t.pillars;
   return (
     <Section tone="paper">
       <Container>
-        <SectionHead label="Главная интрига">
-          Что помогает человеку <span className="text-blood">не сломаться</span>?
+        <SectionHead label={t.label}>
+          {t.headBefore} <span className="text-blood">{t.headRed}</span>?
         </SectionHead>
 
         <FadeIn delay={0.1}>
-          <p className="mt-8 max-w-prose text-balance leading-relaxed text-inkSoft">
-            Волшебной фразы не существует. Ни одна из этих опор поодиночке не
-            держит. Держит только вся конструкция целиком — и в книге я
-            показываю, как она собиралась по частям.
+          <p className="mt-8 max-w-prose text-balance leading-relaxed text-inkSoft">{t.lede}
           </p>
         </FadeIn>
 
@@ -67,13 +40,10 @@ export function PromiseBlock() {
         </div>
 
         <FadeIn delay={0.3} className="mt-16 max-w-2xl border-t border-ink/15 pt-10">
-          <p className="text-balance leading-relaxed text-ink">
-            В книге я подробно разбираю, как всё это формировалось — не в
-            кабинете и не на тренинге, а внутри обстоятельств, из которых
-            нельзя было выйти по собственному желанию.
+          <p className="text-balance leading-relaxed text-ink">{t.close}
           </p>
-          <Button href="#price" className="mt-8">
-            Получить книгу — {BOOK.price}
+          <Button href="#price" className="mt-8" dataTrack="cta_to_price">
+            {T[locale].hero.buy} — {BOOK.price}
           </Button>
         </FadeIn>
       </Container>
