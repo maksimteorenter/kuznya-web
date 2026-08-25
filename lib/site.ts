@@ -12,8 +12,9 @@ export type NavItem = {
   external?: boolean;
 };
 
-// Real bot link pending from Maksim — set NEXT_PUBLIC_TELEGRAM_URL in Vercel once he sends it.
-export const KUZNYA_TELEGRAM_URL = process.env.NEXT_PUBLIC_TELEGRAM_URL || "#";
+// Real Telegram bot, confirmed 2026-08-25 (visible on the book's own back-cover
+// QR spread: "@teorenter_bot"). Still overridable via env for staging.
+export const KUZNYA_TELEGRAM_URL = process.env.NEXT_PUBLIC_TELEGRAM_URL || "https://t.me/teorenter_bot";
 
 // Nav kept deliberately short — Maksim wants exactly these four entries, nothing else.
 export const NAV_ITEMS: NavItem[] = [

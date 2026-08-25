@@ -15,11 +15,11 @@ export function AuthorBlock() {
             <div className="relative">
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="/images/hero-portrait.jpg"
+                  src="/images/author-portrait-red.jpg"
                   alt={BOOK.author}
                   fill
                   sizes="(max-width: 768px) 100vw, 320px"
-                  className="photo-bw object-cover object-[58%_20%]"
+                  className="object-cover object-[50%_12%]"
                 />
               </div>
               {/* The number cuts the frame, the way the red slash does in the hero */}
