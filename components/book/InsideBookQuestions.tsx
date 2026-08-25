@@ -30,17 +30,21 @@ export function InsideBookQuestions() {
           </p>
         </FadeIn>
 
-        <div className="mt-10">
+        <div className="mt-14 space-y-12 text-center">
           {QUESTIONS.map((q, i) => (
-            <FadeIn key={q} delay={i * 0.04}>
-              <div className="flex gap-5 border-t border-white/12 py-4 last:border-b">
-                <span className="shrink-0 pt-1.5 font-display text-[13px] tabular-nums text-blood">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-balance font-editorial text-lg italic leading-snug text-bone md:text-xl">
-                  {q}
-                </p>
-              </div>
+            <FadeIn key={q} delay={i * 0.05}>
+              <span className="font-display text-[12px] font-semibold tabular-nums text-blood/70">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p
+                className="mx-auto mt-3 max-w-2xl text-balance font-editorial text-2xl font-semibold leading-[1.2] text-bone md:text-[1.75rem]"
+                style={{
+                  textShadow:
+                    "0 1px 0 rgba(0,0,0,0.5), 0 3px 2px rgba(0,0,0,0.35), 0 10px 24px rgba(193,18,31,0.3)",
+                }}
+              >
+                {q}
+              </p>
             </FadeIn>
           ))}
         </div>

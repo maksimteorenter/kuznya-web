@@ -44,6 +44,18 @@ export default function HomePage() {
         <Container className="relative z-10 pb-20 pt-40">
           <FadeIn>
             <div className="blood-rule" />
+            {/* Book must read within the first 3 seconds — a badge above the
+                fold, before the reader has to scroll to find it. */}
+            <a
+              href="/book/1341"
+              className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-blood/50 bg-blood/10 px-4 py-2 backdrop-blur-sm transition-colors hover:bg-blood/20"
+            >
+              <span className="font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-blood">
+                Книга
+              </span>
+              <span className="h-3 w-px bg-blood/40" aria-hidden="true" />
+              <span className="text-[13px] text-bone">«{BOOK.title}»</span>
+            </a>
             <h1
               className="mt-7 max-w-3xl text-balance font-display font-bold uppercase leading-[1.06] text-bone"
               style={{ fontSize: "clamp(2.2rem, 5.5vw, 4rem)", letterSpacing: "-0.01em" }}

@@ -64,12 +64,13 @@ export function AuthorBlock() {
               <p className="font-display text-[13px] uppercase tracking-[0.16em] text-mist">
                 Проверяемые факты
               </p>
-              <ul className="mt-5 grid gap-x-10 gap-y-0 sm:grid-cols-2">
+              <ul className="mt-5 grid gap-x-10 gap-y-3.5 sm:grid-cols-2">
                 {AUTHOR_FACTS.map((fact) => (
                   <li
                     key={fact}
-                    className="border-t border-white/12 py-3.5 text-[15px] leading-relaxed text-bone/90"
+                    className="flex gap-3 text-[15px] font-medium leading-relaxed text-bone"
                   >
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-blood" aria-hidden="true" />
                     {fact}
                   </li>
                 ))}
