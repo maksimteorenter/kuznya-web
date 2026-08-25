@@ -35,16 +35,13 @@ export function WhatsInsideBlock() {
           <p className="font-display text-[13px] uppercase tracking-[0.16em] text-inkFaint">
             Оглавление
           </p>
-          <ol className="mt-6 grid gap-x-12 gap-y-0 sm:grid-cols-2">
+          <ol className="mt-8 grid gap-x-12 gap-y-5 sm:grid-cols-2">
             {CHAPTERS.map((c, i) => (
-              <li
-                key={c}
-                className="flex items-baseline gap-4 border-t border-ink/12 py-3.5"
-              >
-                <span className="font-display text-[13px] tabular-nums text-blood">
+              <li key={c} className="flex items-baseline gap-4">
+                <span className="font-display text-base font-bold tabular-nums text-blood">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-[15px] text-ink">{c}</span>
+                <span className="text-[17px] font-semibold leading-snug text-ink">{c}</span>
               </li>
             ))}
           </ol>

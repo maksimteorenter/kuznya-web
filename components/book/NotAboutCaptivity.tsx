@@ -38,16 +38,21 @@ export function NotAboutCaptivity() {
             Поэтому книга отвечает не на вопрос «как сидят в подвале ДНР».
             Она отвечает на вопросы, которые рано или поздно достают каждого:
           </p>
-          <ul className="mt-7 space-y-0">
+          <ul className="mt-10 space-y-8 text-center">
             {QUESTIONS.map((q, i) => (
-              <li
-                key={q}
-                className="flex gap-5 border-t border-ink/12 py-4 last:border-b"
-              >
-                <span className="shrink-0 pt-1 font-display text-[13px] tabular-nums text-blood">
+              <li key={q}>
+                <span className="font-display text-[12px] font-semibold tabular-nums text-blood/70">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-balance leading-relaxed text-ink">{q}</span>
+                <p
+                  className="mx-auto mt-2 max-w-2xl text-balance font-semibold leading-[1.3] text-ink"
+                  style={{
+                    fontSize: "clamp(1.1rem, 2.4vw, 1.4rem)",
+                    textShadow: "0 2px 10px rgba(193,18,31,0.14)",
+                  }}
+                >
+                  {q}
+                </p>
               </li>
             ))}
           </ul>

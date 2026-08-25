@@ -19,7 +19,7 @@ export function AuthorBlock() {
                   alt={BOOK.author}
                   fill
                   sizes="(max-width: 768px) 100vw, 320px"
-                  className="object-cover object-[50%_12%]"
+                  className="object-cover object-top"
                 />
               </div>
               {/* The number cuts the frame, the way the red slash does in the hero */}

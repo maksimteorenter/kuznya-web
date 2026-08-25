@@ -38,12 +38,9 @@ export function BookArtifact({ locale = "ru" }: { locale?: Locale }) {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <ul className="mt-8 space-y-0">
+              <ul className="mt-8 space-y-4">
                 {INCLUDED.map((item) => (
-                  <li
-                    key={item}
-                    className="flex gap-4 border-b border-ink/12 py-3.5"
-                  >
+                  <li key={item} className="flex gap-4">
                     <span
                       className="mt-2 h-1.5 w-1.5 shrink-0 bg-blood"
                       aria-hidden="true"

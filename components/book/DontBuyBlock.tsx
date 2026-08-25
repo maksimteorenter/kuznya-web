@@ -18,10 +18,10 @@ export function DontBuyBlock() {
           Не покупай эту книгу, если ты
         </SectionHead>
 
-        <ul className="mt-12">
+        <ul className="mt-12 space-y-5">
           {NOT_FOR.map((line, i) => (
             <FadeIn key={line} delay={i * 0.06}>
-              <li className="flex gap-5 border-t border-white/12 py-4 last:border-b">
+              <li className="flex gap-5">
                 <span className="shrink-0 pt-0.5 font-display text-lg leading-none text-blood">
                   ×
                 </span>

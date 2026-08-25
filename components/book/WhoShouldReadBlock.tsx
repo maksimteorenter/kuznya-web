@@ -22,10 +22,10 @@ export function WhoShouldReadBlock() {
           Она попадёт в тебя, если ты
         </SectionHead>
 
-        <ul className="mt-12 grid gap-x-10 gap-y-0 sm:grid-cols-2">
+        <ul className="mt-12 grid gap-x-10 gap-y-4 sm:grid-cols-2">
           {REASONS.map((r, i) => (
             <FadeIn key={r} delay={i * 0.04}>
-              <li className="flex gap-4 border-t border-white/12 py-4">
+              <li className="flex gap-4">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-blood" aria-hidden="true" />
                 <span className="text-[15px] leading-relaxed text-bone">{r}</span>
               </li>
