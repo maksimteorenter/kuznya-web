@@ -15,6 +15,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Button } from "@/components/ui/Button";
+import { BackLink } from "@/components/ui/BackLink";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { KUZNYA_TELEGRAM_URL } from "@/lib/site";
 import {
@@ -48,51 +49,58 @@ const CTA_LABEL = ABOUT_FINAL_CTA.ctaLabel;
 export default function MentorshipPage() {
   return (
     <>
-      {/* HERO */}
-      <Section bare tone="deep" className="relative flex min-h-[100dvh] items-end overflow-hidden pb-16 pt-28 md:pb-24">
-        <Image
-          src="/images/hero-portrait-2.png"
-          alt={BOOK.author}
-          fill
-          priority
-          sizes="100vw"
-          className="photo-bw object-cover object-[50%_15%]"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.15)_0%,rgba(10,10,10,0.4)_45%,rgba(10,10,10,0.95)_100%)]"
-        />
-        <Container className="relative z-[2]">
-          <FadeIn>
-            <h1 className="max-w-3xl text-balance font-display text-4xl font-bold uppercase leading-[0.98] text-bone sm:text-5xl md:text-6xl lg:text-7xl">
-              Себя нельзя найти.
-              <br />
-              <span className="text-blood">Себя можно только создать.</span>
-            </h1>
-          </FadeIn>
-          <FadeIn delay={0.12} className="mt-6 max-w-md">
-            <p className="text-balance text-lg leading-relaxed text-bone/85">
-              {ABOUT_INTRO.lede}
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.2} className="mt-4">
-            <a href="/about" className="inline-flex items-center gap-1 text-sm text-bone/70 underline underline-offset-4 hover:text-bone">
-              Полная история Максима <ArrowRight className="size-3.5" />
-            </a>
-          </FadeIn>
-          <FadeIn delay={0.28} className="mt-6">
-            <Button href="#plan" size="lg">
-              {CTA_LABEL}
-            </Button>
-          </FadeIn>
+      {/* HERO — split: photo contained to one side, text beside it, never on the face */}
+      <Section bare tone="deep" className="flex min-h-[100svh] items-center py-24 pt-32">
+        <Container>
+          <div className="mb-8">
+            <BackLink dark fallbackHref="/about" label="Обо мне" />
+          </div>
+          <div className="grid gap-14 md:grid-cols-[1fr_1.15fr] md:items-center md:gap-16">
+            <FadeIn>
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-2xl shadow-[0_40px_90px_-30px_rgba(0,0,0,0.5)]">
+                <Image
+                  src="/images/hero-portrait-2.png"
+                  alt={BOOK.author}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 90vw, 420px"
+                  className="photo-bw object-cover object-[50%_15%]"
+                />
+              </div>
+            </FadeIn>
+            <div>
+              <FadeIn>
+                <h1 className="text-balance font-display text-4xl font-bold uppercase leading-[0.98] text-bone sm:text-5xl md:text-6xl">
+                  Себя нельзя найти.
+                  <br />
+                  <span className="text-blood">Себя можно только создать.</span>
+                </h1>
+              </FadeIn>
+              <FadeIn delay={0.12} className="mt-6 max-w-md">
+                <p className="text-balance text-lg leading-relaxed text-bone/85">
+                  {ABOUT_INTRO.lede}
+                </p>
+              </FadeIn>
+              <FadeIn delay={0.2} className="mt-4">
+                <a href="/about" className="inline-flex items-center gap-1 text-sm text-bone/70 underline underline-offset-4 hover:text-bone">
+                  Полная история Максима <ArrowRight className="size-3.5" />
+                </a>
+              </FadeIn>
+              <FadeIn delay={0.28} className="mt-6">
+                <Button href="#plan" size="lg">
+                  {CTA_LABEL}
+                </Button>
+              </FadeIn>
+            </div>
+          </div>
         </Container>
       </Section>
 
       {/* Qualification */}
       <Section tone="deep">
-        <Container>
-          <SectionHead>Это не для всех</SectionHead>
-          <div className="mt-12 grid gap-14 md:grid-cols-2">
+        <Container className="text-center">
+          <SectionHead center>Это не для всех</SectionHead>
+          <div className="mx-auto mt-12 grid max-w-3xl gap-14 sm:grid-cols-2">
             <div>
               <FadeIn>
                 <span className="font-display text-[13px] font-semibold uppercase tracking-[0.16em] text-blood">
@@ -101,7 +109,7 @@ export default function MentorshipPage() {
               </FadeIn>
               <ul className="mt-6 space-y-4">
                 {STRATEGY_FOR.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-balance leading-relaxed text-bone/90">
+                  <li key={item} className="flex items-start gap-3 text-balance text-left leading-relaxed text-bone/90">
                     <CheckCircle weight="fill" className="mt-1 size-4 shrink-0 text-blood" />
                     {item}
                   </li>
@@ -116,7 +124,7 @@ export default function MentorshipPage() {
               </FadeIn>
               <ul className="mt-6 space-y-4">
                 {STRATEGY_NOT_FOR.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-balance leading-relaxed text-mist">
+                  <li key={item} className="flex items-start gap-3 text-balance text-left leading-relaxed text-mist">
                     <XCircle weight="bold" className="mt-1 size-4 shrink-0 text-mist" />
                     {item}
                   </li>
@@ -129,13 +137,13 @@ export default function MentorshipPage() {
 
       {/* Offer */}
       <Section>
-        <Container className="max-w-2xl">
+        <Container className="max-w-2xl text-center">
           <FadeIn>
-            <p className="text-balance font-editorial text-2xl italic leading-snug text-ink md:text-3xl">
+            <p className="mx-auto max-w-xl text-balance font-display text-2xl font-bold uppercase leading-snug text-ink md:text-3xl">
               {SESSION_OFFER.dreamOutcome}
             </p>
           </FadeIn>
-          <FadeIn delay={0.15} className="mt-8 space-y-4">
+          <FadeIn delay={0.15} className="mx-auto mt-8 max-w-xl space-y-4">
             {SESSION_OFFER.persona.map((line) => (
               <p key={line} className="text-balance text-xl leading-snug text-ink">
                 {line}
@@ -186,9 +194,9 @@ export default function MentorshipPage() {
 
       {/* Credibility facts */}
       <Section>
-        <Container>
-          <SectionHead label="Кто со мной говорит">Проверяемые факты</SectionHead>
-          <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <Container className="text-center">
+          <SectionHead center label="Кто со мной говорит">Проверяемые факты</SectionHead>
+          <div className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
             <FadeIn>
               <div className="h-full rounded-2xl border border-ink/10 p-5">
                 <Barbell weight="duotone" className="size-7 text-blood" />
@@ -223,12 +231,12 @@ export default function MentorshipPage() {
 
       {/* Plan */}
       <Section id="plan" tone="deep">
-        <Container>
-          <SectionHead>Как начать</SectionHead>
-          <FadeIn delay={0.05} className="mt-6 max-w-2xl">
+        <Container className="text-center">
+          <SectionHead center>Как начать</SectionHead>
+          <FadeIn delay={0.05} className="mx-auto mt-6 max-w-2xl">
             <p className="leading-relaxed text-bone/80">{STRATEGY_SESSION.intro[0]}</p>
           </FadeIn>
-          <div className="relative mt-14 grid gap-10 sm:grid-cols-3">
+          <div className="relative mx-auto mt-14 grid max-w-4xl gap-10 text-center sm:grid-cols-3">
             {SESSION_PLAN.map((step, i) => {
               const Icon = PLAN_ICONS[i];
               return (
@@ -239,7 +247,7 @@ export default function MentorshipPage() {
                       className="pointer-events-none absolute -right-8 top-3 hidden size-5 text-blood/60 sm:block"
                     />
                   )}
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center gap-3">
                     <Icon weight="duotone" className="size-8 text-blood" />
                     <span className="font-display text-2xl text-blood/60">
                       {String(i + 1).padStart(2, "0")}
@@ -253,7 +261,7 @@ export default function MentorshipPage() {
               );
             })}
           </div>
-          <FadeIn delay={0.25} className="mt-14 grid gap-3 sm:grid-cols-2">
+          <FadeIn delay={0.25} className="mx-auto mt-14 grid max-w-2xl gap-3 sm:grid-cols-2">
             <p className="text-balance leading-relaxed text-bone">{VALUE_EQUATION.timeDelay}</p>
             <p className="text-balance leading-relaxed text-bone">{VALUE_EQUATION.effort}</p>
           </FadeIn>
@@ -261,10 +269,10 @@ export default function MentorshipPage() {
             <Button href={KUZNYA_TELEGRAM_URL} external size="lg">
               {CTA_LABEL}
             </Button>
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-mist">
+            <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-mist">
               {SESSION_OFFER.paidNote}
             </p>
-            <p className="mt-3 max-w-md text-xs leading-relaxed text-mist/70">
+            <p className="mx-auto mt-3 max-w-md text-xs leading-relaxed text-mist/70">
               {SESSION_OFFER.medicalDisclaimer}
             </p>
           </FadeIn>
@@ -273,13 +281,13 @@ export default function MentorshipPage() {
 
       {/* What you get */}
       <Section>
-        <Container>
-          <SectionHead>За один час вы получите</SectionHead>
-          <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
+        <Container className="text-center">
+          <SectionHead center>За один час вы получите</SectionHead>
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
             {STRATEGY_SESSION.gives.map((item, i) => (
               <FadeIn key={item} delay={i * 0.03}>
-                <div className="flex gap-3 border-b border-ink/10 pb-6">
-                  <CheckCircle weight="fill" className="mt-0.5 size-5 shrink-0 text-blood" />
+                <div className="flex items-center justify-center gap-3 border-b border-ink/10 pb-6 text-left">
+                  <CheckCircle weight="fill" className="size-5 shrink-0 text-blood" />
                   <p className="text-balance leading-relaxed text-ink/90">{item}</p>
                 </div>
               </FadeIn>
@@ -290,13 +298,13 @@ export default function MentorshipPage() {
 
       {/* Mentorship — next step */}
       <Section tone="deep">
-        <Container className="max-w-2xl">
+        <Container className="max-w-2xl text-center">
           <FadeIn>
             <h2 className="text-balance font-display text-3xl font-bold uppercase leading-tight text-bone md:text-5xl">
               {MENTORSHIP.title}
             </h2>
-            <p className="mt-5 leading-relaxed text-bone/80">{MENTORSHIP.intro}</p>
-            <p className="mt-4 text-balance font-editorial text-xl italic leading-snug text-bone">
+            <p className="mx-auto mt-5 max-w-xl leading-relaxed text-bone/80">{MENTORSHIP.intro}</p>
+            <p className="mx-auto mt-4 max-w-xl text-balance font-editorial text-xl italic leading-snug text-bone">
               {MENTORSHIP.closing[1]}
             </p>
           </FadeIn>

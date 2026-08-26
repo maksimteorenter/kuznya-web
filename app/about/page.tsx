@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Button } from "@/components/ui/Button";
+import { BackLink } from "@/components/ui/BackLink";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { ScrollParallax } from "@/components/motion/ScrollParallax";
 import { BooksShowcase } from "@/components/about/BooksShowcase";
@@ -32,79 +33,115 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      {/* HERO */}
-      <Section bare tone="deep" className="flex min-h-[100svh] items-center justify-center py-24 pt-32">
-        <Container className="flex justify-center">
+      {/* HERO — split: photo contained to one side, text beside it, never on the face */}
+      <Section bare tone="deep" className="flex min-h-[100svh] items-center py-24 pt-32">
+        <Container>
+          <div className="mb-8">
+            <BackLink dark fallbackHref="/" />
+          </div>
+          <div className="grid gap-14 md:grid-cols-[1fr_1.15fr] md:items-center md:gap-16">
+            <FadeIn>
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-2xl shadow-[0_40px_90px_-30px_rgba(0,0,0,0.5)]">
+                <Image
+                  src="/images/hero-portrait-2.png"
+                  alt={BOOK.author}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 90vw, 420px"
+                  className="photo-bw object-cover object-[50%_15%]"
+                />
+              </div>
+            </FadeIn>
+            <div>
+              <FadeIn>
+                <h1 className="text-balance font-display text-4xl font-bold uppercase leading-[0.98] text-bone sm:text-5xl md:text-6xl">
+                  Себя нельзя найти.
+                  <br />
+                  <span className="text-blood">Себя можно только создать.</span>
+                </h1>
+              </FadeIn>
+              <FadeIn delay={0.12} className="mt-6 max-w-md">
+                <p className="text-balance text-lg leading-relaxed text-bone/85">
+                  {ABOUT_INTRO.lede}
+                </p>
+              </FadeIn>
+              <FadeIn delay={0.22} className="mt-8">
+                <Button href="/mentorship" size="lg">
+                  Узнать про работу со мной
+                </Button>
+              </FadeIn>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Intro — photo moves here, paired with the words, not alone */}
+      <Section>
+        <Container className="max-w-2xl text-center">
           <FadeIn>
-            <ScrollParallax strength={18} className="w-full max-w-[560px]">
-              <div className="relative overflow-hidden rounded-2xl shadow-[0_60px_120px_-30px_rgba(0,0,0,0.7)]">
+            <span className="kicker">{ABOUT_INTRO.kicker}</span>
+          </FadeIn>
+          <FadeIn delay={0.05}>
+            <ScrollParallax strength={16} className="mx-auto mt-8 w-full max-w-[360px]">
+              <div className="relative overflow-hidden rounded-2xl shadow-[0_40px_90px_-30px_rgba(0,0,0,0.35)]">
                 <Image
                   src="/images/about-hero.jpg"
                   alt={BOOK.author}
                   width={1024}
                   height={1536}
-                  sizes="(max-width: 640px) 92vw, 560px"
+                  sizes="(max-width: 640px) 80vw, 360px"
                   className="h-auto w-full"
-                  priority
                 />
               </div>
             </ScrollParallax>
           </FadeIn>
-        </Container>
-      </Section>
-
-      {/* Intro */}
-      <Section>
-        <Container className="max-w-3xl">
-          <FadeIn>
-            <span className="kicker">{ABOUT_INTRO.kicker}</span>
-            <p className="mt-4 max-w-2xl text-balance font-editorial text-2xl italic leading-snug text-ink md:text-3xl">
-              {ABOUT_INTRO.lede}
+          <FadeIn delay={0.1} className="mt-8">
+            <p className="mx-auto max-w-xl text-balance font-editorial text-2xl italic leading-snug text-ink md:text-3xl">
+              {ABOUT_INTRO.role}
             </p>
           </FadeIn>
-          <FadeIn delay={0.1} className="mt-6">
-            <p className="leading-relaxed text-ink/90">{ABOUT_INTRO.role}</p>
-          </FadeIn>
-          <FadeIn delay={0.15} className="mt-6 space-y-4">
+          <FadeIn delay={0.15} className="mx-auto mt-6 max-w-xl space-y-4">
             {ABOUT_INTRO.paragraphs.map((p) => (
               <p key={p} className="leading-relaxed text-ink/90">
                 {p}
               </p>
             ))}
           </FadeIn>
-          <FadeIn delay={0.2} className="mt-8 border-l-2 border-blood pl-5">
+          <FadeIn delay={0.2} className="mt-8">
             {ABOUT_INTRO.creedNo.map((line) => (
               <p key={line} className="text-inkSoft">
                 {line}
               </p>
             ))}
-            <p className="mt-2 font-semibold text-ink">{ABOUT_INTRO.creedYes}</p>
+            <p className="mt-2 font-display text-xl font-bold uppercase text-blood">
+              {ABOUT_INTRO.creedYes}
+            </p>
           </FadeIn>
         </Container>
       </Section>
 
       {/* Story */}
       <Section tone="deep">
-        <Container className="max-w-3xl">
-          <SectionHead label="История">{ABOUT_STORY.title}</SectionHead>
-          <div className="mt-8 space-y-5">
+        <Container className="max-w-2xl text-center">
+          <SectionHead center label="История">{ABOUT_STORY.title}</SectionHead>
+          <div className="mx-auto mt-8 max-w-xl space-y-5">
             {ABOUT_STORY.intro.map((p) => (
               <p key={p} className="leading-relaxed text-bone/90">
                 {p}
               </p>
             ))}
           </div>
-          <FadeIn delay={0.1} className="mt-6 space-y-5">
+          <FadeIn delay={0.1} className="mx-auto mt-6 max-w-xl space-y-5">
             <p className="leading-relaxed text-bone/90">{ABOUT_STORY.before}</p>
             <p className="font-editorial text-xl italic leading-snug text-bone">{ABOUT_STORY.turn}</p>
             <p className="leading-relaxed text-bone/90">{ABOUT_STORY.captivity}</p>
           </FadeIn>
-          <FadeIn delay={0.2} className="mt-8 border-l-2 border-blood pl-5">
-            <p className="text-balance text-xl italic leading-relaxed text-bone md:text-2xl">
+          <FadeIn delay={0.2} className="mx-auto mt-8 max-w-xl">
+            <p className="text-balance font-display text-2xl font-bold uppercase leading-snug text-bone md:text-3xl">
               {ABOUT_STORY.insight}
             </p>
           </FadeIn>
-          <FadeIn delay={0.25} className="mt-8 space-y-5">
+          <FadeIn delay={0.25} className="mx-auto mt-8 max-w-xl space-y-5">
             {ABOUT_STORY.reflection.map((p) => (
               <p key={p} className="leading-relaxed text-bone/90">
                 {p}
@@ -116,35 +153,37 @@ export default function AboutPage() {
 
       {/* After captivity */}
       <Section>
-        <Container className="max-w-3xl">
-          <SectionHead>{ABOUT_AFTER.title}</SectionHead>
-          <div className="mt-8 space-y-4">
+        <Container className="max-w-2xl text-center">
+          <SectionHead center>{ABOUT_AFTER.title}</SectionHead>
+          <div className="mx-auto mt-8 max-w-xl space-y-4">
             {ABOUT_AFTER.intro.map((p) => (
               <p key={p} className="leading-relaxed text-ink/90">
                 {p}
               </p>
             ))}
           </div>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+          <div className="mx-auto mt-6 flex max-w-xl flex-wrap justify-center gap-2">
             {ABOUT_AFTER.studyAreas.map((item, i) => (
               <FadeIn key={item} delay={i * 0.03}>
-                <li className="border-l-2 border-ember pl-4 leading-relaxed text-ink/90">{item}</li>
+                <span className="inline-block rounded-full border border-ink/15 px-4 py-1.5 text-sm text-ink/85">
+                  {item}
+                </span>
               </FadeIn>
             ))}
-          </ul>
-          <FadeIn delay={0.1} className="mt-8 space-y-3">
+          </div>
+          <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl space-y-3">
             <p className="leading-relaxed text-ink/90">{ABOUT_AFTER.credentials}</p>
             <p className="font-semibold text-ink">{ABOUT_AFTER.lesson}</p>
           </FadeIn>
-          <div className="mt-6 space-y-4">
+          <div className="mx-auto mt-6 max-w-xl space-y-4">
             {ABOUT_AFTER.examples.map((p, i) => (
               <FadeIn key={p} delay={i * 0.04}>
                 <p className="leading-relaxed text-inkSoft">{p}</p>
               </FadeIn>
             ))}
           </div>
-          <FadeIn delay={0.2} className="mt-8">
-            <p className="text-balance text-xl italic leading-relaxed text-ink md:text-2xl">
+          <FadeIn delay={0.2} className="mx-auto mt-8 max-w-xl">
+            <p className="text-balance font-display text-2xl font-bold uppercase leading-snug text-ink md:text-3xl">
               {ABOUT_AFTER.closing}
             </p>
           </FadeIn>
@@ -153,13 +192,13 @@ export default function AboutPage() {
 
       {/* Second collapse — 2022 */}
       <Section tone="deep">
-        <Container className="max-w-3xl">
-          <SectionHead label="2022">{ABOUT_SECOND_COLLAPSE.title}</SectionHead>
-          <FadeIn className="mt-8 space-y-4">
+        <Container className="max-w-2xl text-center">
+          <SectionHead center label="2022">{ABOUT_SECOND_COLLAPSE.title}</SectionHead>
+          <FadeIn className="mx-auto mt-8 max-w-xl space-y-4">
             <p className="leading-relaxed text-bone/90">{ABOUT_SECOND_COLLAPSE.release}</p>
             <p className="leading-relaxed text-bone/90">{ABOUT_SECOND_COLLAPSE.war}</p>
           </FadeIn>
-          <FadeIn delay={0.1} className="mt-6 flex flex-wrap gap-3">
+          <FadeIn delay={0.1} className="mx-auto mt-6 flex max-w-xl flex-wrap justify-center gap-3">
             {ABOUT_SECOND_COLLAPSE.losses.map((item) => (
               <span
                 key={item}
@@ -169,8 +208,8 @@ export default function AboutPage() {
               </span>
             ))}
           </FadeIn>
-          <FadeIn delay={0.2} className="mt-8 border-l-2 border-blood pl-5">
-            <p className="text-balance text-xl italic leading-relaxed text-bone md:text-2xl">
+          <FadeIn delay={0.2} className="mx-auto mt-8 max-w-xl">
+            <p className="text-balance font-display text-2xl font-bold uppercase leading-snug text-bone md:text-3xl">
               {ABOUT_SECOND_COLLAPSE.insight}
             </p>
           </FadeIn>
@@ -179,28 +218,26 @@ export default function AboutPage() {
 
       {/* Today */}
       <Section>
-        <Container className="max-w-3xl">
-          <SectionHead>{ABOUT_TODAY.title}</SectionHead>
-          <div className="mt-8 space-y-4">
+        <Container className="max-w-2xl text-center">
+          <SectionHead center>{ABOUT_TODAY.title}</SectionHead>
+          <div className="mx-auto mt-8 max-w-xl space-y-4">
             {ABOUT_TODAY.intro.map((p) => (
               <p key={p} className="leading-relaxed text-ink/90">
                 {p}
               </p>
             ))}
           </div>
-          <div className="mt-8 grid gap-x-10 gap-y-6 md:grid-cols-2">
+          <div className="mx-auto mt-8 max-w-xl space-y-4">
             {ABOUT_TODAY.helps.map((item, i) => (
               <FadeIn key={item} delay={i * 0.03}>
-                <div className="flex gap-4 border-b border-ink/10 pb-6">
-                  <span className="mt-1 font-display text-[13px] text-blood">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-balance leading-relaxed text-ink/90">{item}</p>
-                </div>
+                <p className="text-balance leading-relaxed text-ink/90">
+                  <span className="font-display text-blood">{String(i + 1).padStart(2, "0")}</span>{" "}
+                  {item}
+                </p>
               </FadeIn>
             ))}
           </div>
-          <FadeIn delay={0.15} className="mt-10 space-y-3">
+          <FadeIn delay={0.15} className="mx-auto mt-10 max-w-xl space-y-3">
             {ABOUT_TODAY.closing.map((p) => (
               <p key={p} className="leading-relaxed text-ink/90">
                 {p}
@@ -212,31 +249,31 @@ export default function AboutPage() {
 
       {/* Approach */}
       <Section tone="deep">
-        <Container className="max-w-3xl">
-          <SectionHead label={ABOUT_APPROACH.title}>{ABOUT_APPROACH.subtitle}</SectionHead>
-          <FadeIn className="mt-8 space-y-3">
+        <Container className="max-w-2xl text-center">
+          <SectionHead center label={ABOUT_APPROACH.title}>{ABOUT_APPROACH.subtitle}</SectionHead>
+          <FadeIn className="mx-auto mt-8 max-w-xl space-y-3">
             <p className="leading-relaxed text-bone/90">{ABOUT_APPROACH.intro}</p>
             <p className="leading-relaxed text-bone/90">{ABOUT_APPROACH.lede}</p>
           </FadeIn>
-          <ul className="mt-6 space-y-3">
+          <div className="mx-auto mt-6 max-w-xl space-y-3">
             {ABOUT_APPROACH.patterns.map((item, i) => (
               <FadeIn key={item} delay={i * 0.04}>
-                <li className="border-l-2 border-steel pl-4 leading-relaxed text-bone/80">{item}</li>
+                <p className="leading-relaxed text-bone/80">{item}</p>
               </FadeIn>
             ))}
-          </ul>
-          <FadeIn delay={0.1} className="mt-8">
+          </div>
+          <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl">
             <p className="leading-relaxed text-bone/90">{ABOUT_APPROACH.closing}</p>
           </FadeIn>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+          <div className="mx-auto mt-6 max-w-xl space-y-3">
             {ABOUT_APPROACH.questions.map((item, i) => (
               <FadeIn key={item} delay={i * 0.04}>
-                <li className="font-editorial italic leading-relaxed text-bone/90">{item}</li>
+                <p className="font-editorial italic leading-relaxed text-bone/90">{item}</p>
               </FadeIn>
             ))}
-          </ul>
-          <FadeIn delay={0.2} className="mt-8">
-            <p className="text-balance text-xl italic leading-relaxed text-bone md:text-2xl">
+          </div>
+          <FadeIn delay={0.2} className="mx-auto mt-8 max-w-xl">
+            <p className="text-balance font-display text-2xl font-bold uppercase leading-snug text-bone md:text-3xl">
               {ABOUT_APPROACH.final}
             </p>
           </FadeIn>
@@ -245,41 +282,43 @@ export default function AboutPage() {
 
       {/* Регалии */}
       <Section>
-        <Container className="max-w-3xl">
+        <Container className="max-w-2xl text-center">
           <FadeIn>
             <span className="kicker">Регалии</span>
           </FadeIn>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="mx-auto mt-8 flex max-w-xl flex-wrap justify-center gap-2">
             {AUTHOR_FACTS.map((fact, i) => (
               <FadeIn key={fact} delay={i * 0.05}>
-                <li className="border-t border-ink/10 py-3.5 text-sm leading-relaxed text-ink/90">{fact}</li>
+                <span className="inline-block rounded-full border border-ink/15 px-4 py-1.5 text-sm leading-relaxed text-ink/85">
+                  {fact}
+                </span>
               </FadeIn>
             ))}
-          </ul>
+          </div>
         </Container>
       </Section>
 
       {/* Mission */}
       <Section tone="deep">
-        <Container className="max-w-3xl">
-          <SectionHead>{ABOUT_MISSION.title}</SectionHead>
-          <FadeIn className="mt-8 space-y-4">
+        <Container className="max-w-2xl text-center">
+          <SectionHead center>{ABOUT_MISSION.title}</SectionHead>
+          <FadeIn className="mx-auto mt-8 max-w-xl space-y-4">
             {ABOUT_MISSION.intro.map((p) => (
               <p key={p} className="leading-relaxed text-bone/90">
                 {p}
               </p>
             ))}
           </FadeIn>
-          <ul className="mt-6 space-y-3">
+          <div className="mx-auto mt-6 max-w-xl space-y-3">
             {ABOUT_MISSION.points.map((item, i) => (
               <FadeIn key={item} delay={i * 0.04}>
-                <li className="border-l-2 border-blood pl-5 leading-relaxed text-bone/90">{item}</li>
+                <p className="leading-relaxed text-bone/90">{item}</p>
               </FadeIn>
             ))}
-          </ul>
-          <FadeIn delay={0.2} className="mt-8 space-y-3">
+          </div>
+          <FadeIn delay={0.2} className="mx-auto mt-8 max-w-xl space-y-3">
             {ABOUT_MISSION.closing.map((p) => (
-              <p key={p} className="text-balance text-xl italic leading-relaxed text-bone md:text-2xl">
+              <p key={p} className="text-balance font-display text-2xl font-bold uppercase leading-snug text-bone md:text-3xl">
                 {p}
               </p>
             ))}

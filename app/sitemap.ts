@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/",
       "/book/1341",
       "/ua/book/1341",
+      "/mentorship",
       ...live,
       "/legal/oferta",
       "/legal/refund",
