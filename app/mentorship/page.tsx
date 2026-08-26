@@ -192,19 +192,19 @@ export default function MentorshipPage() {
             <FadeIn>
               <div className="h-full rounded-2xl border border-ink/10 p-5">
                 <Barbell weight="duotone" className="size-7 text-blood" />
-                <p className="mt-3 text-sm leading-snug text-inkSoft">{AUTHOR_FACTS[2]}</p>
+                <p className="mt-3 text-sm leading-snug text-inkSoft">{AUTHOR_FACTS[3]}</p>
               </div>
             </FadeIn>
             <FadeIn delay={0.05}>
               <div className="h-full rounded-2xl border border-ink/10 p-5">
                 <Brain weight="duotone" className="size-7 text-blood" />
-                <p className="mt-3 text-sm leading-snug text-inkSoft">{AUTHOR_FACTS[5]}</p>
+                <p className="mt-3 text-sm leading-snug text-inkSoft">{AUTHOR_FACTS[9]}</p>
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
               <div className="h-full rounded-2xl border border-ink/10 p-5">
                 <Compass weight="duotone" className="size-7 text-blood" />
-                <p className="mt-3 text-sm leading-snug text-inkSoft">{AUTHOR_FACTS[6]}</p>
+                <p className="mt-3 text-sm leading-snug text-inkSoft">{AUTHOR_FACTS[8]}</p>
               </div>
             </FadeIn>
             <FadeIn delay={0.15}>
@@ -263,6 +263,9 @@ export default function MentorshipPage() {
             </Button>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-mist">
               {SESSION_OFFER.paidNote}
+            </p>
+            <p className="mt-3 max-w-md text-xs leading-relaxed text-mist/70">
+              {SESSION_OFFER.medicalDisclaimer}
             </p>
           </FadeIn>
         </Container>
