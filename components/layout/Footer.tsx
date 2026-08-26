@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NAV_ITEMS, SITE } from "@/lib/site";
+import { LogoMark } from "@/components/ui/LogoMark";
 
 export function Footer() {
   return (
@@ -7,7 +8,8 @@ export function Footer() {
       <div className="mx-auto max-w-container px-6 md:px-10">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
-            <div className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-bone">
+            <LogoMark className="h-[88px] w-[78px] text-bone" />
+            <div className="mt-4 font-display text-sm font-semibold uppercase tracking-[0.16em] text-bone">
               {SITE.name}
             </div>
             <p className="mt-3 max-w-xs text-[15px] leading-relaxed text-mist">

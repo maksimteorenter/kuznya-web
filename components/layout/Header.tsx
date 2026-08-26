@@ -5,6 +5,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { NAV_ITEMS } from "@/lib/site";
 import { LocaleSwitch } from "@/components/layout/LocaleSwitch";
+import { LogoMark } from "@/components/ui/LogoMark";
 import { T, type Locale } from "@/lib/i18n";
 
 export function Header({ locale }: { locale?: Locale } = {}) {
@@ -20,13 +21,16 @@ export function Header({ locale }: { locale?: Locale } = {}) {
       <div className="mx-auto flex h-16 max-w-container items-center justify-between px-6 md:px-10">
         <Link
           href="/"
-          className="flex flex-col leading-none transition-opacity hover:opacity-75"
+          className="flex items-center gap-3 text-ink transition-opacity hover:opacity-75"
         >
-          <span className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-ink">
-            Максим Теорентер
-          </span>
-          <span className="mt-[3px] font-display text-[11px] uppercase tracking-[0.18em] text-blood">
-            {t.club}
+          <LogoMark className="h-11 w-10" />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-ink">
+              Максим Теорентер
+            </span>
+            <span className="mt-[3px] font-display text-[11px] uppercase tracking-[0.18em] text-blood">
+              {t.club}
+            </span>
           </span>
         </Link>
 
