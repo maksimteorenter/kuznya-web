@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { Analytics } from "@/components/analytics/Analytics";
 import "./globals.css";
@@ -112,9 +111,9 @@ export default function RootLayout({
           К содержанию
         </a>
         <MotionProvider>
-          <Header />
-          <main id="main">{children}</main>
-          <Footer />
+          <SiteChrome>
+            <main id="main">{children}</main>
+          </SiteChrome>
         </MotionProvider>
         <Analytics />
       </body>
