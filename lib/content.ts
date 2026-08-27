@@ -100,7 +100,10 @@ export const QUOTES = [
 export const AUTHOR_FACTS = [
   "Родился в 1981 году в Красном Лимане, Донецкая область",
   "Донецкий государственный институт физического воспитания и спорта",
-  "Магистратура по управлению и психологическому профайлингу — Харьковский национальный университет городского хозяйства им. А. Н. Бекетова",
+  // Wording follows the diploma scans now shown on the page: the Kharkiv degrees
+  // are in Management ("Менеджмент організацій і адміністрування"), not in
+  // psychological profiling — that is practice training, listed separately.
+  "Магистр менеджмента — Харьковский национальный университет городского хозяйства им. А. Н. Бекетова",
   "Мастер спорта Украины по американскому футболу — восьмикратный чемпион Украины",
   "Чемпион Украины по грэпплингу ADCC",
   "Кандидат в мастера спорта по тяжёлой атлетике, пауэрлифтингу, гиревому спорту, боевому самбо и панкратиону",
@@ -448,6 +451,34 @@ export const MENTORSHIP = {
 // diplomas found on the machine were issued to other people and are
 // deliberately excluded.
 export const CREDENTIALS = [
+  {
+    src: "/images/credentials/d-sport-institute.jpg",
+    title: "Физическое воспитание",
+    issuer:
+      "Донецкий государственный институт здоровья, физического воспитания и спорта",
+    year: "2003",
+  },
+  {
+    src: "/images/credentials/d-bachelor.jpg",
+    title: "Бакалавр менеджмента",
+    issuer:
+      "Харьковский национальный университет городского хозяйства им. А. Н. Бекетова",
+    year: "2021",
+  },
+  {
+    src: "/images/credentials/d-master.jpg",
+    title: "Магистр менеджмента",
+    issuer:
+      "Харьковский национальный университет городского хозяйства им. А. Н. Бекетова",
+    year: "2025",
+  },
+  {
+    src: "/images/credentials/awards.jpg",
+    title: "Спортивные награды",
+    issuer:
+      "Грэпплинг ADCC, боевое самбо, панкратион — чемпионаты Донецкой области и Украины",
+    year: "2011–2014",
+  },
   {
     src: "/images/credentials/c-hypnotherapist.jpg",
     title: "Certified Master Hypnotherapist",

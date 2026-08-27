@@ -307,7 +307,9 @@ export default function AboutPage() {
             {CREDENTIALS.map((c, i) => (
               <FadeIn key={c.src} delay={i * 0.06}>
                 <figure className="h-full">
-                  <div className="relative aspect-[1390/1087] overflow-hidden rounded-xl border border-white/10 bg-white">
+                  {/* One frame for scans of mixed orientation — object-contain
+                      letterboxes the portrait ones rather than cropping them. */}
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 bg-white">
                     <Image
                       src={c.src}
                       alt={`${c.title} — ${c.issuer}`}
