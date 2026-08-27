@@ -443,6 +443,31 @@ export const MENTORSHIP = {
   ],
 };
 
+// Scanned certificates, taken from Maksim's own certifikat folder and checked
+// name-by-name — every one below is issued to "Maksim Teorenter". Other
+// diplomas found on the machine were issued to other people and are
+// deliberately excluded.
+export const CREDENTIALS = [
+  {
+    src: "/images/credentials/c-hypnotherapist.jpg",
+    title: "Certified Master Hypnotherapist",
+    issuer: "American Academy of Hypnosis, Майами",
+    year: "2023",
+  },
+  {
+    src: "/images/credentials/c-regression.jpg",
+    title: "Past Life Regression Practitioner",
+    issuer: "American Academy of Hypnosis, Майами",
+    year: "2023",
+  },
+  {
+    src: "/images/credentials/c-holistic.jpg",
+    title: "Holistic Mind Therapy Practitioner",
+    issuer: "Holistic Mind Therapy Association, Майами",
+    year: "2023",
+  },
+];
+
 export const ABOUT_MISSION = {
   title: "Моя миссия",
   intro: [

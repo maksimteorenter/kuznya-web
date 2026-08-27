@@ -18,6 +18,7 @@ import {
   ABOUT_APPROACH,
   ABOUT_MISSION,
   AUTHOR_FACTS,
+  CREDENTIALS,
 } from "@/lib/content";
 
 const title = "Обо мне — Максим Теорентер";
@@ -298,13 +299,45 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      {/* Mission */}
+      {/* Certificates — the credentials, scanned */}
       <Section tone="deep">
+        <Container className="text-center">
+          <SectionHead center label="Документы">Дипломы и сертификаты</SectionHead>
+          <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {CREDENTIALS.map((c, i) => (
+              <FadeIn key={c.src} delay={i * 0.06}>
+                <figure className="h-full">
+                  <div className="relative aspect-[1390/1087] overflow-hidden rounded-xl border border-white/10 bg-white">
+                    <Image
+                      src={c.src}
+                      alt={`${c.title} — ${c.issuer}`}
+                      fill
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
+                      className="object-contain"
+                    />
+                  </div>
+                  <figcaption className="mt-4">
+                    <p className="font-display text-sm font-semibold uppercase tracking-[0.06em] text-bone">
+                      {c.title}
+                    </p>
+                    <p className="mt-1.5 text-sm leading-snug text-mist">
+                      {c.issuer} · {c.year}
+                    </p>
+                  </figcaption>
+                </figure>
+              </FadeIn>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Mission */}
+      <Section>
         <Container className="max-w-2xl text-center">
           <SectionHead center>{ABOUT_MISSION.title}</SectionHead>
           <FadeIn className="mx-auto mt-8 max-w-xl space-y-4">
             {ABOUT_MISSION.intro.map((p) => (
-              <p key={p} className="leading-relaxed text-bone/90">
+              <p key={p} className="leading-relaxed text-ink/90">
                 {p}
               </p>
             ))}
@@ -312,13 +345,13 @@ export default function AboutPage() {
           <div className="mx-auto mt-6 max-w-xl space-y-3">
             {ABOUT_MISSION.points.map((item, i) => (
               <FadeIn key={item} delay={i * 0.04}>
-                <p className="leading-relaxed text-bone/90">{item}</p>
+                <p className="leading-relaxed text-ink/90">{item}</p>
               </FadeIn>
             ))}
           </div>
           <FadeIn delay={0.2} className="mx-auto mt-8 max-w-xl space-y-3">
             {ABOUT_MISSION.closing.map((p) => (
-              <p key={p} className="text-balance font-display text-2xl font-bold uppercase leading-snug text-bone md:text-3xl">
+              <p key={p} className="text-balance font-display text-2xl font-bold uppercase leading-snug text-ink md:text-3xl">
                 {p}
               </p>
             ))}
