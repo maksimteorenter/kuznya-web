@@ -13,8 +13,8 @@ const NOT_FOR = [
 export function DontBuyBlock() {
   return (
     <Section tone="deep">
-      <Container className="max-w-3xl">
-        <SectionHead label="Честное предупреждение">
+      <Container className="max-w-3xl text-center">
+        <SectionHead center label="Честное предупреждение">
           Не покупай эту книгу, если ты
         </SectionHead>
 

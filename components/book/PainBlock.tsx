@@ -9,23 +9,23 @@ export function PainBlock({ locale = "ru" }: { locale?: Locale }) {
 
   return (
     <Section id="story" tone="paper">
-      <Container className="max-w-3xl">
-        <SectionHead label={t.label}>{t.head}</SectionHead>
+      <Container className="max-w-3xl text-center">
+        <SectionHead center label={t.label}>{t.head}</SectionHead>
 
         <FadeIn delay={0.1} className="mt-10">
-          <p className="max-w-prose text-balance leading-relaxed text-inkSoft">
+          <p className="mx-auto max-w-prose text-balance leading-relaxed text-inkSoft">
             {t.lede}
           </p>
-          <p className="mt-4 max-w-prose text-balance font-editorial text-3xl italic leading-snug text-ink md:text-4xl">
+          <p className="mt-4 mx-auto max-w-prose text-balance font-editorial text-3xl italic leading-snug text-ink md:text-4xl">
             {t.quote}
           </p>
         </FadeIn>
 
         <FadeIn delay={0.2} className="mt-12">
-          <p className="max-w-prose text-balance leading-relaxed text-inkSoft">
+          <p className="mx-auto max-w-prose text-balance leading-relaxed text-inkSoft">
             {t.doorLine}
           </p>
-          <ul className="mt-5 flex flex-wrap gap-2">
+          <ul className="mt-5 flex flex-wrap justify-center gap-2">
             {t.chips.map((c) => (
               <li
                 key={c}
@@ -35,7 +35,7 @@ export function PainBlock({ locale = "ru" }: { locale?: Locale }) {
               </li>
             ))}
           </ul>
-          <p className="mt-7 max-w-prose text-balance leading-relaxed text-inkSoft">
+          <p className="mt-7 mx-auto max-w-prose text-balance leading-relaxed text-inkSoft">
             {t.after}
           </p>
         </FadeIn>
@@ -48,7 +48,7 @@ export function PainBlock({ locale = "ru" }: { locale?: Locale }) {
             {t.question[0]} <span className="text-blood">{t.questionRed}</span>{" "}
             {t.question[1]}
           </p>
-          <p className="mt-6 max-w-prose text-balance leading-relaxed text-inkSoft">
+          <p className="mt-6 mx-auto max-w-prose text-balance leading-relaxed text-inkSoft">
             {t.close}
           </p>
         </FadeIn>

@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { BOOK } from "@/lib/content";
 
 export function ComingSoon({
   kicker,
@@ -12,15 +13,17 @@ export function ComingSoon({
   description: string;
 }) {
   return (
-    <Section bare className="flex min-h-[80vh] items-center pt-16">
-      <Container>
+    // tone="deep" is load-bearing: the copy below is bone/mist, which was
+    // invisible against the default paper ground.
+    <Section bare tone="deep" className="flex min-h-[80vh] items-center pt-16">
+      <Container className="text-center">
         <span className="kicker">{kicker}</span>
-        <h1 className="mt-6 max-w-2xl font-display text-4xl font-semibold uppercase leading-tight text-bone md:text-6xl">
+        <h1 className="mx-auto mt-6 max-w-2xl font-display text-4xl font-semibold uppercase leading-tight text-bone md:text-6xl">
           {title}
         </h1>
-        <p className="mt-6 max-w-prose text-mist">{description}</p>
+        <p className="mx-auto mt-6 max-w-prose text-mist">{description}</p>
         <Button href="/book/1341" className="mt-10" variant="ghost">
-          Пока — читайте о книге «1341 день в изоляции»
+          Пока — читайте о книге «{BOOK.title}»
         </Button>
       </Container>
     </Section>

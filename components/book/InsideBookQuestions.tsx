@@ -18,13 +18,13 @@ const QUESTIONS = [
 export function InsideBookQuestions() {
   return (
     <Section id="inside" tone="deep">
-      <Container className="max-w-3xl">
-        <SectionHead label="Внутри книги">
+      <Container className="max-w-3xl text-center">
+        <SectionHead center label="Внутри книги">
           Девять вопросов, через которые ты пройдёшь вместе со мной
         </SectionHead>
 
         <FadeIn delay={0.1}>
-          <p className="mt-8 max-w-prose leading-relaxed text-mist">
+          <p className="mt-8 mx-auto max-w-prose leading-relaxed text-mist">
             Ответы я здесь раскрывать не буду — они и есть книга. Но вот о
             чём она на самом деле:
           </p>

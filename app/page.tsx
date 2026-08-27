@@ -74,12 +74,12 @@ export default function HomePage() {
 
       {/* Short bio */}
       <Section tone="paper">
-        <Container className="max-w-3xl">
-          <SectionHead label="Автор">{BOOK.author}</SectionHead>
+        <Container className="max-w-3xl text-center">
+          <SectionHead center label="Автор">{BOOK.author}</SectionHead>
           <FadeIn delay={0.1}>
-            <p className="mt-8 max-w-prose text-balance text-lg leading-relaxed text-inkSoft">
+            <p className="mx-auto mt-8 max-w-prose text-balance text-lg leading-relaxed text-inkSoft">
               Мастер спорта, боец, гипнотерапевт — и человек, переживший{" "}
-              {BOOK.days} дней плена. Сегодня он собирает то, что вынес
+              {BOOK.days} день плена. Сегодня он собирает то, что вынес
               оттуда, в систему: книги, методики и работу с подсознанием для
               тех, кто хочет управлять собой, а не обстоятельствами.
             </p>
@@ -92,38 +92,35 @@ export default function HomePage() {
 
       {/* Book showcase — the one 3D moment */}
       <Section tone="deep">
-        <Container className="grid items-center gap-14 md:grid-cols-[1fr_auto]">
-          <div>
-            <SectionHead label="Первый продукт экосистемы">
-              {BOOK.title}
-            </SectionHead>
-            <FadeIn delay={0.1}>
-              <p className="mt-6 max-w-prose leading-relaxed text-mist">
-                Реальная история от первого лица — и система внутренних опор,
-                которая из неё родилась.
-              </p>
-              <Button href="/book/1341" className="mt-8">
-                Читать о книге
-              </Button>
-            </FadeIn>
-          </div>
-
-          <FadeIn delay={0.15} className="flex justify-center md:justify-end">
+        <Container className="text-center">
+          <SectionHead center label="Первый продукт экосистемы">
+            {BOOK.title}
+          </SectionHead>
+          <FadeIn delay={0.15} className="mt-12 flex justify-center">
             <div className="scale-90 md:scale-100">
               <BookMockup3D />
             </div>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="mx-auto mt-12 max-w-prose text-balance leading-relaxed text-mist">
+              Реальная история от первого лица — и система внутренних опор,
+              которая из неё родилась.
+            </p>
+            <Button href="/book/1341" className="mt-8">
+              Читать о книге
+            </Button>
           </FadeIn>
         </Container>
       </Section>
 
       {/* Thematic section */}
       <Section tone="paper">
-        <Container className="max-w-3xl">
-          <SectionHead label="Кузня">
+        <Container className="max-w-3xl text-center">
+          <SectionHead center label="Кузня">
             Книга — только первый удар молота
           </SectionHead>
           <FadeIn delay={0.1}>
-            <p className="mt-8 max-w-prose text-balance leading-relaxed text-inkSoft">
+            <p className="mx-auto mt-8 max-w-prose text-balance leading-relaxed text-inkSoft">
               Из опыта, идей и технологий работы с собой постепенно родился
               более крупный проект. Программы, клуб и статьи — следующие
               разделы Кузни. Сейчас экосистема начинается с одной книги и

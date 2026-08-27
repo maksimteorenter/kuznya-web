@@ -17,8 +17,8 @@ const REASONS = [
 export function WhoShouldReadBlock() {
   return (
     <Section tone="deep">
-      <Container className="max-w-3xl">
-        <SectionHead label="Кому эта книга">
+      <Container className="max-w-3xl text-center">
+        <SectionHead center label="Кому эта книга">
           Она попадёт в тебя, если ты
         </SectionHead>
 

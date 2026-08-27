@@ -9,7 +9,7 @@ import { AUTHOR_FACTS, BOOK } from "@/lib/content";
 export function AuthorBlock() {
   return (
     <Section tone="deep">
-      <Container>
+      <Container className="text-center">
         <div className="grid gap-14 md:grid-cols-[320px_1fr] md:items-start">
           <FadeIn>
             <div className="relative">
@@ -34,27 +34,27 @@ export function AuthorBlock() {
           </FadeIn>
 
           <div>
-            <SectionHead label="Кто это написал">{BOOK.author}</SectionHead>
+            <SectionHead center label="Кто это написал">{BOOK.author}</SectionHead>
 
             <FadeIn delay={0.1} className="mt-8 space-y-5">
-              <p className="max-w-prose font-editorial text-2xl italic leading-snug text-bone">
+              <p className="mx-auto max-w-prose font-editorial text-2xl italic leading-snug text-bone">
                 Я мог бы перечислить здесь регалии. Но для этой книги важнее
                 другое.
               </p>
-              <p className="max-w-prose leading-relaxed text-mist">
+              <p className="mx-auto max-w-prose leading-relaxed text-mist">
                 <span className="text-bone">{BOOK.arrestDate} года</span> моя
                 прежняя жизнь закончилась. Впереди были дни, количество
                 которых я тогда не знал. В итоге их оказалось{" "}
                 <span className="font-semibold text-blood">{BOOK.days}</span>.
               </p>
-              <p className="max-w-prose leading-relaxed text-mist">
+              <p className="mx-auto max-w-prose leading-relaxed text-mist">
                 Эта книга появилась не потому, что мне захотелось написать
                 очередную историю успеха. Мне хотелось зафиксировать, что
                 происходит с человеком, когда привычная жизнь исчезает — и
                 ему приходится заново искать опору внутри себя. Что
                 работало. Что не работало. Где я ошибался. Чего боялся.
               </p>
-              <p className="max-w-prose font-editorial text-xl italic leading-snug text-bone">
+              <p className="mx-auto max-w-prose font-editorial text-xl italic leading-snug text-bone">
                 Это разговор с человеком, который однажды тоже может
                 оказаться перед обстоятельствами сильнее его планов.
               </p>

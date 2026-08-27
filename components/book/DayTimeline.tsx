@@ -17,12 +17,14 @@ const STEPS = [
 export function DayTimeline() {
   return (
     <Section tone="paper">
-      <Container className="max-w-2xl">
-        <SectionHead label={`${BOOK.days} день — это не одна история`}>
+      <Container className="mx-auto max-w-2xl text-center">
+        <SectionHead center label={`${BOOK.days} день — это не одна история`}>
           Человек меняется не сразу. Он меняется послойно
         </SectionHead>
 
-        <ol className="mt-14 border-l-2 border-ink/15 pl-8">
+        {/* The rail reads top-to-bottom beside its entries, so the list keeps
+            its own left alignment — the block as a whole is what gets centred. */}
+        <ol className="mx-auto mt-14 max-w-md border-l-2 border-ink/15 pl-8 text-left">
           {STEPS.map((s, i) => (
             <FadeIn key={s.day} delay={i * 0.06}>
               <li className={`relative ${i === STEPS.length - 1 ? "" : "pb-10"}`}>

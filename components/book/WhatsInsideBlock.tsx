@@ -13,8 +13,8 @@ const STATS = [
 export function WhatsInsideBlock() {
   return (
     <Section tone="paper">
-      <Container>
-        <SectionHead label="Что внутри">Из чего состоит книга</SectionHead>
+      <Container className="text-center">
+        <SectionHead center label="Что внутри">Из чего состоит книга</SectionHead>
 
         <FadeIn delay={0.1}>
           <div className="mt-12 grid gap-px border border-ink/15 bg-ink/15 sm:grid-cols-3">
@@ -47,7 +47,7 @@ export function WhatsInsideBlock() {
           </ol>
         </FadeIn>
 
-        <FadeIn delay={0.3} className="mt-14 max-w-2xl border-t-2 border-ink pt-8">
+        <FadeIn delay={0.3} className="mt-14 mx-auto max-w-2xl border-t-2 border-ink pt-8">
           <p
             className="text-balance font-display font-bold uppercase leading-[1.14] text-ink"
             style={{ fontSize: "clamp(1.2rem, 2.4vw, 1.8rem)" }}

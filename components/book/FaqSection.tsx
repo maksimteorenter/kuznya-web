@@ -42,8 +42,8 @@ export const FAQ = [
 export function FaqSection() {
   return (
     <Section tone="paper">
-      <Container className="max-w-3xl">
-        <SectionHead label="Частые вопросы">
+      <Container className="max-w-3xl text-center">
+        <SectionHead center label="Частые вопросы">
           Что обычно спрашивают перед покупкой
         </SectionHead>
 
@@ -54,7 +54,7 @@ export function FaqSection() {
                 <h3 className="font-display text-base font-semibold uppercase tracking-[0.02em] text-ink md:text-lg">
                   {item.q}
                 </h3>
-                <p className="mt-2 max-w-prose leading-relaxed text-inkSoft">
+                <p className="mt-2 mx-auto max-w-prose leading-relaxed text-inkSoft">
                   {item.a}
                 </p>
               </div>

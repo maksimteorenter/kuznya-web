@@ -11,13 +11,13 @@ export function PromiseBlock({ locale = "ru" }: { locale?: Locale }) {
   const PILLARS = t.pillars;
   return (
     <Section tone="paper">
-      <Container>
-        <SectionHead label={t.label}>
+      <Container className="text-center">
+        <SectionHead center label={t.label}>
           {t.headBefore} <span className="text-blood">{t.headRed}</span>?
         </SectionHead>
 
         <FadeIn delay={0.1}>
-          <p className="mt-8 max-w-prose text-balance leading-relaxed text-inkSoft">{t.lede}
+          <p className="mt-8 mx-auto max-w-prose text-balance leading-relaxed text-inkSoft">{t.lede}
           </p>
         </FadeIn>
 
@@ -39,7 +39,7 @@ export function PromiseBlock({ locale = "ru" }: { locale?: Locale }) {
           ))}
         </div>
 
-        <FadeIn delay={0.3} className="mt-16 max-w-2xl border-t border-ink/15 pt-10">
+        <FadeIn delay={0.3} className="mt-16 mx-auto max-w-2xl border-t border-ink/15 pt-10">
           <p className="text-balance leading-relaxed text-ink">{t.close}
           </p>
           <Button href="#price" className="mt-8" dataTrack="cta_to_price">

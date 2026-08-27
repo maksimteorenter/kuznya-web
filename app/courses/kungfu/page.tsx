@@ -58,11 +58,11 @@ export default function KungfuCoursePage() {
       </Section>
 
       <Section>
-        <Container>
-          <SectionHead label="Мужская часть курса">
+        <Container className="text-center">
+          <SectionHead center label="Мужская часть курса">
             В мужской части курса вы узнаете
           </SectionHead>
-          <div className="mt-14 grid gap-x-10 gap-y-6 md:grid-cols-2">
+          <div className="mx-auto mt-14 grid max-w-3xl gap-x-10 gap-y-6 md:grid-cols-2">
             {KUNGFU_MALE_POINTS.map((item, i) => (
               <FadeIn key={item} delay={i * 0.03}>
                 <div className="flex gap-4 border-b border-ink/10 pb-6">
@@ -78,11 +78,11 @@ export default function KungfuCoursePage() {
       </Section>
 
       <Section tone="deep">
-        <Container className="max-w-3xl">
-          <SectionHead label="Отдельные главы">
+        <Container className="max-w-3xl text-center">
+          <SectionHead center label="Отдельные главы">
             О темах, о которых редко говорят открыто
           </SectionHead>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+          <ul className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
             {KUNGFU_CHAPTERS.map((item, i) => (
               <FadeIn key={item} delay={i * 0.05}>
                 <li className="border-l-2 border-ember pl-5 leading-relaxed text-bone/90">
@@ -95,12 +95,12 @@ export default function KungfuCoursePage() {
       </Section>
 
       <Section>
-        <Container>
-          <SectionHead label="Для женщин">{KUNGFU_FEMALE.title}</SectionHead>
-          <FadeIn delay={0.1} className="mt-6 max-w-2xl">
+        <Container className="text-center">
+          <SectionHead center label="Для женщин">{KUNGFU_FEMALE.title}</SectionHead>
+          <FadeIn delay={0.1} className="mx-auto mt-6 max-w-2xl">
             <p className="leading-relaxed text-ink/90">{KUNGFU_FEMALE.intro}</p>
           </FadeIn>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+          <ul className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
             {KUNGFU_FEMALE.points.map((item, i) => (
               <FadeIn key={item} delay={i * 0.04}>
                 <li className="border-l-2 border-blood pl-5 leading-relaxed text-ink/90">
@@ -113,7 +113,7 @@ export default function KungfuCoursePage() {
       </Section>
 
       <Section tone="deep">
-        <Container className="max-w-2xl">
+        <Container className="max-w-2xl text-center">
           {KUNGFU_CLOSING.map((paragraph, i) => (
             <FadeIn key={paragraph} delay={i * 0.1} className={i > 0 ? "mt-6" : ""}>
               <p className="text-balance text-xl italic leading-relaxed text-bone md:text-2xl">

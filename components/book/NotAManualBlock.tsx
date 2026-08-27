@@ -19,7 +19,7 @@ export function NotAManualBlock() {
       bare
       className="flex min-h-[80vh] flex-col items-center justify-center py-24 text-center"
     >
-      <Container className="max-w-3xl">
+      <Container className="max-w-3xl text-center">
         <FadeIn>
           <div className="mx-auto blood-rule" />
           <h2

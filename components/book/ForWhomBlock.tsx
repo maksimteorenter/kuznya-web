@@ -9,8 +9,8 @@ export function ForWhomBlock({ locale = "ru" }: { locale?: Locale }) {
   const AUDIENCES = t.items;
   return (
     <Section id="for-whom" tone="paper">
-      <Container className="max-w-5xl">
-        <SectionHead label={t.label}>{t.head}</SectionHead>
+      <Container className="max-w-5xl text-center">
+        <SectionHead center label={t.label}>{t.head}</SectionHead>
 
         <div className="mt-14 grid gap-x-12 gap-y-12 md:grid-cols-2">
           {AUDIENCES.map((a, i) => (
@@ -22,7 +22,7 @@ export function ForWhomBlock({ locale = "ru" }: { locale?: Locale }) {
                     {a.title}
                   </h3>
                 </div>
-                <p className="mt-3 max-w-prose leading-relaxed text-inkSoft">
+                <p className="mt-3 mx-auto max-w-prose leading-relaxed text-inkSoft">
                   {a.text}
                 </p>
               </div>

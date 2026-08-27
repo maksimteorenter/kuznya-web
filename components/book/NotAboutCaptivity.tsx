@@ -15,18 +15,18 @@ const QUESTIONS = [
 export function NotAboutCaptivity() {
   return (
     <Section tone="paper">
-      <Container className="max-w-3xl">
-        <SectionHead label="Важное уточнение">
+      <Container className="max-w-3xl text-center">
+        <SectionHead center label="Важное уточнение">
           Ты думаешь, это книга о плене?
         </SectionHead>
 
         <FadeIn delay={0.1} className="mt-10">
-          <p className="max-w-prose leading-relaxed text-inkSoft">Не совсем.</p>
-          <p className="mt-4 max-w-prose text-balance font-editorial text-3xl italic leading-snug text-ink md:text-4xl">
+          <p className="mx-auto max-w-prose leading-relaxed text-inkSoft">Не совсем.</p>
+          <p className="mt-4 mx-auto max-w-prose text-balance font-editorial text-3xl italic leading-snug text-ink md:text-4xl">
             Плен — это только обстоятельство.
           </p>
           <p
-            className="mt-6 max-w-prose text-balance font-display font-bold uppercase leading-tight text-ink"
+            className="mt-6 mx-auto max-w-prose text-balance font-display font-bold uppercase leading-tight text-ink"
             style={{ fontSize: "clamp(1.3rem, 2.6vw, 1.9rem)" }}
           >
             Всё главное происходит внутри человека
@@ -34,7 +34,7 @@ export function NotAboutCaptivity() {
         </FadeIn>
 
         <FadeIn delay={0.2} className="mt-12">
-          <p className="max-w-prose leading-relaxed text-inkSoft">
+          <p className="mx-auto max-w-prose leading-relaxed text-inkSoft">
             Поэтому книга отвечает не на вопрос «как сидят в подвале ДНР».
             Она отвечает на вопросы, которые рано или поздно достают каждого:
           </p>
@@ -59,7 +59,7 @@ export function NotAboutCaptivity() {
         </FadeIn>
 
         <FadeIn delay={0.3} className="mt-12">
-          <p className="max-w-prose leading-relaxed text-inkSoft">
+          <p className="mx-auto max-w-prose leading-relaxed text-inkSoft">
             А потом ещё один такой день. И ещё. И что происходит с человеком,
             если их набирается
           </p>
