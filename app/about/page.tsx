@@ -6,8 +6,8 @@ import { SectionHead } from "@/components/ui/SectionHead";
 import { Button } from "@/components/ui/Button";
 import { BackLink } from "@/components/ui/BackLink";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { ScrollParallax } from "@/components/motion/ScrollParallax";
 import { BooksShowcase } from "@/components/about/BooksShowcase";
+import { CredentialsGallery } from "@/components/about/CredentialsGallery";
 import {
   BOOK,
   ABOUT_INTRO,
@@ -34,67 +34,51 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      {/* HERO — split: photo contained to one side, text beside it, never on the face */}
-      <Section bare tone="deep" className="flex min-h-[100svh] items-center py-24 pt-32">
-        <Container>
-          <div className="mb-8">
+      {/* HERO — the supplied banner, full-bleed. It already carries the name and
+          the intro copy, so nothing is overlaid on top of the artwork. */}
+      <Section bare tone="deep" className="pt-16">
+        <div className="relative w-full">
+          <Image
+            src="/images/about-banner.jpg"
+            alt={`${BOOK.author} — спортсмен, наставник, автор`}
+            width={1672}
+            height={941}
+            priority
+            sizes="100vw"
+            className="h-auto w-full"
+          />
+        </div>
+        <Container className="py-10 text-center">
+          <div className="mb-8 flex justify-start">
             <BackLink dark fallbackHref="/" />
           </div>
-          <div className="grid gap-14 md:grid-cols-[1fr_1.15fr] md:items-center md:gap-16">
-            <FadeIn>
-              <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-2xl shadow-[0_40px_90px_-30px_rgba(0,0,0,0.5)]">
-                <Image
-                  src="/images/hero-portrait-2.png"
-                  alt={BOOK.author}
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 90vw, 420px"
-                  className="photo-bw object-cover object-[50%_15%]"
-                />
-              </div>
-            </FadeIn>
-            <div>
-              <FadeIn>
-                <h1 className="text-balance font-display text-4xl font-bold uppercase leading-[0.98] text-bone sm:text-5xl md:text-6xl">
-                  Себя нельзя найти.
-                  <br />
-                  <span className="text-blood">Себя можно только создать.</span>
-                </h1>
-              </FadeIn>
-              <FadeIn delay={0.12} className="mt-6 max-w-md">
-                <p className="text-balance text-lg leading-relaxed text-bone/85">
-                  {ABOUT_INTRO.lede}
-                </p>
-              </FadeIn>
-              <FadeIn delay={0.22} className="mt-8">
-                <Button href="/mentorship" size="lg">
-                  Узнать про работу со мной
-                </Button>
-              </FadeIn>
-            </div>
-          </div>
+          <FadeIn>
+            <h1 className="mx-auto max-w-3xl text-balance font-display text-3xl font-bold uppercase leading-[1.02] text-bone sm:text-4xl md:text-5xl">
+              Себя нельзя найти.
+              <br />
+              <span className="text-blood">Себя можно только создать.</span>
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.12} className="mx-auto mt-6 max-w-md">
+            <p className="text-balance text-lg leading-relaxed text-bone/85">
+              {ABOUT_INTRO.lede}
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.22} className="mt-8">
+            <Button href="/mentorship" size="lg">
+              Узнать про работу со мной
+            </Button>
+          </FadeIn>
         </Container>
       </Section>
 
-      {/* Intro — photo moves here, paired with the words, not alone */}
+      {/* Intro — the banner above already carries the portrait, so this block
+          stays text-only rather than repeating the same artwork squeezed into
+          a narrow frame. */}
       <Section>
         <Container className="max-w-2xl text-center">
           <FadeIn>
             <span className="kicker">{ABOUT_INTRO.kicker}</span>
-          </FadeIn>
-          <FadeIn delay={0.05}>
-            <ScrollParallax strength={16} className="mx-auto mt-8 w-full max-w-[360px]">
-              <div className="relative overflow-hidden rounded-2xl shadow-[0_40px_90px_-30px_rgba(0,0,0,0.35)]">
-                <Image
-                  src="/images/about-hero.jpg"
-                  alt={BOOK.author}
-                  width={1024}
-                  height={1536}
-                  sizes="(max-width: 640px) 80vw, 360px"
-                  className="h-auto w-full"
-                />
-              </div>
-            </ScrollParallax>
           </FadeIn>
           <FadeIn delay={0.1} className="mt-8">
             <p className="mx-auto max-w-xl text-balance font-editorial text-2xl italic leading-snug text-ink md:text-3xl">
@@ -303,33 +287,10 @@ export default function AboutPage() {
       <Section tone="deep">
         <Container className="text-center">
           <SectionHead center label="Документы">Дипломы и сертификаты</SectionHead>
-          <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {CREDENTIALS.map((c, i) => (
-              <FadeIn key={c.src} delay={i * 0.06}>
-                <figure className="h-full">
-                  {/* One frame for scans of mixed orientation — object-contain
-                      letterboxes the portrait ones rather than cropping them. */}
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 bg-white">
-                    <Image
-                      src={c.src}
-                      alt={`${c.title} — ${c.issuer}`}
-                      fill
-                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
-                      className="object-contain"
-                    />
-                  </div>
-                  <figcaption className="mt-4">
-                    <p className="font-display text-sm font-semibold uppercase tracking-[0.06em] text-bone">
-                      {c.title}
-                    </p>
-                    <p className="mt-1.5 text-sm leading-snug text-mist">
-                      {c.issuer} · {c.year}
-                    </p>
-                  </figcaption>
-                </figure>
-              </FadeIn>
-            ))}
-          </div>
+          <p className="mx-auto mt-5 max-w-md text-sm text-mist">
+            Нажмите на документ, чтобы открыть и рассмотреть.
+          </p>
+          <CredentialsGallery items={CREDENTIALS} />
         </Container>
       </Section>
 
