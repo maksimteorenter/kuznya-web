@@ -16,6 +16,14 @@ export type NavItem = {
 // QR spread: "@teorenter_bot"). Still overridable via env for staging.
 export const KUZNYA_TELEGRAM_URL = process.env.NEXT_PUBLIC_TELEGRAM_URL || "https://t.me/teorenter_bot";
 
+// Deep link that auto-starts the "оплата книгу 1341" chain in SendPulse (bot id
+// 69d5438fd51076b81a0004dd, chain id 6a7c32234138fa97d906f680) — delivers the book
+// PDFs and bridges into Кузня Силы. Set as the WayForPay button's Return URL,
+// and used as the primary CTA on the post-purchase thank-you page.
+export const BOOK_DELIVERY_TELEGRAM_URL =
+  process.env.NEXT_PUBLIC_BOOK_DELIVERY_URL ||
+  "https://t.me/teorenter_bot?start=6a7c32234138fa97d906f680";
+
 // Nav kept deliberately short — Maksim wants exactly these four entries, nothing else.
 export const NAV_ITEMS: NavItem[] = [
   { id: "home", label: "Кузня", href: "/" },
