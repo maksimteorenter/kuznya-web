@@ -18,8 +18,7 @@ export const BOOK = {
   releaseDate: "29 декабря 2019",
   days: 1341,
   price: "$10",
-  // TODO: replace with a real Stripe Payment Link / Gumroad URL before launch.
-  checkoutUrl: "#",
+  checkoutUrl: "https://secure.wayforpay.com/button/b3a471cc60cb9",
   formats: [{ code: "PDF", label: "Цифровая версия" }],
   pages: 216,
   poemsCount: 47,
