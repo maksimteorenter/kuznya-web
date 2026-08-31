@@ -7,6 +7,10 @@ import { Button } from "@/components/ui/Button";
 import { BOOK } from "@/lib/content";
 import { T, type Locale } from "@/lib/i18n";
 
+// Despite the name, this now renders on every breakpoint — desktop readers
+// were landing on the hero, scrolling past its buy button, and having no
+// way to purchase without scrolling back up. Same trigger, same bar, just
+// no longer hidden past md.
 export function StickyMobileCTA({ locale = "ru" }: { locale?: Locale }) {
   const t = T[locale];
   const [visible, setVisible] = useState(false);
@@ -26,9 +30,9 @@ export function StickyMobileCTA({ locale = "ru" }: { locale?: Locale }) {
           animate={{ y: "0%" }}
           exit={{ y: "100%" }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-x-0 bottom-0 z-40 border-t border-ink/15 bg-paper/95 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur md:hidden"
+          className="fixed inset-x-0 bottom-0 z-40 border-t border-ink/15 bg-paper/95 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur"
         >
-          <div className="flex items-center gap-3">
+          <div className="mx-auto flex max-w-md items-center gap-3 md:max-w-sm">
             {/* The product itself rides on the bar — the cover, not an icon. */}
             <div className="relative h-[46px] w-[32px] shrink-0 overflow-hidden rounded-[5px] shadow-[0_4px_12px_-4px_rgba(11,11,12,0.5)]">
               <Image
