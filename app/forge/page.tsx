@@ -64,6 +64,44 @@ function Disclaimer({ children, dark = false }: { children: React.ReactNode; dar
   );
 }
 
+// Chess glyphs carry the pawn→king throughline Maksim asked for. Unicode
+// rather than hand-drawn SVG: the shapes are instantly readable, weigh
+// nothing, and take colour from the existing tokens. The ︎ keeps
+// browsers from swapping in a colour emoji.
+const PIECES = {
+  pawn: "♟",
+  knight: "♞",
+  rook: "♜",
+  queen: "♛",
+  king: "♚",
+} as const;
+
+function ChessGlyph({
+  piece,
+  size = "1.6rem",
+  className = "",
+}: {
+  piece: keyof typeof PIECES;
+  size?: string;
+  className?: string;
+}) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`inline-block select-none leading-none ${className}`}
+      style={{ fontSize: size }}
+    >
+      {PIECES[piece]}
+      {"︎"}
+    </span>
+  );
+}
+
+// Pawn → knight → rook → king across the four stages of the 90-day route.
+const STEP_PIECES = ["pawn", "knight", "rook", "king"] as const;
+// The same climb across the five levels of work, ending on the king.
+const LEVEL_PIECES = ["pawn", "knight", "rook", "queen", "king"] as const;
+
 function PrimaryCta({ label, price, id }: { label: string; price: string; id: string }) {
   return (
     <Button href={KUZNYA_TELEGRAM_URL} external size="lg" dataTrack={`forge_cta_${id}`}>
@@ -320,7 +358,12 @@ export default function ForgePage() {
           <div className="mx-auto mt-12 grid max-w-2xl gap-px border border-white/15 bg-white/10 sm:grid-cols-5">
             {L.levels.items.map((item, i) => (
               <FadeIn key={item.n} delay={i * 0.05} className="bg-deep px-3 py-6">
-                <p className="font-display text-2xl font-bold text-blood">{item.n}</p>
+                <ChessGlyph
+                  piece={LEVEL_PIECES[i] ?? "king"}
+                  size="1.4rem"
+                  className={i === LEVEL_PIECES.length - 1 ? "text-blood" : "text-bone/45"}
+                />
+                <p className="mt-2 font-display text-2xl font-bold text-blood">{item.n}</p>
                 <p className="mt-2 text-xs uppercase leading-snug tracking-[0.04em] text-bone">{item.label}</p>
               </FadeIn>
             ))}
@@ -334,19 +377,43 @@ export default function ForgePage() {
       {/* THREE STEPS — CTA #3 */}
       <Section id="steps" tone="paper">
         <Container className="max-w-2xl text-center">
-          <SectionHead center>{L.steps.h2}</SectionHead>
-          <div className="mx-auto mt-12 grid max-w-3xl gap-10 sm:grid-cols-3">
+          <SectionHead center label={L.steps.eyebrow}>
+            {L.steps.h2}
+          </SectionHead>
+          <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl">
+            <p className="leading-relaxed text-ink/90">{L.steps.intro}</p>
+          </FadeIn>
+
+          {/* Each stage is marked by a stronger piece — the pawn advancing up
+              the board is the whole point of the section. */}
+          <div className="mx-auto mt-14 max-w-xl space-y-12 text-left">
             {L.steps.items.map((step, i) => (
-              <FadeIn key={step.n} delay={i * 0.08}>
-                <span className="font-display text-3xl font-bold text-blood">{step.n}</span>
-                <p className="mt-2 font-display text-base font-bold uppercase tracking-[0.02em] text-ink">
-                  {step.title}
-                </p>
-                <p className="mt-1 leading-relaxed text-inkSoft">{step.body}</p>
+              <FadeIn key={step.n} delay={0.15 + i * 0.08}>
+                <div className="flex items-baseline gap-4">
+                  <ChessGlyph
+                    piece={STEP_PIECES[i] ?? "king"}
+                    size="1.7rem"
+                    className="shrink-0 text-ink/30"
+                  />
+                  <div>
+                    <span className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-blood">
+                      {step.n} — {step.title}
+                    </span>
+                  </div>
+                </div>
+                <p className="mt-3 leading-relaxed text-ink/90">{step.body}</p>
               </FadeIn>
             ))}
           </div>
-          <FadeIn delay={0.3} className="mt-10">
+
+          <FadeIn delay={0.5} className="mx-auto mt-14 max-w-xl border-t border-ink/15 pt-10">
+            <ChessGlyph piece="king" size="2.6rem" className="text-blood" />
+            <div className="mt-4">
+              <BigLine>{L.steps.outcome}</BigLine>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.56} className="mt-10">
             <PrimaryCta label={L.steps.ctaLabel} price={L.steps.price} id="steps" />
           </FadeIn>
         </Container>
@@ -591,8 +658,12 @@ export default function ForgePage() {
               {L.finalScreen.pre}
             </p>
             <p className="mt-4 leading-relaxed text-bone/90">{L.finalScreen.text}</p>
+            <p className="mt-8 text-balance font-editorial text-lg italic leading-snug text-bone/80">
+              {L.finalScreen.kicker}
+            </p>
+            <ChessGlyph piece="king" size="3rem" className="mt-8 text-blood" />
             <p
-              className="mt-8 text-balance font-display font-bold uppercase leading-tight text-blood"
+              className="mt-6 text-balance font-display font-bold uppercase leading-tight text-blood"
               style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)" }}
             >
               {L.finalScreen.closing}
