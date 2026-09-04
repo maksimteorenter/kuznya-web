@@ -27,7 +27,10 @@ export const BOOK_DELIVERY_TELEGRAM_URL =
 // Nav kept deliberately short — Maksim wants exactly these four entries, nothing else.
 export const NAV_ITEMS: NavItem[] = [
   { id: "home", label: "Кузня", href: "/" },
-  { id: "club", label: "Кузня Силы", href: KUZNYA_TELEGRAM_URL, external: true },
+  // Points at the sales page, not straight at the bot: /forge is where the
+  // offer, the plan and the guarantee live, and the bot is the step *after*
+  // that. Sending nav traffic into Telegram skipped the whole page.
+  { id: "club", label: "Кузня Силы", href: "/forge" },
   { id: "book", label: "1341 день в плену", href: "/book/1341" },
   { id: "about", label: "Обо мне", href: "/about" },
   { id: "contact", label: "Контакты", href: "/contact" },

@@ -9,8 +9,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   // Placeholder sections stay out until they have real content: listing empty
-  // pages is a direct quality signal against the site.
-  const live = NAV_ITEMS.filter((i) => !i.comingSoon).map((i) => i.href);
+  // pages is a direct quality signal against the site. External entries are
+  // excluded too — they are not ours to list, and prefixing one with BASE_URL
+  // used to emit a malformed URL (the Telegram club link did exactly that
+  // until the nav started pointing at /forge instead).
+  const live = NAV_ITEMS.filter((i) => !i.comingSoon && !i.external).map((i) => i.href);
 
   const routes = Array.from(
     new Set([
