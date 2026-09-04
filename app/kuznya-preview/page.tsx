@@ -13,7 +13,15 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { KuznyaNav } from "@/components/kuznya/Nav";
 import { kuznyaTokens as tokens, Eyebrow, BentoTile, Scene } from "@/components/kuznya/scene";
 
-export const metadata: Metadata = { title: "Кузня Силы" };
+// Kept on purpose (Maksim asked not to delete it) but closed to the public:
+// it is an older, parallel "Кузня Силы" page whose content contradicts the
+// live sales page at /forge. `noindex, nofollow` keeps it out of search
+// results and stops crawlers following its self-contained nav, while the URL
+// still works for anyone who has the direct link.
+export const metadata: Metadata = {
+  title: "Кузня Силы",
+  robots: { index: false, follow: false, nocache: true },
+};
 
 const PROBLEM_LINES = [
   { title: "Деньги", body: "Доход упёрся в потолок." },
