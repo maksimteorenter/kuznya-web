@@ -38,3 +38,12 @@ export const SITE = {
   domain: "teorentermaksim.com",
   tagline: "Место, где человек не ищет себя. Он создаёт себя.",
 };
+
+// Maksim's own channels, supplied by him 2026-09-04. Share-tracking params
+// (_r/_t on TikTok, igsi/utm_source on Instagram) stripped — they are tied to
+// his personal share session and don't belong in public site markup.
+export const SOCIAL_LINKS = [
+  { id: "youtube", label: "YouTube", href: "https://www.youtube.com/@kuznyateorenter" },
+  { id: "instagram", label: "Instagram", href: "https://www.instagram.com/maksim_teorenter" },
+  { id: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@maksim.teorenter" },
+];

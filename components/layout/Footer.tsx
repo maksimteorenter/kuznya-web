@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NAV_ITEMS, SITE } from "@/lib/site";
+import { NAV_ITEMS, SITE, SOCIAL_LINKS } from "@/lib/site";
 import { LogoMark } from "@/components/ui/LogoMark";
 
 export function Footer() {
@@ -15,6 +15,21 @@ export function Footer() {
             <p className="mt-3 max-w-xs text-[15px] leading-relaxed text-mist">
               {SITE.tagline}
             </p>
+
+            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+              {SOCIAL_LINKS.map((social) => (
+                <li key={social.id}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-display text-[13px] uppercase tracking-[0.1em] text-mist transition-colors hover:text-bone"
+                  >
+                    {social.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <nav aria-label="Карта сайта">
