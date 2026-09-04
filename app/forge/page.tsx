@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHead } from "@/components/ui/SectionHead";
@@ -119,7 +120,7 @@ export default function ForgePage() {
             <p className="leading-relaxed text-ink/90">{L.pain.intro}</p>
           </FadeIn>
 
-          <div className="mx-auto mt-12 max-w-xl space-y-10 text-left">
+          <div className="mx-auto mt-12 max-w-xl space-y-10">
             {[L.pain.money, L.pain.relationships, L.pain.state].map((block, i) => (
               <FadeIn key={block.title} delay={0.15 + i * 0.08}>
                 <p className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-blood">
@@ -146,6 +147,15 @@ export default function ForgePage() {
             <p className="text-balance font-editorial text-2xl italic leading-snug text-bone md:text-3xl">
               {L.turn.line1}
             </p>
+          </FadeIn>
+          <FadeIn delay={0.16} className="mx-auto mt-8 max-w-sm overflow-hidden rounded-lg opacity-90">
+            <Image
+              src="/images/forge-hands.jpg"
+              alt=""
+              width={960}
+              height={440}
+              className="h-auto w-full"
+            />
           </FadeIn>
           <FadeIn delay={0.25} className="mt-8">
             <p
@@ -220,8 +230,8 @@ export default function ForgePage() {
           <FadeIn delay={0.2} className="mx-auto mt-8 max-w-xl">
             <p className="text-sm leading-relaxed text-inkFaint">{L.programs.spiritualNote}</p>
           </FadeIn>
-          <FadeIn delay={0.26} className="mx-auto mt-10 max-w-xl border-t border-ink/15 pt-8 text-left">
-            <p className="text-center font-display text-sm font-semibold uppercase tracking-[0.14em] text-blood">
+          <FadeIn delay={0.26} className="mx-auto mt-10 max-w-xl border-t border-ink/15 pt-8">
+            <p className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-blood">
               {L.programs.questionsIntro}
             </p>
             <ul className="mt-5 space-y-3">
@@ -422,7 +432,19 @@ export default function ForgePage() {
       {/* MAKSIM — short, links to /about */}
       <Section id="maksim" tone="paper">
         <Container className="max-w-2xl text-center">
-          <SectionHead center>{L.maksim.h2}</SectionHead>
+          <FadeIn className="mx-auto h-40 w-40 overflow-hidden rounded-full ring-1 ring-ink/10">
+            <Image
+              src="/images/author-portrait-red.jpg"
+              alt="Максим Теорентер"
+              width={320}
+              height={320}
+              className="h-full w-full object-cover"
+              priority={false}
+            />
+          </FadeIn>
+          <div className="mt-8">
+            <SectionHead center>{L.maksim.h2}</SectionHead>
+          </div>
           <FadeIn delay={0.1} className="mx-auto mt-6 max-w-xl">
             <p className="font-editorial text-xl italic leading-snug text-ink">{L.maksim.sub}</p>
           </FadeIn>
@@ -504,9 +526,12 @@ export default function ForgePage() {
             <p className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-blood">
               {L.price.stackIntro}
             </p>
-            <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-2 text-left sm:grid-cols-3">
+            <ul className="mx-auto mt-6 flex max-w-xl flex-wrap justify-center gap-2.5">
               {L.price.stack.map((item) => (
-                <li key={item} className="text-sm leading-relaxed text-inkSoft">
+                <li
+                  key={item}
+                  className="rounded-full border border-ink/15 px-4 py-2 text-sm leading-relaxed text-inkSoft"
+                >
                   {item}
                 </li>
               ))}
