@@ -132,6 +132,10 @@ export default function ForgePage() {
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn delay={0.4} className="mx-auto mt-12 max-w-xl">
+            <BigLine>{L.pain.philosophical}</BigLine>
+          </FadeIn>
         </Container>
       </Section>
 
@@ -466,6 +470,11 @@ export default function ForgePage() {
               </FadeIn>
             ))}
           </ul>
+          <FadeIn delay={0.3} className="mx-auto mt-10 max-w-xl">
+            <p className="text-balance font-editorial text-xl italic leading-relaxed text-bone/90">
+              {L.ninety.scene}
+            </p>
+          </FadeIn>
           <FadeIn delay={0.4} className="mx-auto mt-10 max-w-xl border-t border-white/15 pt-8">
             <BigLine dark>{L.ninety.bigLine}</BigLine>
           </FadeIn>
@@ -477,15 +486,7 @@ export default function ForgePage() {
       <Section id="price" tone="paper">
         <Container className="max-w-2xl text-center">
           <SectionHead center>{L.price.h2}</SectionHead>
-          <FadeIn delay={0.1} className="mt-8">
-            <p
-              className="font-display font-bold leading-none text-ink/25"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)" }}
-            >
-              {L.price.bigNumber}
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.16} className="mx-auto mt-6 max-w-xl space-y-4">
+          <FadeIn delay={0.16} className="mx-auto mt-8 max-w-xl space-y-4">
             {L.price.paragraphs.map((p) => (
               <p key={p} className="leading-relaxed text-ink/90">
                 {p}
@@ -512,7 +513,12 @@ export default function ForgePage() {
             </ul>
           </FadeIn>
 
-          <FadeIn delay={0.42} className="mt-10">
+          <FadeIn delay={0.4} className="mx-auto mt-10 max-w-xl">
+            <p className="font-display text-sm font-semibold uppercase tracking-[0.1em] text-blood">
+              {L.price.guarantee}
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.42} className="mt-6">
             <PrimaryCta label={L.price.ctaLabel} price={L.price.price} id="price" />
           </FadeIn>
         </Container>
