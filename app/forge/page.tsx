@@ -64,43 +64,58 @@ function Disclaimer({ children, dark = false }: { children: React.ReactNode; dar
   );
 }
 
-// Chess glyphs carry the pawn→king throughline Maksim asked for. Unicode
-// rather than hand-drawn SVG: the shapes are instantly readable, weigh
-// nothing, and take colour from the existing tokens. The ︎ keeps
-// browsers from swapping in a colour emoji.
-const PIECES = {
-  pawn: "♟",
-  knight: "♞",
-  rook: "♜",
-  queen: "♛",
-  king: "♚",
+// Hard-edged SVG silhouettes rather than unicode glyphs: at text size the
+// glyphs were a grey speck nobody could see. Straight lines only, so the
+// pieces read as forged metal rather than a chess app's icon set.
+//
+// Only the pawn, the rook and the king are here on purpose. Knight and queen
+// silhouettes were drawn and rendered too, and neither survived the look
+// test — the knight in particular read as a lump, not a horse. A shape the
+// reader has to decode is worse than no shape.
+const PIECE_PATHS = {
+  pawn: "M50,14 L60,18 L64,28 L60,38 L58,42 L62,72 L70,80 L80,88 L20,88 L30,80 L38,72 L42,42 L40,38 L36,28 L40,18 Z",
+  rook: "M30,14 L40,14 L40,24 L45,24 L45,14 L55,14 L55,24 L60,24 L60,14 L70,14 L70,24 L64,72 L62,72 L70,80 L80,88 L20,88 L30,80 L38,72 L36,72 L30,24 Z",
+  king: "M47,4 L53,4 L53,11 L60,11 L60,17 L53,17 L53,32 L66,32 L58,42 L62,72 L70,80 L80,88 L20,88 L30,80 L38,72 L42,42 L34,32 L47,32 L47,17 L40,17 L40,11 L47,11 Z",
 } as const;
 
-function ChessGlyph({
+function ChessPiece({
   piece,
-  size = "1.6rem",
   className = "",
 }: {
-  piece: keyof typeof PIECES;
-  size?: string;
+  piece: keyof typeof PIECE_PATHS;
   className?: string;
 }) {
   return (
-    <span
-      aria-hidden="true"
-      className={`inline-block select-none leading-none ${className}`}
-      style={{ fontSize: size }}
-    >
-      {PIECES[piece]}
-      {"︎"}
-    </span>
+    <svg viewBox="0 0 100 100" aria-hidden="true" className={className} fill="currentColor">
+      <path d={PIECE_PATHS[piece]} />
+    </svg>
   );
 }
 
-// Pawn → knight → rook → king across the four stages of the 90-day route.
-const STEP_PIECES = ["pawn", "knight", "rook", "king"] as const;
+// The faint board showing through the gutters between squares — the board as
+// structure of the route, not wallpaper behind it.
+function CheckerStrip({ className = "" }: { className?: string }) {
+  return (
+    <div
+      aria-hidden="true"
+      className={className}
+      style={{
+        backgroundImage:
+          "repeating-conic-gradient(rgba(17,17,17,0.06) 0% 25%, transparent 0% 50%)",
+        backgroundSize: "36px 36px",
+      }}
+    />
+  );
+}
+
+// One pawn walking the board, promoted only at the end — that is what the
+// copy promises ("из пешки — в короля"), and it is what actually happens to a
+// pawn that reaches the far rank. Four different pieces would have read as
+// four different people. The pawn darkens as it advances.
+const STEP_PIECES = ["pawn", "pawn", "pawn", "king"] as const;
+const STEP_TONES = ["text-ink/35", "text-ink/55", "text-ink/75", "text-blood"] as const;
 // The same climb across the five levels of work, ending on the king.
-const LEVEL_PIECES = ["pawn", "knight", "rook", "queen", "king"] as const;
+const LEVEL_PIECES = ["pawn", "pawn", "rook", "rook", "king"] as const;
 
 function PrimaryCta({ label, price, id }: { label: string; price: string; id: string }) {
   return (
@@ -357,13 +372,14 @@ export default function ForgePage() {
           <SectionHead center>{L.levels.h2}</SectionHead>
           <div className="mx-auto mt-12 grid max-w-2xl gap-px border border-white/15 bg-white/10 sm:grid-cols-5">
             {L.levels.items.map((item, i) => (
-              <FadeIn key={item.n} delay={i * 0.05} className="bg-deep px-3 py-6">
-                <ChessGlyph
+              <FadeIn key={item.n} delay={i * 0.05} className="bg-deep px-3 py-7">
+                <ChessPiece
                   piece={LEVEL_PIECES[i] ?? "king"}
-                  size="1.4rem"
-                  className={i === LEVEL_PIECES.length - 1 ? "text-blood" : "text-bone/45"}
+                  className={`mx-auto h-10 w-10 md:h-12 md:w-12 ${
+                    i === LEVEL_PIECES.length - 1 ? "text-blood" : "text-bone/50"
+                  }`}
                 />
-                <p className="mt-2 font-display text-2xl font-bold text-blood">{item.n}</p>
+                <p className="mt-3 font-display text-2xl font-bold text-blood">{item.n}</p>
                 <p className="mt-2 text-xs uppercase leading-snug tracking-[0.04em] text-bone">{item.label}</p>
               </FadeIn>
             ))}
@@ -376,7 +392,7 @@ export default function ForgePage() {
 
       {/* THREE STEPS — CTA #3 */}
       <Section id="steps" tone="paper">
-        <Container className="max-w-2xl text-center">
+        <Container className="max-w-4xl text-center">
           <SectionHead center label={L.steps.eyebrow}>
             {L.steps.h2}
           </SectionHead>
@@ -384,31 +400,111 @@ export default function ForgePage() {
             <p className="leading-relaxed text-ink/90">{L.steps.intro}</p>
           </FadeIn>
 
-          {/* Each stage is marked by a stronger piece — the pawn advancing up
-              the board is the whole point of the section. */}
-          <div className="mx-auto mt-14 max-w-xl space-y-12 text-left">
-            {L.steps.items.map((step, i) => (
-              <FadeIn key={step.n} delay={0.15 + i * 0.08}>
-                <div className="flex items-baseline gap-4">
-                  <ChessGlyph
-                    piece={STEP_PIECES[i] ?? "king"}
-                    size="1.7rem"
-                    className="shrink-0 text-ink/30"
-                  />
-                  <div>
-                    <span className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-blood">
-                      {step.n} — {step.title}
-                    </span>
-                  </div>
-                </div>
-                <p className="mt-3 leading-relaxed text-ink/90">{step.body}</p>
-              </FadeIn>
-            ))}
+          {/* Desktop — one rank of the board. The squares sit on the checker
+              strip, which only shows through the gutters, and the arrows
+              between them reuse the chain pattern already on this page. */}
+          <div className="mx-auto mt-14 hidden max-w-3xl sm:block md:max-w-4xl">
+            <div className="relative">
+              <CheckerStrip className="absolute inset-x-0 top-1/2 h-28 -translate-y-1/2 border-y border-ink/15 md:h-32" />
+              <div className="relative grid grid-cols-4 gap-5 md:gap-7">
+                {L.steps.items.map((step, i) => {
+                  const isLast = i === L.steps.items.length - 1;
+                  return (
+                    <FadeIn key={step.n} delay={0.1 + i * 0.1} className="text-left">
+                      <div
+                        className={`relative flex aspect-square items-center justify-center border bg-paper ${
+                          isLast
+                            ? "border-blood shadow-[0_18px_34px_-16px_rgba(193,18,31,0.6)]"
+                            : "border-ink/18"
+                        }`}
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="absolute left-2.5 top-2 font-display text-[11px] font-semibold tracking-[0.06em] text-inkFaint"
+                        >
+                          {step.n}
+                        </span>
+                        <ChessPiece
+                          piece={STEP_PIECES[i] ?? "king"}
+                          className={`h-[52%] w-[52%] ${STEP_TONES[i] ?? "text-blood"}`}
+                        />
+                        {!isLast && (
+                          <span
+                            aria-hidden="true"
+                            className="absolute right-0 top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 translate-x-1/2 items-center justify-center bg-paper font-display font-bold text-blood"
+                          >
+                            →
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-4 font-display text-[13px] font-semibold uppercase tracking-[0.1em] text-blood">
+                        {step.n} — {step.title}
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-ink/90">{step.body}</p>
+                    </FadeIn>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
-          <FadeIn delay={0.5} className="mx-auto mt-14 max-w-xl border-t border-ink/15 pt-10">
-            <ChessGlyph piece="king" size="2.6rem" className="text-blood" />
-            <div className="mt-4">
+          {/* Mobile — the same route read top to bottom as one file, in
+              compact rows. The previous vertical stack left screen-high gaps
+              of empty paper between stages. */}
+          <div className="mx-auto mt-14 max-w-md text-left sm:hidden">
+            {L.steps.items.map((step, i) => {
+              const isLast = i === L.steps.items.length - 1;
+              return (
+                <FadeIn
+                  key={step.n}
+                  delay={0.08 + i * 0.06}
+                  className="relative flex gap-4 pb-8 last:pb-0"
+                >
+                  {!isLast && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute bottom-0 left-8 top-16 w-px"
+                      style={{
+                        backgroundImage:
+                          "repeating-linear-gradient(180deg, rgba(17,17,17,0.28) 0 6px, transparent 6px 12px)",
+                      }}
+                    />
+                  )}
+                  <div
+                    className={`relative z-10 flex h-16 w-16 shrink-0 items-center justify-center border bg-paper ${
+                      isLast
+                        ? "border-blood shadow-[0_10px_24px_-14px_rgba(193,18,31,0.6)]"
+                        : "border-ink/18"
+                    }`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="absolute -left-1.5 -top-1.5 bg-ink px-1.5 py-0.5 font-display text-[10px] font-bold text-paper"
+                    >
+                      {step.n}
+                    </span>
+                    <ChessPiece
+                      piece={STEP_PIECES[i] ?? "king"}
+                      className={`h-8 w-8 ${STEP_TONES[i] ?? "text-blood"}`}
+                    />
+                  </div>
+                  <div className="pt-1">
+                    <p className="font-display text-[13px] font-semibold uppercase tracking-[0.1em] text-blood">
+                      {step.n} — {step.title}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-ink/90">{step.body}</p>
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+
+          <FadeIn delay={0.5} className="mx-auto mt-16 max-w-xl border-t border-ink/15 pt-10">
+            <ChessPiece
+              piece="king"
+              className="mx-auto h-16 w-16 text-blood drop-shadow-[0_10px_20px_rgba(193,18,31,0.35)] md:h-20 md:w-20"
+            />
+            <div className="mt-5">
               <BigLine>{L.steps.outcome}</BigLine>
             </div>
           </FadeIn>
@@ -661,7 +757,10 @@ export default function ForgePage() {
             <p className="mt-8 text-balance font-editorial text-lg italic leading-snug text-bone/80">
               {L.finalScreen.kicker}
             </p>
-            <ChessGlyph piece="king" size="3rem" className="mt-8 text-blood" />
+            <ChessPiece
+              piece="king"
+              className="mx-auto mt-8 h-20 w-20 text-blood drop-shadow-[0_12px_24px_rgba(193,18,31,0.45)] md:h-24 md:w-24"
+            />
             <p
               className="mt-6 text-balance font-display font-bold uppercase leading-tight text-blood"
               style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)" }}
