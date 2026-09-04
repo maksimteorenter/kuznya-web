@@ -81,31 +81,48 @@ export default function ForgePage() {
       {/* HERO — forge-intro plays once over this section, then reveals it.
           Height is reserved by the Hero content itself, so the animation
           layer can never shift layout. */}
-      <Section id="hero" tone="paper" bare className="relative flex min-h-[100svh] items-center pt-24 pb-20">
+      <Section id="hero" tone="deep" bare className="relative flex min-h-[100svh] items-center pt-24 pb-20">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/forge-hero.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="photo-bw object-cover object-[50%_22%]"
+            priority
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(11,11,12,0.82) 0%, rgba(11,11,12,0.72) 38%, rgba(11,11,12,0.88) 100%)",
+            }}
+          />
+        </div>
         <ForgeIntro />
         <Container className="relative z-10 max-w-2xl text-center">
           <FadeIn>
-            <span className="kicker">{L.hero.eyebrow}</span>
+            <span className="kicker text-blood">{L.hero.eyebrow}</span>
           </FadeIn>
           <FadeIn delay={0.1} className="mt-6">
             <h1
-              className="mx-auto text-balance font-display font-bold uppercase leading-[1.06] text-ink"
+              className="mx-auto text-balance font-display font-bold uppercase leading-[1.06] text-bone"
               style={{ fontSize: "clamp(2rem, 5.4vw, 3.6rem)", letterSpacing: "-0.01em" }}
             >
               {L.hero.h1}
             </h1>
           </FadeIn>
           <FadeIn delay={0.2} className="mx-auto mt-7 max-w-xl">
-            <p className="text-balance text-lg leading-relaxed text-inkSoft">{L.hero.subhead}</p>
+            <p className="text-balance text-lg leading-relaxed text-bone/85">{L.hero.subhead}</p>
           </FadeIn>
           <FadeIn delay={0.28} className="mx-auto mt-5 max-w-xl">
-            <p className="text-balance leading-relaxed text-inkSoft/90">{L.hero.body}</p>
+            <p className="text-balance leading-relaxed text-bone/75">{L.hero.body}</p>
           </FadeIn>
           <FadeIn delay={0.36} className="mt-9">
             <PrimaryCta label={L.hero.ctaLabel} price={L.hero.price} id="hero" />
           </FadeIn>
           <FadeIn delay={0.44} className="mt-5">
-            <p className="text-xs uppercase tracking-[0.1em] text-inkFaint">{L.hero.micro}</p>
+            <p className="text-xs uppercase tracking-[0.1em] text-mist">{L.hero.micro}</p>
           </FadeIn>
         </Container>
       </Section>
@@ -147,15 +164,6 @@ export default function ForgePage() {
             <p className="text-balance font-editorial text-2xl italic leading-snug text-bone md:text-3xl">
               {L.turn.line1}
             </p>
-          </FadeIn>
-          <FadeIn delay={0.16} className="mx-auto mt-8 max-w-sm overflow-hidden rounded-lg opacity-90">
-            <Image
-              src="/images/forge-hands.jpg"
-              alt=""
-              width={960}
-              height={440}
-              className="h-auto w-full"
-            />
           </FadeIn>
           <FadeIn delay={0.25} className="mt-8">
             <p
@@ -344,42 +352,6 @@ export default function ForgePage() {
         </Container>
       </Section>
 
-      {/* 1000+ HOURS */}
-      <Section id="hours" tone="deep" bare className="flex min-h-[70vh] flex-col items-center justify-center py-24 text-center">
-        <Container>
-          <FadeIn>
-            <p
-              className="font-display font-bold leading-none text-bone"
-              style={{ fontSize: "clamp(4rem, 14vw, 9rem)", letterSpacing: "-0.02em" }}
-            >
-              {L.hours.big}
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.1} className="mt-3">
-            <p className="kicker">{L.hours.label}</p>
-          </FadeIn>
-          <FadeIn delay={0.2} className="mx-auto mt-8 max-w-lg">
-            <p className="leading-relaxed text-mist">{L.hours.notHomework}</p>
-          </FadeIn>
-          <FadeIn delay={0.3} className="mx-auto mt-10 max-w-2xl">
-            <ol className="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-              {L.hours.chain.map((step, i) => (
-                <li key={step} className="flex items-center gap-3">
-                  <span className="rounded-full border border-white/20 px-4 py-2 font-display text-[13px] font-semibold uppercase tracking-[0.06em] text-bone">
-                    {step}
-                  </span>
-                  {i < L.hours.chain.length - 1 && (
-                    <span aria-hidden="true" className="text-blood">
-                      →
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </FadeIn>
-        </Container>
-      </Section>
-
       {/* THREE TERRITORIES — no per-card CTA; see report for reasoning */}
       <Section id="territories" tone="paper">
         <Container className="max-w-4xl text-center">
@@ -432,17 +404,17 @@ export default function ForgePage() {
       {/* MAKSIM — short, links to /about */}
       <Section id="maksim" tone="paper">
         <Container className="max-w-2xl text-center">
-          <FadeIn className="mx-auto h-40 w-40 overflow-hidden rounded-full ring-1 ring-ink/10">
+          <FadeIn className="mx-auto max-w-xs overflow-hidden rounded-lg ring-1 ring-ink/10">
             <Image
-              src="/images/author-portrait-red.jpg"
-              alt="Максим Теорентер"
-              width={320}
-              height={320}
-              className="h-full w-full object-cover"
-              priority={false}
+              src="/images/about-hero.jpg"
+              alt="Максим Теорентер — спорт, командный спорт, военный этап, 1341 день в плену"
+              width={1066}
+              height={1600}
+              sizes="(max-width: 640px) 80vw, 320px"
+              className="h-auto w-full"
             />
           </FadeIn>
-          <div className="mt-8">
+          <div className="mt-10">
             <SectionHead center>{L.maksim.h2}</SectionHead>
           </div>
           <FadeIn delay={0.1} className="mx-auto mt-6 max-w-xl">
