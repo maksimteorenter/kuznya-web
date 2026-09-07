@@ -800,7 +800,12 @@ export default function ForgePage() {
             <p className={`mx-auto mb-8 max-w-md text-balance leading-relaxed ${text2}`}>{L.finalScreen.stakes}</p>
             <p className={`font-display text-sm font-semibold uppercase tracking-[0.1em] ${text2}`}>{L.finalScreen.pre}</p>
             <p className={`mt-4 leading-relaxed ${boneSoft}`}>{L.finalScreen.text}</p>
-            <p className={`mt-8 text-balance font-editorial text-lg italic leading-snug ${boneSofter}`}>
+            {/* The closing button. Collapsing the duplicated final offer took
+                this with it — the page ended with nothing to click. */}
+            <div className="mt-9">
+              <PrimaryCta label={L.finalScreen.ctaLabel} price={L.finalScreen.price} id="final" />
+            </div>
+            <p className={`mt-10 text-balance font-editorial text-lg italic leading-snug ${boneSofter}`}>
               {L.finalScreen.kicker}
             </p>
             <p

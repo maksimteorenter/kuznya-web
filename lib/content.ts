@@ -620,8 +620,10 @@ export const KUZNYA_LANDING = {
   // something new to build.
   transitional: {
     label: "Ещё не готов платить?",
-    body: "Пройди бесплатный тест состояния и забери книгу «33 мудрости Бхагавад-гиты». Без оплаты, прямо в боте.",
-    ctaLabel: "Забрать бесплатно",
+    // The link text names what is actually on offer. It used to read "Забрать
+    // бесплатно" with the contents in a `body` line the hero never rendered —
+    // so the page was offering the reader "free" nothing.
+    ctaLabel: "Забрать тест состояния и книгу бесплатно",
   },
 
   pain: {
