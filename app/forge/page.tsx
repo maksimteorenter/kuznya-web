@@ -338,7 +338,7 @@ export default function ForgePage() {
                 >
                   {block.line}
                 </p>
-                <p className={`mt-4 text-[15px] leading-relaxed ${text2}`}>{block.body}</p>
+                <p className={`mt-4 text-base leading-relaxed ${text2}`}>{block.body}</p>
               </FadeIn>
             ))}
           </div>
@@ -523,7 +523,7 @@ export default function ForgePage() {
                     <p className={`mt-4 font-display text-[13px] font-semibold uppercase tracking-[0.1em] ${goldLight}`}>
                       {step.n} — {step.title}
                     </p>
-                    <p className={`mt-2 text-sm leading-relaxed ${boneSoft}`}>{step.body}</p>
+                    <p className={`mt-2 text-base leading-relaxed ${boneSoft}`}>{step.body}</p>
                   </FadeIn>
                 );
               })}
@@ -563,7 +563,7 @@ export default function ForgePage() {
                     <p className={`font-display text-[13px] font-semibold uppercase tracking-[0.1em] ${goldLight}`}>
                       {step.n} — {step.title}
                     </p>
-                    <p className={`mt-2 text-sm leading-relaxed ${boneSoft}`}>{step.body}</p>
+                    <p className={`mt-2 text-base leading-relaxed ${boneSoft}`}>{step.body}</p>
                   </div>
                 </FadeIn>
               );
@@ -601,7 +601,7 @@ export default function ForgePage() {
             {L.inside.cards.map((card, i) => (
               <FadeIn key={card.title} delay={i * 0.04} className="bg-[#12100C] p-6 text-left">
                 <p className={`font-display text-sm font-bold uppercase tracking-[0.04em] ${goldLight}`}>{card.title}</p>
-                <p className={`mt-2 text-sm leading-relaxed ${text2}`}>{card.body}</p>
+                <p className={`mt-2 text-base leading-relaxed ${text2}`}>{card.body}</p>
               </FadeIn>
             ))}
           </div>
