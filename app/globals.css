@@ -30,6 +30,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Dark routes (currently /forge) opt <html> and <body> into their own ground.
+   The site is light by default, so without this the overscroll area behind a
+   dark page rubber-bands to white on iOS, and native controls/scrollbars keep
+   rendering in light scheme. Keyed off a marker element the page renders. */
+html:has([data-page-theme="forge"]) {
+  background: #0A0706;
+  color-scheme: dark;
+}
+body:has([data-page-theme="forge"]) {
+  background-color: #0A0706;
+}
+
 ::selection {
   background: theme("colors.blood.DEFAULT");
   color: #fff;

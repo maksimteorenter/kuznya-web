@@ -6,6 +6,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { ForgeIntro } from "@/components/forge/ForgeIntro";
 import { StickyForgeCTA } from "@/components/forge/StickyForgeCTA";
+import { ProofGrid } from "@/components/forge/ProofGrid";
 import { KUZNYA_LANDING } from "@/lib/content";
 import { KUZNYA_TELEGRAM_URL } from "@/lib/site";
 
@@ -24,33 +25,42 @@ export const metadata: Metadata = {
 // intentionally scoped to app/forge/page.tsx only, per the brief, and must
 // not require touching tailwind.config.ts or globals.css.
 //
-//   #070707  void      — base background, top of page (stone/darkest)
-//   #101010  panel     — secondary background
-//   #1B1B1D  graphite  — card/section surfaces
-//   #3A080B  bordo     — fill only, never text (dark enough it doesn't need to be)
-//   #8B1118  fire      — fill/border/glow only — 2.1:1 as text, fails WCAG
-//   #C89A3D  gold      — accent text, mid-brightness
-//   #E2C06B  goldLight — accent text/CTA fill, 11.5:1 on black
-//   #F2F0EB  bone      — primary text
-//   #A6A4A0  text2     — secondary text
-//   rgba(200,154,61,.24) — hairline borders throughout
+// Every background here carries a warm undertone deliberately. The previous
+// set was pure neutral — #070707 and #101010 measured 0% saturation, #1B1B1D
+// 4% — and that flatness, not the layout, was what made the page read cheap.
+// These sit at 25/20/18% in the soot-and-scale direction, which doubles as the
+// Кузня (forge) association, so the whole set reads as one family.
+//
+//   #0A0706  void      — base background, warm soot        17.4:1 vs bone
+//   #12100C  panel     — secondary background
+//   #1E1A15  graphite  — card/section surfaces, warm
+//   #2B0E11  bordo     — fill only, never text
+//   #8E1B22  fire      — fill/border/glow only — 2.2:1 as text, fails WCAG
+//   #B8873B  gold      — antique brass, accent text         6.3:1 vs void
+//   #E0C078  goldLight — accent text / CTA fill            11.5:1 vs void
+//   #F3EEE5  bone      — primary text, warm white
+//   #A9A199  text2     — secondary text                     7.9:1 vs void
+//   rgba(224,192,120,.24) — hairline borders throughout
+//
+// Contrast pairs were computed, not eyeballed. Bone on a fire fill = 7.8:1;
+// the brass CTA keeps dark text, since light text on brass would fail.
 //
 // Design idea: the lower the section, the closer to gold — early sections
 // lean stone/void/fire, later sections lean graphite/gold, and the final
 // screen is dominated by the gold king art breaking the container edge.
 // -----------------------------------------------------------------------
 
-const bone = "text-[#F2F0EB]";
+const bone = "text-[#F3EEE5]";
 // Tailwind's class scanner reads raw source text, not evaluated JS — an
 // opacity modifier built via template-literal concatenation (e.g. `${bone}/90`)
 // would never appear as one literal token, so it silently wouldn't compile.
 // These are their own full literal strings instead.
-const boneSoft = "text-[#F2F0EB]/90";
-const boneSofter = "text-[#F2F0EB]/80";
-const text2 = "text-[#A6A4A0]";
-const gold = "text-[#C89A3D]";
-const goldLight = "text-[#E2C06B]";
-const hairline = "border-[rgba(200,154,61,0.24)]";
+const boneSoft = "text-[#F3EEE5]/90";
+const boneSofter = "text-[#F3EEE5]/80";
+const text2 = "text-[#A9A199]";
+const gold = "text-[#B8873B]";
+const goldLight = "text-[#E0C078]";
+const hairline = "border-[rgba(224,192,120,0.24)]";
 
 function Scene({
   id,
@@ -80,7 +90,7 @@ function Scene({
   );
 }
 
-// `tone="mid"` (default) reads #C89A3D, `tone="bright"` reads #E2C06B — the
+// `tone="mid"` (default) reads #B8873B, `tone="bright"` reads #E0C078 — the
 // page moves from the dimmer gold to the brighter one starting at the plan
 // (steps), so the accent itself gets closer to gold as you scroll, same idea
 // as the artwork and the step-marker tones below.
@@ -94,7 +104,7 @@ function Head({
   children: ReactNode;
 }) {
   const accent = tone === "bright" ? goldLight : gold;
-  const ruleBg = tone === "bright" ? "bg-[#E2C06B]" : "bg-[#C89A3D]";
+  const ruleBg = tone === "bright" ? "bg-[#E0C078]" : "bg-[#B8873B]";
   return (
     <FadeIn className="flex flex-col items-center text-center">
       <span aria-hidden="true" className={`h-[3px] w-16 ${ruleBg}`} />
@@ -159,7 +169,7 @@ function Disclaimer({ children }: { children: ReactNode }) {
 function GuaranteeBox({ children }: { children: ReactNode }) {
   return (
     <div
-      className={`mx-auto max-w-md rounded-2xl border border-[rgba(200,154,61,0.45)] bg-[#1B1B1D] px-6 py-5 text-center`}
+      className={`mx-auto max-w-md rounded-2xl border border-[rgba(224,192,120,0.45)] bg-[#1E1A15] px-6 py-5 text-center`}
     >
       <p className={`font-display text-sm font-bold uppercase leading-relaxed tracking-[0.04em] ${goldLight}`}>
         {children}
@@ -189,18 +199,18 @@ function ChessPiece({ piece, className = "" }: { piece: keyof typeof PIECE_PATHS
 // same "closer to gold as you descend" idea plays out at icon scale too.
 const STEP_PIECES = ["pawn", "pawn", "pawn", "king"] as const;
 const STEP_TONES = [
-  "text-[#8B1118]/50",
-  "text-[#8B1118]/80",
-  "text-[#C89A3D]",
-  "text-[#E2C06B]",
+  "text-[#8E1B22]/50",
+  "text-[#8E1B22]/80",
+  "text-[#B8873B]",
+  "text-[#E0C078]",
 ] as const;
 const LEVEL_PIECES = ["pawn", "pawn", "rook", "rook", "king"] as const;
 const LEVEL_TONES = [
-  "text-[#8B1118]/50",
-  "text-[#8B1118]/80",
-  "text-[#C89A3D]/80",
-  "text-[#C89A3D]",
-  "text-[#E2C06B]",
+  "text-[#8E1B22]/50",
+  "text-[#8E1B22]/80",
+  "text-[#B8873B]/80",
+  "text-[#B8873B]",
+  "text-[#E0C078]",
 ] as const;
 
 function PrimaryCta({ label, price, id }: { label: string; price: string; id: string }) {
@@ -210,7 +220,7 @@ function PrimaryCta({ label, price, id }: { label: string; price: string; id: st
       target="_blank"
       rel="noopener noreferrer"
       data-track={`forge_cta_${id}`}
-      className="group/btn relative inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full bg-[#E2C06B] px-9 py-4 font-display text-[15px] font-semibold uppercase tracking-[0.1em] text-[#070707] shadow-[0_10px_30px_-10px_rgba(200,154,61,0.55)] transition-[transform,box-shadow,background-color] duration-200 ease-out [touch-action:manipulation] hover:-translate-y-0.5 hover:bg-[#C89A3D] hover:shadow-[0_16px_36px_-10px_rgba(200,154,61,0.75)] active:translate-y-0 motion-reduce:transform-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#E2C06B]"
+      className="group/btn relative inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full bg-[#E0C078] px-9 py-4 font-display text-[15px] font-semibold uppercase tracking-[0.1em] text-[#0A0706] shadow-[0_10px_30px_-10px_rgba(224,192,120,0.55)] transition-[transform,box-shadow,background-color] duration-200 ease-out [touch-action:manipulation] hover:-translate-y-0.5 hover:bg-[#B8873B] hover:shadow-[0_16px_36px_-10px_rgba(224,192,120,0.75)] active:translate-y-0 motion-reduce:transform-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#E0C078]"
     >
       {label} — {price}
     </a>
@@ -220,6 +230,10 @@ function PrimaryCta({ label, price, id }: { label: string; price: string; id: st
 export default function ForgePage() {
   return (
     <>
+      {/* Marks the route for globals.css so <html>/<body> go dark too. Without
+          this, iOS rubber-band scroll past either end of this page exposes the
+          site-wide paper ground as a white flash. */}
+      <div data-page-theme="forge" hidden />
       <ScrollProgress />
       <StickyForgeCTA />
 
@@ -227,7 +241,7 @@ export default function ForgePage() {
           strings render: a pawn at the bottom, huge figures and gold threads
           above it — literally "moved by someone else's hand" before the
           reader has read a word. */}
-      <Scene id="hero" bg="bg-[#070707]" bare clip={false} className="flex min-h-[100svh] items-center pt-24 pb-20">
+      <Scene id="hero" bg="bg-[#0A0706]" bare clip={false} className="flex min-h-[100svh] items-center pt-24 pb-20">
         <div className="absolute inset-0 overflow-hidden">
           <Image
             src="/images/forge/hero-strings.png"
@@ -241,7 +255,7 @@ export default function ForgePage() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(7,7,7,0.5) 0%, rgba(7,7,7,0.66) 42%, rgba(7,7,7,0.94) 100%)",
+                "linear-gradient(180deg, rgba(10,7,6,0.5) 0%, rgba(10,7,6,0.66) 42%, rgba(10,7,6,0.94) 100%)",
             }}
           />
         </div>
@@ -277,7 +291,7 @@ export default function ForgePage() {
 
       {/* 2 — PAIN. External problem in three concrete zones + the
           philosophical layer, unchanged copy. */}
-      <Scene id="pain" bg="bg-[#101010]">
+      <Scene id="pain" bg="bg-[#12100C]">
         <Container className="max-w-5xl text-center">
           <Head label={L.pain.eyebrow}>{L.pain.h2}</Head>
           <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl">
@@ -306,7 +320,7 @@ export default function ForgePage() {
                     className="absolute inset-0"
                     style={{
                       background:
-                        "linear-gradient(180deg, rgba(16,16,16,0.25) 0%, rgba(16,16,16,0) 35%, rgba(16,16,16,0.55) 78%, #101010 100%)",
+                        "linear-gradient(180deg, rgba(18,16,12,0.25) 0%, rgba(18,16,12,0) 35%, rgba(18,16,12,0.55) 78%, #12100C 100%)",
                     }}
                   />
                 </div>
@@ -333,7 +347,7 @@ export default function ForgePage() {
       </Scene>
 
       {/* 3 — TURN. Almost-empty screen, the pivot line. */}
-      <Scene id="turn" bg="bg-[#070707]" bare className="flex min-h-[55vh] items-center">
+      <Scene id="turn" bg="bg-[#0A0706]" bare className="flex min-h-[55vh] items-center">
         <Container className="max-w-xl text-center">
           <FadeIn>
             <p className={`text-balance font-editorial text-2xl italic leading-snug ${bone} md:text-3xl`}>
@@ -352,7 +366,7 @@ export default function ForgePage() {
       </Scene>
 
       {/* 4 — WAR. Context, disclaimer kept verbatim — legally load-bearing. */}
-      <Scene id="war" bg="bg-[#101010]">
+      <Scene id="war" bg="bg-[#12100C]">
         <Container className="max-w-2xl text-center">
           <Head>{L.war.h2}</Head>
           <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl">
@@ -378,7 +392,7 @@ export default function ForgePage() {
           why knowledge doesn't turn into action, not two restatements of the
           same idea. pawn-stone.png (pawn held by threads, in the dark) is the
           visual for "an opponent that isn't the person across the board." */}
-      <Scene id="mechanism" bg="bg-[#1B1B1D]">
+      <Scene id="mechanism" bg="bg-[#1E1A15]">
         <Container className="max-w-2xl text-center">
           <Head>{L.whyKnowledge.h2}</Head>
 
@@ -407,7 +421,7 @@ export default function ForgePage() {
             {/* The old, automatic program gets the bordo fill — the one place
                 on the page that dark red is used, exactly as spec'd: a fill
                 with light text on top, never red text on black. */}
-            <p className="rounded-full bg-[#3A080B] px-5 py-2 font-display text-lg font-semibold uppercase tracking-[0.04em] text-[#F2F0EB]">
+            <p className="rounded-full bg-[#2B0E11] px-5 py-2 font-display text-lg font-semibold uppercase tracking-[0.04em] text-[#F3EEE5]">
               {L.whyKnowledge.formula.old}
             </p>
           </FadeIn>
@@ -466,9 +480,9 @@ export default function ForgePage() {
           pay, not after. Uses the real portrait (about-hero.jpg), same as
           before — a living face, not a rendered figure, is what carries
           trust here. */}
-      <Scene id="guide" bg="bg-[#101010]">
+      <Scene id="guide" bg="bg-[#12100C]">
         <Container className="max-w-2xl text-center">
-          <FadeIn className={`mx-auto max-w-xs overflow-hidden rounded-lg ring-1 ring-[rgba(200,154,61,0.3)]`}>
+          <FadeIn className={`mx-auto max-w-xs overflow-hidden rounded-lg ring-1 ring-[rgba(224,192,120,0.3)]`}>
             <Image
               src="/images/about-hero.jpg"
               alt="Максим Теорентер — спорт, командный спорт, военный этап, 1341 день в плену"
@@ -520,7 +534,7 @@ export default function ForgePage() {
             <a
               href="/about"
               data-track="forge_about_click"
-              className={`inline-flex min-h-[46px] items-center justify-center rounded-full border ${hairline} px-7 py-3 font-display text-sm font-semibold uppercase tracking-[0.1em] ${bone} transition-colors hover:border-[rgba(200,154,61,0.6)]`}
+              className={`inline-flex min-h-[46px] items-center justify-center rounded-full border ${hairline} px-7 py-3 font-display text-sm font-semibold uppercase tracking-[0.1em] ${bone} transition-colors hover:border-[rgba(224,192,120,0.6)]`}
             >
               {L.maksim.ctaLabel} →
             </a>
@@ -532,7 +546,7 @@ export default function ForgePage() {
           after the guide, not before. pawn-molten.png (cracking, glowing
           from inside) sits between the steps and the outcome line: the
           moment the old form is breaking. */}
-      <Scene id="steps" bg="bg-[#1B1B1D]">
+      <Scene id="steps" bg="bg-[#1E1A15]">
         <Container className="max-w-4xl text-center">
           <Head label={L.steps.eyebrow} tone="bright">{L.steps.h2}</Head>
           <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl">
@@ -547,8 +561,8 @@ export default function ForgePage() {
                 return (
                   <FadeIn key={step.n} delay={0.1 + i * 0.1} className="text-left">
                     <div
-                      className={`relative flex aspect-square items-center justify-center rounded-lg border bg-[#101010] ${
-                        isLast ? "border-[#E2C06B] shadow-[0_18px_34px_-16px_rgba(226,192,107,0.45)]" : hairline
+                      className={`relative flex aspect-square items-center justify-center rounded-lg border bg-[#12100C] ${
+                        isLast ? "border-[#E0C078] shadow-[0_18px_34px_-16px_rgba(224,192,120,0.45)]" : hairline
                       }`}
                     >
                       <span
@@ -561,7 +575,7 @@ export default function ForgePage() {
                       {!isLast && (
                         <span
                           aria-hidden="true"
-                          className={`absolute right-0 top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-[#1B1B1D] font-display font-bold ${goldLight}`}
+                          className={`absolute right-0 top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-[#1E1A15] font-display font-bold ${goldLight}`}
                         >
                           →
                         </span>
@@ -589,18 +603,18 @@ export default function ForgePage() {
                       className="absolute bottom-0 left-8 top-16 w-px"
                       style={{
                         backgroundImage:
-                          "repeating-linear-gradient(180deg, rgba(200,154,61,0.35) 0 6px, transparent 6px 12px)",
+                          "repeating-linear-gradient(180deg, rgba(224,192,120,0.35) 0 6px, transparent 6px 12px)",
                       }}
                     />
                   )}
                   <div
-                    className={`relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border bg-[#101010] ${
-                      isLast ? "border-[#E2C06B] shadow-[0_10px_24px_-14px_rgba(226,192,107,0.45)]" : hairline
+                    className={`relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border bg-[#12100C] ${
+                      isLast ? "border-[#E0C078] shadow-[0_10px_24px_-14px_rgba(224,192,120,0.45)]" : hairline
                     }`}
                   >
                     <span
                       aria-hidden="true"
-                      className="absolute -left-1.5 -top-1.5 rounded bg-[#E2C06B] px-1.5 py-0.5 font-display text-[10px] font-bold text-[#070707]"
+                      className="absolute -left-1.5 -top-1.5 rounded bg-[#E0C078] px-1.5 py-0.5 font-display text-[10px] font-bold text-[#0A0706]"
                     >
                       {step.n}
                     </span>
@@ -641,12 +655,12 @@ export default function ForgePage() {
       {/* 8 — INSIDE + LEVELS. This is the one place the full content list
           appears — price.stack below only lists format/access items that
           aren't already named here, so nothing repeats. */}
-      <Scene id="inside" bg="bg-[#101010]">
+      <Scene id="inside" bg="bg-[#12100C]">
         <Container className="max-w-4xl text-center">
           <Head tone="bright">{L.inside.h2}</Head>
-          <div className={`mt-12 grid gap-px overflow-hidden rounded-lg border ${hairline} bg-[rgba(200,154,61,0.14)] sm:grid-cols-2 lg:grid-cols-3`}>
+          <div className={`mt-12 grid gap-px overflow-hidden rounded-lg border ${hairline} bg-[rgba(224,192,120,0.14)] sm:grid-cols-2 lg:grid-cols-3`}>
             {L.inside.cards.map((card, i) => (
-              <FadeIn key={card.title} delay={i * 0.04} className="bg-[#101010] p-6 text-left">
+              <FadeIn key={card.title} delay={i * 0.04} className="bg-[#12100C] p-6 text-left">
                 <p className={`font-display text-sm font-bold uppercase tracking-[0.04em] ${goldLight}`}>{card.title}</p>
                 <p className={`mt-2 text-sm leading-relaxed ${text2}`}>{card.body}</p>
               </FadeIn>
@@ -656,9 +670,9 @@ export default function ForgePage() {
           <FadeIn delay={0.2} className={`mx-auto mt-16 max-w-3xl border-t ${hairline} pt-12`}>
             <SubHead>{L.levels.h2}</SubHead>
           </FadeIn>
-          <div className={`mx-auto mt-8 grid max-w-2xl gap-px overflow-hidden rounded-lg border ${hairline} bg-[rgba(200,154,61,0.14)] sm:grid-cols-5`}>
+          <div className={`mx-auto mt-8 grid max-w-2xl gap-px overflow-hidden rounded-lg border ${hairline} bg-[rgba(224,192,120,0.14)] sm:grid-cols-5`}>
             {L.levels.items.map((item, i) => (
-              <FadeIn key={item.n} delay={i * 0.05} className="bg-[#101010] px-3 py-7">
+              <FadeIn key={item.n} delay={i * 0.05} className="bg-[#12100C] px-3 py-7">
                 <ChessPiece
                   piece={LEVEL_PIECES[i] ?? "king"}
                   className={`mx-auto h-10 w-10 md:h-12 md:w-12 ${LEVEL_TONES[i] ?? goldLight}`}
@@ -676,7 +690,7 @@ export default function ForgePage() {
 
       {/* 9 — TERRITORIES. Shortened: dense chip rows instead of tall bulleted
           lists — same points, less scroll. */}
-      <Scene id="territories" bg="bg-[#070707]">
+      <Scene id="territories" bg="bg-[#0A0706]">
         <Container className="max-w-3xl text-center">
           <Head tone="bright">{L.territories.h2}</Head>
           <div className="mt-10 space-y-6">
@@ -697,7 +711,7 @@ export default function ForgePage() {
       </Scene>
 
       {/* 10 — NINETY. Image of success — the Tuesday scene, kept intact. */}
-      <Scene id="ninety" bg="bg-[#101010]">
+      <Scene id="ninety" bg="bg-[#12100C]">
         <Container className="max-w-2xl text-center">
           <FadeIn>
             <p className={`text-balance font-editorial text-2xl italic leading-snug ${bone} md:text-3xl`}>
@@ -732,10 +746,26 @@ export default function ForgePage() {
         </Container>
       </Scene>
 
+      {/* 10.5 — PROOF. Real client video testimonials, placed right before the
+          price ask so likelihood-of-success is built up at the exact moment
+          the reader is deciding whether to pay — not buried earlier where it
+          can't do that job, and not stuffed into a caption. Click-to-play
+          tiles, not autoplaying embeds — 20+ live iframes on load would be
+          the one thing on this page that actually hurts speed. */}
+      <Scene id="proof" bg="bg-[#0A0706]">
+        <Container className="max-w-4xl text-center">
+          <Head label={L.proof.eyebrow} tone="bright">{L.proof.h2}</Head>
+          <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl">
+            <p className={`leading-relaxed ${boneSoft}`}>{L.proof.intro}</p>
+          </FadeIn>
+          <ProofGrid ids={L.proof.videoIds} />
+        </Container>
+      </Scene>
+
       {/* 11 — PRICE. Offer + stack (format items only, content already shown
           in "inside") + guarantee as its own prominent box next to the CTA,
           not a small caption line. Third money CTA. */}
-      <Scene id="price" bg="bg-[#1B1B1D]">
+      <Scene id="price" bg="bg-[#1E1A15]">
         <Container className="max-w-2xl text-center">
           <Head tone="bright">{L.price.h2}</Head>
           <FadeIn delay={0.16} className="mx-auto mt-8 max-w-xl space-y-4">
@@ -785,7 +815,7 @@ export default function ForgePage() {
       </Scene>
 
       {/* 12 — MISSION + NOT FOR. Why he does this, then who it isn't for. */}
-      <Scene id="mission" bg="bg-[#101010]">
+      <Scene id="mission" bg="bg-[#12100C]">
         <Container className="max-w-2xl text-center">
           <Head tone="bright">{L.mission.h2}</Head>
           <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl space-y-4">
@@ -830,14 +860,14 @@ export default function ForgePage() {
           of the frame instead of just sitting inside another dark square.
           Independent of the outer Container's max-width, so it reads the
           same on any screen. */}
-      <Scene id="final" bg="bg-[#070707]" bare clip={false} className="flex flex-col items-center justify-center py-28 text-center">
+      <Scene id="final" bg="bg-[#0A0706]" bare clip={false} className="flex flex-col items-center justify-center py-28 text-center">
         <div className="relative h-[230px] w-[172px] md:h-[300px] md:w-[224px]">
           <div
             className="absolute inset-0 rounded-full blur-2xl"
-            style={{ background: "radial-gradient(closest-side, rgba(226,192,107,0.35), transparent)" }}
+            style={{ background: "radial-gradient(closest-side, rgba(224,192,120,0.35), transparent)" }}
             aria-hidden="true"
           />
-          <div className={`absolute inset-x-4 bottom-0 top-16 rounded-lg border ${hairline} bg-[#101010]/70 md:top-20`} aria-hidden="true" />
+          <div className={`absolute inset-x-4 bottom-0 top-16 rounded-lg border ${hairline} bg-[#12100C]/70 md:top-20`} aria-hidden="true" />
           <Image
             src="/images/forge/king-gold.png"
             alt=""
