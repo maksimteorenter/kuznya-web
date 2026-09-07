@@ -987,7 +987,16 @@ export const KUZNYA_LANDING = {
   },
 
   finalScreen: {
-    pre: "Первый удар готов зайти в Кузню?",
+    // Was "Первый удар готов зайти в Кузню?" — a broken sentence, most likely a
+    // dictation artefact, sitting on the last screen before the CTA. Replaced
+    // with the page's own chess language ("Сделать первый ход" is already the
+    // plan's button).
+    pre: "Готов сделать первый ход?",
+    // StoryBrand's Failure beat — the one SB7 element the page never had. Built
+    // only from phrases already on it: the money block's "Почему я до сих пор
+    // не там, где хотел быть?" and the state block's "с понедельника". NEW
+    // WRITING — Maksim has not approved this sentence yet.
+    stakes: "Через год ты можешь стоять ровно здесь же. Те же деньги. Те же отношения. То же «с понедельника». Программа сама не выключается.",
     text: "Не нужно менять всю жизнь сегодня. Сделай первый шаг.",
     ctaLabel: "Войти в закрытый Telegram",
     price: "$100",

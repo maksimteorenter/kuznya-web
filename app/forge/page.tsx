@@ -897,6 +897,9 @@ export default function ForgePage() {
           </FadeIn>
 
           <FadeIn delay={0.4} className={`mx-auto mt-16 max-w-lg border-t ${hairline} pt-12`}>
+            {/* The stakes, immediately before the last CTA: what the reader
+                keeps if he changes nothing. */}
+            <p className={`mx-auto mb-8 max-w-md text-balance leading-relaxed ${text2}`}>{L.finalScreen.stakes}</p>
             <p className={`font-display text-sm font-semibold uppercase tracking-[0.1em] ${text2}`}>{L.finalScreen.pre}</p>
             <p className={`mt-4 leading-relaxed ${boneSoft}`}>{L.finalScreen.text}</p>
             <p className={`mt-8 text-balance font-editorial text-lg italic leading-snug ${boneSofter}`}>
