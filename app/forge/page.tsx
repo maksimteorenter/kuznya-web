@@ -278,27 +278,55 @@ export default function ForgePage() {
       {/* 2 — PAIN. External problem in three concrete zones + the
           philosophical layer, unchanged copy. */}
       <Scene id="pain" bg="bg-[#101010]">
-        <Container className="max-w-2xl text-center">
+        <Container className="max-w-5xl text-center">
           <Head label={L.pain.eyebrow}>{L.pain.h2}</Head>
           <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl">
             <p className={`leading-relaxed ${boneSoft}`}>{L.pain.intro}</p>
           </FadeIn>
 
-          <div className="mx-auto mt-12 max-w-xl space-y-10">
+          {/* Photograph first, thesis second, explanation last. Someone
+              skimming gets the recognition from the image and the one heavy
+              line; only a reader who has stopped needs the paragraph. */}
+          <div className="mx-auto mt-14 grid max-w-5xl gap-8 text-left md:grid-cols-3">
             {[L.pain.money, L.pain.relationships, L.pain.state].map((block, i) => (
-              <FadeIn key={block.title} delay={0.15 + i * 0.08}>
-                <p className={`font-display text-sm font-semibold uppercase tracking-[0.14em] ${goldLight}`}>
+              <FadeIn key={block.title} delay={0.12 + i * 0.1}>
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <Image
+                    src={block.image}
+                    alt={block.imageAlt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
+                  />
+                  {/* The photographs are already dark; this only seats them
+                      into the page ground so they don't read as pasted-on
+                      rectangles. */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(16,16,16,0.25) 0%, rgba(16,16,16,0) 35%, rgba(16,16,16,0.55) 78%, #101010 100%)",
+                    }}
+                  />
+                </div>
+                <p
+                  className={`mt-5 font-display text-xs font-semibold uppercase tracking-[0.2em] ${goldLight}`}
+                >
                   {block.title}
                 </p>
-                <p className={`mt-3 leading-relaxed ${boneSoft}`}>{block.body}</p>
-                {"line" in block && block.line && (
-                  <p className={`mt-3 font-editorial text-xl italic leading-snug ${bone}`}>{block.line}</p>
-                )}
+                <p
+                  className={`mt-3 text-balance font-display font-bold uppercase leading-[1.16] ${bone}`}
+                  style={{ fontSize: "clamp(1.15rem, 1.7vw, 1.5rem)" }}
+                >
+                  {block.line}
+                </p>
+                <p className={`mt-4 text-[15px] leading-relaxed ${text2}`}>{block.body}</p>
               </FadeIn>
             ))}
           </div>
 
-          <FadeIn delay={0.4} className="mx-auto mt-12 max-w-xl">
+          <FadeIn delay={0.45} className="mx-auto mt-16 max-w-2xl">
             <BigLine>{L.pain.philosophical}</BigLine>
           </FadeIn>
         </Container>

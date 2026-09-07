@@ -609,17 +609,31 @@ export const KUZNYA_LANDING = {
     h2: "Ты вроде не дурак. Так почему жизнь опять привела тебя сюда?",
     intro:
       "Ты читаешь. Учишься. Понимаешь, что нужно делать. Даже иногда начинаешь. Но некоторые проблемы почему-то возвращаются.",
+    // `line` is the thesis — the short, heavy phrase that carries the block
+    // when someone only skims. Relationships already had one; money and state
+    // now have theirs, both compressed out of the body copy directly below
+    // them rather than newly written. `image` is a real photographed moment,
+    // not an abstract figure: the reader should recognise his own evening,
+    // not decode a symbol.
     money: {
       title: "Деньги",
+      line: "Зарабатываешь. И снова упираешься в потолок.",
+      image: "/images/forge/pain/dengi.jpg",
+      imageAlt: "Мужчина поздно вечером за столом, рука замерла над телефоном",
       body: "Работаешь. Крутишься. Что-то зарабатываешь. Но постоянно возникает очередной провал: долг; неудачное решение; страх рискнуть; потолок дохода; потеря денег; хаос; отсутствие дисциплины. И через несколько лет: «Почему я до сих пор не там, где хотел быть?»",
     },
     relationships: {
       title: "Отношения",
-      body: "Сначала хорошо. Потом претензии. Конфликты. Холод. Разочарование. Расставание. Новый человек. Новая надежда. Проходит время.",
       line: "Лица другие. Сценарий тот же.",
+      image: "/images/forge/pain/otnosheniya.jpg",
+      imageAlt: "Двое за кухонным столом вечером, между ними пауза",
+      body: "Сначала хорошо. Потом претензии. Конфликты. Холод. Разочарование. Расставание. Новый человек. Новая надежда. Проходит время.",
     },
     state: {
       title: "Состояние",
+      line: "Знаешь, что делать. Не делаешь.",
+      image: "/images/forge/pain/sostoyanie.jpg",
+      imageAlt: "Кроссовки и спортивная сумка нетронутыми стоят у двери",
       body: "Ты знаешь, что нужно сделать. Но не делаешь. Начинаешь. Бросаешь. Говоришь: «С понедельника». Проходит понедельник. Потом месяц. Потом год. Самое неприятное — ты понимаешь, что способен на большее.",
     },
     philosophical:
