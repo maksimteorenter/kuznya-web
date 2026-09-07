@@ -278,10 +278,32 @@ export default function ForgePage() {
             <p className={`text-balance text-lg leading-relaxed ${boneSoft}`}>{L.hero.subhead}</p>
           </FadeIn>
           <FadeIn delay={0.28} className="mx-auto mt-5 max-w-xl">
-            <p className={`text-balance leading-relaxed ${text2}`}>{L.hero.body}</p>
+            {/* Hormozi's Time Delay lever. The old line here described the
+                product; this one names what the reader gets first and when,
+                so "90 дней" stops reading as "результат через три месяца".
+                Gold, not muted grey — it is a promise, not a footnote. */}
+            <p className={`text-balance text-lg leading-relaxed ${goldLight}`}>{L.hero.firstResult}</p>
           </FadeIn>
           <FadeIn delay={0.36} className="mt-9">
             <PrimaryCta label={L.hero.ctaLabel} price={L.hero.price} id="hero" />
+          </FadeIn>
+
+          {/* Transitional CTA (StoryBrand). The page used to offer one door:
+              $100 or leave. Deliberately weaker than the primary — a text
+              link, not a second button — so it never competes for the click. */}
+          <FadeIn delay={0.4} className="mt-5">
+            <p className={`text-sm leading-relaxed ${text2}`}>
+              {L.transitional.label}{" "}
+              <a
+                href={KUZNYA_TELEGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track="forge_hero_lead_magnet_click"
+                className={`underline decoration-[rgba(224,192,120,0.5)] underline-offset-4 ${goldLight} transition-colors hover:decoration-[rgba(224,192,120,1)]`}
+              >
+                {L.transitional.ctaLabel}
+              </a>
+            </p>
           </FadeIn>
           <FadeIn delay={0.44} className="mt-5">
             <p className={`text-xs uppercase tracking-[0.1em] ${text2}`}>{L.hero.micro}</p>
@@ -341,6 +363,10 @@ export default function ForgePage() {
           </div>
 
           <FadeIn delay={0.45} className="mx-auto mt-16 max-w-2xl">
+            {/* The war, folded in. It used to be its own section here, which
+                switched topic mid-run and dragged four legal paragraphs with
+                it; those now sit once, near the footer. */}
+            <p className={`mx-auto mb-12 max-w-xl leading-relaxed ${text2}`}>{L.pain.warLine}</p>
             <BigLine>{L.pain.philosophical}</BigLine>
           </FadeIn>
         </Container>
@@ -362,29 +388,6 @@ export default function ForgePage() {
               {L.turn.line2}
             </p>
           </FadeIn>
-        </Container>
-      </Scene>
-
-      {/* 4 — WAR. Context, disclaimer kept verbatim — legally load-bearing. */}
-      <Scene id="war" bg="bg-[#12100C]">
-        <Container className="max-w-2xl text-center">
-          <Head>{L.war.h2}</Head>
-          <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl">
-            <p className={`leading-relaxed ${boneSoft}`}>{L.war.intro}</p>
-          </FadeIn>
-          <FadeIn delay={0.16} className="mx-auto mt-6 max-w-xl">
-            <p className={`font-editorial text-xl italic leading-snug ${text2}`}>{L.war.quote}</p>
-            <p className={`mt-4 leading-relaxed ${boneSoft}`}>{L.war.afterQuote}</p>
-          </FadeIn>
-          <ChipList items={L.war.stressList} />
-          <FadeIn delay={0.2} className="mx-auto mt-10 max-w-xl">
-            <BigLine>{L.war.bigLine}</BigLine>
-          </FadeIn>
-          <FadeIn delay={0.26} className="mx-auto mt-8 max-w-xl">
-            <p className={`leading-relaxed ${boneSoft}`}>{L.war.recoveryIntro}</p>
-          </FadeIn>
-          <ChipList items={L.war.recoveryList} />
-          <Disclaimer>{L.war.disclaimer}</Disclaimer>
         </Container>
       </Scene>
 
@@ -430,7 +433,6 @@ export default function ForgePage() {
           </FadeIn>
 
           <FadeIn delay={0.34} className={`mx-auto mt-16 max-w-xl border-t ${hairline} pt-12`}>
-            <SubHead>{L.programs.h2}</SubHead>
           </FadeIn>
           <FadeIn delay={0.38} className="mx-auto mt-6 max-w-xl">
             <p className={`leading-relaxed ${boneSoft}`}>{L.programs.intro}</p>
@@ -440,7 +442,6 @@ export default function ForgePage() {
           </FadeIn>
           <ChipList items={L.programs.dimensions} />
           <FadeIn delay={0.46} className="mx-auto mt-8 max-w-xl">
-            <p className={`text-sm leading-relaxed ${text2}`}>{L.programs.spiritualNote}</p>
           </FadeIn>
           <FadeIn delay={0.5} className={`mx-auto mt-10 max-w-xl border-t ${hairline} pt-8`}>
             <p className={`font-display text-sm font-semibold uppercase tracking-[0.14em] ${goldLight}`}>
@@ -475,65 +476,53 @@ export default function ForgePage() {
         </Container>
       </Scene>
 
-      {/* 6 — GUIDE. story + maksim merged and moved up: at a $100 checkpoint
-          the reader needs to know who they're trusting before being asked to
-          pay, not after. Uses the real portrait (about-hero.jpg), same as
-          before — a living face, not a rendered figure, is what carries
-          trust here. */}
+      {/* 6 — GUIDE. The captivity, which until now reached this page as one
+          word inside a list ("Через спорт. Через бизнес… Через плен"). At a
+          $100 checkpoint the reader has to know who he is trusting before he
+          is asked to pay, and StoryBrand wants two proofs from a guide —
+          empathy and authority. 1341 days is both, so the block stays short on
+          purpose: three paragraphs, one line, one door out to the book for
+          anyone who wants the whole story.
+
+          The collage poster that used to sit here is gone. Its text was baked
+          into the pixels — untranslatable, unreadable on a phone — and it
+          framed Maksim as the hero of the page, which is the one thing
+          StoryBrand forbids on a sales page. A plain portrait does the job the
+          collage was trying to do, without taking the hero's seat. */}
       <Scene id="guide" bg="bg-[#12100C]">
         <Container className="max-w-2xl text-center">
-          <FadeIn className={`mx-auto max-w-xs overflow-hidden rounded-lg ring-1 ring-[rgba(224,192,120,0.3)]`}>
+          <FadeIn className={`mx-auto max-w-[260px] overflow-hidden rounded-lg ring-1 ring-[rgba(224,192,120,0.3)]`}>
             <Image
-              src="/images/about-hero.jpg"
-              alt="Максим Теорентер — спорт, командный спорт, военный этап, 1341 день в плену"
-              width={1066}
-              height={1600}
-              sizes="(max-width: 640px) 80vw, 320px"
+              src={L.maksim.portrait}
+              alt={L.maksim.portraitAlt}
+              width={614}
+              height={768}
+              sizes="(max-width: 640px) 65vw, 260px"
               className="h-auto w-full"
             />
           </FadeIn>
           <div className="mt-10">
-            <Head>{L.maksim.h2}</Head>
+            <Head label={L.maksim.eyebrow}>{L.maksim.h2}</Head>
           </div>
-          <FadeIn delay={0.1} className="mx-auto mt-6 max-w-xl">
-            <p className={`font-editorial text-xl italic leading-snug ${bone}`}>{L.maksim.sub}</p>
-          </FadeIn>
-          <FadeIn delay={0.16} className="mx-auto mt-6 max-w-xl space-y-4">
-            {L.maksim.paragraphs.map((p) => (
-              <p key={p} className={`leading-relaxed ${boneSoft}`}>
-                {p}
+          {/* Left-aligned inside a centred section: three paragraphs of first
+              person read as testimony, and centred prose of this length is
+              tiring. */}
+          <FadeIn delay={0.16} className="mx-auto mt-7 max-w-xl space-y-4 text-left">
+            {L.maksim.paragraphs.map((para) => (
+              <p key={para} className={`leading-relaxed ${boneSoft}`}>
+                {para}
               </p>
             ))}
           </FadeIn>
-          <ChipList items={L.maksim.give} />
-
-          <FadeIn delay={0.22} className={`mx-auto mt-14 max-w-xl border-t ${hairline} pt-10`}>
-            <p className={`font-display text-sm font-semibold uppercase tracking-[0.14em] ${goldLight}`}>
-              {L.story.h2}
-            </p>
-            <p className={`mt-5 leading-relaxed ${boneSoft}`}>{L.story.intro}</p>
-          </FadeIn>
-          <FadeIn delay={0.26} className="mx-auto mt-6 max-w-xl">
-            <p className={`leading-relaxed ${boneSoft}`}>{L.story.sawIntro}</p>
-          </FadeIn>
-          <ChipList items={L.story.saw} />
-          <FadeIn delay={0.3} className="mx-auto mt-8 max-w-xl">
-            <p className={`leading-relaxed ${boneSoft}`}>{L.story.studiedIntro}</p>
-          </FadeIn>
-          <ChipList items={L.story.studied} />
-          <FadeIn delay={0.34} className="mx-auto mt-6 max-w-xl">
-            <p className={`leading-relaxed ${boneSoft}`}>{L.story.closing}</p>
-          </FadeIn>
-          <FadeIn delay={0.38} className={`mx-auto mt-10 max-w-xl border-t ${hairline} pt-8`}>
+          <FadeIn delay={0.28} className={`mx-auto mt-12 max-w-xl border-t ${hairline} pt-10`}>
             <p className={`text-balance font-editorial text-2xl italic leading-snug ${bone} md:text-3xl`}>
-              {L.story.bigLine}
+              {L.maksim.bigLine}
             </p>
           </FadeIn>
-
-          <FadeIn delay={0.44} className="mt-9">
+          <FadeIn delay={0.34} className="mt-9">
             <a
-              href="/about"
-              data-track="forge_about_click"
+              href={L.maksim.ctaHref}
+              data-track="forge_book_click"
               className={`inline-flex min-h-[46px] items-center justify-center rounded-full border ${hairline} px-7 py-3 font-display text-sm font-semibold uppercase tracking-[0.1em] ${bone} transition-colors hover:border-[rgba(224,192,120,0.6)]`}
             >
               {L.maksim.ctaLabel} →
@@ -688,28 +677,6 @@ export default function ForgePage() {
         </Container>
       </Scene>
 
-      {/* 9 — TERRITORIES. Shortened: dense chip rows instead of tall bulleted
-          lists — same points, less scroll. */}
-      <Scene id="territories" bg="bg-[#0A0706]">
-        <Container className="max-w-3xl text-center">
-          <Head tone="bright">{L.territories.h2}</Head>
-          <div className="mt-10 space-y-6">
-            {L.territories.cards.map((card, i) => (
-              <FadeIn key={card.title} delay={i * 0.08} className={`rounded-lg border ${hairline} px-5 py-4 text-left`}>
-                <p className={`font-display text-sm font-bold uppercase tracking-[0.06em] ${goldLight}`}>{card.title}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {card.points.map((point) => (
-                    <span key={point} className={`rounded-full border ${hairline} px-3 py-1 text-xs leading-relaxed ${text2}`}>
-                      {point}
-                    </span>
-                  ))}
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </Container>
-      </Scene>
-
       {/* 10 — NINETY. Image of success — the Tuesday scene, kept intact. */}
       <Scene id="ninety" bg="bg-[#12100C]">
         <Container className="max-w-2xl text-center">
@@ -737,12 +704,23 @@ export default function ForgePage() {
             ))}
           </ul>
           <FadeIn delay={0.3} className="mx-auto mt-10 max-w-xl">
-            <p className={`text-balance font-editorial text-xl italic leading-relaxed ${boneSoft}`}>{L.ninety.scene}</p>
+            <div className="grid items-center gap-8 text-left md:grid-cols-[minmax(0,240px)_minmax(0,1fr)]">
+              <div className={`mx-auto w-full max-w-[240px] overflow-hidden rounded-lg border ${hairline}`}>
+                <Image
+                  src={L.ninety.image}
+                  alt={L.ninety.imageAlt}
+                  width={825}
+                  height={1100}
+                  sizes="(max-width: 768px) 60vw, 240px"
+                  className="h-auto w-full"
+                />
+              </div>
+              <p className={`text-balance font-editorial text-xl italic leading-relaxed ${boneSoft}`}>{L.ninety.scene}</p>
+            </div>
           </FadeIn>
           <FadeIn delay={0.4} className={`mx-auto mt-10 max-w-xl border-t ${hairline} pt-8`}>
             <BigLine>{L.ninety.bigLine}</BigLine>
           </FadeIn>
-          <Disclaimer>{L.ninety.disclaimer}</Disclaimer>
         </Container>
       </Scene>
 
@@ -805,7 +783,16 @@ export default function ForgePage() {
             </ul>
           </FadeIn>
 
-          <FadeIn delay={0.42} className="mx-auto mt-10 max-w-xl">
+          {/* The effort question, answered where it gets asked — next to the
+              price. It sits immediately above the guarantee on purpose: the
+              honest ask and the way out of it belong on the same screen. */}
+          <FadeIn delay={0.4} className={`mx-auto mt-12 max-w-xl border-t ${hairline} pt-10`}>
+            <p className={`font-display text-sm font-semibold uppercase tracking-[0.14em] ${goldLight}`}>
+              {L.price.effort.head}
+            </p>
+            <p className={`mt-4 leading-relaxed ${boneSoft}`}>{L.price.effort.body}</p>
+          </FadeIn>
+          <FadeIn delay={0.46} className="mx-auto mt-10 max-w-xl">
             <GuaranteeBox>{L.price.guarantee}</GuaranteeBox>
           </FadeIn>
           <FadeIn delay={0.48} className="mt-6">
@@ -847,6 +834,14 @@ export default function ForgePage() {
           </ul>
           <FadeIn delay={0.5} className={`mx-auto mt-10 max-w-xl border-t ${hairline} pt-8`}>
             <BigLine>{L.notFor.bigLine}</BigLine>
+          </FadeIn>
+
+          {/* Both disclaimers, once, here. They are legally required and they
+              stay — they just no longer interrupt the middle of the story. */}
+          <FadeIn delay={0.56} className={`mx-auto mt-16 max-w-xl space-y-4 border-t ${hairline} pt-10 text-left`}>
+            {L.legal.map((note) => (
+              <Disclaimer key={note}>{note}</Disclaimer>
+            ))}
           </FadeIn>
         </Container>
       </Scene>
