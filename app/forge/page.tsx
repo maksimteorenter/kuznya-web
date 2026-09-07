@@ -121,17 +121,6 @@ function Head({
   );
 }
 
-function SubHead({ children }: { children: ReactNode }) {
-  return (
-    <p
-      className={`mx-auto mt-2 max-w-xl text-balance font-display font-bold uppercase leading-[1.14] ${bone}`}
-      style={{ fontSize: "clamp(1.3rem, 2.6vw, 1.9rem)" }}
-    >
-      {children}
-    </p>
-  );
-}
-
 function BigLine({ children }: { children: ReactNode }) {
   return (
     <p
@@ -201,14 +190,6 @@ const STEP_PIECES = ["pawn", "pawn", "pawn", "king"] as const;
 const STEP_TONES = [
   "text-[#8E1B22]/50",
   "text-[#8E1B22]/80",
-  "text-[#B8873B]",
-  "text-[#E0C078]",
-] as const;
-const LEVEL_PIECES = ["pawn", "pawn", "rook", "rook", "king"] as const;
-const LEVEL_TONES = [
-  "text-[#8E1B22]/50",
-  "text-[#8E1B22]/80",
-  "text-[#B8873B]/80",
   "text-[#B8873B]",
   "text-[#E0C078]",
 ] as const;
@@ -372,32 +353,17 @@ export default function ForgePage() {
         </Container>
       </Scene>
 
-      {/* 3 — TURN. Almost-empty screen, the pivot line. */}
-      <Scene id="turn" bg="bg-[#0A0706]" bare className="flex min-h-[55vh] items-center">
-        <Container className="max-w-xl text-center">
-          <FadeIn>
-            <p className={`text-balance font-editorial text-2xl italic leading-snug ${bone} md:text-3xl`}>
-              {L.turn.line1}
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.25} className="mt-8">
-            <p
-              className={`text-balance font-display font-bold uppercase leading-[1.14] ${goldLight}`}
-              style={{ fontSize: "clamp(1.5rem, 3.4vw, 2.4rem)" }}
-            >
-              {L.turn.line2}
-            </p>
-          </FadeIn>
-        </Container>
-      </Scene>
-
       {/* 5 — MECHANISM. whyKnowledge + programs merged: one explanation of
           why knowledge doesn't turn into action, not two restatements of the
           same idea. pawn-stone.png (pawn held by threads, in the dark) is the
           visual for "an opponent that isn't the person across the board." */}
       <Scene id="mechanism" bg="bg-[#1E1A15]">
         <Container className="max-w-2xl text-center">
-          <Head>{L.whyKnowledge.h2}</Head>
+          {/* whyKnowledge.h2 was "Ты уже знаешь, что нужно делать. Почему же
+              не делаешь?" — the same sentence as pain.state.line, word for
+              word. The heading is turn.line1 instead: his own line, from the
+              pivot screen this section absorbed. */}
+          <Head>{L.turn.line1}</Head>
 
           <FadeIn delay={0.08} className="mx-auto mt-9 max-w-[200px]">
             <Image
@@ -442,18 +408,6 @@ export default function ForgePage() {
           </FadeIn>
           <ChipList items={L.programs.dimensions} />
           <FadeIn delay={0.46} className="mx-auto mt-8 max-w-xl">
-          </FadeIn>
-          <FadeIn delay={0.5} className={`mx-auto mt-10 max-w-xl border-t ${hairline} pt-8`}>
-            <p className={`font-display text-sm font-semibold uppercase tracking-[0.14em] ${goldLight}`}>
-              {L.programs.questionsIntro}
-            </p>
-            <ul className="mt-5 space-y-3">
-              {L.programs.questions.map((q) => (
-                <li key={q} className={`font-editorial text-lg italic leading-snug ${bone}`}>
-                  {q}
-                </li>
-              ))}
-            </ul>
           </FadeIn>
           <FadeIn delay={0.56} className="mx-auto mt-12 max-w-2xl">
             <ol className="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
@@ -656,24 +610,6 @@ export default function ForgePage() {
             ))}
           </div>
 
-          <FadeIn delay={0.2} className={`mx-auto mt-16 max-w-3xl border-t ${hairline} pt-12`}>
-            <SubHead>{L.levels.h2}</SubHead>
-          </FadeIn>
-          <div className={`mx-auto mt-8 grid max-w-2xl gap-px overflow-hidden rounded-lg border ${hairline} bg-[rgba(224,192,120,0.14)] sm:grid-cols-5`}>
-            {L.levels.items.map((item, i) => (
-              <FadeIn key={item.n} delay={i * 0.05} className="bg-[#12100C] px-3 py-7">
-                <ChessPiece
-                  piece={LEVEL_PIECES[i] ?? "king"}
-                  className={`mx-auto h-10 w-10 md:h-12 md:w-12 ${LEVEL_TONES[i] ?? goldLight}`}
-                />
-                <p className={`mt-3 font-display text-2xl font-bold ${goldLight}`}>{item.n}</p>
-                <p className={`mt-2 text-xs uppercase leading-snug tracking-[0.04em] ${bone}`}>{item.label}</p>
-              </FadeIn>
-            ))}
-          </div>
-          <FadeIn delay={0.3} className="mx-auto mt-10 max-w-xl">
-            <BigLine>{L.levels.line}</BigLine>
-          </FadeIn>
         </Container>
       </Scene>
 
@@ -693,16 +629,6 @@ export default function ForgePage() {
               {L.ninety.line2}
             </p>
           </FadeIn>
-          <FadeIn delay={0.18} className="mx-auto mt-10 max-w-xl">
-            <p className={`leading-relaxed ${boneSoft}`}>{L.ninety.goalsIntro}</p>
-          </FadeIn>
-          <ul className="mx-auto mt-5 flex max-w-xl flex-wrap justify-center gap-2.5">
-            {L.ninety.goals.map((g, i) => (
-              <FadeIn key={g} delay={0.2 + i * 0.03}>
-                <li className={`rounded-full border ${hairline} px-4 py-2 text-sm leading-relaxed ${text2}`}>{g}</li>
-              </FadeIn>
-            ))}
-          </ul>
           <FadeIn delay={0.3} className="mx-auto mt-10 max-w-xl">
             <div className="grid items-center gap-8 text-left md:grid-cols-[minmax(0,240px)_minmax(0,1fr)]">
               <div className={`mx-auto w-full max-w-[240px] overflow-hidden rounded-lg border ${hairline}`}>
@@ -804,20 +730,8 @@ export default function ForgePage() {
       {/* 12 — MISSION + NOT FOR. Why he does this, then who it isn't for. */}
       <Scene id="mission" bg="bg-[#12100C]">
         <Container className="max-w-2xl text-center">
-          <Head tone="bright">{L.mission.h2}</Head>
-          <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl space-y-4">
-            {L.mission.paragraphs.map((p) => (
-              <p key={p} className={`leading-relaxed ${boneSoft}`}>
-                {p}
-              </p>
-            ))}
-          </FadeIn>
-          <FadeIn delay={0.2} className="mx-auto mt-8 max-w-xl">
-            <BigLine>{L.mission.bigLine}</BigLine>
-          </FadeIn>
-
-          <FadeIn delay={0.26} className={`mx-auto mt-16 max-w-xl border-t ${hairline} pt-12`}>
-            <SubHead>{L.notFor.h2}</SubHead>
+          <Head tone="bright">{L.notFor.h2}</Head>
+          <FadeIn delay={0.26} className="mx-auto mt-8 max-w-xl">
           </FadeIn>
           <FadeIn delay={0.3} className="mt-6">
             <p className={`leading-relaxed ${boneSoft}`}>{L.notFor.intro}</p>
@@ -873,12 +787,12 @@ export default function ForgePage() {
           />
         </div>
         <Container className="max-w-2xl">
-          <FadeIn>
-            <span className={`font-display text-sm font-semibold uppercase tracking-[0.16em] ${goldLight}`}>
-              {L.finalOffer.eyebrow}
-            </span>
-          </FadeIn>
-          <FadeIn delay={0.1} className="mt-6">
+          {/* One closing CTA, not two. This screen used to run the finalOffer
+              block (eyebrow, headline, sub, button, micro) and then finalScreen
+              (pre, button, kicker) directly under it — the same offer and the
+              same button twice on one screen. Only the headline survives from
+              finalOffer; everything else here is finalScreen. */}
+          <FadeIn delay={0.1}>
             <h2
               className={`text-balance font-display font-bold uppercase leading-[1.06] ${bone}`}
               style={{ fontSize: "clamp(1.9rem, 4.6vw, 3.2rem)" }}
@@ -886,17 +800,7 @@ export default function ForgePage() {
               {L.finalOffer.h2}
             </h2>
           </FadeIn>
-          <FadeIn delay={0.18} className="mx-auto mt-6 max-w-lg">
-            <p className={`leading-relaxed ${boneSoft}`}>{L.finalOffer.sub}</p>
-          </FadeIn>
-          <FadeIn delay={0.26} className="mt-9">
-            <PrimaryCta label={L.finalOffer.ctaLabel} price={L.finalOffer.price} id="final_offer" />
-          </FadeIn>
-          <FadeIn delay={0.32} className="mt-5">
-            <p className={`text-xs uppercase tracking-[0.1em] ${text2}`}>{L.finalOffer.micro}</p>
-          </FadeIn>
-
-          <FadeIn delay={0.4} className={`mx-auto mt-16 max-w-lg border-t ${hairline} pt-12`}>
+          <FadeIn delay={0.2} className="mx-auto mt-10 max-w-lg">
             {/* The stakes, immediately before the last CTA: what the reader
                 keeps if he changes nothing. */}
             <p className={`mx-auto mb-8 max-w-md text-balance leading-relaxed ${text2}`}>{L.finalScreen.stakes}</p>
