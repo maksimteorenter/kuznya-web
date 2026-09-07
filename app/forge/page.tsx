@@ -398,8 +398,6 @@ export default function ForgePage() {
             <p className={`leading-relaxed ${text2}`}>{L.whyKnowledge.closing}</p>
           </FadeIn>
 
-          <FadeIn delay={0.34} className={`mx-auto mt-16 max-w-xl border-t ${hairline} pt-12`}>
-          </FadeIn>
           <FadeIn delay={0.38} className="mx-auto mt-6 max-w-xl">
             <p className={`leading-relaxed ${boneSoft}`}>{L.programs.intro}</p>
           </FadeIn>
@@ -407,8 +405,6 @@ export default function ForgePage() {
             <p className={`leading-relaxed ${boneSoft}`}>{L.programs.dimensionsIntro}</p>
           </FadeIn>
           <ChipList items={L.programs.dimensions} />
-          <FadeIn delay={0.46} className="mx-auto mt-8 max-w-xl">
-          </FadeIn>
           <FadeIn delay={0.56} className="mx-auto mt-12 max-w-2xl">
             <ol className="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
               {L.programs.chain.map((step, i) => (
@@ -731,8 +727,6 @@ export default function ForgePage() {
       <Scene id="mission" bg="bg-[#12100C]">
         <Container className="max-w-2xl text-center">
           <Head tone="bright">{L.notFor.h2}</Head>
-          <FadeIn delay={0.26} className="mx-auto mt-8 max-w-xl">
-          </FadeIn>
           <FadeIn delay={0.3} className="mt-6">
             <p className={`leading-relaxed ${boneSoft}`}>{L.notFor.intro}</p>
           </FadeIn>
