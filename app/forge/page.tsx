@@ -180,14 +180,15 @@ function GuaranteeBox({ children }: { children: ReactNode }) {
 // slack as the stone cracks, the shell falling away with the threads cut,
 // and finally a king — crown band and cross, unmistakably not a pawn.
 //
-// Rendered on black and composited with mix-blend-mode: screen, so the black
-// drops out against the tile and only the lit figure remains. Same trick the
-// closing king already uses.
+// The figures carry real alpha rather than being screen-blended. Their render
+// backgrounds are not pure black — corners measured up to 87/255 — so a screen
+// blend left a visibly lighter panel behind each one against the tile. Cut out
+// on a luminance ramp instead, which is independent of the tile colour.
 const STEP_FIGURES = [
-  { src: "/images/forge/steps/1-pawn-held.png", alt: "Каменная пешка, которую тянут вверх золотые нити" },
-  { src: "/images/forge/steps/2-pawn-crack.png", alt: "Та же пешка: нити провисли, по камню пошла трещина, изнутри светится" },
-  { src: "/images/forge/steps/3-pawn-free.png", alt: "Каменная оболочка осыпается, под ней латунь, нити оборваны" },
-  { src: "/images/forge/steps/4-king.png", alt: "Латунный шахматный король с крестом наверху, у основания обрывок нити" },
+  { src: "/images/forge/steps/1-pawn-held.png", alt: "Пешка-пехотинец с опущенной головой, к шлему и запястьям привязаны золотые нити, уходящие вверх" },
+  { src: "/images/forge/steps/2-pawn-crack.png", alt: "Тот же воин выпрямился и смотрит вверх: нити провисли, по нагруднику трещина со светом" },
+  { src: "/images/forge/steps/3-pawn-free.png", alt: "Воин стоит прямо, нити оборваны и висят, из-под камня проступает латунь" },
+  { src: "/images/forge/steps/4-king.png", alt: "Король в короне с державой и опущенным мечом, у ног обрывки золотых нитей" },
 ] as const;
 
 function StepFigure({ i, className = "" }: { i: number; className?: string }) {
@@ -200,9 +201,8 @@ function StepFigure({ i, className = "" }: { i: number; className?: string }) {
       height={880}
       // The tile is ~130px on desktop and ~70px on mobile; these are doubled so
       // a retina screen gets a sharp figure rather than an upscaled one.
-      sizes="(max-width: 640px) 160px, 260px"
+      sizes="(max-width: 640px) 160px, 420px"
       className={`object-contain ${className}`}
-      style={{ mixBlendMode: "screen" }}
     />
   );
 }
@@ -512,7 +512,7 @@ export default function ForgePage() {
                 return (
                   <FadeIn key={step.n} delay={0.1 + i * 0.1} className="text-left">
                     <div
-                      className={`relative flex aspect-square items-center justify-center rounded-lg border bg-[#12100C] ${
+                      className={`relative flex aspect-[3/4] items-center justify-center rounded-lg border bg-[#12100C] ${
                         isLast ? "border-[#E0C078] shadow-[0_18px_34px_-16px_rgba(224,192,120,0.45)]" : hairline
                       }`}
                     >
@@ -522,7 +522,7 @@ export default function ForgePage() {
                       >
                         {step.n}
                       </span>
-                      <StepFigure i={i} className="h-[88%] w-auto" />
+                      <StepFigure i={i} className="h-[94%] w-auto" />
                       {!isLast && (
                         <span
                           aria-hidden="true"
@@ -569,7 +569,7 @@ export default function ForgePage() {
                     >
                       {step.n}
                     </span>
-                    <StepFigure i={i} className="h-[88%] w-auto" />
+                    <StepFigure i={i} className="h-[94%] w-auto" />
                   </div>
                   <div className="pt-1">
                     <p className={`font-display text-[13px] font-semibold uppercase tracking-[0.1em] ${goldLight}`}>
