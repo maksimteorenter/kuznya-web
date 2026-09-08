@@ -170,30 +170,40 @@ function GuaranteeBox({ children }: { children: ReactNode }) {
 // Hard-edged silhouettes — small markers only. Large illustrative work now
 // comes from the photoreal renders in /public/images/forge/; these stay
 // tiny (numbering, bullets, level markers), never full-scene art.
-const PIECE_PATHS = {
-  pawn: "M50,14 L60,18 L64,28 L60,38 L58,42 L62,72 L70,80 L80,88 L20,88 L30,80 L38,72 L42,42 L40,38 L36,28 L40,18 Z",
-  rook: "M30,14 L40,14 L40,24 L45,24 L45,14 L55,14 L55,24 L60,24 L60,14 L70,14 L70,24 L64,72 L62,72 L70,80 L80,88 L20,88 L30,80 L38,72 L36,72 L30,24 Z",
-  king: "M47,4 L53,4 L53,11 L60,11 L60,17 L53,17 L53,32 L66,32 L58,42 L62,72 L70,80 L80,88 L20,88 L30,80 L38,72 L42,42 L34,32 L47,32 L47,17 L40,17 L40,11 L47,11 Z",
-} as const;
-
-function ChessPiece({ piece, className = "" }: { piece: keyof typeof PIECE_PATHS; className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" aria-hidden="true" className={className} fill="currentColor">
-      <path d={PIECE_PATHS[piece]} />
-    </svg>
-  );
-}
-
-// Pawn walking the board, promoted at the end — tone runs fire → gold, so the
-// same "closer to gold as you descend" idea plays out at icon scale too.
-const STEP_PIECES = ["pawn", "pawn", "pawn", "king"] as const;
-const STEP_TONES = [
-  "text-[#8E1B22]/50",
-  "text-[#8E1B22]/80",
-  "text-[#B8873B]",
-  "text-[#E0C078]",
+// The four route figures. They used to be inline SVG polygons built entirely
+// from straight `L` segments — no curve anywhere — which is why they read as
+// flat cut-outs next to the photographed pieces elsewhere on the page. These
+// are carved renders in the same language as pawn-stone and king-gold: one
+// warm rim light on pure black, real Staunton proportions.
+//
+// The progression is the argument: threads pulling the pawn, threads gone
+// slack as the stone cracks, the shell falling away with the threads cut,
+// and finally a king — crown band and cross, unmistakably not a pawn.
+//
+// Rendered on black and composited with mix-blend-mode: screen, so the black
+// drops out against the tile and only the lit figure remains. Same trick the
+// closing king already uses.
+const STEP_FIGURES = [
+  { src: "/images/forge/steps/1-pawn-held.png", alt: "Каменная пешка, которую тянут вверх золотые нити" },
+  { src: "/images/forge/steps/2-pawn-crack.png", alt: "Та же пешка: нити провисли, по камню пошла трещина, изнутри светится" },
+  { src: "/images/forge/steps/3-pawn-free.png", alt: "Каменная оболочка осыпается, под ней латунь, нити оборваны" },
+  { src: "/images/forge/steps/4-king.png", alt: "Латунный шахматный король с крестом наверху, у основания обрывок нити" },
 ] as const;
 
+function StepFigure({ i, className = "" }: { i: number; className?: string }) {
+  const fig = STEP_FIGURES[i] ?? STEP_FIGURES[STEP_FIGURES.length - 1];
+  return (
+    <Image
+      src={fig.src}
+      alt={fig.alt}
+      width={663}
+      height={900}
+      sizes="(max-width: 640px) 80px, 220px"
+      className={`object-contain ${className}`}
+      style={{ mixBlendMode: "screen" }}
+    />
+  );
+}
 function PrimaryCta({ label, price, id }: { label: string; price: string; id: string }) {
   return (
     <a
@@ -510,7 +520,7 @@ export default function ForgePage() {
                       >
                         {step.n}
                       </span>
-                      <ChessPiece piece={STEP_PIECES[i] ?? "king"} className={`h-[52%] w-[52%] ${STEP_TONES[i] ?? goldLight}`} />
+                      <StepFigure i={i} className="h-[88%] w-auto" />
                       {!isLast && (
                         <span
                           aria-hidden="true"
@@ -547,7 +557,7 @@ export default function ForgePage() {
                     />
                   )}
                   <div
-                    className={`relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border bg-[#12100C] ${
+                    className={`relative z-10 flex h-20 w-20 shrink-0 items-center justify-center rounded-lg border bg-[#12100C] ${
                       isLast ? "border-[#E0C078] shadow-[0_10px_24px_-14px_rgba(224,192,120,0.45)]" : hairline
                     }`}
                   >
@@ -557,7 +567,7 @@ export default function ForgePage() {
                     >
                       {step.n}
                     </span>
-                    <ChessPiece piece={STEP_PIECES[i] ?? "king"} className={`h-8 w-8 ${STEP_TONES[i] ?? goldLight}`} />
+                    <StepFigure i={i} className="h-[88%] w-auto" />
                   </div>
                   <div className="pt-1">
                     <p className={`font-display text-[13px] font-semibold uppercase tracking-[0.1em] ${goldLight}`}>
