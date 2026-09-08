@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, ArrowLeft, Check, CheckCircle, Target, TrendUp, Heart, Heartbeat, House, Path, Notebook, PencilSimple, Hammer } from "@phosphor-icons/react";
 import s from "./practice.module.css";
+import { DailyCompanion } from "./DailyCompanion";
 
 const directions = [
   { id: "money", title: "Деньги", description: "Доход, дело и уверенность в своих решениях", icon: TrendUp, goal: "Например: обсудить повышение оплаты до конца месяца", obstacle: "Что мешает: страх отказа, нехватка навыка или внешние условия?", action: "Например: записать три результата своей работы для разговора" },
@@ -67,7 +68,18 @@ export default function PracticePage() {
   const done = !!plan && entries.some(e => e.id === plan.id && e.date === today);
   const activeEntries = entries.filter(e => e.id === plan?.id);
   const uniqueDays = new Set(entries.map(e => e.date)).size;
-  const setup = !plan || editing;
+  const setup = editing;
+
+  function beginPlan(suggestedAction = "") {
+    setDirection(plan?.direction ?? "money");
+    setGoal(plan?.goal ?? "");
+    setObstacle(plan?.obstacle ?? "");
+    setAction(suggestedAction || plan?.action || "");
+    setStep(plan ? 1 : 0);
+    setEditing(true);
+    setTab("path");
+    setMessage("");
+  }
 
   function savePlan(event: React.FormEvent) {
     event.preventDefault();
@@ -103,7 +115,7 @@ export default function PracticePage() {
       <a href="/practice" className={s.brand} aria-label="Кузня — личная практика"><img src="/images/logo-mark.svg" alt="" /><span>КУЗНЯ<small>СОЗДАВАЙ СЕБЯ</small></span></a>
       <div className={s.sideLabel}>ЛИЧНАЯ ПРАКТИКА</div>
       <nav aria-label="Разделы приложения" className={s.navigation}>
-        {([{ id: "today", title: "Сегодня", icon: House }, { id: "path", title: "Мой путь", icon: Path }, { id: "journal", title: "Дневник", icon: Notebook }] as const).map(item => <button key={item.id} onClick={() => { setTab(item.id); setEditing(false); setMessage(""); }} aria-current={tab === item.id ? "page" : undefined}><item.icon size={23} weight={tab === item.id ? "fill" : "regular"} /><span>{item.title}</span></button>)}
+        {([{ id: "today", title: "Сегодня", icon: House }, { id: "path", title: "Мой путь", icon: Path }, { id: "journal", title: "Дневник", icon: Notebook }] as const).map(item => <button key={item.id} onClick={() => { setTab(item.id); setEditing(item.id === "path" && !plan); setStep(0); setMessage(""); }} aria-current={tab === item.id ? "page" : undefined}><item.icon size={23} weight={tab === item.id ? "fill" : "regular"} /><span>{item.title}</span></button>)}
       </nav>
       <div className={s.sideBottom}><Hammer size={26} /><p>Мне дали молот.<br />Теперь я кузнец<br />своей жизни.</p><a href="/forge">О проекте Кузня <ArrowRight size={17} /></a></div>
     </aside>
@@ -111,8 +123,9 @@ export default function PracticePage() {
       <header className={s.topbar}><span>МОЯ КУЗНЯ</span><span>{today ? dateLabel(today) : "Ежедневная практика"}</span></header>
       <div className={s.content}>
         {!ready ? <p role="status">Открываем твою практику…</p> : <>
-          <div className={s.pageHeading}><div><p className={s.eyebrow}>{setup ? "ТОЧКА ОТСЧЁТА" : "ОДИН ДЕНЬ. ОДИН ШАГ."}</p><h1>{setup ? "Что ты хочешь изменить?" : tab === "today" ? "Создавай себя. Каждый день." : tab === "path" ? "Твой путь к цели" : "Дневник изменений"}</h1><p>{setup ? "Выбери главное сейчас. Остальное — шаг за шагом." : tab === "journal" ? "Здесь остаётся то, что ты сделал и понял о себе." : "Внимание к себе превращается в конкретное действие."}</p></div><span className={s.edition}>ПРАКТИКА / 01</span></div>
+          <div className={s.pageHeading}><div><p className={s.eyebrow}>{setup ? "ТОЧКА ОТСЧЁТА" : "ОДИН ДЕНЬ. ОДИН ШАГ."}</p><h1>{setup ? "Что ты хочешь изменить?" : tab === "today" ? "Что важно тебе сейчас?" : tab === "path" ? "Твой путь к цели" : "Дневник изменений"}</h1><p>{setup ? "Выбери главное сейчас. Остальное — шаг за шагом." : tab === "journal" ? "Здесь остаётся то, что ты сделал и понял о себе." : "Внимание к себе превращается в конкретное действие."}</p></div><span className={s.edition}>ПРАКТИКА / 01</span></div>
           {message && <div className={s.notice} role="status">{message}</div>}
+          <div hidden={tab !== "today" || setup}><DailyCompanion onChooseAction={beginPlan} /></div>
           {setup ? <div className={s.setupGrid}>
             <section className={s.setupPanel}>
               <div className={s.steps} aria-label={`Шаг ${step + 1} из 3`}>
@@ -136,6 +149,7 @@ export default function PracticePage() {
               <aside className={s.summary}><span className={s.eyebrow}>ТВОЯ ПРАКТИКА</span><div className={s.stat}><strong>{uniqueDays.toString().padStart(2, "0")}</strong><span>дней с действиями</span></div><div className={s.divider} /><p>Изменения становятся заметнее, когда ты записываешь конкретные шаги.</p><button className={s.textButton} onClick={() => setTab("path")}>Посмотреть мой путь <ArrowRight size={18} /></button><blockquote>Я кузнец<br />своей жизни.</blockquote></aside>
             </div> : tab === "path" ? <section className={s.task}><span className={s.eyebrow}>ОТ ЦЕЛИ К ПРАКТИКЕ</span><h2>Три опоры твоего пути</h2><ol className={s.pathList}><li><span>01</span><div><h3>Моя цель</h3><p>{plan.goal}</p></div></li><li><span>02</span><div><h3>Что я исследую</h3><p>{plan.obstacle}</p></div></li><li><span>03</span><div><h3>Что я делаю</h3><p>{plan.action}</p></div></li></ol><p className={s.helper}>Записей по этой цели: {activeEntries.length}. Это количество практик, а не оценка достижения цели.</p><button className={s.secondary} onClick={editPlan}><PencilSimple size={19} /> Уточнить мой следующий шаг</button></section> : <section className={s.journal}>{entries.length === 0 ? <div className={s.empty}><Notebook size={48} /><h2>Здесь начнётся твоя история</h2><p>Выполни действие и запиши наблюдение — появится первая запись.</p><button className={s.primary} onClick={() => setTab("today")}>К практике на сегодня <ArrowRight size={19} /></button></div> : entries.map(e => <article className={s.entry} key={`${e.id}-${e.date}`}><div className={s.entryHeader}><span>{dateLabel(e.date)}</span><span>{directions.find(d => d.id === e.direction)?.title}</span></div><h2>{e.action}</h2><p>{e.reflection}</p><small>Цель: {e.goal}</small></article>)}</section>}
           </>}
+          {!setup && !plan && (tab === "journal" ? <section className={s.empty}><Notebook size={40} aria-hidden="true" /><h2>Здесь начнётся твоя история</h2><p>Выбери цель, выполни действие и запиши наблюдение. Пока записей нет.</p><button className={s.primary} onClick={() => beginPlan()}>Выбрать мою цель <ArrowRight size={19} /></button></section> : <section className={s.firstPath}><div><span className={s.eyebrow}>МОЙ ПУТЬ</span><h2>Что ты хочешь изменить?</h2><p>Выбери одну цель и посильное действие. Короткими практиками выше можно пользоваться уже сейчас.</p></div><button className={s.secondary} onClick={() => beginPlan()}>Выбрать направление <ArrowRight size={19} /></button></section>)}
           <footer className={s.storage}><label><input type="checkbox" checked={remember} onChange={e => toggleRemember(e.target.checked)} /> Сохранять мой путь на этом устройстве</label><p>{remember ? "Записи хранятся только в этом браузере. Очистка данных сайта удалит их; синхронизация между устройствами пока не подключена." : "Без сохранения записи доступны до перезагрузки страницы. Используй личное устройство для личных записей."}</p></footer>
         </>}
       </div>
