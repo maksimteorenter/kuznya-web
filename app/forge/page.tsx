@@ -196,9 +196,11 @@ function StepFigure({ i, className = "" }: { i: number; className?: string }) {
     <Image
       src={fig.src}
       alt={fig.alt}
-      width={663}
-      height={900}
-      sizes="(max-width: 640px) 80px, 220px"
+      width={660}
+      height={880}
+      // The tile is ~130px on desktop and ~70px on mobile; these are doubled so
+      // a retina screen gets a sharp figure rather than an upscaled one.
+      sizes="(max-width: 640px) 160px, 260px"
       className={`object-contain ${className}`}
       style={{ mixBlendMode: "screen" }}
     />
