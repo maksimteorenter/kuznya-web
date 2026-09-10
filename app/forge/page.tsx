@@ -233,7 +233,7 @@ export default function ForgePage() {
           strings render: a pawn at the bottom, huge figures and gold threads
           above it — literally "moved by someone else's hand" before the
           reader has read a word. */}
-      <Scene id="hero" bg="bg-[#0A0706]" bare clip={false} className="flex min-h-[100svh] items-center pt-24 pb-20">
+      <Scene id="hero" bg="bg-[#0A0706]" bare clip={false} className="flex min-h-[100svh] items-center pt-20 pb-14 md:pt-24 md:pb-20">
         <div className="absolute inset-0 overflow-hidden">
           <Image
             src="/images/forge/hero-strings.png"
@@ -279,7 +279,7 @@ export default function ForgePage() {
           {/* Mechanism and timeframe, then the anchor — the Hormozi levers, in
               the order a reader actually asks for them: what is this, how long,
               what does it cost against what it used to cost. */}
-          <FadeIn delay={0.26} className="mt-7">
+          <FadeIn delay={0.26} className="mt-5 md:mt-7">
             <p className={`text-balance text-lg leading-relaxed ${bone}`}>{L.hero.mechanism}</p>
           </FadeIn>
           <FadeIn delay={0.28} className="mx-auto mt-5 max-w-xl">
@@ -290,7 +290,7 @@ export default function ForgePage() {
             <p className={`text-balance text-lg leading-relaxed ${goldLight}`}>{L.hero.firstResult}</p>
           </FadeIn>
 
-          <FadeIn delay={0.32} className={`mx-auto mt-8 max-w-md border-t ${hairline} pt-6`}>
+          <FadeIn delay={0.32} className={`mx-auto mt-6 max-w-md border-t ${hairline} pt-5 md:mt-8 md:pt-6`}>
             <p className={`text-balance leading-relaxed ${boneSoft}`}>{L.hero.anchor}</p>
           </FadeIn>
           <FadeIn delay={0.36} className="mt-9">
