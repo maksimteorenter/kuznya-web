@@ -31,8 +31,12 @@ export function Header({ locale }: { locale?: Locale } = {}) {
       }
     >
       <div className="mx-auto flex h-16 max-w-container items-center justify-between px-6 md:px-10">
+        {/* The brand block points at /mentorship, not at the home page. The
+            owner asked for it directly and more than once: someone who taps his
+            name is looking for him, and "работа со мной" is what he wants them
+            to land on. Unusual for a logo — noted, and his call. */}
         <Link
-          href="/"
+          href="/mentorship"
           className={
             dark
               ? "flex items-center gap-3 text-[#F3EEE5] transition-opacity hover:opacity-75"
