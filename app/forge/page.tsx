@@ -275,12 +275,23 @@ export default function ForgePage() {
           <FadeIn delay={0.2} className="mx-auto mt-7 max-w-xl">
             <p className={`text-balance text-lg leading-relaxed ${boneSoft}`}>{L.hero.subhead}</p>
           </FadeIn>
+
+          {/* Mechanism and timeframe, then the anchor — the Hormozi levers, in
+              the order a reader actually asks for them: what is this, how long,
+              what does it cost against what it used to cost. */}
+          <FadeIn delay={0.26} className="mt-7">
+            <p className={`text-balance text-lg leading-relaxed ${bone}`}>{L.hero.mechanism}</p>
+          </FadeIn>
           <FadeIn delay={0.28} className="mx-auto mt-5 max-w-xl">
             {/* Hormozi's Time Delay lever. The old line here described the
                 product; this one names what the reader gets first and when,
                 so "90 дней" stops reading as "результат через три месяца".
                 Gold, not muted grey — it is a promise, not a footnote. */}
             <p className={`text-balance text-lg leading-relaxed ${goldLight}`}>{L.hero.firstResult}</p>
+          </FadeIn>
+
+          <FadeIn delay={0.32} className={`mx-auto mt-8 max-w-md border-t ${hairline} pt-6`}>
+            <p className={`text-balance leading-relaxed ${boneSoft}`}>{L.hero.anchor}</p>
           </FadeIn>
           <FadeIn delay={0.36} className="mt-9">
             <PrimaryCta label={L.hero.ctaLabel} price={L.hero.price} id="hero" />

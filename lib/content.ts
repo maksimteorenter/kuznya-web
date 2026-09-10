@@ -603,18 +603,34 @@ export const KUZNYA_LANDING = {
   // open: the reader assumed "90 дней" meant "результат через три месяца".
   // The claim itself is not new either — it is `steps.items[0]` verbatim in
   // substance ("Не через месяц. В первую неделю").
+  // Rewritten around the avatar Maksim named: a businessman who is not idle at
+  // all — trainings, books, fresh starts — and who a year later is still with
+  // the wrong people, the wrong partners, the wrong life. His pain is not "I do
+  // nothing", it is "I do a great deal and it all lands wide". The old headline
+  // called him weak, which is the one thing he is not.
+  //
+  // Miller: the h1 is his own sentence, and the hero of it is him, not Maksim.
+  // Hormozi: the transformation and the timeframe sit above the fold, the
+  // anchor is the real price of the personal work rather than an invented
+  // strike-through, and the guarantee moves up beside the button where the risk
+  // is actually felt.
   hero: {
     eyebrow: "Кузня Силы • 90 дней",
-    h1: "Дело не в том, что ты слабый. Ты живёшь по чужой программе.",
+    h1: "Как перестать быть пешкой в чужой игре и стать главным героем своей жизни",
     subhead:
-      "Её загрузили в тебя до того, как ты научился выбирать. Деньги, отношения, состояние — она водит тебя по одному кругу.",
+      "Ты не сидишь на месте. Тренинги, книги, новые старты. А через год — снова не те люди, не те партнёры, не та жизнь. Выбираешь не ты. Выбирает программа, которую в тебя загрузили.",
+    mechanism:
+      "90 дней прикладной работы с подсознанием — с теми самыми программами, которые выбирают за тебя людей, решения и круг.",
     firstResult:
-      "В первую неделю ты увидишь программы, которые управляли тобой всю жизнь. Не через три месяца. В первую.",
+      "Первые из них ты увидишь на первой неделе. Не через три месяца.",
+    // The anchor is true and already stated further down the page in these
+    // words; it is promoted, not invented. No strike-through — the sentence
+    // does the work, and a fake one would sit badly next to a refund promise.
+    anchor: "Личная работа со мной — $1500. В Кузне та же система — $100.",
     ctaLabel: "Войти в Кузню",
     price: "$100",
-    micro: "Закрытый Telegram • 90 дней • около часа в день",
+    micro: "Закрытый Telegram • около часа в день • не понравится — вернём деньги без вопросов",
   },
-
   // Transitional CTA (StoryBrand): before this the page offered exactly one
   // door — $100 or leave. These two already exist inside the bot; they are not
   // something new to build.
