@@ -289,10 +289,6 @@ export default function ForgePage() {
                 Gold, not muted grey — it is a promise, not a footnote. */}
             <p className={`text-balance text-lg leading-relaxed ${goldLight}`}>{L.hero.firstResult}</p>
           </FadeIn>
-
-          <FadeIn delay={0.32} className={`mx-auto mt-6 max-w-md border-t ${hairline} pt-5 md:mt-8 md:pt-6`}>
-            <p className={`text-balance leading-relaxed ${boneSoft}`}>{L.hero.anchor}</p>
-          </FadeIn>
           <FadeIn delay={0.36} className="mt-9">
             <PrimaryCta label={L.hero.ctaLabel} price={L.hero.price} id="hero" />
           </FadeIn>
@@ -315,6 +311,10 @@ export default function ForgePage() {
             </p>
           </FadeIn>
           <FadeIn delay={0.44} className="mt-5">
+            {/* The anchor sits under the button, where a price is actually
+                being weighed, rather than above it — above the fold is worth
+                more to the button than to its justification. */}
+            <p className={`mx-auto mb-3 max-w-md text-balance leading-relaxed ${boneSoft}`}>{L.hero.anchor}</p>
             <p className={`text-xs uppercase tracking-[0.1em] ${text2}`}>{L.hero.micro}</p>
           </FadeIn>
         </Container>
