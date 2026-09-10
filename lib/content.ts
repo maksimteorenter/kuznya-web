@@ -619,8 +619,12 @@ export const KUZNYA_LANDING = {
     h1: "Как перестать быть пешкой в чужой игре и стать главным героем своей жизни",
     subhead:
       "Ты не сидишь на месте. Тренинги, книги, новые старты. А через год — снова не те люди, не те партнёры, не та жизнь. Выбираешь не ты. Выбирает программа, которую в тебя загрузили.",
+    // Promises the outcome, not the activity. The previous version described
+    // what the work is aimed at — the programs — which left the reader to work
+    // out for himself what he would get. This names it: he rewrites them and
+    // takes the controls, and the inversion at the end is the whole point.
     mechanism:
-      "90 дней прикладной работы с подсознанием — с теми самыми программами, которые выбирают за тебя людей, решения и круг.",
+      "90 дней прикладной работы с подсознанием: перепишешь программы, которые выбирали за тебя, и станешь управлять своим состоянием — а не оно тобой.",
     firstResult:
       "Первые из них ты увидишь на первой неделе. Не через три месяца.",
     // The anchor is true and already stated further down the page in these
