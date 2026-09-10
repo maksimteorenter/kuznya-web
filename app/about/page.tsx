@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Button } from "@/components/ui/Button";
+import { StickyAboutCTA } from "@/components/about/StickyAboutCTA";
 import { BackLink } from "@/components/ui/BackLink";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { BooksShowcase } from "@/components/about/BooksShowcase";
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <StickyAboutCTA />
       {/* HERO — the supplied banner, full-bleed. It already carries the name and
           the intro copy, so nothing is overlaid on top of the artwork. */}
       <Section bare tone="deep" className="pt-16">
@@ -287,7 +289,7 @@ export default function AboutPage() {
       <Section tone="deep">
         <Container className="text-center">
           <SectionHead center label="Документы">Дипломы и сертификаты</SectionHead>
-          <p className="mx-auto mt-5 max-w-md text-sm text-mist">
+          <p className="mx-auto mt-5 max-w-md text-base text-mist">
             Нажмите на документ, чтобы открыть и рассмотреть.
           </p>
           <CredentialsGallery items={CREDENTIALS} />

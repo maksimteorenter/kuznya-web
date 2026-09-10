@@ -32,8 +32,8 @@ export function NumberRevealBlock({ locale = "ru" }: { locale?: Locale }) {
           />
           <PhotoMaskNumber
             value={String(BOOK.days)}
-            photoSrc="/images/hero-portrait.jpg"
-            photoPosition="center 25%"
+            photoSrc="/images/cover-front.jpg"
+            photoPosition="center"
             className="relative font-display font-bold leading-none text-bone"
             style={{ fontSize: "clamp(5rem, 17vw, 13rem)", letterSpacing: "-0.03em" }}
           />

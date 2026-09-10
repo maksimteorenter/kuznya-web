@@ -68,7 +68,7 @@ export function AuthorBlock() {
                 {AUTHOR_FACTS.map((fact) => (
                   <li
                     key={fact}
-                    className="flex gap-3 text-[15px] font-medium leading-relaxed text-bone"
+                    className="flex gap-3 text-base font-medium leading-relaxed text-bone"
                   >
                     <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-blood" aria-hidden="true" />
                     {fact}

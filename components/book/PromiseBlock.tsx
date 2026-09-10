@@ -33,7 +33,7 @@ export function PromiseBlock({ locale = "ru" }: { locale?: Locale }) {
                     {p.title}
                   </h3>
                 </div>
-                <p className="mt-3 text-[15px] leading-relaxed text-inkSoft">{p.text}</p>
+                <p className="mt-3 text-base leading-relaxed text-inkSoft">{p.text}</p>
               </div>
             </FadeIn>
           ))}

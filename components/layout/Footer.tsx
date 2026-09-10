@@ -12,7 +12,7 @@ export function Footer() {
             <div className="mt-4 font-display text-sm font-semibold uppercase tracking-[0.16em] text-bone">
               {SITE.name}
             </div>
-            <p className="mt-3 max-w-xs text-[15px] leading-relaxed text-mist">
+            <p className="mt-3 max-w-xs text-base leading-relaxed text-mist">
               {SITE.tagline}
             </p>
 

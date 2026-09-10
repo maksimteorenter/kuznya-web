@@ -5,9 +5,8 @@ import { Section } from "@/components/ui/Section";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { BookMockup3D } from "@/components/book/BookMockup3D";
 import { EyeBar } from "@/components/book/EyeBar";
-import { BOOK } from "@/lib/content";
+import { BOOK, KUZNYA_LANDING } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Кузня — место, где человек создаёт себя",
@@ -96,9 +95,25 @@ export default function HomePage() {
           <SectionHead center label="Первый продукт экосистемы">
             {BOOK.title}
           </SectionHead>
+          {/* The book itself, at a size that reads as the product rather than
+              a thumbnail. It used to sit here as a 300px CSS mock-up; the
+              owner asked for the actual book, larger. The 3D mock stays on
+              the book's own page, where the spine trick has room to work. */}
           <FadeIn delay={0.15} className="mt-12 flex justify-center">
-            <div className="scale-90 md:scale-100">
-              <BookMockup3D />
+            <div className="relative w-full max-w-[320px] md:max-w-[440px]">
+              <div
+                aria-hidden="true"
+                className="absolute -inset-x-8 -inset-y-6 rounded-full blur-3xl"
+                style={{ background: "radial-gradient(closest-side, rgba(193,18,31,0.18), transparent)" }}
+              />
+              <Image
+                src="/images/cover-front-hires.jpg"
+                alt={`Обложка книги «${BOOK.title}»`}
+                width={1200}
+                height={1800}
+                sizes="(max-width: 768px) 320px, 440px"
+                className="relative h-auto w-full rounded-[3px] shadow-[0_40px_80px_-24px_rgba(0,0,0,0.85)]"
+              />
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
@@ -113,18 +128,33 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Thematic section */}
+      {/* Кузня Силя — the paid product, which this page did not mention at all.
+          A visitor who landed on the logo read four screens and left without
+          ever learning there was something to buy: no name, no price, no link
+          to /forge. The headline and the line under it are the sales page's own
+          approved copy, reused rather than rewritten, so the two pages say the
+          same thing in the same words. */}
       <Section tone="paper">
         <Container className="max-w-3xl text-center">
-          <SectionHead center label="Кузня">
-            Книга — только первый удар молота
+          <SectionHead center label="Кузня Силы">
+            {KUZNYA_LANDING.hero.h1}
           </SectionHead>
           <FadeIn delay={0.1}>
             <p className="mx-auto mt-8 max-w-prose text-balance leading-relaxed text-inkSoft">
-              Из опыта, идей и технологий работы с собой постепенно родился
-              более крупный проект. Программы, клуб и статьи — следующие
-              разделы Кузни. Сейчас экосистема начинается с одной книги и
-              одной идеи: настоящая сила начинается с управления собой.
+              {KUZNYA_LANDING.hero.subhead}
+            </p>
+            <p className="mx-auto mt-5 max-w-prose text-balance leading-relaxed text-inkSoft">
+              {KUZNYA_LANDING.hero.firstResult}
+            </p>
+          </FadeIn>
+          {/* Points at the sales page, not at the bot: /forge is where the
+              offer, the plan and the guarantee live. */}
+          <FadeIn delay={0.18} className="mt-9">
+            <Button href="/forge" size="lg">
+              Кузня Силы — {KUZNYA_LANDING.hero.price}
+            </Button>
+            <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-inkFaint">
+              {KUZNYA_LANDING.hero.micro}
             </p>
           </FadeIn>
         </Container>

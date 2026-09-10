@@ -82,7 +82,7 @@ export function FinalScreen({ locale = "ru" }: { locale?: Locale }) {
           </p>
 
           <div className="mx-auto mt-10 max-w-sm rounded-lg border border-white/10 bg-white/[0.03] px-6 py-5">
-            <p className="text-[14px] leading-relaxed text-bone/80">{t.final.clubNote}</p>
+            <p className="text-base leading-relaxed text-bone/80">{t.final.clubNote}</p>
             <a
               href={KUZNYA_TELEGRAM_URL}
               target="_blank"

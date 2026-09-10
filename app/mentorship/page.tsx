@@ -200,19 +200,19 @@ export default function MentorshipPage() {
             <FadeIn>
               <div className="h-full rounded-2xl border border-ink/10 p-5">
                 <Barbell weight="duotone" className="size-7 text-blood" />
-                <p className="mt-3 text-sm leading-snug text-inkSoft">{AUTHOR_FACTS[3]}</p>
+                <p className="mt-3 text-base leading-snug text-inkSoft">{AUTHOR_FACTS[3]}</p>
               </div>
             </FadeIn>
             <FadeIn delay={0.05}>
               <div className="h-full rounded-2xl border border-ink/10 p-5">
                 <Brain weight="duotone" className="size-7 text-blood" />
-                <p className="mt-3 text-sm leading-snug text-inkSoft">{AUTHOR_FACTS[9]}</p>
+                <p className="mt-3 text-base leading-snug text-inkSoft">{AUTHOR_FACTS[9]}</p>
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
               <div className="h-full rounded-2xl border border-ink/10 p-5">
                 <Compass weight="duotone" className="size-7 text-blood" />
-                <p className="mt-3 text-sm leading-snug text-inkSoft">{AUTHOR_FACTS[8]}</p>
+                <p className="mt-3 text-base leading-snug text-inkSoft">{AUTHOR_FACTS[8]}</p>
               </div>
             </FadeIn>
             <FadeIn delay={0.15}>
@@ -269,7 +269,7 @@ export default function MentorshipPage() {
             <Button href={KUZNYA_TELEGRAM_URL} external size="lg">
               {CTA_LABEL}
             </Button>
-            <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-mist">
+            <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-mist">
               {SESSION_OFFER.paidNote}
             </p>
             <p className="mx-auto mt-3 max-w-md text-xs leading-relaxed text-mist/70">
@@ -326,7 +326,7 @@ export default function MentorshipPage() {
             <Button href={KUZNYA_TELEGRAM_URL} external size="lg">
               {CTA_LABEL}
             </Button>
-            <p className="mx-auto mt-6 max-w-sm text-sm leading-relaxed text-inkFaint">
+            <p className="mx-auto mt-6 max-w-sm text-base leading-relaxed text-inkFaint">
               {ABOUT_FINAL_CTA.telegramNote}
             </p>
           </FadeIn>

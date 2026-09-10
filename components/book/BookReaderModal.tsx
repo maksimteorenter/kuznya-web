@@ -197,7 +197,7 @@ export function BookReaderModal({
                 transition={{ delay: 0.2 }}
                 className="mt-8 flex flex-col items-center gap-3 text-center"
               >
-                <p className="max-w-sm text-balance text-[15px] leading-relaxed text-bone/90">
+                <p className="max-w-sm text-balance text-base leading-relaxed text-bone/90">
                   {t.reader.lastNote} {BOOK.pages - 9}.
                 </p>
                 <Button href="#price" size="lg" onClick={onClose} dataTrack="cta_to_price">

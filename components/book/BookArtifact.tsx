@@ -68,7 +68,7 @@ export function BookArtifact({ locale = "ru" }: { locale?: Locale }) {
                 {t.formats}
               </p>
               {/* Risk reversal sits with the price, where the hesitation is. */}
-              <p className="mt-3 flex items-center gap-2 text-[14px] text-inkSoft">
+              <p className="mt-3 flex items-center gap-2 text-base text-inkSoft">
                 <span className="h-1.5 w-1.5 shrink-0 bg-blood" aria-hidden="true" />
                 {t.guarantee}
               </p>

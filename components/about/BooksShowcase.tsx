@@ -39,7 +39,7 @@ export function BooksShowcase() {
                 <h3 className="mt-5 font-display text-lg font-semibold uppercase leading-snug text-bone">
                   {book.title}
                 </h3>
-                <p className="mt-2 flex-1 text-balance text-sm leading-relaxed text-mist">
+                <p className="mt-2 flex-1 text-balance text-base leading-relaxed text-mist">
                   {book.blurb}
                 </p>
                 <Button

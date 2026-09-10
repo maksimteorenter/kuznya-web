@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
-import { ForgeIntro } from "@/components/forge/ForgeIntro";
 import { StickyForgeCTA } from "@/components/forge/StickyForgeCTA";
 import { ProofGrid } from "@/components/forge/ProofGrid";
 import { KUZNYA_LANDING } from "@/lib/content";
@@ -252,7 +251,13 @@ export default function ForgePage() {
             }}
           />
         </div>
-        <ForgeIntro />
+        {/* The 3.4s forge-strike animation used to run here, over the hero.
+            It played before the reader could take in a word, and the first
+            screen is exactly where a visitor decides whether to stay — so the
+            cost was paid at the worst possible moment. The still hero render
+            behind it already carries the same image. Removed; the component
+            stays in the repo in case it earns a place further down the page,
+            where waiting costs nothing. */}
         <Container className="relative z-10 max-w-2xl text-center">
           <FadeIn>
             <span className={`font-display text-sm font-semibold uppercase tracking-[0.16em] ${goldLight}`}>
