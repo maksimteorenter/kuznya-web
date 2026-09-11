@@ -3,7 +3,8 @@
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import { KUZNYA_TELEGRAM_URL } from "@/lib/site";
-import { KUZNYA_LANDING } from "@/lib/content";
+import type { KUZNYA_LANDING } from "@/lib/content";
+import type { Widen } from "@/lib/content-shape";
 
 /**
  * Sticky CTA bar on every breakpoint, appears once the Hero's own button has
@@ -11,7 +12,13 @@ import { KUZNYA_LANDING } from "@/lib/content";
  * the offer never shows twice on one screen. Never covers the header or
  * blocks reading.
  */
-export function StickyForgeCTA() {
+export function StickyForgeCTA({
+  L,
+  locale,
+}: {
+  L: Widen<typeof KUZNYA_LANDING>;
+  locale: "ru" | "uk";
+}) {
   const [visible, setVisible] = useState(false);
   const { scrollY } = useScroll();
 
@@ -39,7 +46,7 @@ export function StickyForgeCTA() {
               data-track="forge_sticky_cta_click"
               className="flex min-h-[54px] w-full items-center justify-center rounded-full bg-[#E0C078] px-6 font-display text-[15px] font-semibold uppercase tracking-[0.1em] text-[#0A0706]"
             >
-              Войти • {KUZNYA_LANDING.hero.price}
+              {locale === "uk" ? "Увійти" : "Войти"} • {L.hero.price}
             </a>
           </div>
         </motion.div>

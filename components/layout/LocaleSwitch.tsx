@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { ALT_LOCALE, LOCALE_LABEL, bookPath, type Locale } from "@/lib/i18n";
+"use client";
+
+import { usePathname } from "next/navigation";
+import { ALT_LOCALE, LOCALE_LABEL, altPath, type Locale } from "@/lib/i18n";
 
 /**
  * Language switch. Points at the same page in the other language rather than
@@ -11,9 +14,14 @@ import { ALT_LOCALE, LOCALE_LABEL, bookPath, type Locale } from "@/lib/i18n";
  */
 export function LocaleSwitch({ locale, dark = false }: { locale: Locale; dark?: boolean }) {
   const other = ALT_LOCALE[locale];
+  const pathname = usePathname() ?? "/";
+  // No link where there is no translation — a switch that silently moves the
+  // reader to a different page is worse than no switch.
+  const href = altPath(pathname, other);
+  if (!href) return null;
   return (
     <Link
-      href={bookPath(other)}
+      href={href}
       hrefLang={other}
       aria-label={locale === "ru" ? "Перейти на українську" : "Перейти на русский"}
       className={

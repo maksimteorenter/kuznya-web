@@ -14,6 +14,35 @@ export function bookPath(locale: Locale) {
   return locale === "uk" ? "/ua/book/1341" : "/book/1341";
 }
 
+/**
+ * Russian path -> Ukrainian path, for pages that exist in both. The language
+ * switch used to send every visitor to the book page no matter where they
+ * were standing, which is the classic bolted-on-i18n failure: you ask for the
+ * same page in another language and get dumped somewhere else.
+ *
+ * A page missing from this map has no translation yet, and the switch hides
+ * itself there rather than promising one.
+ */
+const PAIRS: Record<string, string> = {
+  "/book/1341": "/ua/book/1341",
+  "/forge": "/ua/forge",
+};
+
+const TO_RU: Record<string, string> = Object.fromEntries(
+  Object.entries(PAIRS).map(([ru, uk]) => [uk, ru]),
+);
+
+/** The same page in the other language, or null when it is not translated. */
+export function altPath(pathname: string, to: Locale): string | null {
+  const clean = pathname.replace(/\/+$/, "") || "/";
+  return to === "uk" ? (PAIRS[clean] ?? null) : (TO_RU[clean] ?? null);
+}
+
+/** Which language a path is served in. */
+export function localeOf(pathname: string): Locale {
+  return pathname.startsWith("/ua") ? "uk" : "ru";
+}
+
 export const LOCALE_LABEL: Record<Locale, string> = { ru: "RU", uk: "UA" };
 
 type Dict = {
