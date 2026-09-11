@@ -1,4 +1,5 @@
-import { KUZNYA_LANDING } from "@/lib/content";
+import type { KUZNYA_LANDING } from "@/lib/content";
+import type { Widen } from "@/lib/content-shape";
 
 /**
  * Ukrainian content. Russian (`lib/content.ts`) stays the source of truth;
@@ -12,14 +13,6 @@ import { KUZNYA_LANDING } from "@/lib/content";
  * Image paths and YouTube ids are deliberately identical: those are assets, not
  * language.
  */
-type Widen<T> = T extends string
-  ? string
-  : T extends number
-    ? number
-    : T extends readonly (infer U)[]
-      ? Widen<U>[]
-      : { -readonly [K in keyof T]: Widen<T[K]> };
-
 export const KUZNYA_LANDING_UK: Widen<typeof KUZNYA_LANDING> = {
   meta: {
     title: "Кузня сили — 90 днів роботи з собою | Максим Теорентер",
