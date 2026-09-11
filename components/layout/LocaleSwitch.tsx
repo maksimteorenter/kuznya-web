@@ -1,6 +1,6 @@
-import Link from "next/link";
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ALT_LOCALE, LOCALE_LABEL, altPath, type Locale } from "@/lib/i18n";
 
