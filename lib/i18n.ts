@@ -27,6 +27,7 @@ const PAIRS: Record<string, string> = {
   "/book/1341": "/ua/book/1341",
   "/forge": "/ua/forge",
   "/reboot": "/ua/reboot",
+  "/reboot/program": "/ua/reboot/program",
 };
 
 const TO_RU: Record<string, string> = Object.fromEntries(

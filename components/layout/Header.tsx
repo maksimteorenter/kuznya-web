@@ -23,7 +23,8 @@ export function Header({ locale }: { locale?: Locale } = {}) {
   // Every long-form page on the dark ground, in both languages. Keyed on the
   // route rather than on a page prop because the header lives in the root
   // shell, above any page.
-  const dark = ["/forge", "/ua/forge", "/reboot", "/ua/reboot"].includes(pathname ?? "");
+  // The dark long-form pages: Кузня and both Перезагрузка pages, in both languages.
+  const dark = /^\/(ua\/)?(forge|reboot)(\/|$)/.test(pathname ?? "");
 
   return (
     <header

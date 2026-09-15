@@ -2,14 +2,14 @@
 
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
-import { KUZNYA_TELEGRAM_URL } from "@/lib/site";
 
 /**
  * Bottom bar with the one door on the page, shown once the hero's own button
  * has scrolled away — same pattern as StickyForgeCTA. Seven principles is a
  * long read; without this the only way out is at the very end.
  */
-export function StickyRebootCTA({ label }: { label: string }) {
+export function StickyRebootCTA({ label, href }: { label: string; href: string }) {
+  const external = /^https?:/.test(href);
   const [visible, setVisible] = useState(false);
   const { scrollY } = useScroll();
 
@@ -29,9 +29,8 @@ export function StickyRebootCTA({ label }: { label: string }) {
         >
           <div className="mx-auto max-w-sm">
             <a
-              href={KUZNYA_TELEGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={href}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               data-track="reboot_sticky_cta_click"
               className="flex min-h-[54px] w-full items-center justify-center rounded-full bg-[#E0C078] px-6 text-center font-display text-[14px] font-semibold uppercase leading-tight tracking-[0.08em] text-[#0A0706]"
             >
