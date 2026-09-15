@@ -52,11 +52,12 @@ export default function MentorshipPage() {
             </FadeIn>
             <div className="md:col-span-7 md:pl-4">
               <FadeIn>
-                <h1 className="text-balance font-display text-4xl font-bold uppercase leading-[1.02] text-bone sm:text-5xl md:text-[3.4rem]">
+                <h1 className="font-display text-5xl font-bold uppercase leading-[1.02] text-bone sm:text-6xl md:text-[4.4rem]">
                   {M.hero.h1}
-                  <br />
-                  <span className="text-bone/70">{M.hero.h1b}</span>
                 </h1>
+                <p className="mt-4 max-w-xl text-balance font-display text-xl font-semibold uppercase leading-snug text-bone/70 md:text-2xl">
+                  {M.hero.h1b}
+                </p>
               </FadeIn>
               <FadeIn delay={0.12} className="mt-6">
                 <p className="font-editorial text-2xl italic leading-snug text-blood md:text-3xl">{M.hero.slogan}</p>
