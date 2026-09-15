@@ -241,6 +241,11 @@ export const ABOUT_INTRO = {
   creedYes: "А создавать себя осознанно.",
 };
 
+// One line under the hero: who he works with. The full filter lives on
+// /mentorship; this is the sentence that makes a casual reader self-select.
+export const ABOUT_POSITION =
+  "Работаю с единицами: люди бизнеса, которые хотят масштабироваться и упёрлись не в рынок, а в себя.";
+
 export const ABOUT_STORY = {
   title: "Моя история",
   intro: [

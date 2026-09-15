@@ -15,12 +15,12 @@ import {
   ABOUT_STORY,
   ABOUT_AFTER,
   ABOUT_SECOND_COLLAPSE,
-  ABOUT_TODAY,
-  ABOUT_APPROACH,
   ABOUT_MISSION,
   AUTHOR_FACTS,
   CREDENTIALS,
+  ABOUT_POSITION,
 } from "@/lib/content";
+import { MENTORSHIP_OFFER as M } from "@/lib/content.mentorship";
 
 const title = "Обо мне — Максим Теорентер";
 const description =
@@ -65,10 +65,11 @@ export default function AboutPage() {
             <p className="text-balance text-lg leading-relaxed text-bone/85">
               {ABOUT_INTRO.lede}
             </p>
+            <p className="mt-3 text-balance text-base leading-relaxed text-bone/70">{ABOUT_POSITION}</p>
           </FadeIn>
           <FadeIn delay={0.22} className="mt-8">
             <Button href="/mentorship" size="lg">
-              Узнать про работу со мной
+              Работа со мной
             </Button>
           </FadeIn>
         </Container>
@@ -203,70 +204,6 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      {/* Today */}
-      <Section>
-        <Container className="max-w-2xl text-center">
-          <SectionHead center>{ABOUT_TODAY.title}</SectionHead>
-          <div className="mx-auto mt-8 max-w-xl space-y-4">
-            {ABOUT_TODAY.intro.map((p) => (
-              <p key={p} className="leading-relaxed text-ink/90">
-                {p}
-              </p>
-            ))}
-          </div>
-          <div className="mx-auto mt-8 max-w-xl space-y-4">
-            {ABOUT_TODAY.helps.map((item, i) => (
-              <FadeIn key={item} delay={i * 0.03}>
-                <p className="text-balance leading-relaxed text-ink/90">
-                  <span className="font-display text-blood">{String(i + 1).padStart(2, "0")}</span>{" "}
-                  {item}
-                </p>
-              </FadeIn>
-            ))}
-          </div>
-          <FadeIn delay={0.15} className="mx-auto mt-10 max-w-xl space-y-3">
-            {ABOUT_TODAY.closing.map((p) => (
-              <p key={p} className="leading-relaxed text-ink/90">
-                {p}
-              </p>
-            ))}
-          </FadeIn>
-        </Container>
-      </Section>
-
-      {/* Approach */}
-      <Section tone="deep">
-        <Container className="max-w-2xl text-center">
-          <SectionHead center label={ABOUT_APPROACH.title}>{ABOUT_APPROACH.subtitle}</SectionHead>
-          <FadeIn className="mx-auto mt-8 max-w-xl space-y-3">
-            <p className="leading-relaxed text-bone/90">{ABOUT_APPROACH.intro}</p>
-            <p className="leading-relaxed text-bone/90">{ABOUT_APPROACH.lede}</p>
-          </FadeIn>
-          <div className="mx-auto mt-6 max-w-xl space-y-3">
-            {ABOUT_APPROACH.patterns.map((item, i) => (
-              <FadeIn key={item} delay={i * 0.04}>
-                <p className="leading-relaxed text-bone/80">{item}</p>
-              </FadeIn>
-            ))}
-          </div>
-          <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl">
-            <p className="leading-relaxed text-bone/90">{ABOUT_APPROACH.closing}</p>
-          </FadeIn>
-          <div className="mx-auto mt-6 max-w-xl space-y-3">
-            {ABOUT_APPROACH.questions.map((item, i) => (
-              <FadeIn key={item} delay={i * 0.04}>
-                <p className="font-editorial italic leading-relaxed text-bone/90">{item}</p>
-              </FadeIn>
-            ))}
-          </div>
-          <FadeIn delay={0.2} className="mx-auto mt-8 max-w-xl">
-            <p className="text-balance font-display text-2xl font-bold uppercase leading-snug text-bone md:text-3xl">
-              {ABOUT_APPROACH.final}
-            </p>
-          </FadeIn>
-        </Container>
-      </Section>
-
       {/* Регалии */}
       <Section>
         <Container className="max-w-2xl text-center">
@@ -326,21 +263,34 @@ export default function AboutPage() {
 
       <BooksShowcase />
 
-      {/* CTA to the mentorship offer */}
+      {/* CTA to the mentorship offer — the filter first, then the door. */}
       <Section>
-        <Container className="max-w-2xl text-center">
+        <Container className="max-w-2xl">
           <FadeIn>
             <h2 className="text-balance font-display text-3xl font-bold uppercase leading-tight text-ink md:text-5xl">
-              Хотите работать со мной лично?
+              {M.hero.h1}
+              <br />
+              <span className="text-inkFaint">{M.hero.h1b}</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-lg leading-relaxed text-inkSoft">
-              Личная стратегическая сессия — час, за который вы увидите свою ситуацию без иллюзий.
-            </p>
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-inkSoft">{M.hero.lede}</p>
           </FadeIn>
-          <FadeIn delay={0.15} className="mt-8">
+          <FadeIn delay={0.1} className="mt-8 grid gap-6 sm:grid-cols-2">
+            <ul className="space-y-2 text-ink/90">
+              {M.filter.forItems.map((item) => (
+                <li key={item} className="leading-relaxed">{item}</li>
+              ))}
+            </ul>
+            <ul className="space-y-2 text-inkFaint">
+              {M.filter.notItems.slice(0, 3).map((item) => (
+                <li key={item} className="leading-relaxed">Не для тех, кто {item.charAt(0).toLowerCase() + item.slice(1)}</li>
+              ))}
+            </ul>
+          </FadeIn>
+          <FadeIn delay={0.15} className="mt-10">
             <Button href="/mentorship" size="lg">
-              Узнать про работу со мной
+              Работа со мной
             </Button>
+            <p className="mt-3 text-sm text-inkFaint">{M.hero.micro}</p>
           </FadeIn>
         </Container>
       </Section>

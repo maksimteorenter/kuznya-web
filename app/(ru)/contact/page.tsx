@@ -17,8 +17,8 @@ export default function ContactPage() {
           Связаться
         </h1>
         <p className="mx-auto mt-6 max-w-prose text-mist">
-          Пишите в Telegram — это самый быстрый способ. Для записи на
-          стратегическую сессию отправьте слово «Стратегия».
+          Пишите в Telegram — это самый быстрый способ. Чтобы подать заявку
+          на стратегический разбор, отправьте слово «Разбор».
         </p>
         <div className="mt-10">
           <Button href={KUZNYA_TELEGRAM_URL} external size="lg">
