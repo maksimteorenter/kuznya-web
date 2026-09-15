@@ -20,7 +20,10 @@ export function Header({ locale }: { locale?: Locale } = {}) {
   // without this a cream bar sits across the top of a near-black page — the
   // same mismatch the sticky CTA had. It already reads the route for the
   // language, so it can read it for the ground too.
-  const dark = pathname === "/forge";
+  // Every long-form page on the dark ground, in both languages. Keyed on the
+  // route rather than on a page prop because the header lives in the root
+  // shell, above any page.
+  const dark = ["/forge", "/ua/forge", "/reboot", "/ua/reboot"].includes(pathname ?? "");
 
   return (
     <header
