@@ -26,6 +26,7 @@ export function bookPath(locale: Locale) {
 const PAIRS: Record<string, string> = {
   "/book/1341": "/ua/book/1341",
   "/forge": "/ua/forge",
+  "/reboot": "/ua/reboot",
 };
 
 const TO_RU: Record<string, string> = Object.fromEntries(
