@@ -79,11 +79,11 @@ function Takeaway({ label, text }: { label: string; text: string }) {
 }
 
 /** Photograph seated into the ground: the tile darkens into the section colour at the bottom. */
-function Seated({ src, alt, ground, aspect = "aspect-[4/5]", sizes }: { src: string; alt: string; ground: Ground; aspect?: string; sizes: string }) {
+function Seated({ src, alt, ground, aspect = "aspect-[4/5]", sizes, top = false }: { src: string; alt: string; ground: Ground; aspect?: string; sizes: string; top?: boolean }) {
   const g = grounds[ground];
   return (
     <div className={`relative ${aspect} overflow-hidden rounded-lg`}>
-      <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" />
+      <Image src={src} alt={alt} fill sizes={sizes} className={`object-cover ${top ? "object-top" : ""}`} />
       <div aria-hidden="true" className="absolute inset-0" style={{ background: `linear-gradient(180deg, ${g}33 0%, ${g}00 28%, ${g}00 70%, ${g}D9 100%)` }} />
     </div>
   );
@@ -96,7 +96,7 @@ export function ChapterSplit({ c, ground, mirrored = false, portrait = false }: 
       <Container>
         <div className={`grid items-start gap-10 md:grid-cols-12 md:gap-12`}>
           <FadeIn className={`md:sticky md:top-28 ${mirrored ? "md:order-2 md:col-span-5 md:col-start-8" : "md:col-span-5"} ${portrait ? "mx-auto w-full max-w-[300px] md:max-w-none" : ""}`}>
-            <Seated src={c.image} alt={plain(c.imageAlt)} ground={ground} aspect="aspect-[4/5]" sizes="(max-width: 768px) 100vw, 40vw" />
+            <Seated src={c.image} alt={plain(c.imageAlt)} ground={ground} aspect="aspect-[4/5]" sizes="(max-width: 768px) 100vw, 40vw" top={portrait} />
           </FadeIn>
           <div className={`${mirrored ? "md:order-1 md:col-span-6" : "md:col-span-6 md:col-start-7"}`}>
             <FadeIn delay={0.08}>
@@ -162,7 +162,7 @@ export function ChapterOffset({ c, ground }: { c: Chapter; ground: Ground }) {
       <Container>
         <div className="grid gap-8 md:grid-cols-12 md:gap-12">
           <FadeIn className="md:col-span-3">
-            <Numeral n={c.n} className="md:sticky md:top-28" />
+            <Numeral n={c.n} className="md:-mt-3" />
           </FadeIn>
           <div className="md:col-span-8 md:col-start-5">
             <FadeIn>
@@ -171,7 +171,7 @@ export function ChapterOffset({ c, ground }: { c: Chapter; ground: Ground }) {
               </Title>
               {c.claim && <Claim>{plain(c.claim)}</Claim>}
             </FadeIn>
-            <FadeIn delay={0.1}>
+            <FadeIn delay={0.1} className="max-w-xl">
               <Body items={c.body} />
             </FadeIn>
             <FadeIn delay={0.14} className="mt-10">

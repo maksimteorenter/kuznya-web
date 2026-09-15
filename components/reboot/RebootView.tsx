@@ -52,11 +52,11 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
           />
         </div>
         <Container className="relative z-10">
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             <FadeIn>
               <h1
                 className={`text-balance font-display font-bold uppercase leading-[1.06] ${bone}`}
-                style={{ fontSize: "clamp(1.85rem, 3.9vw, 3rem)", letterSpacing: "-0.01em" }}
+                style={{ fontSize: "clamp(1.85rem, 3.6vw, 2.8rem)", letterSpacing: "-0.01em" }}
               >
                 <Hit text={L.hero.h1} />
               </h1>
