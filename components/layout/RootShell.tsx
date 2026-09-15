@@ -14,10 +14,10 @@ import "@/app/globals.css";
 // intermittent 500s. Local files avoid any network dependency.
 const oswald = localFont({
   src: [
-    { path: "../public/fonts/Oswald-400.ttf", weight: "400", style: "normal" },
-    { path: "../public/fonts/Oswald-500.ttf", weight: "500", style: "normal" },
-    { path: "../public/fonts/Oswald-600.ttf", weight: "600", style: "normal" },
-    { path: "../public/fonts/Oswald-700.ttf", weight: "700", style: "normal" },
+    { path: "../../public/fonts/Oswald-400.ttf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/Oswald-500.ttf", weight: "500", style: "normal" },
+    { path: "../../public/fonts/Oswald-600.ttf", weight: "600", style: "normal" },
+    { path: "../../public/fonts/Oswald-700.ttf", weight: "700", style: "normal" },
   ],
   variable: "--font-oswald",
   display: "swap",
@@ -27,11 +27,11 @@ const oswald = localFont({
 // monologue. Contrasts with Oswald's industrial display weight.
 const garamond = localFont({
   src: [
-    { path: "../public/fonts/CormorantGaramond-400.ttf", weight: "400", style: "normal" },
-    { path: "../public/fonts/CormorantGaramond-500.ttf", weight: "500", style: "normal" },
-    { path: "../public/fonts/CormorantGaramond-600.ttf", weight: "600", style: "normal" },
-    { path: "../public/fonts/CormorantGaramond-400-Italic.ttf", weight: "400", style: "italic" },
-    { path: "../public/fonts/CormorantGaramond-500-Italic.ttf", weight: "500", style: "italic" },
+    { path: "../../public/fonts/CormorantGaramond-400.ttf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/CormorantGaramond-500.ttf", weight: "500", style: "normal" },
+    { path: "../../public/fonts/CormorantGaramond-600.ttf", weight: "600", style: "normal" },
+    { path: "../../public/fonts/CormorantGaramond-400-Italic.ttf", weight: "400", style: "italic" },
+    { path: "../../public/fonts/CormorantGaramond-500-Italic.ttf", weight: "500", style: "italic" },
   ],
   variable: "--font-garamond",
   display: "swap",
@@ -40,10 +40,10 @@ const garamond = localFont({
 // UI voice — body copy, buttons, nav, FAQ, technical detail.
 const inter = localFont({
   src: [
-    { path: "../public/fonts/Inter-400.ttf", weight: "400", style: "normal" },
-    { path: "../public/fonts/Inter-500.ttf", weight: "500", style: "normal" },
-    { path: "../public/fonts/Inter-600.ttf", weight: "600", style: "normal" },
-    { path: "../public/fonts/Inter-700.ttf", weight: "700", style: "normal" },
+    { path: "../../public/fonts/Inter-400.ttf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/Inter-500.ttf", weight: "500", style: "normal" },
+    { path: "../../public/fonts/Inter-600.ttf", weight: "600", style: "normal" },
+    { path: "../../public/fonts/Inter-700.ttf", weight: "700", style: "normal" },
   ],
   variable: "--font-inter",
   display: "swap",
