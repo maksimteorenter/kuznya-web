@@ -67,8 +67,11 @@ export function RebootView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
 
       {/* 2 — CONTRAST. Two paired questions; the reader places himself. */}
       <Scene id="contrast" bg="bg-[#12100C]">
-        <Container className="max-w-2xl">
-          <div className="space-y-8">
+        {/* Container's own max-width wins over a max-w class passed to it, so
+            every text column here carries its own mx-auto max-w wrapper.
+            Measured without one: 1120px lines, ~135 characters. */}
+        <Container>
+          <div className="mx-auto max-w-2xl space-y-8">
             {L.contrast.map((q, i) => (
               <FadeIn key={q} delay={i * 0.1}>
                 <p className={`text-balance font-editorial text-2xl italic leading-snug ${bone} md:text-3xl`}>
@@ -82,7 +85,8 @@ export function RebootView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
 
       {/* 3 — MYTHS. Six "pain is not…" beats, then the turn. */}
       <Scene id="myths" bg="bg-[#0A0706]">
-        <Container className="max-w-2xl">
+        <Container>
+          <div className="mx-auto max-w-2xl">
           <ul className="space-y-7">
             {L.myths.items.map((m, i) => (
               <FadeIn key={m.head} delay={i * 0.06}>
@@ -104,6 +108,7 @@ export function RebootView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
           <FadeIn delay={0.3} className="mt-12">
             <BigLine>{L.myths.bigLine}</BigLine>
           </FadeIn>
+          </div>
         </Container>
       </Scene>
 
@@ -115,8 +120,8 @@ export function RebootView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
         const bg = grounds[i % 2];
         return (
           <Scene key={p.n} id={`principle-${p.n}`} bg={bg}>
-            <Container className="max-w-3xl">
-              <div className="grid items-start gap-8 md:grid-cols-[96px_minmax(0,1fr)]">
+            <Container>
+              <div className="mx-auto grid max-w-3xl items-start gap-8 md:grid-cols-[96px_minmax(0,1fr)]">
                 <FadeIn>
                   <span
                     aria-hidden="true"
