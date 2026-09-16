@@ -144,25 +144,27 @@ export function ForgeView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
       <ScrollProgress />
       <StickyForgeCTA L={L} locale={locale} />
 
-      {/* 1 — HERO. Direct offer + direct CTA, background is the childhood/
-          strings render: a pawn at the bottom, huge figures and gold threads
-          above it — literally "moved by someone else's hand" before the
-          reader has read a word. */}
+      {/* 1 — HERO. Direct offer + direct CTA over the king on his throne of
+          swords, cut marionette threads at his feet: where the page ends up,
+          shown before the first word. Maksim asked for exactly this image
+          (2026-09-16); the pawn-on-strings render it replaces stays in the
+          repo. The scrim is lighter at the top than the old one so the
+          throne reads, and heavier at the bottom where the copy sits. */}
       <Scene id="hero" bg="bg-[#0A0706]" bare clip={false} className="flex min-h-[100svh] items-center pt-20 pb-14 md:pt-24 md:pb-20">
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="/images/forge/hero-strings.png"
+            src="/images/forge/hero-throne.jpg"
             alt=""
             fill
             sizes="100vw"
             priority
-            className="object-cover object-[50%_28%]"
+            className="object-cover object-[50%_20%]"
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(10,7,6,0.5) 0%, rgba(10,7,6,0.66) 42%, rgba(10,7,6,0.94) 100%)",
+                "linear-gradient(180deg, rgba(10,7,6,0.35) 0%, rgba(10,7,6,0.5) 35%, rgba(10,7,6,0.8) 62%, rgba(10,7,6,0.96) 100%)",
             }}
           />
         </div>
