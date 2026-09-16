@@ -158,13 +158,13 @@ export function ForgeView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
             fill
             sizes="100vw"
             priority
-            className="object-cover object-[50%_20%]"
+            className="object-cover object-[50%_0%]"
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(10,7,6,0.35) 0%, rgba(10,7,6,0.5) 35%, rgba(10,7,6,0.8) 62%, rgba(10,7,6,0.96) 100%)",
+                "linear-gradient(180deg, rgba(10,7,6,0.3) 0%, rgba(10,7,6,0.42) 35%, rgba(10,7,6,0.78) 62%, rgba(10,7,6,0.96) 100%)",
             }}
           />
         </div>
