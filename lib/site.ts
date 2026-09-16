@@ -29,13 +29,16 @@ export const BOOK_DELIVERY_TELEGRAM_URL =
   process.env.NEXT_PUBLIC_BOOK_DELIVERY_URL ||
   "https://t.me/teorenter_bot?start=6a9feaf9a78a38581e039318";
 
-// Nav kept deliberately short — Maksim wants exactly these four entries, nothing else.
+// Nav kept deliberately short. Four entries by Maksim's original brief;
+// «ПТСР» added on his request 2026-09-16, once the Перезагрузка pages existed.
 export const NAV_ITEMS: NavItem[] = [
   { id: "home", label: "Кузня", href: "/" },
   // Points at the sales page, not straight at the bot: /forge is where the
   // offer, the plan and the guarantee live, and the bot is the step *after*
   // that. Sending nav traffic into Telegram skipped the whole page.
   { id: "club", label: "Кузня Силы", href: "/forge" },
+  // The seven-principles page. He calls it «ПТСР», so the tab does too.
+  { id: "ptsd", label: "ПТСР", href: "/reboot" },
   { id: "book", label: "1341 день в плену", href: "/book/1341" },
   { id: "about", label: "Обо мне", href: "/about" },
   { id: "contact", label: "Контакты", href: "/contact" },

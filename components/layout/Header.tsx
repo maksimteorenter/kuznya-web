@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { NAV_ITEMS } from "@/lib/site";
 import { LocaleSwitch } from "@/components/layout/LocaleSwitch";
 import { LogoMark } from "@/components/ui/LogoMark";
-import { T, type Locale } from "@/lib/i18n";
+import { T, altPath, type Locale } from "@/lib/i18n";
 
 export function Header({ locale }: { locale?: Locale } = {}) {
   const [open, setOpen] = useState(false);
@@ -15,6 +15,9 @@ export function Header({ locale }: { locale?: Locale } = {}) {
   // URL rather than being told — one less thing every page has to remember.
   const active: Locale = locale ?? (pathname?.startsWith("/ua") ? "uk" : "ru");
   const t = T[active].nav;
+  // A Ukrainian reader gets the Ukrainian page where one exists; the Russian
+  // one otherwise, rather than a 404.
+  const localHref = (href: string) => (active === "uk" ? (altPath(href, "uk") ?? href) : href);
 
   // /forge runs its own dark palette. The header lives in the root layout, so
   // without this a cream bar sits across the top of a near-black page — the
@@ -76,7 +79,7 @@ export function Header({ locale }: { locale?: Locale } = {}) {
             item.external ? (
               <a
                 key={item.id}
-                href={item.href}
+                href={localHref(item.href)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={
@@ -90,7 +93,7 @@ export function Header({ locale }: { locale?: Locale } = {}) {
             ) : (
               <Link
                 key={item.id}
-                href={item.href}
+                href={localHref(item.href)}
                 className={
                   dark
                     ? "font-display text-[13px] uppercase tracking-[0.14em] text-[#A9A199] transition-colors hover:text-[#F3EEE5]"
@@ -141,7 +144,7 @@ export function Header({ locale }: { locale?: Locale } = {}) {
               <li key={item.id}>
                 {item.external ? (
                   <a
-                    href={item.href}
+                    href={localHref(item.href)}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setOpen(false)}
@@ -155,7 +158,7 @@ export function Header({ locale }: { locale?: Locale } = {}) {
                   </a>
                 ) : (
                   <Link
-                    href={item.href}
+                    href={localHref(item.href)}
                     onClick={() => setOpen(false)}
                     className={
                       dark
