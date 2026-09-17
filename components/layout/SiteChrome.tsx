@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 
 // Routes that ship their own full-bleed nav/footer and must not inherit the
 // site's default chrome (e.g. the standalone Кузня concept preview).
-const NO_CHROME_PREFIXES = ["/kuznya-preview"];
+const NO_CHROME_PREFIXES = ["/kuznya-preview", "/practice"];
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
