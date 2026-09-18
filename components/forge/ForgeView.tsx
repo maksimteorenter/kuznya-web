@@ -712,21 +712,24 @@ export function ForgeView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
           Independent of the outer Container's max-width, so it reads the
           same on any screen. */}
       <Scene id="final" bg="bg-[#0A0706]" bare clip={false} className="flex flex-col items-center justify-center py-28 text-center">
-        <div className="relative h-[230px] w-[172px] md:h-[300px] md:w-[224px]">
+        {/* Maksim's portrait closes the page instead of the gold king
+            (his request, 2026-09-18): the person who leads it, not the
+            metaphor. Same warm glow behind it as the king had. */}
+        <div className="relative h-[260px] w-[208px] md:h-[320px] md:w-[256px]">
           <div
-            className="absolute inset-0 rounded-full blur-2xl"
-            style={{ background: "radial-gradient(closest-side, rgba(224,192,120,0.35), transparent)" }}
+            className="absolute -inset-6 rounded-full blur-2xl"
+            style={{ background: "radial-gradient(closest-side, rgba(224,192,120,0.3), transparent)" }}
             aria-hidden="true"
           />
-          <div className={`absolute inset-x-4 bottom-0 top-16 rounded-lg border ${hairline} bg-[#12100C]/70 md:top-20`} aria-hidden="true" />
-          <Image
-            src="/images/forge/king-gold.png"
-            alt=""
-            fill
-            sizes="(max-width: 768px) 172px, 224px"
-            style={{ mixBlendMode: "screen" }}
-            className="object-contain object-bottom"
-          />
+          <div className="absolute inset-0 overflow-hidden rounded-lg ring-1 ring-[rgba(224,192,120,0.35)]">
+            <Image
+              src={L.maksim.portrait}
+              alt={L.maksim.portraitAlt}
+              fill
+              sizes="(max-width: 768px) 208px, 256px"
+              className="object-cover object-top"
+            />
+          </div>
         </div>
         <Container className="max-w-2xl">
           {/* One closing CTA, not two. This screen used to run the finalOffer
