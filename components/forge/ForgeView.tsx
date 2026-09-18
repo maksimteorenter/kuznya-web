@@ -542,6 +542,9 @@ export function ForgeView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
       <Scene id="inside" bg="bg-[#12100C]">
         <Container className="max-w-4xl text-center">
           <Head tone="bright">{L.inside.h2}</Head>
+          <FadeIn delay={0.08} className="mx-auto mt-6 max-w-xl">
+            <p className={`text-lg leading-relaxed ${boneSoft}`}>{L.inside.lede}</p>
+          </FadeIn>
           <div className={`mt-12 grid gap-px overflow-hidden rounded-lg border ${hairline} bg-[rgba(224,192,120,0.14)] sm:grid-cols-2 lg:grid-cols-3`}>
             {L.inside.cards.map((card, i) => (
               <FadeIn key={card.title} delay={i * 0.04} className="bg-[#12100C] p-6 text-left">
