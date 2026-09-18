@@ -38,7 +38,7 @@ export const NAV_ITEMS: NavItem[] = [
   // that. Sending nav traffic into Telegram skipped the whole page.
   { id: "club", label: "Кузня Силы", href: "/forge" },
   // The seven-principles page. He calls it «ПТСР», so the tab does too.
-  { id: "ptsd", label: "ПТСР", href: "/reboot" },
+  { id: "ptsd", label: "Перезагрузка", href: "/reboot" },
   { id: "book", label: "1341 день в плену", href: "/book/1341" },
   { id: "about", label: "Обо мне", href: "/about" },
   { id: "contact", label: "Контакты", href: "/contact" },
