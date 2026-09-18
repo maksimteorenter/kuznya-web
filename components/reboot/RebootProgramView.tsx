@@ -270,40 +270,6 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
         </Container>
       </Scene>
 
-      {/* 9 — TWO TRACKS. Where this sits inside Кузня: the one place on the
-          page where two things are being compared, so the two panels earn
-          their frames. */}
-      <Scene id="directions" bg="bg-[#12100C]">
-        <Container>
-          <div className="mx-auto max-w-4xl">
-            <FadeIn>
-              <h2 className={`max-w-3xl text-balance font-display font-bold uppercase leading-[1.08] ${bone}`} style={{ fontSize: "clamp(1.6rem, 3vw, 2.5rem)", letterSpacing: "-0.005em" }}>
-                {L.directions.h2}
-              </h2>
-            </FadeIn>
-            <div className="mt-12 grid gap-5 md:grid-cols-2">
-              {L.directions.items.map((d, i) => (
-                <FadeIn key={d.title} delay={0.1 + i * 0.08}>
-                  <div className={`flex h-full flex-col rounded-lg border p-6 md:p-8 ${d.current ? "border-[rgba(224,192,120,0.6)] bg-[#1E1A15]" : `${hairline} bg-[#0A0706]/60`}`}>
-                    <p className={`font-display text-2xl font-bold uppercase tracking-[0.02em] ${d.current ? goldLight : bone}`}>{d.title}</p>
-                    <p className={`mt-3 flex-1 text-[17px] leading-relaxed ${d.current ? boneSoft : text2}`}>{d.body}</p>
-                    {!d.current && (
-                      <a
-                        href={d.href}
-                        data-track="reboot_other_programme_click"
-                        className={`mt-6 inline-flex min-h-[44px] items-center justify-center self-start rounded-full border ${hairline} px-6 font-display text-sm font-semibold uppercase tracking-[0.1em] ${bone} transition-colors hover:border-[rgba(224,192,120,0.6)]`}
-                      >
-                        {L.directions.trainingCta}
-                      </a>
-                    )}
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </Scene>
-
       {/* 10 — OFFER. The door, once, at the end. */}
       <Scene id="offer" bg="bg-[#0A0706]">
         <Container className="text-center">

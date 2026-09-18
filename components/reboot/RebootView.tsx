@@ -61,12 +61,12 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
                 <Hit text={L.hero.h1} />
               </h1>
             </FadeIn>
-            <FadeIn delay={0.12} className="mt-6">
-              <p className={`font-display text-lg font-semibold uppercase tracking-[0.12em] ${goldLight} md:text-xl`}>{L.hero.kicker}</p>
+            <FadeIn delay={0.12} className="mt-6 max-w-xl">
+              <p className={`text-lg leading-relaxed ${boneSoft}`}>{L.hero.kicker}</p>
             </FadeIn>
-            {/* The lede moved down to the contrast section: with it here the
-                first screen overflowed a 784px-tall window and the button
-                fell below the fold. */}
+            <FadeIn delay={0.18} className="mt-4 max-w-xl">
+              <p className={`text-base leading-relaxed ${goldLight}`}>{L.hero.lede}</p>
+            </FadeIn>
             {/* No offer on this screen: this page is the reading, the
                 programme and its price live on /reboot/program (Maksim,
                 2026-09-18). One door here — into the seven principles. */}
@@ -145,10 +145,7 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
         <Container>
           <div className="mx-auto max-w-2xl">
             <FadeIn>
-              <p className={`text-lg leading-relaxed ${boneSoft} md:text-xl`}>
-                <Hit text={L.hero.lede} tone="bone" />
-              </p>
-              <p className={`mt-8 font-editorial text-2xl italic leading-snug ${boneSofter} md:text-3xl`}>{L.hero.invite}</p>
+              <p className={`font-editorial text-2xl italic leading-snug ${boneSofter} md:text-3xl`}>{L.hero.invite}</p>
             </FadeIn>
             <div className={`mt-12 space-y-10 border-t ${hairline} pt-12`}>
               {L.contrast.map((q, i) => (
