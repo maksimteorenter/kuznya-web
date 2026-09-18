@@ -33,3 +33,13 @@ export function Photo({ src, alt, ground }: { src: string; alt: string; ground: 
     </div>
   );
 }
+
+/** The price, with the full price struck beside it. */
+export function Price({ price, oldPrice, className = "" }: { price: string; oldPrice: string; className?: string }) {
+  return (
+    <p className={`flex items-baseline gap-3 font-display ${className}`}>
+      <s className="text-2xl font-semibold text-[#A9A199] decoration-[#8E1B22] decoration-2 md:text-3xl">{oldPrice}</s>
+      <span className="text-4xl font-bold leading-none text-[#E0C078] md:text-5xl">{price}</span>
+    </p>
+  );
+}

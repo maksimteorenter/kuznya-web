@@ -5,7 +5,7 @@ import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Scene, Head, Disclaimer, bone, boneSoft, boneSofter, text2, goldLight, hairline } from "@/components/forge/primitives";
 import { Hit } from "@/components/reboot/Hit";
 import { StickyRebootCTA } from "@/components/reboot/StickyRebootCTA";
-import { PrimaryCta } from "@/components/reboot/parts";
+import { PrimaryCta, Price } from "@/components/reboot/parts";
 import { ChapterRun, type Chapter } from "@/components/reboot/chapters";
 import type { REBOOT_LANDING } from "@/lib/content";
 import type { Widen } from "@/lib/content-shape";
@@ -69,8 +69,11 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
                 <Hit text={L.hero.lede} tone="bone" />
               </p>
             </FadeIn>
-            <FadeIn delay={0.3} className="mt-9">
-              <PrimaryCta label={L.hero.ctaLabel} href={L.next.ctaHref} id="hero" />
+            <FadeIn delay={0.3} className="mt-8">
+              <Price price={L.hero.price} oldPrice={L.hero.oldPrice} />
+              <div className="mt-5">
+                <PrimaryCta label={`${L.hero.ctaLabel} — ${L.hero.price}`} href={L.next.ctaHref} id="hero" />
+              </div>
               <p className={`mt-4 max-w-md text-sm leading-relaxed ${text2}`}>{L.hero.ctaMicro}</p>
             </FadeIn>
             {/* The weaker door: reading first. A text link, never a second

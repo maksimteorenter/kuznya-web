@@ -5,7 +5,7 @@ import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Scene, Head, Disclaimer, bone, boneSoft, boneSofter, text2, goldLight, hairline } from "@/components/forge/primitives";
 import { Hit } from "@/components/reboot/Hit";
 import { StickyRebootCTA } from "@/components/reboot/StickyRebootCTA";
-import { PrimaryCta } from "@/components/reboot/parts";
+import { PrimaryCta, Price } from "@/components/reboot/parts";
 import { ChapterRun, type Chapter } from "@/components/reboot/chapters";
 import { KUZNYA_TELEGRAM_URL } from "@/lib/site";
 import type { REBOOT_PROGRAM } from "@/lib/content.reboot-program";
@@ -58,7 +58,7 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
     <>
       <div data-page-theme="forge" hidden />
       <ScrollProgress />
-      <StickyRebootCTA label={L.offer.ctaLabel} href={checkout} />
+      <StickyRebootCTA label={`${L.offer.ctaLabel} — ${L.offer.price}`} href={checkout} />
 
       {/* 1 — HERO. The same window, morning. Headline, the one line that
           turns the page, the button. */}
@@ -88,8 +88,12 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
                 <Hit text={L.hero.lede} tone="bone" />
               </p>
             </FadeIn>
-            <FadeIn delay={0.3} className="mt-9">
-              <PrimaryCta label={L.hero.ctaLabel} href={checkout} id="hero" />
+            <FadeIn delay={0.3} className="mt-8">
+              <Price price={L.hero.price} oldPrice={L.hero.oldPrice} />
+              <div className="mt-5">
+                <PrimaryCta label={`${L.hero.ctaLabel} — ${L.hero.price}`} href={checkout} id="hero" />
+              </div>
+              <p className={`mt-4 max-w-md text-sm leading-relaxed ${text2}`}>{L.hero.micro}</p>
             </FadeIn>
           </div>
         </Container>
@@ -291,12 +295,19 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
       {/* 10 — OFFER. The door, once, at the end. */}
       <Scene id="offer" bg="bg-[#0A0706]">
         <Container className="text-center">
-          <Head tone="bright">{L.offer.h2}</Head>
+          <Head tone="bright">
+            <Hit text={L.offer.h2} />
+          </Head>
           <FadeIn delay={0.1} className="mx-auto mt-8 max-w-lg">
             <p className={`text-balance text-lg leading-relaxed ${boneSofter}`}>{L.offer.body}</p>
           </FadeIn>
-          <FadeIn delay={0.2} className="mt-9">
-            <PrimaryCta label={L.offer.ctaLabel} href={checkout} id="offer" />
+          <FadeIn delay={0.16} className={`mx-auto mt-12 max-w-lg border-t ${hairline} pt-10`}>
+            <Price price={L.offer.price} oldPrice={L.offer.oldPrice} className="justify-center" />
+            <p className={`mt-4 text-balance text-lg leading-relaxed ${bone}`}>{L.offer.priceNote}</p>
+            <p className={`mt-4 text-balance leading-relaxed ${boneSoft}`}>{L.offer.contribution}</p>
+          </FadeIn>
+          <FadeIn delay={0.24} className="mt-9">
+            <PrimaryCta label={`${L.offer.ctaLabel} — ${L.offer.price}`} href={checkout} id="offer" />
             <p className={`mt-4 text-sm ${text2}`}>{L.offer.micro}</p>
           </FadeIn>
           <FadeIn delay={0.4} className={`mx-auto mt-20 max-w-xl space-y-4 border-t ${hairline} pt-10 text-left`}>
