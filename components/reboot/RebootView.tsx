@@ -70,7 +70,20 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
               </p>
             </FadeIn>
             <FadeIn delay={0.3} className="mt-9">
-              <PrimaryCta label={L.next.ctaLabel} href={L.next.ctaHref} id="hero" />
+              <PrimaryCta label={L.hero.ctaLabel} href={L.next.ctaHref} id="hero" />
+              <p className={`mt-4 max-w-md text-sm leading-relaxed ${text2}`}>{L.hero.ctaMicro}</p>
+            </FadeIn>
+            {/* The weaker door: reading first. A text link, never a second
+                button, so it does not compete with the programme. */}
+            <FadeIn delay={0.38} className="mt-6">
+              <a
+                href="#chapter-01"
+                data-track="reboot_hero_read_first"
+                className={`inline-flex items-center gap-2 text-sm ${boneSofter} underline decoration-[rgba(224,192,120,0.5)] underline-offset-4 transition-colors hover:decoration-[rgba(224,192,120,1)]`}
+              >
+                {L.hero.secondaryLabel} <span aria-hidden="true">↓</span>
+              </a>
+              <span className={`ml-2 text-xs ${text2}`}>{L.hero.secondaryMicro}</span>
             </FadeIn>
           </div>
         </Container>
@@ -114,6 +127,21 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
                   ))}
                 </ul>
                 <p className={`mt-8 text-balance font-editorial text-xl italic leading-snug ${bone} md:text-2xl`}>{L.forWhom.closing}</p>
+              </FadeIn>
+              {/* The map: what is on this page and what comes after it. */}
+              <FadeIn delay={0.3} className={`mt-12 border-t ${hairline} pt-8`}>
+                <p className={`font-display text-sm font-semibold uppercase tracking-[0.16em] ${goldLight}`}>{L.forWhom.pathLabel}</p>
+                <ol className="mt-5 space-y-5">
+                  {L.forWhom.path.map((p, i) => (
+                    <li key={p.step} className="flex gap-4">
+                      <span className={`font-display text-2xl font-bold leading-none ${goldLight}`}>{i + 1}</span>
+                      <div>
+                        <p className={`font-display text-lg font-bold uppercase leading-tight ${bone}`}>{p.step}</p>
+                        <p className={`mt-1 text-base leading-relaxed ${text2}`}>{p.note}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
               </FadeIn>
             </div>
           </div>
