@@ -545,7 +545,29 @@ export function ForgeView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
           <FadeIn delay={0.08} className="mx-auto mt-6 max-w-xl">
             <p className={`text-lg leading-relaxed ${boneSoft}`}>{L.inside.lede}</p>
           </FadeIn>
-          <div className={`mt-12 grid gap-px overflow-hidden rounded-lg border ${hairline} bg-[rgba(224,192,120,0.14)] sm:grid-cols-2 lg:grid-cols-3`}>
+
+          {/* Point A → path → point B: what you do inside and who you leave as. */}
+          <div className="mx-auto mt-12 max-w-2xl text-left">
+            {L.inside.journey.map((step, i) => (
+              <FadeIn key={step.title} delay={0.06 * i}>
+                <div className={`grid gap-4 border-t ${hairline} py-8 md:grid-cols-[120px_minmax(0,1fr)] md:gap-8`}>
+                  <p className={`font-display text-sm font-semibold uppercase tracking-[0.16em] ${goldLight}`}>{step.label}</p>
+                  <div>
+                    <p className={`font-display text-2xl font-bold uppercase leading-tight ${bone}`}>{step.title}</p>
+                    <p className={`mt-3 text-[17px] leading-relaxed ${boneSoft}`}>{step.body}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+            <FadeIn delay={0.24}>
+              <p className={`border-t ${hairline} pt-6 font-display text-base font-semibold uppercase tracking-[0.04em] ${goldLight}`}>{L.inside.bonus}</p>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={0.1} className="mt-16">
+            <p className={`font-display text-sm font-semibold uppercase tracking-[0.16em] ${goldLight}`}>{L.inside.topicsLabel}</p>
+          </FadeIn>
+          <div className={`mt-6 grid gap-px overflow-hidden rounded-lg border ${hairline} bg-[rgba(224,192,120,0.14)] sm:grid-cols-2 lg:grid-cols-3`}>
             {L.inside.cards.map((card, i) => (
               <FadeIn key={card.title} delay={i * 0.04} className="bg-[#12100C] p-6 text-left">
                 <p className={`font-display text-sm font-bold uppercase tracking-[0.04em] ${goldLight}`}>{card.title}</p>
