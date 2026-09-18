@@ -149,11 +149,29 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
               <h2 className={`text-balance font-display font-bold uppercase leading-[1.08] ${bone}`} style={{ fontSize: "clamp(1.75rem, 3.6vw, 2.9rem)", letterSpacing: "-0.005em" }}>
                 {L.how.h2}
               </h2>
-              <p className={`mt-6 text-lg leading-relaxed ${boneSoft} md:text-xl`}>
-                <Hit text={L.how.intro} tone="bone" />
-              </p>
+              <p className={`mt-6 text-lg leading-relaxed ${boneSoft} md:text-xl`}>{L.how.pathLead}</p>
             </FadeIn>
           </div>
+          {/* The path: seven steps, two columns on desktop, the last one
+              (the result) spanning the row so it reads as the point. */}
+          <ol className="mt-12 grid gap-x-12 gap-y-8 md:grid-cols-2">
+            {L.how.path.map((p, i) => (
+              <FadeIn key={p.step} delay={0.05 * i} className={i === L.how.path.length - 1 ? "md:col-span-2" : ""}>
+                <li className={`flex gap-5 border-t ${hairline} pt-5`}>
+                  <span className={`font-display text-3xl font-bold leading-none ${goldLight}`}>{i + 1}</span>
+                  <div>
+                    <p className={`font-display text-xl font-bold uppercase leading-tight ${bone}`}>{p.step}</p>
+                    <p className={`mt-2 text-[17px] leading-relaxed ${text2}`}>{p.note}</p>
+                  </div>
+                </li>
+              </FadeIn>
+            ))}
+          </ol>
+          <FadeIn delay={0.3} className="mt-16 max-w-2xl">
+            <p className={`text-lg leading-relaxed ${boneSoft} md:text-xl`}>
+              <Hit text={L.how.intro} tone="bone" />
+            </p>
+          </FadeIn>
         </Container>
       </Scene>
       <ChapterRun chapters={chapters} />
