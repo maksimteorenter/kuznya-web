@@ -631,7 +631,7 @@ export const KUZNYA_LANDING = {
     mechanism:
       "«Кузня силы» — 90 дней работы с подсознанием: увидеть эти преграды, снять их и раскрыть то, что в тебе уже есть.",
     firstResult:
-      "Первые из них ты увидишь на первой неделе. Не через три месяца.",
+      "Первые сдвиги ты увидишь на первой неделе. Не через три месяца.",
     // The anchor is true and already stated further down the page in these
     // words; it is promoted, not invented. No strike-through — the sentence
     // does the work, and a fake one would sit badly next to a refund promise.
