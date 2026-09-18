@@ -76,8 +76,52 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
         </Container>
       </Scene>
 
-      {/* 2 — CONTRAST. The invitation, then the two paired questions. */}
-      <Scene id="contrast" bg="bg-[#12100C]">
+      {/* 2 — FOR WHOM. The reader sees himself before the argument starts:
+          the war, the four situations, what the page gives. */}
+      <Scene id="for-whom" bg="bg-[#12100C]">
+        <Container>
+          <div className="grid gap-10 md:grid-cols-12 md:gap-12">
+            <div className="md:col-span-5">
+              <FadeIn className="md:sticky md:top-28">
+                <span aria-hidden="true" className="block h-[3px] w-16 bg-[#B8873B]" />
+                <h2
+                  className={`mt-5 text-balance font-display font-bold uppercase leading-[1.08] ${bone}`}
+                  style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.6rem)", letterSpacing: "-0.005em" }}
+                >
+                  {L.forWhom.h2}
+                </h2>
+                <p className={`mt-5 text-balance font-editorial text-2xl italic leading-snug ${goldLight} md:text-3xl`}>{L.forWhom.lede}</p>
+              </FadeIn>
+            </div>
+            <div className="md:col-span-6 md:col-start-7">
+              <ul>
+                {L.forWhom.situations.map((item, i) => (
+                  <FadeIn key={item} delay={0.05 * i}>
+                    <li className={`border-t ${hairline} py-4 font-display text-xl font-semibold uppercase leading-tight ${bone} md:text-2xl`}>{item}</li>
+                  </FadeIn>
+                ))}
+              </ul>
+              <FadeIn delay={0.24} className="mt-10">
+                <p className={`text-lg leading-relaxed ${boneSoft}`}>{L.forWhom.givesIntro}</p>
+                <ul className="mt-4 space-y-3">
+                  {L.forWhom.gives.map((item) => (
+                    <li key={item} className={`flex gap-3 text-lg leading-relaxed ${boneSoft}`}>
+                      <span aria-hidden="true" className={goldLight}>—</span>
+                      <span>
+                        <Hit text={item} tone="bone" />
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <p className={`mt-8 text-balance font-editorial text-xl italic leading-snug ${bone} md:text-2xl`}>{L.forWhom.closing}</p>
+              </FadeIn>
+            </div>
+          </div>
+        </Container>
+      </Scene>
+
+      {/* 3 — CONTRAST. The invitation, then the two paired questions. */}
+      <Scene id="contrast" bg="bg-[#0A0706]">
         <Container>
           <div className="mx-auto max-w-2xl">
             <FadeIn>
@@ -97,7 +141,7 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
       </Scene>
 
       {/* 3 — MYTHS. Six "pain is not…" beats in two columns, then the turn. */}
-      <Scene id="myths" bg="bg-[#0A0706]">
+      <Scene id="myths" bg="bg-[#12100C]">
         <Container>
           <div className="mx-auto max-w-4xl">
             <ul className="grid gap-x-12 gap-y-10 md:grid-cols-2">
