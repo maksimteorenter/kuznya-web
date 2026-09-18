@@ -626,16 +626,22 @@ export const KUZNYA_LANDING = {
     // off the step that matters; the page respects that instead of naming him
     // a pawn. Chess stays as a visual motif in the plan below.
     h1: "Ты упёрся в потолок, хотя знаешь, что способен на большее",
+    // The first screen sells: the big promise, the three pains, the way out.
     subhead:
-      "Потому что играешь в чужую игру — по программам, которые в тебя загрузили. Трудный разговор, решение, шаг, который давно хочешь сделать: ты понимаешь, что пора, но откладываешь или начинаешь и бросаешь.",
+      "За 90 дней ты найдёшь скрытые блоки, которые держат тебя на месте, снимешь их и вернёшь себе решения. Первые сдвиги — на первой неделе.",
+    pains: [
+      "Срываешься на близких — и теряешь отношения, которые строил годами.",
+      "Отступаешь там, где хотел стоять, — и теряешь деньги и время.",
+      "Знаешь, что делать, — и не делаешь. Год за годом.",
+    ],
     // Promises the outcome, not the activity. The previous version described
     // what the work is aimed at — the programs — which left the reader to work
     // out for himself what he would get. This names it: he rewrites them and
     // takes the controls, and the inversion at the end is the whole point.
     mechanism:
-      "«Кузня силы» — 90 дней работы с подсознанием и привычками: разберёшься, что тебя останавливает, перепишешь программы, которые выбирали за тебя, и станешь тем, кто ставит правила.",
+      "Дело не в знаниях и не в силе воли. В решающий момент включаешься не ты, а программы, загруженные в тебя до того, как ты начал выбирать. Ещё один год так — слишком дорого.",
     firstResult:
-      "Первые сдвиги ты увидишь на первой неделе. Не через три месяца.",
+      "«Кузня силы» — 90 дней работы с подсознанием: увидеть эти блоки, снять их и закрепить новое действием.",
     // The anchor is true and already stated further down the page in these
     // words; it is promoted, not invented. No strike-through — the sentence
     // does the work, and a fake one would sit badly next to a refund promise.
@@ -988,7 +994,7 @@ export const REBOOT_LANDING = {
   hero: {
     eyebrow: "Перезагрузка",
     h1: "Ты потерял всё: деньги, отношения, себя. Из-за войны или нет — неважно. **Важно, как вернуть себя.**",
-    kicker: "60 дней ежедневной практики по 20–30 минут: вернуть сон, спокойствие и способность действовать. Не разговоры — навыки.",
+    kicker: "В «Перезагрузке» ты получишь инструменты, чтобы вернуть себя и свой ресурс — и собрать жизнь заново. Не такую, как была: ту, которую выберешь сам. 60 дней, по 20–30 минут в день.",
     lede: "Собрано за 1341 день плена, проверено на сотнях людей после.",
     ctaLabel: "Читать 7 принципов",
     price: "$12",

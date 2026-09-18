@@ -189,22 +189,29 @@ export function ForgeView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
               {L.hero.h1}
             </h1>
           </FadeIn>
+          {/* The big promise, gold. */}
           <FadeIn delay={0.2} className="mx-auto mt-7 max-w-xl">
-            <p className={`text-balance text-lg leading-relaxed ${boneSoft}`}>{L.hero.subhead}</p>
+            <p className={`text-balance text-lg leading-relaxed ${goldLight}`}>{L.hero.subhead}</p>
+          </FadeIn>
+          {/* The three pains: the reader finds his own before the way out. */}
+          <FadeIn delay={0.24} className="mx-auto mt-6 max-w-xl">
+            <ul className="space-y-2 text-left">
+              {L.hero.pains.map((pain) => (
+                <li key={pain} className={`flex gap-3 text-base leading-relaxed ${boneSoft}`}>
+                  <span aria-hidden="true" className={`mt-[3px] h-[3px] w-4 shrink-0 translate-y-2 bg-[#B8873B]`} />
+                  <span>{pain}</span>
+                </li>
+              ))}
+            </ul>
           </FadeIn>
 
           {/* Mechanism and timeframe, then the anchor — the Hormozi levers, in
               the order a reader actually asks for them: what is this, how long,
               what does it cost against what it used to cost. */}
-          <FadeIn delay={0.26} className="mt-5 md:mt-7">
-            <p className={`text-balance text-lg leading-relaxed ${bone}`}>{L.hero.mechanism}</p>
-          </FadeIn>
-          <FadeIn delay={0.28} className="mx-auto mt-5 max-w-xl">
-            {/* Hormozi's Time Delay lever. The old line here described the
-                product; this one names what the reader gets first and when,
-                so "90 дней" stops reading as "результат через три месяца".
-                Gold, not muted grey — it is a promise, not a footnote. */}
-            <p className={`text-balance text-lg leading-relaxed ${goldLight}`}>{L.hero.firstResult}</p>
+          {/* The way out: why it keeps happening, and what the programme does. */}
+          <FadeIn delay={0.28} className="mx-auto mt-6 max-w-xl">
+            <p className={`text-balance leading-relaxed ${boneSoft}`}>{L.hero.mechanism}</p>
+            <p className={`mt-3 text-balance text-lg leading-relaxed ${bone}`}>{L.hero.firstResult}</p>
           </FadeIn>
           {/* The first-screen button leads to the programme itself, further
               down this page; the purchase buttons sit after the plan and
