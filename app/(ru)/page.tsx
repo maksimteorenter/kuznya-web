@@ -1,162 +1,201 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { EyeBar } from "@/components/book/EyeBar";
+import { ProofGrid } from "@/components/forge/ProofGrid";
+import { KUZNYA_TELEGRAM_URL } from "@/lib/site";
 import { BOOK, KUZNYA_LANDING } from "@/lib/content";
+import { HOME as H } from "@/lib/content.home";
 
 export const metadata: Metadata = {
-  title: "Кузня — место, где человек создаёт себя",
-  description:
-    "Кузня — экосистема книг, программ и сообщества для тех, кто строит внутреннюю опору в предельных обстоятельствах.",
+  title: { absolute: H.meta.title },
+  description: H.meta.description,
+  alternates: { canonical: "/" },
 };
 
+/**
+ * The home page answers four questions in order: who this is, what people
+ * come here with, which programmes exist, and how to pick a first step. The
+ * biography and the book come after the programmes, not before them.
+ */
 export default function HomePage() {
   return (
     <>
-      {/* Photo-led author header, same black-and-white language as the book page */}
+      {/* 1 — HERO. Photo-led, same black-and-white language as the book page. */}
       <Section bare tone="deep" className="relative flex min-h-[100svh] items-end">
         <div className="absolute inset-0">
-          <Image
-            src="/images/hero-portrait.jpg"
-            alt=""
-            fill
-            sizes="100vw"
-            className="photo-bw object-cover object-[58%_14%]"
-            priority
-          />
+          <Image src="/images/hero-portrait.jpg" alt="" fill sizes="100vw" className="photo-bw object-cover object-[58%_14%]" priority />
           <div
             className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(0deg, #0B0B0C 6%, rgba(11,11,12,0.72) 40%, rgba(11,11,12,0.25) 68%, rgba(11,11,12,0.5) 100%)",
-            }}
+            style={{ background: "linear-gradient(0deg, #0B0B0C 6%, rgba(11,11,12,0.78) 42%, rgba(11,11,12,0.3) 68%, rgba(11,11,12,0.5) 100%)" }}
           />
-          {/* Same censor bar as the book page — anchored to the photo, so it
-              stays on the eyes at any viewport size. */}
           <EyeBar objectX={0.58} objectY={0.14} delay={0.6} className="hidden md:block" />
         </div>
-
         <Container className="relative z-10 pb-20 pt-40">
           <FadeIn>
             <div className="blood-rule" />
-            {/* Book must read within the first 3 seconds — a badge above the
-                fold, before the reader has to scroll to find it. */}
-            <a
-              href="/book/1341"
-              className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-blood/50 bg-blood/10 px-4 py-2 backdrop-blur-sm transition-colors hover:bg-blood/20"
-            >
-              <span className="font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-blood">
-                Книга
-              </span>
-              <span className="h-3 w-px bg-blood/40" aria-hidden="true" />
-              <span className="text-[13px] text-bone">«{BOOK.title}»</span>
-            </a>
-            <h1
-              className="mt-7 max-w-3xl text-balance font-display font-bold uppercase leading-[1.06] text-bone"
-              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4rem)", letterSpacing: "-0.01em" }}
-            >
-              Человек не ищет себя здесь.
-              <br />
-              <span className="text-blood">Он создаёт себя.</span>
+            <h1 className="mt-7 max-w-3xl text-balance font-display font-bold uppercase leading-[1.06] text-bone" style={{ fontSize: "clamp(2.1rem, 5vw, 3.8rem)", letterSpacing: "-0.01em" }}>
+              {H.hero.h1}
             </h1>
-            <p className="mt-6 max-w-lg text-balance text-lg leading-relaxed text-bone/85">
-              {BOOK.days} день плена — не вся его жизнь. Но именно там многие
-              идеи были проверены на предельной нагрузке.
-            </p>
-          </FadeIn>
-        </Container>
-      </Section>
-
-      {/* Short bio */}
-      <Section tone="paper">
-        <Container className="max-w-3xl text-center">
-          <SectionHead center label="Автор">{BOOK.author}</SectionHead>
-          <FadeIn delay={0.1}>
-            <p className="mx-auto mt-8 max-w-prose text-balance text-lg leading-relaxed text-inkSoft">
-              Мастер спорта, боец, гипнотерапевт — и человек, переживший{" "}
-              {BOOK.days} день плена. Сегодня он собирает то, что вынес
-              оттуда, в систему: книги, методики и работу с подсознанием для
-              тех, кто хочет управлять собой, а не обстоятельствами.
-            </p>
-            <Button href="/about" variant="ghost" className="mt-8">
-              Подробнее об авторе
-            </Button>
-          </FadeIn>
-        </Container>
-      </Section>
-
-      {/* Book showcase — the one 3D moment */}
-      <Section tone="deep">
-        <Container className="text-center">
-          <SectionHead center label="Первый продукт экосистемы">
-            {BOOK.title}
-          </SectionHead>
-          {/* The book itself, at a size that reads as the product rather than
-              a thumbnail. It used to sit here as a 300px CSS mock-up; the
-              owner asked for the actual book, larger. The 3D mock stays on
-              the book's own page, where the spine trick has room to work. */}
-          <FadeIn delay={0.15} className="mt-12 flex justify-center">
-            <div className="relative w-full max-w-[320px] md:max-w-[440px]">
-              <div
-                aria-hidden="true"
-                className="absolute -inset-x-8 -inset-y-6 rounded-full blur-3xl"
-                style={{ background: "radial-gradient(closest-side, rgba(193,18,31,0.18), transparent)" }}
-              />
-              <Image
-                src="/images/cover-front-hires.jpg"
-                alt={`Обложка книги «${BOOK.title}»`}
-                width={1200}
-                height={1800}
-                sizes="(max-width: 768px) 320px, 440px"
-                className="relative h-auto w-full rounded-[3px] shadow-[0_40px_80px_-24px_rgba(0,0,0,0.85)]"
-              />
+            <p className="mt-6 max-w-xl text-balance text-lg leading-relaxed text-bone/85">{H.hero.sub}</p>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-bone/65">{H.hero.intro}</p>
+            <div className="mt-8">
+              <Button href={H.hero.ctaHref} size="lg" dataTrack="home_hero_choose">
+                {H.hero.ctaLabel}
+              </Button>
             </div>
           </FadeIn>
-          <FadeIn delay={0.1}>
-            <p className="mx-auto mt-12 max-w-prose text-balance leading-relaxed text-mist">
-              Реальная история от первого лица — и система внутренних опор,
-              которая из неё родилась.
-            </p>
-            <Button href="/book/1341" className="mt-8">
-              Читать о книге
-            </Button>
-          </FadeIn>
         </Container>
       </Section>
 
-      {/* Кузня Силя — the paid product, which this page did not mention at all.
-          A visitor who landed on the logo read four screens and left without
-          ever learning there was something to buy: no name, no price, no link
-          to /forge. The headline and the line under it are the sales page's own
-          approved copy, reused rather than rewritten, so the two pages say the
-          same thing in the same words. */}
+      {/* 2 — PROGRAMMES. The two requests, side by side. */}
+      <Section id="programs" tone="paper">
+        <Container>
+          <SectionHead>{H.programs.h2}</SectionHead>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-inkSoft">{H.programs.lede}</p>
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {H.programs.items.map((p, i) => (
+              <FadeIn key={p.name} delay={0.08 * i}>
+                <div className="flex h-full flex-col rounded-2xl border border-ink/12 bg-white/40 p-7 md:p-8">
+                  <p className="font-display text-2xl font-bold uppercase text-ink md:text-3xl">{p.name}</p>
+                  <p className="mt-4 font-editorial text-xl italic leading-snug text-ink md:text-2xl">{p.request}</p>
+                  <p className="mt-4 flex-1 text-[17px] leading-relaxed text-inkSoft">{p.body}</p>
+                  <ul className="mt-6 flex flex-wrap gap-2">
+                    {p.facts.map((f) => (
+                      <li key={f} className="rounded-full border border-ink/15 px-3.5 py-1.5 text-sm text-inkSoft">
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-7">
+                    <Button href={p.href} dataTrack={`home_programme_${i}`}>
+                      {p.ctaLabel}
+                    </Button>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+          <p className="mt-6 text-sm text-inkFaint">{H.programs.note}</p>
+        </Container>
+      </Section>
+
+      {/* 3 — APPROACH. Short: what happens and where the limits are. */}
+      <Section tone="deep">
+        <Container>
+          <div className="grid gap-10 md:grid-cols-12 md:gap-12">
+            <div className="md:col-span-4">
+              <SectionHead>{H.approach.h2}</SectionHead>
+            </div>
+            <div className="space-y-5 md:col-span-7 md:col-start-6">
+              {H.approach.paragraphs.map((t) => (
+                <p key={t} className="text-[17px] leading-relaxed text-bone/85 md:text-lg">
+                  {t}
+                </p>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 4 — AUTHOR. Verified facts only; the story lives on /about. */}
       <Section tone="paper">
-        <Container className="max-w-3xl text-center">
-          <SectionHead center label="Кузня Силы">
-            {KUZNYA_LANDING.hero.h1}
-          </SectionHead>
-          <FadeIn delay={0.1}>
-            <p className="mx-auto mt-8 max-w-prose text-balance leading-relaxed text-inkSoft">
-              {KUZNYA_LANDING.hero.subhead}
-            </p>
-            <p className="mx-auto mt-5 max-w-prose text-balance leading-relaxed text-inkSoft">
-              {KUZNYA_LANDING.hero.firstResult}
-            </p>
-          </FadeIn>
-          {/* Points at the sales page, not at the bot: /forge is where the
-              offer, the plan and the guarantee live. */}
-          <FadeIn delay={0.18} className="mt-9">
-            <Button href="/forge" size="lg">
-              Кузня Силы — {KUZNYA_LANDING.hero.price}
-            </Button>
-            <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-inkFaint">
-              {KUZNYA_LANDING.hero.micro}
-            </p>
-          </FadeIn>
+        <Container>
+          <div className="grid items-start gap-10 md:grid-cols-12 md:gap-12">
+            <FadeIn className="mx-auto w-full max-w-[280px] md:col-span-4 md:max-w-none">
+              <div className="overflow-hidden rounded-2xl">
+                <Image src="/images/author-portrait-red.jpg" alt={BOOK.author} width={614} height={768} sizes="(max-width: 768px) 280px, 33vw" className="h-auto w-full" />
+              </div>
+            </FadeIn>
+            <div className="md:col-span-7 md:col-start-6">
+              <SectionHead label={H.author.h2}>{BOOK.author}</SectionHead>
+              <div className="mt-6 space-y-4">
+                {H.author.paragraphs.map((t) => (
+                  <p key={t} className="text-[17px] leading-relaxed text-inkSoft md:text-lg">
+                    {t}
+                  </p>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Button href={H.author.ctaHref} variant="ghost">
+                  {H.author.ctaLabel}
+                </Button>
+                <a href={H.author.mentorshipHref} className="inline-flex items-center gap-1 text-sm text-inkSoft underline underline-offset-4 hover:text-ink">
+                  {H.author.mentorshipLabel} <ArrowRight className="size-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 5 — PROOF. Real video testimonials, the first six; the rest on /forge. */}
+      <Section tone="deep">
+        <Container>
+          <SectionHead>{H.proof.h2}</SectionHead>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-bone/80">{H.proof.lede}</p>
+          <ProofGrid ids={KUZNYA_LANDING.proof.videoIds.slice(0, H.proof.limit)} />
+          <a href={H.proof.moreHref} className="mt-8 inline-flex items-center gap-1 text-sm text-mist underline underline-offset-4 hover:text-bone">
+            {H.proof.moreLabel} <ArrowRight className="size-3.5" />
+          </a>
+        </Container>
+      </Section>
+
+      {/* 6 — BOOK. */}
+      <Section tone="paper">
+        <Container>
+          <div className="grid items-center gap-10 md:grid-cols-12 md:gap-12">
+            <FadeIn className="mx-auto w-full max-w-[260px] md:col-span-4 md:max-w-[320px]">
+              <Image src="/images/cover-front-hires.jpg" alt={`Обложка книги «${BOOK.title}»`} width={1200} height={1800} sizes="(max-width: 768px) 260px, 320px" className="h-auto w-full rounded-[3px] shadow-[0_40px_80px_-24px_rgba(0,0,0,0.6)]" />
+            </FadeIn>
+            <div className="md:col-span-7 md:col-start-6">
+              <SectionHead label="Книга">{H.book.h2}</SectionHead>
+              <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-inkSoft md:text-lg">{H.book.body}</p>
+              <div className="mt-8">
+                <Button href={H.book.ctaHref}>{H.book.ctaLabel}</Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 7 — TRAINING. An honest door: no page yet, a real conversation. */}
+      <Section tone="deep">
+        <Container>
+          <div className="max-w-2xl">
+            <SectionHead>{H.training.h2}</SectionHead>
+            <p className="mt-6 text-[17px] leading-relaxed text-bone/85 md:text-lg">{H.training.body}</p>
+            <div className="mt-8">
+              <Button href={KUZNYA_TELEGRAM_URL} external variant="ghost" dataTrack="home_training_click">
+                {H.training.ctaLabel}
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 8 — FAQ. Only what stands between a visitor and a choice. */}
+      <Section tone="paper">
+        <Container>
+          <div className="max-w-3xl">
+            <SectionHead>{H.faq.h2}</SectionHead>
+            <div className="mt-8 divide-y divide-ink/10 border-t border-ink/10">
+              {H.faq.items.map((f) => (
+                <details key={f.q} className="group py-5">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-lg font-semibold uppercase leading-tight text-ink [&::-webkit-details-marker]:hidden">
+                    {f.q}
+                    <span aria-hidden="true" className="text-blood transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-3 max-w-2xl text-[17px] leading-relaxed text-inkSoft">{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
         </Container>
       </Section>
     </>

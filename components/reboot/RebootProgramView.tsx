@@ -293,10 +293,8 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
                     <p className={`mt-3 flex-1 text-[17px] leading-relaxed ${d.current ? boneSoft : text2}`}>{d.body}</p>
                     {!d.current && (
                       <a
-                        href={KUZNYA_TELEGRAM_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-track="reboot_training_click"
+                        href={d.href}
+                        data-track="reboot_other_programme_click"
                         className={`mt-6 inline-flex min-h-[44px] items-center justify-center self-start rounded-full border ${hairline} px-6 font-display text-sm font-semibold uppercase tracking-[0.1em] ${bone} transition-colors hover:border-[rgba(224,192,120,0.6)]`}
                       >
                         {L.directions.trainingCta}

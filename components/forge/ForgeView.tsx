@@ -206,8 +206,17 @@ export function ForgeView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
                 Gold, not muted grey — it is a promise, not a footnote. */}
             <p className={`text-balance text-lg leading-relaxed ${goldLight}`}>{L.hero.firstResult}</p>
           </FadeIn>
+          {/* The first-screen button leads to the programme itself, further
+              down this page; the purchase buttons sit after the plan and
+              the price. */}
           <FadeIn delay={0.36} className="mt-9">
-            <PrimaryCta label={L.hero.ctaLabel} price={L.hero.price} id="hero" />
+            <a
+              href="#steps"
+              data-track="forge_cta_hero_programme"
+              className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-full bg-[#E0C078] px-9 py-4 font-display text-[15px] font-semibold uppercase tracking-[0.1em] text-[#0A0706] shadow-[0_10px_30px_-10px_rgba(224,192,120,0.55)] transition-[transform,box-shadow,background-color] duration-200 ease-out [touch-action:manipulation] hover:-translate-y-0.5 hover:bg-[#B8873B] active:translate-y-0 motion-reduce:transform-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#E0C078]"
+            >
+              {L.hero.ctaLabel}
+            </a>
           </FadeIn>
 
           {/* Transitional CTA (StoryBrand). The page used to offer one door:
@@ -639,17 +648,11 @@ export function ForgeView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
                 above; repeating it here would be the exact duplication the
                 brief asked to remove. */}
             <ul className="mx-auto mt-6 flex max-w-xl flex-wrap justify-center gap-2.5">
-              {L.price.stack
-                .filter((item) =>
-                  ["закрытый Telegram", "90-дневный маршрут", "практики", "сообщество", "материалы Максима", "новые материалы"].includes(
-                    item,
-                  ),
-                )
-                .map((item) => (
+              {L.price.stack.map((item) => (
                   <li key={item} className={`rounded-full border ${hairline} px-4 py-2 text-sm leading-relaxed ${text2}`}>
                     {item}
                   </li>
-                ))}
+              ))}
             </ul>
           </FadeIn>
 

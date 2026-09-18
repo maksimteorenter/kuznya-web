@@ -130,6 +130,9 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
                   ))}
                 </ul>
                 <p className={`mt-8 text-balance font-editorial text-xl italic leading-snug ${bone} md:text-2xl`}>{L.forWhom.closing}</p>
+                {/* The boundary of the product, next to its purpose — not only
+                    in the footer. */}
+                <p className={`mt-6 text-sm leading-relaxed ${text2}`}>{L.forWhom.scope}</p>
               </FadeIn>
               {/* The map: what is on this page and what comes after it. */}
               <FadeIn delay={0.3} className={`mt-12 border-t ${hairline} pt-8`}>
