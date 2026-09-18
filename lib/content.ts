@@ -855,8 +855,10 @@ export const KUZNYA_LANDING = {
     // The pain photographs are all shot in the evening. This one is morning,
     // in the same apartment language — the hour does the work that another
     // paragraph would have had to do.
-    image: "/images/forge/pain/vtornik.jpg",
-    imageAlt: "Мужчина стоит у окна кухни утром, спокойно смотрит на улицу",
+    // Before and after, Maksim's own photographs (his request, 2026-09-18):
+    // the prison yard in the snow, and the armchair today.
+    before: { image: "/images/forge/before-captivity.jpg", alt: "Максим Теорентер в плену: тюремный двор зимой", label: "1341 день в плену" },
+    after: { image: "/images/forge/after-chair.jpg", alt: "Максим Теорентер сегодня, в кресле", label: "Сегодня" },
     scene:
       "Представь обычный вторник. Что-то опять идёт не так — как обычно. Но в этот раз ты замечаешь сценарий в моменте, а не через три дня самобичевания. И делаешь один другой шаг. Жизнь не переворачивается. Она чуть-чуть сворачивает в другую сторону.",
     bigLine: "Не нужно изменить всю жизнь за один день. Нужно изменить следующее решение.",

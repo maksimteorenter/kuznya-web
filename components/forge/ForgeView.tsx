@@ -596,19 +596,18 @@ export function ForgeView({ L, locale }: { L: Content; locale: "ru" | "uk" }) {
             </p>
           </FadeIn>
           <FadeIn delay={0.3} className="mx-auto mt-10 max-w-xl">
-            <div className="grid items-center gap-8 text-left md:grid-cols-[minmax(0,240px)_minmax(0,1fr)]">
-              <div className={`mx-auto w-full max-w-[240px] overflow-hidden rounded-lg border ${hairline}`}>
-                <Image
-                  src={L.ninety.image}
-                  alt={L.ninety.imageAlt}
-                  width={825}
-                  height={1100}
-                  sizes="(max-width: 768px) 60vw, 240px"
-                  className="h-auto w-full"
-                />
-              </div>
-              <p className={`text-balance font-editorial text-xl italic leading-relaxed ${boneSoft}`}>{L.ninety.scene}</p>
+            {/* Before and after: the same man, two photographs. */}
+            <div className="grid grid-cols-2 gap-3 md:gap-5">
+              {[L.ninety.before, L.ninety.after].map((ph) => (
+                <figure key={ph.image} className="text-left">
+                  <div className={`overflow-hidden rounded-lg border ${hairline}`}>
+                    <Image src={ph.image} alt={ph.alt} width={1200} height={900} sizes="(max-width: 768px) 50vw, 320px" className="h-auto w-full" />
+                  </div>
+                  <figcaption className={`mt-3 font-display text-xs font-semibold uppercase tracking-[0.16em] ${goldLight}`}>{ph.label}</figcaption>
+                </figure>
+              ))}
             </div>
+            <p className={`mx-auto mt-10 max-w-xl text-balance font-editorial text-xl italic leading-relaxed ${boneSoft}`}>{L.ninety.scene}</p>
           </FadeIn>
           <FadeIn delay={0.4} className={`mx-auto mt-10 max-w-xl border-t ${hairline} pt-8`}>
             <BigLine>{L.ninety.bigLine}</BigLine>
