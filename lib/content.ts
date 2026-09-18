@@ -621,15 +621,15 @@ export const KUZNYA_LANDING = {
   // is actually felt.
   hero: {
     eyebrow: "Кузня Силы • 90 дней",
-    h1: "Как перестать быть пешкой в чужой игре и стать главным героем своей жизни",
+    h1: "Ты упёрся в потолок. Но чувствуешь, что способен на большее",
     subhead:
-      "Ты не сидишь на месте. Тренинги, книги, новые старты. А через год — снова не те люди, не те партнёры, не та жизнь. Выбираешь не ты. Выбирает программа, которую в тебя загрузили.",
+      "Между тобой и этим «большим» — не рынок и не обстоятельства. Внутренние преграды: блоки, страхи и программы, которые включаются раньше, чем ты успеваешь решить.",
     // Promises the outcome, not the activity. The previous version described
     // what the work is aimed at — the programs — which left the reader to work
     // out for himself what he would get. This names it: he rewrites them and
     // takes the controls, and the inversion at the end is the whole point.
     mechanism:
-      "90 дней прикладной работы с подсознанием: перепишешь программы, которые выбирали за тебя, и станешь управлять своим состоянием — а не оно тобой.",
+      "«Кузня силы» — 90 дней работы с подсознанием: увидеть эти преграды, снять их и раскрыть то, что в тебе уже есть.",
     firstResult:
       "Первые из них ты увидишь на первой неделе. Не через три месяца.",
     // The anchor is true and already stated further down the page in these
