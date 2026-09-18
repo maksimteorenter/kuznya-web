@@ -5,7 +5,7 @@ import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Scene, Head, Disclaimer, bone, boneSoft, boneSofter, text2, goldLight, hairline } from "@/components/forge/primitives";
 import { Hit } from "@/components/reboot/Hit";
 import { StickyRebootCTA } from "@/components/reboot/StickyRebootCTA";
-import { PrimaryCta, Price } from "@/components/reboot/parts";
+import { PrimaryCta } from "@/components/reboot/parts";
 import { ChapterRun, type Chapter } from "@/components/reboot/chapters";
 import type { REBOOT_LANDING } from "@/lib/content";
 import type { Widen } from "@/lib/content-shape";
@@ -67,24 +67,12 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
             {/* The lede moved down to the contrast section: with it here the
                 first screen overflowed a 784px-tall window and the button
                 fell below the fold. */}
-            <FadeIn delay={0.24} className="mt-8">
-              <Price price={L.hero.price} oldPrice={L.hero.oldPrice} />
-              <div className="mt-5">
-                <PrimaryCta label={`${L.hero.ctaLabel} — ${L.hero.price}`} href={L.next.ctaHref} id="hero" />
-              </div>
-              <p className={`mt-4 max-w-md text-sm leading-relaxed ${text2}`}>{L.hero.ctaMicro}</p>
-            </FadeIn>
-            {/* The weaker door: reading first. A text link, never a second
-                button, so it does not compete with the programme. */}
-            <FadeIn delay={0.38} className="mt-6">
-              <a
-                href="#chapter-01"
-                data-track="reboot_hero_read_first"
-                className={`inline-flex items-center gap-2 text-sm ${boneSofter} underline decoration-[rgba(224,192,120,0.5)] underline-offset-4 transition-colors hover:decoration-[rgba(224,192,120,1)]`}
-              >
-                {L.hero.secondaryLabel} <span aria-hidden="true">↓</span>
-              </a>
-              <span className={`ml-2 text-xs ${text2}`}>{L.hero.secondaryMicro}</span>
+            {/* No offer on this screen: this page is the reading, the
+                programme and its price live on /reboot/program (Maksim,
+                2026-09-18). One door here — into the seven principles. */}
+            <FadeIn delay={0.24} className="mt-9">
+              <PrimaryCta label={L.hero.ctaLabel} href="#for-whom" id="hero_read" />
+              <p className={`mt-4 text-sm ${text2}`}>{L.hero.secondaryMicro}</p>
             </FadeIn>
           </div>
         </Container>
