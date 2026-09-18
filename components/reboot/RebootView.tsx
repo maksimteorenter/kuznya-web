@@ -64,12 +64,10 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
             <FadeIn delay={0.12} className="mt-6">
               <p className={`font-display text-lg font-semibold uppercase tracking-[0.12em] ${goldLight} md:text-xl`}>{L.hero.kicker}</p>
             </FadeIn>
-            <FadeIn delay={0.2} className="mt-6 max-w-lg">
-              <p className={`text-lg leading-relaxed ${boneSoft}`}>
-                <Hit text={L.hero.lede} tone="bone" />
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.3} className="mt-8">
+            {/* The lede moved down to the contrast section: with it here the
+                first screen overflowed a 784px-tall window and the button
+                fell below the fold. */}
+            <FadeIn delay={0.24} className="mt-8">
               <Price price={L.hero.price} oldPrice={L.hero.oldPrice} />
               <div className="mt-5">
                 <PrimaryCta label={`${L.hero.ctaLabel} — ${L.hero.price}`} href={L.next.ctaHref} id="hero" />
@@ -159,7 +157,10 @@ export function RebootView({ L }: { L: Content; locale: "ru" | "uk" }) {
         <Container>
           <div className="mx-auto max-w-2xl">
             <FadeIn>
-              <p className={`font-editorial text-2xl italic leading-snug ${boneSofter} md:text-3xl`}>{L.hero.invite}</p>
+              <p className={`text-lg leading-relaxed ${boneSoft} md:text-xl`}>
+                <Hit text={L.hero.lede} tone="bone" />
+              </p>
+              <p className={`mt-8 font-editorial text-2xl italic leading-snug ${boneSofter} md:text-3xl`}>{L.hero.invite}</p>
             </FadeIn>
             <div className={`mt-12 space-y-10 border-t ${hairline} pt-12`}>
               {L.contrast.map((q, i) => (

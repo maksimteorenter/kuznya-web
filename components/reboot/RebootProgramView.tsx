@@ -83,12 +83,7 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
             <FadeIn delay={0.12} className="mt-6 max-w-xl">
               <p className={`font-display text-lg font-semibold uppercase tracking-[0.08em] ${goldLight} md:text-xl`}>{L.hero.kicker}</p>
             </FadeIn>
-            <FadeIn delay={0.2} className="mt-6 max-w-lg">
-              <p className={`text-lg leading-relaxed ${boneSoft}`}>
-                <Hit text={L.hero.lede} tone="bone" />
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.3} className="mt-8">
+            <FadeIn delay={0.24} className="mt-8">
               <Price price={L.hero.price} oldPrice={L.hero.oldPrice} />
               <div className="mt-5">
                 <PrimaryCta label={`${L.hero.ctaLabel} — ${L.hero.price}`} href={checkout} id="hero" />
@@ -104,6 +99,7 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
         <Container>
           <div className="mx-auto max-w-2xl">
             <FadeIn>
+              <p className={`mb-10 font-editorial text-2xl italic leading-snug ${bone} md:text-3xl`}>{L.hero.lede}</p>
               <Prose items={L.tried.paragraphs} size="lg" />
             </FadeIn>
             <FadeIn delay={0.1} className="mt-14">
