@@ -64,8 +64,8 @@ export default function MentorshipPage() {
             <BackLink dark fallbackHref="/about" label="Обо мне" />
           </div>
           <div className="grid items-center gap-10 md:grid-cols-12 md:gap-10">
-            <FadeIn className="md:col-span-4">
-              <div className={`relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-lg border ${hairline} md:max-w-none`}>
+            <FadeIn className="order-last md:order-first md:col-span-4">
+              <div className={`relative mx-auto aspect-[4/5] w-full max-w-[300px] overflow-hidden rounded-lg border ${hairline} md:max-w-none`}>
                 <Image
                   src="/images/hero-portrait-2.png"
                   alt={BOOK.author}
