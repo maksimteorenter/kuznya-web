@@ -506,7 +506,7 @@ export const CREDENTIALS = [
   {
     src: "/images/credentials/c-neurofascial.jpg",
     title: "Neurofascial Release",
-    issuer: "Курс «Atlas Opens His Shoulders», Кипр",
+    issuer: "Денис Кравчук, «Метод Кравчука» — курс «Atlas Opens His Shoulders», Лимассол, Кипр",
     year: "2024",
   },
 ];
