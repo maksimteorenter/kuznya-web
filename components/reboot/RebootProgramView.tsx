@@ -60,44 +60,19 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
       <ScrollProgress />
       <StickyRebootCTA label={`${L.offer.ctaLabel} — ${L.offer.price}`} href={checkout} />
 
-      {/* 1 — HERO. The same window, morning. Headline and the one line that
-          turns the page — no price and no button: the reader has just seen
-          the offer on the first page, so this one goes straight into the
-          text (Maksim, 2026-09-21). The offer waits at the bottom. */}
-      <Scene id="hero" bg="bg-[#0A0706]" bare clip={false} className="flex min-h-[72svh] items-end pb-16 pt-28 md:items-center md:pb-20">
-        <div className="absolute inset-0 overflow-hidden">
-          <Image src="/images/reboot/hero-morning.jpg" alt="" fill sizes="100vw" priority className="object-cover object-[60%_40%] md:object-[55%_45%]" />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(10,7,6,0.94) 0%, rgba(10,7,6,0.8) 45%, rgba(10,7,6,0.45) 100%), linear-gradient(180deg, rgba(10,7,6,0.3) 0%, rgba(10,7,6,0) 35%, rgba(10,7,6,0.9) 100%)",
-            }}
-          />
-        </div>
-        <Container className="relative z-10">
-          <div className="max-w-3xl">
-            {/* The first page's headline is not repeated here: the reader has
-                just read it. This page opens on its own line. */}
-            <FadeIn>
-              <h1 className={`text-balance font-display font-bold uppercase leading-[1.06] ${bone}`} style={{ fontSize: "clamp(1.85rem, 3.6vw, 2.8rem)", letterSpacing: "-0.01em" }}>
-                <Hit text={L.hero.kicker} />
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2} className="mt-6 max-w-lg">
-              <p className={`text-lg leading-relaxed ${boneSoft}`}>
-                <Hit text={L.hero.lede} tone="bone" />
-              </p>
-            </FadeIn>
-          </div>
-        </Container>
-      </Scene>
-
-      {/* 2 — TRIED. What the reader has already done, then the line. */}
-      <Scene id="tried" bg="bg-[#12100C]">
+      {/* 1 — OPENING. No hero at all: the reader has just come from the
+          offer on the first page, so this one starts on the text itself
+          (Maksim, 2026-09-21). The one line «если вы дошли до этой
+          страницы» is the h1; the offer waits at the bottom. */}
+      <Scene id="tried" bg="bg-[#12100C]" className="!pt-36 md:!pt-44">
         <Container>
           <div className="mx-auto max-w-2xl">
             <FadeIn>
+              <h1 className={`text-balance font-editorial text-2xl italic leading-snug ${bone} md:text-3xl`}>
+                <Hit text={L.hero.lede} />
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.1} className="mt-12">
               <Prose items={L.tried.paragraphs} size="lg" />
             </FadeIn>
             <FadeIn delay={0.1} className="mt-14">
