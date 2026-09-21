@@ -30,7 +30,7 @@ export function ForgeBridge() {
         </FadeIn>
 
         <FadeIn delay={0.35} className="mt-10">
-          <Button href="/forge" variant="ghost">
+          <Button href="/" variant="ghost">
             Узнать о Кузне
           </Button>
         </FadeIn>

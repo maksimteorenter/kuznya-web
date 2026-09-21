@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = Array.from(
     new Set([
       "/",
+      "/ua",
       "/book/1341",
       "/ua/book/1341",
       "/mentorship",

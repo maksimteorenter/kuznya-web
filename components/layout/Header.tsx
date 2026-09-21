@@ -27,7 +27,7 @@ export function Header({ locale }: { locale?: Locale } = {}) {
   // route rather than on a page prop because the header lives in the root
   // shell, above any page.
   // The dark long-form pages: Кузня and both Перезагрузка pages, in both languages.
-  const dark = /^\/(ua\/)?(forge|reboot|mentorship)(\/|$)/.test(pathname ?? "");
+  const dark = /^\/(ua\/?)?$|^\/(ua\/)?(reboot|mentorship)(\/|$)/.test(pathname ?? "");
 
   return (
     <header

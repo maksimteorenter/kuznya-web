@@ -80,7 +80,7 @@ export default function ThankYouPage() {
             Книга — это история. Кузня — то, что из неё выросло: 90 дней
             практики с теми программами, которые выбирают за тебя.
           </p>
-          <Button href="/forge" size="lg" className="mt-7" dataTrack="thank_you_forge_click">
+          <Button href="/" size="lg" className="mt-7" dataTrack="thank_you_forge_click">
             Смотреть Кузню Силы
           </Button>
         </FadeIn>

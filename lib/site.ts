@@ -33,10 +33,10 @@ export const BOOK_DELIVERY_TELEGRAM_URL =
 // «ПТСР» added on his request 2026-09-16, once the Перезагрузка pages existed.
 export const NAV_ITEMS: NavItem[] = [
   { id: "home", label: "Кузня", href: "/" },
-  // Points at the sales page, not straight at the bot: /forge is where the
+  // Points at the sales page, not straight at the bot: the root is where the
   // offer, the plan and the guarantee live, and the bot is the step *after*
   // that. Sending nav traffic into Telegram skipped the whole page.
-  { id: "club", label: "Кузня Силы", href: "/forge" },
+  { id: "club", label: "Кузня Силы", href: "/" },
   // The seven-principles page. He calls it «ПТСР», so the tab does too.
   { id: "ptsd", label: "Перезагрузка", href: "/reboot" },
   { id: "book", label: "1341 день в плену", href: "/book/1341" },

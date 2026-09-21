@@ -25,7 +25,7 @@ export function bookPath(locale: Locale) {
  */
 const PAIRS: Record<string, string> = {
   "/book/1341": "/ua/book/1341",
-  "/forge": "/ua/forge",
+  "/": "/ua",
   "/reboot": "/ua/reboot",
   "/reboot/program": "/ua/reboot/program",
 };

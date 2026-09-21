@@ -60,9 +60,11 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
       <ScrollProgress />
       <StickyRebootCTA label={`${L.offer.ctaLabel} — ${L.offer.price}`} href={checkout} />
 
-      {/* 1 — HERO. The same window, morning. Headline, the one line that
-          turns the page, the button. */}
-      <Scene id="hero" bg="bg-[#0A0706]" bare clip={false} className="flex min-h-[100svh] items-end pb-16 pt-24 md:items-center md:pb-20">
+      {/* 1 — HERO. The same window, morning. Headline and the one line that
+          turns the page — no price and no button: the reader has just seen
+          the offer on the first page, so this one goes straight into the
+          text (Maksim, 2026-09-21). The offer waits at the bottom. */}
+      <Scene id="hero" bg="bg-[#0A0706]" bare clip={false} className="flex min-h-[72svh] items-end pb-16 pt-28 md:items-center md:pb-20">
         <div className="absolute inset-0 overflow-hidden">
           <Image src="/images/reboot/hero-morning.jpg" alt="" fill sizes="100vw" priority className="object-cover object-[60%_40%] md:object-[55%_45%]" />
           <div
@@ -87,13 +89,6 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
               <p className={`text-lg leading-relaxed ${boneSoft}`}>
                 <Hit text={L.hero.lede} tone="bone" />
               </p>
-            </FadeIn>
-            <FadeIn delay={0.3} className="mt-8">
-              <Price price={L.hero.price} oldPrice={L.hero.oldPrice} />
-              <div className="mt-5">
-                <PrimaryCta label={`${L.hero.ctaLabel} — ${L.hero.price}`} href={checkout} id="hero" />
-              </div>
-              <p className={`mt-4 max-w-md text-sm leading-relaxed ${text2}`}>{L.hero.micro}</p>
             </FadeIn>
           </div>
         </Container>
