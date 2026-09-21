@@ -77,13 +77,12 @@ export function RebootProgramView({ L }: { L: Content; locale: "ru" | "uk" }) {
         </div>
         <Container className="relative z-10">
           <div className="max-w-3xl">
+            {/* The first page's headline is not repeated here: the reader has
+                just read it. This page opens on its own line. */}
             <FadeIn>
               <h1 className={`text-balance font-display font-bold uppercase leading-[1.06] ${bone}`} style={{ fontSize: "clamp(1.85rem, 3.6vw, 2.8rem)", letterSpacing: "-0.01em" }}>
-                <Hit text={L.hero.h1} />
+                <Hit text={L.hero.kicker} />
               </h1>
-            </FadeIn>
-            <FadeIn delay={0.12} className="mt-6 max-w-xl">
-              <p className={`font-display text-lg font-semibold uppercase tracking-[0.08em] ${goldLight} md:text-xl`}>{L.hero.kicker}</p>
             </FadeIn>
             <FadeIn delay={0.2} className="mt-6 max-w-lg">
               <p className={`text-lg leading-relaxed ${boneSoft}`}>
