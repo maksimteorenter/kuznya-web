@@ -21,6 +21,7 @@ import {
   ABOUT_POSITION,
 } from "@/lib/content";
 import { MENTORSHIP_OFFER as M } from "@/lib/content.mentorship";
+import { plain } from "@/components/reboot/Hit";
 
 const title = "Обо мне — Максим Теорентер";
 const description =
@@ -272,17 +273,17 @@ export default function AboutPage() {
               <br />
               <span className="text-inkFaint">{M.hero.h1b}</span>
             </h2>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-inkSoft">{M.hero.lede}</p>
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-inkSoft">{plain(M.hero.lede)}</p>
           </FadeIn>
           <FadeIn delay={0.1} className="mt-8 grid gap-6 sm:grid-cols-2">
             <ul className="space-y-2 text-ink/90">
-              {M.filter.forItems.map((item) => (
+              {M.filter.forItems.slice(0, 3).map((item) => (
                 <li key={item} className="leading-relaxed">{item}</li>
               ))}
             </ul>
             <ul className="space-y-2 text-inkFaint">
               {M.filter.notItems.slice(0, 3).map((item) => (
-                <li key={item} className="leading-relaxed">Не для тех, кто {item.charAt(0).toLowerCase() + item.slice(1)}</li>
+                <li key={item} className="leading-relaxed">Не для тех, {item.charAt(0).toLowerCase() + item.slice(1)}</li>
               ))}
             </ul>
           </FadeIn>

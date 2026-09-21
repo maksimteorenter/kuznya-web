@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
-import { ArrowRight, CheckCircle, XCircle } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { SectionHead } from "@/components/ui/SectionHead";
-import { Button } from "@/components/ui/Button";
 import { BackLink } from "@/components/ui/BackLink";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { CredentialsGallery } from "@/components/about/CredentialsGallery";
+import { Scene, Head, Disclaimer, bone, boneSoft, boneSofter, text2, gold, goldLight, hairline } from "@/components/forge/primitives";
+import { Hit } from "@/components/reboot/Hit";
+import { Cta } from "@/components/mentorship/Cta";
+import { SelfCheck } from "@/components/mentorship/SelfCheck";
 import { KUZNYA_TELEGRAM_URL } from "@/lib/site";
-import { BOOK, CREDENTIALS, SESSION_OFFER } from "@/lib/content";
+import { BOOK, CREDENTIALS } from "@/lib/content";
 import { MENTORSHIP_OFFER as M } from "@/lib/content.mentorship";
 
 export const metadata: Metadata = {
@@ -22,241 +25,396 @@ export const metadata: Metadata = {
 // management diplomas stay on /about with the biography.
 const PRACTICE_CREDENTIALS = CREDENTIALS.filter((c) => c.src.includes("/c-"));
 
+// Until the WayForPay button for the $100 session exists every door leads to
+// Telegram; the micro line under the button says so honestly.
+const checkout = M.hero.checkoutUrl || KUZNYA_TELEGRAM_URL;
+const applyMicro = M.hero.checkoutUrl ? M.apply.micro : M.apply.fallbackMicro;
+
+const h2Style = { fontSize: "clamp(1.6rem, 3.2vw, 2.6rem)", letterSpacing: "-0.005em" } as const;
+
+/** A left-aligned section head: the gold rule, then the headline. */
+function LeftHead({ children }: { children: ReactNode }) {
+  return (
+    <FadeIn>
+      <span aria-hidden="true" className="block h-[3px] w-16 bg-[#B8873B]" />
+      <h2 className={`mt-5 text-balance font-display font-bold uppercase leading-[1.08] ${bone}`} style={h2Style}>
+        {children}
+      </h2>
+    </FadeIn>
+  );
+}
+
 /**
- * The personal-work offer. One theme end to end (deep), because this page
- * selects rather than sells: the filter comes before any argument, the price
- * is on the first screen, and the way in is an application he reads himself.
+ * «Работа со мной». The reader is a person whose business, family and self
+ * are coming apart — so the page starts by naming that, hands him the mirror
+ * (the self-check), explains where the thing that holds him lives, and only
+ * then shows the system, the price of doing nothing, the cases and the man.
+ * «Ты», not «вы»: this reader is being talked to as an equal, not sold to.
  */
 export default function MentorshipPage() {
   return (
     <>
       <div data-page-theme="forge" hidden />
+      <ScrollProgress />
+
       {/* 1 — HERO. Portrait beside the claim; never text over the face. */}
-      <Section bare tone="deep" className="flex min-h-[100svh] items-center pb-20 pt-28 md:pt-24">
+      <Scene id="hero" bg="bg-[#0A0706]" bare clip={false} className="flex min-h-[100svh] items-center pb-16 pt-28 md:pt-24">
         <Container>
           <div className="mb-8">
             <BackLink dark fallbackHref="/about" label="Обо мне" />
           </div>
-          <div className="grid items-center gap-12 md:grid-cols-12 md:gap-10">
-            <FadeIn className="md:col-span-5">
-              <div className="relative mx-auto aspect-[4/5] w-full max-w-[380px] overflow-hidden rounded-2xl md:max-w-none">
+          <div className="grid items-center gap-10 md:grid-cols-12 md:gap-10">
+            <FadeIn className="md:col-span-4">
+              <div className={`relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-lg border ${hairline} md:max-w-none`}>
                 <Image
                   src="/images/hero-portrait-2.png"
                   alt={BOOK.author}
                   fill
                   priority
-                  sizes="(max-width: 768px) 90vw, 40vw"
+                  sizes="(max-width: 768px) 90vw, 33vw"
                   className="photo-bw object-cover object-[50%_15%]"
                 />
               </div>
             </FadeIn>
-            <div className="md:col-span-7 md:pl-4">
+            <div className="md:col-span-8 md:pl-6">
               <FadeIn>
-                <h1 className="font-display text-5xl font-bold uppercase leading-[1.02] text-bone sm:text-6xl md:text-[4.4rem]">
+                <h1
+                  className={`text-balance font-display font-bold uppercase leading-[1.04] ${bone}`}
+                  style={{ fontSize: "clamp(1.9rem, 3.9vw, 3.1rem)", letterSpacing: "-0.01em" }}
+                >
                   {M.hero.h1}
+                  <br />
+                  <span className={goldLight}>{M.hero.h1b}</span>
                 </h1>
-                <p className="mt-4 max-w-xl text-balance font-display text-xl font-semibold uppercase leading-snug text-bone/70 md:text-2xl">
-                  {M.hero.h1b}
+              </FadeIn>
+              <FadeIn delay={0.12} className="mt-6 max-w-2xl">
+                <p className={`text-lg leading-relaxed ${boneSoft} md:text-xl`}>
+                  <Hit text={M.hero.lede} tone="bone" />
                 </p>
               </FadeIn>
-              <FadeIn delay={0.12} className="mt-6">
-                <p className="font-editorial text-2xl italic leading-snug text-blood md:text-3xl">{M.hero.slogan}</p>
-              </FadeIn>
-              <FadeIn delay={0.2} className="mt-6 max-w-lg">
-                <p className="text-lg leading-relaxed text-bone/85">{M.hero.lede}</p>
+              <FadeIn delay={0.2} className="mt-5 max-w-2xl space-y-4">
+                {M.hero.paras.map((p) => (
+                  <p key={p} className={`text-[17px] leading-relaxed ${boneSofter} md:text-lg`}>
+                    <Hit text={p} tone="bone" />
+                  </p>
+                ))}
               </FadeIn>
               <FadeIn delay={0.28} className="mt-8">
-                <Button href="#apply" size="lg" dataTrack="mentorship_hero_cta">
-                  {M.hero.ctaLabel}
-                </Button>
-                <p className="mt-3 text-sm text-mist">{M.hero.micro}</p>
+                <Cta label={M.hero.ctaLabel} href={checkout} id="hero" />
+                <p className={`mt-3 text-sm ${text2}`}>{applyMicro}</p>
+              </FadeIn>
+              <FadeIn delay={0.36} className={`mt-10 flex flex-wrap gap-x-10 gap-y-4 border-t ${hairline} pt-6`}>
+                {M.hero.stats.map((s) => (
+                  <div key={s.label}>
+                    <span className={`block font-display text-3xl font-bold leading-none ${goldLight} md:text-4xl`}>{s.n}</span>
+                    <span className={`mt-1 block text-xs uppercase tracking-[0.14em] ${text2}`}>{s.label}</span>
+                  </div>
+                ))}
               </FadeIn>
             </div>
           </div>
         </Container>
-      </Section>
+      </Scene>
 
-      {/* 2 — FILTER. Before any argument: who this is for and who it is not. */}
-      <Section tone="deep" className="border-t border-white/10">
+      {/* 2 — SELF-CHECK. The mirror before any argument. */}
+      <Scene id="check" bg="bg-[#12100C]">
         <Container>
-          <SectionHead>{M.filter.h2}</SectionHead>
-          <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-16">
-            <div>
-              <p className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-blood">{M.filter.forTitle}</p>
-              <ul className="mt-6 space-y-5">
-                {M.filter.forItems.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-lg leading-relaxed text-bone">
-                    <CheckCircle weight="fill" className="mt-1.5 size-5 shrink-0 text-blood" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-mist">{M.filter.notTitle}</p>
-              <ul className="mt-6 space-y-4">
-                {M.filter.notItems.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-lg leading-relaxed text-mist">
-                    <XCircle weight="bold" className="mt-1.5 size-5 shrink-0 text-mist/70" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <LeftHead>{M.check.h2}</LeftHead>
+          <FadeIn delay={0.08}>
+            <p className={`mt-4 font-editorial text-2xl italic ${goldLight} md:text-3xl`}>{M.check.lead}</p>
+          </FadeIn>
+          <div className="mt-12">
+            <SelfCheck
+              items={M.check.items}
+              verdict={M.check.verdict}
+              ctaLabel={M.check.ctaLabel}
+              micro={M.check.micro}
+              messagePrefix={M.check.messagePrefix}
+              href={checkout}
+            />
           </div>
         </Container>
-      </Section>
+      </Scene>
 
-      {/* 3 — WHAT. Three results, not a list of verbs. */}
-      <Section tone="deep" className="border-t border-white/10">
+      {/* 3 — INSIDE. Where the thing that holds him actually lives. */}
+      <Scene id="inside" bg="bg-[#0A0706]">
         <Container>
           <div className="grid gap-10 md:grid-cols-12 md:gap-12">
             <div className="md:col-span-5">
               <FadeIn className="md:sticky md:top-28">
-                <SectionHead>{M.what.h2}</SectionHead>
-                <p className="mt-6 text-lg leading-relaxed text-bone/80">{M.what.lede}</p>
+                <span aria-hidden="true" className="block h-[3px] w-16 bg-[#B8873B]" />
+                <h2 className={`mt-5 text-balance font-display font-bold uppercase leading-[1.08] ${bone}`} style={h2Style}>
+                  {M.inside.h2}
+                </h2>
+                <p className={`mt-6 text-lg leading-relaxed ${boneSoft} md:text-xl`}>
+                  <Hit text={M.inside.lede} tone="bone" />
+                </p>
               </FadeIn>
             </div>
             <div className="md:col-span-6 md:col-start-7">
-              {M.what.results.map((r, i) => (
-                <FadeIn key={r.title} delay={0.06 * i}>
-                  <div className="border-t border-white/10 py-7 first:border-t-0 first:pt-0">
-                    <p className="font-display text-2xl font-bold uppercase leading-tight text-bone">{r.title}</p>
-                    <p className="mt-3 text-[17px] leading-relaxed text-bone/80 md:text-lg">{r.body}</p>
+              {M.inside.blocks.map((b, i) => (
+                <FadeIn key={b.title} delay={0.06 * i}>
+                  <div className={`border-t ${hairline} py-7 first:border-t-0 first:pt-0`}>
+                    <p className={`font-display text-2xl font-bold uppercase leading-tight ${goldLight}`}>{b.title}</p>
+                    <p className={`mt-3 text-[17px] leading-relaxed ${boneSofter} md:text-lg`}>{b.body}</p>
                   </div>
                 </FadeIn>
               ))}
+              <FadeIn delay={0.2} className={`border-t ${hairline} pt-8`}>
+                <p className={`text-lg leading-relaxed ${boneSoft} md:text-xl`}>
+                  <Hit text={M.inside.closing} tone="bone" />
+                </p>
+                <p className={`mt-6 text-balance font-editorial text-2xl italic leading-snug ${bone} md:text-3xl`}>{M.inside.promise}</p>
+              </FadeIn>
             </div>
           </div>
         </Container>
-      </Section>
+      </Scene>
 
-      {/* 4 — TOOLS. Named as instruments, with the papers behind them. */}
-      <Section tone="deep" className="border-t border-white/10">
+      {/* 4 — TRIED. What he has already paid for, and why it slid back. */}
+      <Scene id="tried" bg="bg-[#12100C]">
         <Container>
-          <div className="max-w-2xl">
-            <SectionHead>{M.tools.h2}</SectionHead>
-            <p className="mt-6 text-lg leading-relaxed text-bone/80">{M.tools.lede}</p>
+          <div className="mx-auto max-w-3xl">
+            <LeftHead>{M.tried.h2}</LeftHead>
+            <FadeIn delay={0.08}>
+              <p className={`mt-4 font-editorial text-2xl italic ${goldLight} md:text-3xl`}>{M.tried.lead}</p>
+            </FadeIn>
+            <ul className="mt-10">
+              {M.tried.items.map((t, i) => (
+                <FadeIn key={t.name} delay={0.05 * i}>
+                  <li className={`grid gap-1 border-t ${hairline} py-5 md:grid-cols-12 md:gap-6`}>
+                    <p className={`font-display text-xl font-bold uppercase leading-tight ${bone} md:col-span-4`}>{t.name}</p>
+                    <p className={`text-[17px] leading-relaxed ${boneSofter} md:col-span-8 md:text-lg`}>{t.body}</p>
+                  </li>
+                </FadeIn>
+              ))}
+            </ul>
+            <FadeIn delay={0.2} className={`mt-10 border-t ${hairline} pt-8`}>
+              <p className={`text-lg leading-relaxed ${text2} md:text-xl`}>{M.tried.result}</p>
+              <p className={`mt-6 text-lg leading-relaxed ${boneSoft} md:text-xl`}>
+                <Hit text={M.tried.turn} tone="bone" />
+              </p>
+            </FadeIn>
           </div>
-          <div className="mt-12 grid gap-x-12 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-            {M.tools.items.map((t, i) => (
-              <FadeIn key={t.name} delay={0.05 * i}>
-                <div className="border-t border-white/15 pt-5">
-                  <p className="font-display text-2xl font-bold uppercase text-bone">{t.name}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-mist">{t.cred}</p>
+        </Container>
+      </Scene>
+
+      {/* 5 — SYSTEM. Three levels and the resource, under «мы не лечим». */}
+      <Scene id="system" bg="bg-[#0A0706]">
+        <Container>
+          <Head tone="bright">{M.system.h2}</Head>
+          <FadeIn delay={0.1} className="mx-auto mt-8 max-w-2xl text-center">
+            <p className={`text-lg leading-relaxed ${boneSofter}`}>{M.system.lede}</p>
+            <p className={`mt-6 text-lg leading-relaxed ${boneSoft} md:text-xl`}>
+              <Hit text={M.system.notCure} tone="bone" />
+            </p>
+          </FadeIn>
+          <div className="mx-auto mt-14 grid max-w-5xl gap-x-12 gap-y-10 md:grid-cols-2">
+            {M.system.levels.map((l, i) => (
+              <FadeIn key={l.title} delay={0.06 * i}>
+                <div className={`border-t ${hairline} pt-5`}>
+                  <p className={`font-display text-2xl font-bold uppercase leading-tight ${goldLight}`}>{l.title}</p>
+                  <p className={`mt-3 text-[17px] leading-relaxed ${boneSofter} md:text-lg`}>{l.body}</p>
                 </div>
               </FadeIn>
             ))}
           </div>
-          <div className="mt-14">
-            <p className="text-sm text-mist">Документы. Нажмите, чтобы рассмотреть.</p>
-            <CredentialsGallery items={PRACTICE_CREDENTIALS} />
-          </div>
+          <FadeIn delay={0.2} className="mx-auto mt-14 max-w-2xl text-center">
+            <p className={`text-balance font-display font-bold uppercase leading-[1.14] ${bone}`} style={{ fontSize: "clamp(1.3rem, 2.6vw, 2rem)" }}>
+              <Hit text={M.system.closing} />
+            </p>
+          </FadeIn>
         </Container>
-      </Section>
+      </Scene>
 
-      {/* 5 — THE SESSION. Format on one line, three steps, the outcome. */}
-      <Section id="session" tone="deep" className="border-t border-white/10">
+      {/* 6 — HOW. Three steps; the price once. */}
+      <Scene id="how" bg="bg-[#12100C]">
         <Container>
-          <div className="max-w-3xl">
-            <SectionHead>{M.session.h2}</SectionHead>
-            <FadeIn delay={0.08}>
-              <p className="mt-6 font-display text-3xl font-bold uppercase leading-none text-blood md:text-5xl">{M.session.format}</p>
-            </FadeIn>
-          </div>
-          <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
-            {M.session.steps.map((s, i) => (
+          <LeftHead>{M.how.h2}</LeftHead>
+          <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+            {M.how.steps.map((s, i) => (
               <FadeIn key={s.title} delay={0.08 * i}>
-                <span className="font-display text-5xl font-bold leading-none text-bone/25">{String(i + 1).padStart(2, "0")}</span>
-                <p className="mt-4 font-display text-xl font-bold uppercase leading-tight text-bone">{s.title}</p>
-                <p className="mt-3 text-[17px] leading-relaxed text-bone/80">{s.body}</p>
+                <span className={`font-display text-5xl font-bold leading-none ${gold} opacity-60`}>{String(i + 1).padStart(2, "0")}</span>
+                <p className={`mt-4 font-display text-xl font-bold uppercase leading-tight ${bone}`}>{s.title}</p>
+                <p className={`mt-3 text-[17px] leading-relaxed ${boneSofter}`}>{s.body}</p>
               </FadeIn>
             ))}
           </div>
-          <FadeIn delay={0.2} className="mt-14 max-w-2xl border-t border-white/10 pt-10">
-            <p className="font-editorial text-2xl italic leading-snug text-bone md:text-3xl">{M.session.line}</p>
-            <p className="mt-6 text-lg leading-relaxed text-bone/85">{M.session.outcome}</p>
-            <p className="mt-3 text-lg leading-relaxed text-bone/70">{M.session.effort}</p>
-          </FadeIn>
-          <FadeIn delay={0.26} className="mt-10">
-            <Button href="#apply" size="lg" dataTrack="mentorship_session_cta">
-              {M.hero.ctaLabel}
-            </Button>
+          <FadeIn delay={0.26} className="mt-12">
+            <Cta label={M.hero.ctaLabel} href={checkout} id="how" />
+            <p className={`mt-3 text-sm ${text2}`}>{applyMicro}</p>
           </FadeIn>
         </Container>
-      </Section>
+      </Scene>
 
-      {/* 6 — NEXT + CLIENTS. What comes after, and who is in the room now. */}
-      <Section tone="deep" className="border-t border-white/10">
+      {/* 7 — IF NOTHING CHANGES. The cost of waiting, in four lines. */}
+      <Scene id="if-not" bg="bg-[#0A0706]">
         <Container>
-          <div className="grid gap-12 md:grid-cols-12 md:gap-12">
-            <div className="md:col-span-6">
-              <SectionHead>{M.next.h2}</SectionHead>
-              <p className="mt-6 text-lg leading-relaxed text-bone/85">{M.next.body}</p>
-              <p className="mt-8 font-editorial text-xl italic leading-snug text-bone md:text-2xl">{M.next.line}</p>
+          <div className="grid gap-10 md:grid-cols-12 md:gap-12">
+            <div className="md:col-span-5">
+              <FadeIn className="md:sticky md:top-28">
+                <span aria-hidden="true" className="block h-[3px] w-16 bg-[#B8873B]" />
+                <h2 className={`mt-5 text-balance font-display font-bold uppercase leading-[1.08] ${bone}`} style={h2Style}>
+                  {M.ifNot.h2}
+                </h2>
+                <p className={`mt-6 text-lg leading-relaxed ${boneSofter}`}>{M.ifNot.lead}</p>
+              </FadeIn>
             </div>
-            <div className="md:col-span-5 md:col-start-8">
-              <p className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-mist">{M.clients.h2}</p>
-              <ul className="mt-5">
-                {M.clients.items.map((c) => (
-                  <li key={c} className="border-t border-white/15 py-4 font-display text-xl font-semibold uppercase leading-tight text-bone">
-                    {c}
+            <div className="md:col-span-6 md:col-start-7">
+              <ul>
+                {M.ifNot.items.map((it, i) => (
+                  <FadeIn key={it.title} delay={0.05 * i}>
+                    <li className={`border-t ${hairline} py-5`}>
+                      <p className={`font-display text-xl font-bold uppercase leading-tight ${bone} md:text-2xl`}>{it.title}</p>
+                      <p className={`mt-2 text-[17px] leading-relaxed ${boneSofter}`}>{it.body}</p>
+                    </li>
+                  </FadeIn>
+                ))}
+              </ul>
+              <FadeIn delay={0.24} className={`border-t ${hairline} pt-8`}>
+                <p className={`text-balance font-editorial text-2xl italic leading-snug ${bone} md:text-3xl`}>
+                  <Hit text={M.ifNot.closing} />
+                </p>
+              </FadeIn>
+            </div>
+          </div>
+        </Container>
+      </Scene>
+
+      {/* 8 — CASES. Two, anonymised, each with the mechanism. */}
+      <Scene id="cases" bg="bg-[#12100C]">
+        <Container>
+          <LeftHead>{M.cases.h2}</LeftHead>
+          <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-12">
+            {M.cases.items.map((c, i) => (
+              <FadeIn key={c.title} delay={0.08 * i}>
+                <div className={`h-full border-t ${hairline} pt-6`}>
+                  <p className={`font-display text-xl font-bold uppercase leading-tight ${goldLight} md:text-2xl`}>{c.title}</p>
+                  <p className={`mt-4 text-[17px] leading-relaxed ${boneSofter} md:text-lg`}>{c.body}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+          <p className={`mt-8 text-sm ${text2}`}>{M.cases.note}</p>
+        </Container>
+      </Scene>
+
+      {/* 9 — FIRST PATIENT. The man, then the papers. */}
+      <Scene id="first" bg="bg-[#0A0706]">
+        <Container>
+          <div className="grid gap-10 md:grid-cols-12 md:gap-12">
+            <FadeIn className="md:col-span-4">
+              <div className={`relative aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-lg border ${hairline}`}>
+                <Image src="/images/author-portrait-red.jpg" alt={BOOK.author} fill sizes="(max-width: 768px) 90vw, 33vw" className="object-cover object-top" />
+              </div>
+            </FadeIn>
+            <div className="md:col-span-7 md:col-start-6">
+              <LeftHead>{M.first.h2}</LeftHead>
+              <FadeIn delay={0.1} className="mt-8 space-y-5">
+                {M.first.paras.map((p) => (
+                  <p key={p} className={`text-[17px] leading-relaxed ${boneSoft} md:text-lg`}>
+                    <Hit text={p} tone="bone" />
+                  </p>
+                ))}
+              </FadeIn>
+              <FadeIn delay={0.16} className={`mt-10 border-t ${hairline} pt-8`}>
+                <p className={`font-display text-sm font-semibold uppercase tracking-[0.16em] ${goldLight}`}>{M.first.docsLabel}</p>
+                <ul className="mt-4 space-y-2">
+                  {M.first.docs.map((d) => (
+                    <li key={d} className={`flex gap-3 text-[15px] leading-relaxed ${boneSofter}`}>
+                      <span aria-hidden="true" className={goldLight}>—</span>
+                      <span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a href="/about" className={`mt-5 inline-flex items-center gap-1 text-sm ${text2} underline underline-offset-4 hover:text-[#F3EEE5]`}>
+                  {M.first.link} <ArrowRight className="size-3.5" />
+                </a>
+              </FadeIn>
+            </div>
+          </div>
+          <div className="mt-14">
+            <p className={`text-sm ${text2}`}>{M.first.docsHint}</p>
+            <CredentialsGallery items={PRACTICE_CREDENTIALS} />
+          </div>
+        </Container>
+      </Scene>
+
+      {/* 10 — FILTER. Who this is for, who it is not, and why so few. */}
+      <Scene id="filter" bg="bg-[#12100C]">
+        <Container>
+          <LeftHead>{M.filter.h2}</LeftHead>
+          <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-16">
+            <div>
+              <p className={`font-display text-sm font-semibold uppercase tracking-[0.16em] ${goldLight}`}>{M.filter.forTitle}</p>
+              <ul className="mt-5 space-y-4">
+                {M.filter.forItems.map((item) => (
+                  <li key={item} className={`flex items-start gap-3 text-lg leading-relaxed ${bone}`}>
+                    <span aria-hidden="true" className={`mt-[2px] ${goldLight}`}>+</span>
+                    {item}
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-sm leading-relaxed text-mist">{M.clients.note}</p>
+            </div>
+            <div>
+              <p className={`font-display text-sm font-semibold uppercase tracking-[0.16em] ${text2}`}>{M.filter.notTitle}</p>
+              <ul className="mt-5 space-y-4">
+                {M.filter.notItems.map((item) => (
+                  <li key={item} className={`flex items-start gap-3 text-lg leading-relaxed ${text2}`}>
+                    <span aria-hidden="true" className="mt-[2px]">—</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
+          <FadeIn delay={0.16} className={`mt-14 max-w-2xl border-t ${hairline} pt-8`}>
+            <p className={`font-display text-2xl font-bold uppercase leading-tight ${bone}`}>{M.filter.few.title}</p>
+            <p className={`mt-3 text-[17px] leading-relaxed ${boneSofter} md:text-lg`}>{M.filter.few.body}</p>
+          </FadeIn>
         </Container>
-      </Section>
+      </Scene>
 
-      {/* 7 — WHY HIM. The number, once. */}
-      <Section tone="deep" className="border-t border-white/10">
+      {/* 11 — FAQ. The seven questions asked before paying. */}
+      <Scene id="faq" bg="bg-[#0A0706]">
         <Container>
-          <div className="grid items-end gap-8 md:grid-cols-12">
-            <FadeIn className="md:col-span-5">
-              <span className="block font-display text-[26vw] font-bold leading-[0.85] text-bone sm:text-[180px]">1341</span>
-              <p className="mt-2 text-sm uppercase tracking-[0.14em] text-mist">день несвободы</p>
-            </FadeIn>
-            <FadeIn delay={0.1} className="md:col-span-6 md:col-start-7">
-              <h2 className="font-display text-2xl font-bold uppercase leading-tight text-bone md:text-3xl">{M.why.h2}</h2>
-              <p className="mt-5 text-lg leading-relaxed text-bone/85">{M.why.body}</p>
-              <a href="/about" className="mt-6 inline-flex items-center gap-1 text-sm text-mist underline underline-offset-4 hover:text-bone">
-                {M.why.link} <ArrowRight className="size-3.5" />
-              </a>
-            </FadeIn>
-          </div>
-        </Container>
-      </Section>
-
-      {/* 8 — APPLY. An application he reads, not a booking form. */}
-      <Section id="apply" tone="deep" className="border-t border-white/10">
-        <Container>
-          <div className="max-w-2xl">
-            <SectionHead>{M.apply.h2}</SectionHead>
-            <ol className="mt-10 space-y-6">
-              {M.apply.steps.map((s, i) => (
-                <FadeIn key={s.title} delay={0.06 * i}>
-                  <li className="flex gap-5">
-                    <span className="font-display text-2xl font-bold leading-none text-blood">{i + 1}</span>
-                    <div>
-                      <p className="font-display text-xl font-bold uppercase leading-tight text-bone">{s.title}</p>
-                      <p className="mt-2 text-[17px] leading-relaxed text-bone/80">{s.body}</p>
-                    </div>
-                  </li>
+          <div className="mx-auto max-w-3xl">
+            <LeftHead>{M.faq.h2}</LeftHead>
+            <dl className="mt-10">
+              {M.faq.items.map((f, i) => (
+                <FadeIn key={f.q} delay={0.04 * i}>
+                  <div className={`border-t ${hairline} py-6`}>
+                    <dt className={`font-display text-xl font-bold uppercase leading-tight ${bone}`}>{f.q}</dt>
+                    <dd className={`mt-3 text-[17px] leading-relaxed ${boneSofter}`}>{f.a}</dd>
+                  </div>
                 </FadeIn>
               ))}
-            </ol>
-            <FadeIn delay={0.2} className="mt-12">
-              <Button href={KUZNYA_TELEGRAM_URL} external size="lg" dataTrack="mentorship_apply_cta">
-                {M.apply.ctaLabel}
-              </Button>
-              <p className="mt-4 text-sm text-mist">{M.apply.micro}</p>
-            </FadeIn>
-            <p className="mt-14 max-w-xl border-t border-white/10 pt-6 text-xs leading-relaxed text-mist/80">{SESSION_OFFER.medicalDisclaimer}</p>
+            </dl>
           </div>
         </Container>
-      </Section>
+      </Scene>
+
+      {/* 12 — APPLY. The door, the honest scarcity, the legal lines. */}
+      <Scene id="apply" bg="bg-[#12100C]">
+        <Container className="text-center">
+          <Head tone="bright">{M.apply.h2}</Head>
+          <FadeIn delay={0.1} className="mx-auto mt-8 max-w-xl">
+            <p className={`text-lg leading-relaxed ${boneSoft} md:text-xl`}>
+              <Hit text={M.apply.body} tone="bone" />
+            </p>
+            <p className={`mt-6 font-editorial text-2xl italic leading-snug ${goldLight}`}>{M.apply.scarcity}</p>
+          </FadeIn>
+          <FadeIn delay={0.2} className="mt-10">
+            <Cta label={M.apply.ctaLabel} href={checkout} id="apply" />
+            <p className={`mt-4 text-sm ${text2}`}>{applyMicro}</p>
+          </FadeIn>
+          <FadeIn delay={0.3} className={`mx-auto mt-16 max-w-xl space-y-3 border-t ${hairline} pt-8 text-left`}>
+            {M.apply.legal.map((note) => (
+              <Disclaimer key={note}>{note}</Disclaimer>
+            ))}
+          </FadeIn>
+        </Container>
+      </Scene>
     </>
   );
 }
