@@ -457,7 +457,7 @@ export const MENTORSHIP = {
 export const CREDENTIALS = [
   {
     src: "/images/credentials/d-sport-institute.jpg",
-    title: "Физическое воспитание",
+    title: "Преподаватель физического воспитания, специалист по оздоровительной физической культуре",
     issuer:
       "Донецкий государственный институт здоровья, физического воспитания и спорта",
     year: "2003",
@@ -500,6 +500,14 @@ export const CREDENTIALS = [
     title: "Holistic Mind Therapy Practitioner",
     issuer: "Holistic Mind Therapy Association, Майами",
     year: "2023",
+  },
+  // Supplied by Maksim 2026-09-21. The certificate names the course and the
+  // country but no issuing body — see the owner's question list.
+  {
+    src: "/images/credentials/c-neurofascial.jpg",
+    title: "Neurofascial Release",
+    issuer: "Курс «Atlas Opens His Shoulders», Кипр",
+    year: "2024",
   },
 ];
 
