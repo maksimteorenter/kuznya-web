@@ -85,7 +85,7 @@ export function KingView({ L }: { L: Content }) {
               <p className={`font-display text-sm font-semibold uppercase tracking-[0.2em] ${goldLight}`}>{L.hero.eyebrow}</p>
               <h1
                 className={`mt-5 font-display font-bold uppercase leading-[0.96] ${bone}`}
-                style={{ fontSize: "clamp(2.8rem, 8vw, 6.5rem)", letterSpacing: "-0.015em" }}
+                style={{ fontSize: "clamp(2.8rem, 7vw, 5.5rem)", letterSpacing: "-0.015em" }}
               >
                 {L.hero.h1}
               </h1>
@@ -93,16 +93,12 @@ export function KingView({ L }: { L: Content }) {
             <FadeIn delay={0.12} className="mt-7">
               <p className={`text-balance font-display text-xl font-semibold uppercase leading-snug ${bone} md:text-2xl`}>{L.hero.sub}</p>
             </FadeIn>
-            <FadeIn delay={0.2} className="mx-auto mt-6 max-w-2xl">
-              <p className={`text-lg leading-relaxed ${boneSoft}`}>{L.hero.lede}</p>
-              <p className={`mt-4 font-editorial text-xl italic leading-snug ${goldLight} md:text-2xl`}>{L.hero.plan}</p>
-            </FadeIn>
-            <FadeIn delay={0.28} className="mx-auto mt-8 max-w-2xl">
+            <FadeIn delay={0.2} className="mx-auto mt-7 max-w-2xl">
               <p className={`text-[17px] leading-relaxed ${boneSofter} md:text-lg`}>
                 <Hit text={L.hero.loss} tone="bone" />
               </p>
             </FadeIn>
-            <FadeIn delay={0.36} className="mt-9">
+            <FadeIn delay={0.28} className="mt-8">
               <Cta label={`${L.hero.ctaLabel} — ${L.hero.price}`} href={checkout} id="hero" track="king" />
               <p className={`mt-4 text-sm ${text2}`}>{L.hero.after}</p>
               <p className={`mt-2 text-xs uppercase tracking-[0.12em] ${text2}`}>{L.hero.micro}</p>
@@ -218,6 +214,10 @@ export function KingView({ L }: { L: Content }) {
       <Scene id="moves" bg="bg-[#12100C]" className="!pb-0">
         <Container>
           <Head tone="bright">{L.moves.h2}</Head>
+          <FadeIn delay={0.1} className="mx-auto mt-6 max-w-2xl text-center">
+            <p className={`font-editorial text-xl italic leading-snug ${goldLight} md:text-2xl`}>{L.hero.plan}</p>
+            <p className={`mt-4 text-lg leading-relaxed ${boneSofter}`}>{L.hero.lede}</p>
+          </FadeIn>
         </Container>
       </Scene>
       {L.moves.items.map((m, i) => {
