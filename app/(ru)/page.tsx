@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { ForgeView } from "@/components/forge/ForgeView";
-import { KUZNYA_LANDING } from "@/lib/content";
+import { KingView } from "@/components/forge/KingView";
+import { KING_LANDING } from "@/lib/content.king";
 
-// The home page *is* the Кузня. Maksim asked (2026-09-21) to drop the
-// portrait-and-slogan cover that used to sit in front of it: a visitor who
-// types the domain should land on the offer, not on a poster. /forge still
-// resolves — it redirects here (next.config.mjs) so every old link holds.
-const L = KUZNYA_LANDING;
+// The home page is the Кузня — from 2026-09-22 the men's programme «Из пешки
+// в короля» (lib/content.king.ts). A visitor who types the domain lands on
+// the offer, not on a poster. /forge redirects here (next.config.mjs).
+const L = KING_LANDING;
 
 export const metadata: Metadata = {
   title: L.meta.title,
@@ -18,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <ForgeView L={L} locale="ru" />;
+  return <KingView L={L} />;
 }
