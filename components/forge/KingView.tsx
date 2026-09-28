@@ -183,7 +183,7 @@ export function KingView({ L }: { L: Content }) {
         </Container>
       </Scene>
 
-      {/* 5 — WHAT HE GETS. Three columns, concrete; then what is in his hands at day 90. */}
+      {/* 5 — WHAT HE GETS. Three columns, concrete; then what is in his hands once the five moves are done. */}
       <Scene id="get" bg="bg-[#0A0706]">
         <Container>
           <LeftHead>{L.get.h2}</LeftHead>
