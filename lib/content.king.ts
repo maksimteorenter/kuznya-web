@@ -42,8 +42,16 @@ export const KING_LANDING = {
     ctaLabel: "Сделать первый ход",
     price: "$15 / мес",
     micro: "час в день · сдвиги на первой неделе · отменить можно в любой момент",
-    after: "Откроется Telegram: оплата и вход в закрытую Кузню.",
-    checkoutUrl: "",
+    after: "Оплата картой, дальше — заявка в закрытую Кузню в Telegram.",
+    // WayForPay button b31aabf280f77, created 2026-09-28: $15, «Щомісяця»,
+    // оферта attached, and on success it hands the buyer straight to the
+    // group's «Оплата WayForPay» invite — the one that needs an admin to
+    // approve, so a copied link cannot let anyone in for free.
+    //
+    // Recurring kills Apple/Google Pay on that page (the card has to be
+    // tokenised), so this checkout is card-only by design. Don't "fix" it by
+    // turning the subscription off.
+    checkoutUrl: "https://secure.wayforpay.com/button/b31aabf280f77",
   },
 
   but: {
