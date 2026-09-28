@@ -17,17 +17,23 @@ export type NavItem = {
 export const KUZNYA_TELEGRAM_URL = process.env.NEXT_PUBLIC_TELEGRAM_URL || "https://t.me/teorenter_bot";
 
 // Deep link that auto-starts the "1341 книга после оплаты" chain in SendPulse
-// (bot 69d5438fd51076b81a0004dd, chain 6a9feaf9a78a38581e039318). That chain
-// holds the three language files and the Кузня hand-off; Maksim built it on
-// 2026-09-08 and confirmed it live on 2026-09-11.
+// (bot «Кузня Макса» 6ab3cbab681cacf8dd0f2872, chain 6aba4bbfe67b854caa00de09).
+// The chain thanks the buyer, offers RU / UA / EN, sends the matching PDF and
+// tags the contact with the language chosen. Maksim rebuilt it there on
+// 2026-09-28; chain inspected the same day — all three branches carry a file.
 //
-// It replaces "оплата книгу 1341" (6a7c32234138fa97d906f680), the August chain
-// this pointed at — the site had gone on using the old one after the new one
-// was built. Used on the post-purchase thank-you page and as the WayForPay
-// button's Return URL.
+// It replaces the equivalent chain in the old «перезагрузка» bot
+// (teorenter_bot, chain 6a9feaf9a78a38581e039318). The club itself moved to
+// «Кузня Макса», so book delivery follows it: one bot a member ever has to
+// open, not two. Used on the post-purchase thank-you page and as the
+// WayForPay button's Return URL.
+//
+// NOTE: NEXT_PUBLIC_BOOK_DELIVERY_URL overrides this. If that variable is set
+// in Vercel it still points at the old bot — clear it, or update it there too,
+// or production keeps serving the old link no matter what this file says.
 export const BOOK_DELIVERY_TELEGRAM_URL =
   process.env.NEXT_PUBLIC_BOOK_DELIVERY_URL ||
-  "https://t.me/teorenter_bot?start=6a9feaf9a78a38581e039318";
+  "https://t.me/KuznyaMaksa_bot?start=6aba4bbfe67b854caa00de09";
 
 // Nav kept deliberately short. Four entries by Maksim's original brief;
 // «ПТСР» added on his request 2026-09-16, once the Перезагрузка pages existed.
