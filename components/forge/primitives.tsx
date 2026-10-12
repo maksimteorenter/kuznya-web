@@ -55,7 +55,7 @@ export function Scene({
 export function Ask({ align = "center", children }: { align?: "center" | "left"; children: ReactNode }) {
   const centered = align === "center";
   return (
-    <FadeIn className={centered ? "flex flex-col items-center text-center" : "flex flex-col items-start text-left"}>
+    <FadeIn className={`mb-12 md:mb-14 ${centered ? "flex flex-col items-center text-center" : "flex flex-col items-start text-left"}`}>
       <span
         aria-hidden="true"
         className="h-12 w-px"
