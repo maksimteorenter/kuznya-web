@@ -46,6 +46,28 @@ export function Scene({
   );
 }
 
+
+// Вопрос читателя. Страница устроена как разговор: в каждой точке у мужчины
+// внутри возникает конкретный вопрос — и следующий блок на него отвечает.
+// Поэтому вопрос набран иначе, чем заголовки: это его голос, не голос автора.
+// Тонкий вертикальный штрих сверху ведёт взгляд из предыдущего блока вниз,
+// в вопрос, и дальше — в золотую линейку заголовка, которая открывает ответ.
+export function Ask({ align = "center", children }: { align?: "center" | "left"; children: ReactNode }) {
+  const centered = align === "center";
+  return (
+    <FadeIn className={centered ? "flex flex-col items-center text-center" : "flex flex-col items-start text-left"}>
+      <span
+        aria-hidden="true"
+        className="h-12 w-px"
+        style={{ background: "linear-gradient(to bottom, rgba(224,192,120,0) 0%, rgba(224,192,120,0.55) 100%)" }}
+      />
+      <p className={`mt-5 ${centered ? "max-w-xl" : "max-w-md"} font-editorial text-[19px] italic leading-snug ${text2} md:text-xl`}>
+        {children}
+      </p>
+    </FadeIn>
+  );
+}
+
 export function Head({
   label,
   tone = "mid",

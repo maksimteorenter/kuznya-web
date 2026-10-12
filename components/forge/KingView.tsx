@@ -4,7 +4,7 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
-import { Scene, Head, Disclaimer, bone, boneSoft, boneSofter, text2, gold, goldLight, hairline } from "@/components/forge/primitives";
+import { Scene, Head, Ask, Disclaimer, bone, boneSoft, boneSofter, text2, gold, goldLight, hairline } from "@/components/forge/primitives";
 import { ProofGrid } from "@/components/forge/ProofGrid";
 import { Hit } from "@/components/reboot/Hit";
 import { StickyRebootCTA } from "@/components/reboot/StickyRebootCTA";
@@ -39,12 +39,16 @@ function LeftHead({ children }: { children: ReactNode }) {
  */
 export function KingView({ L }: { L: Content }) {
   const checkout = L.hero.checkoutUrl || KUZNYA_TELEGRAM_URL;
+  // Цену со страницы можно снять, оставив hero.price пустым (так сейчас,
+  // по решению Максима от 12.10). Тогда подписи кнопок идут без суффикса,
+  // а крупный ценник на экране состава не рисуется вовсе.
+  const withPrice = (label: string) => (L.hero.price ? `${label} — ${L.hero.price}` : label);
 
   return (
     <>
       <div data-page-theme="forge" hidden />
       <ScrollProgress />
-      <StickyRebootCTA label={`${L.hero.ctaLabel} — ${L.hero.price}`} href={checkout} track="king" />
+      <StickyRebootCTA label={withPrice(L.hero.ctaLabel)} href={checkout} track="king" />
 
       {/* 1 — HERO. What, for whom, the result, the action. */}
       <Scene id="hero" bg="bg-[#0A0706]" bare clip={false} className="flex min-h-[100svh] items-center pb-14 pt-24 md:pb-20">
@@ -77,7 +81,7 @@ export function KingView({ L }: { L: Content }) {
               <p className={`mt-4 font-editorial text-xl italic leading-snug ${goldLight} md:text-2xl`}>{L.hero.plan}</p>
             </FadeIn>
             <FadeIn delay={0.28} className="mt-8">
-              <Cta label={`${L.hero.ctaLabel} — ${L.hero.price}`} href={checkout} id="hero" track="king" />
+              <Cta label={withPrice(L.hero.ctaLabel)} href={checkout} id="hero" track="king" />
               <p className={`mt-4 text-sm ${text2}`}>{L.hero.after}</p>
               <p className={`mt-2 text-xs uppercase tracking-[0.12em] ${text2}`}>{L.hero.micro}</p>
             </FadeIn>
@@ -85,11 +89,26 @@ export function KingView({ L }: { L: Content }) {
         </Container>
       </Scene>
 
+      {/* 1б — ДОВЕРИЕ. Четыре факта до того, как он решит читать дальше. */}
+      <Scene id="trust" bg="bg-[#0A0706]" bare className="border-y border-[rgba(224,192,120,0.14)] py-10 md:py-12">
+        <Container>
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-6">
+            {L.trust.items.map((t, i) => (
+              <FadeIn key={t.l} delay={0.06 * i} className="text-center">
+                <p className={`font-display text-3xl font-bold leading-none ${goldLight} md:text-4xl`}>{t.n}</p>
+                <p className={`mx-auto mt-2 max-w-[22ch] text-[13px] leading-snug ${text2}`}>{t.l}</p>
+              </FadeIn>
+            ))}
+          </div>
+        </Container>
+      </Scene>
+
       {/* 2 — PROBLEM. Three pains; the loss under each. */}
       <Scene id="but" bg="bg-[#12100C]">
         <Container>
+          <Ask>{L.but.q}</Ask>
           <Head tone="bright">{L.but.h2}</Head>
-          <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+          <div className="mt-14 grid gap-10 md:grid-cols-2 md:gap-8">
             {L.but.items.map((p, i) => (
               <FadeIn key={p.title} delay={0.08 * i}>
                 <div className={`relative aspect-[4/3] overflow-hidden rounded-lg border ${hairline}`}>
@@ -121,6 +140,7 @@ export function KingView({ L }: { L: Content }) {
               </div>
             </FadeIn>
             <div className="md:col-span-7 md:col-start-6">
+              <Ask align="left">{L.why.q}</Ask>
               <LeftHead>{L.why.h2}</LeftHead>
               <FadeIn delay={0.1} className="mt-8 space-y-5">
                 {L.why.paras.map((p) => (
@@ -137,6 +157,7 @@ export function KingView({ L }: { L: Content }) {
       {/* 4 — PLAN. The five moves on one screen: number, title, do, get. */}
       <Scene id="moves" bg="bg-[#12100C]">
         <Container>
+          <Ask>{L.moves.q}</Ask>
           <Head tone="bright">{L.moves.h2}</Head>
           <FadeIn delay={0.08} className="mx-auto mt-5 max-w-2xl text-center">
             <p className={`text-lg leading-relaxed ${boneSofter}`}>{L.moves.lede}</p>
@@ -186,6 +207,7 @@ export function KingView({ L }: { L: Content }) {
       {/* 5 — WHAT HE GETS. Three columns, concrete; then what is in his hands once the five moves are done. */}
       <Scene id="get" bg="bg-[#0A0706]">
         <Container>
+          <Ask align="left">{L.get.q}</Ask>
           <LeftHead>{L.get.h2}</LeftHead>
           <FadeIn delay={0.06}>
             <p className={`mt-4 font-editorial text-xl italic ${goldLight}`}>{L.get.lede}</p>
@@ -242,6 +264,7 @@ export function KingView({ L }: { L: Content }) {
               </div>
             </FadeIn>
             <div className="md:col-span-7 md:col-start-6">
+              <Ask align="left">{L.guide.q}</Ask>
               <LeftHead>{L.guide.h2}</LeftHead>
               <FadeIn delay={0.08}>
                 <p className={`mt-6 font-display text-2xl font-bold uppercase ${goldLight}`}>{L.guide.name}</p>
@@ -259,6 +282,7 @@ export function KingView({ L }: { L: Content }) {
             </div>
           </div>
           <div className={`mt-20 border-t ${hairline} pt-14`}>
+            <Ask>{L.proof.q}</Ask>
             <Head tone="bright">{L.proof.h2}</Head>
             <FadeIn delay={0.08} className="mt-4 text-center">
               <p className={`font-editorial text-xl italic ${goldLight}`}>{L.proof.intro}</p>
@@ -280,12 +304,15 @@ export function KingView({ L }: { L: Content }) {
         <Container>
           <div className="grid gap-12 md:grid-cols-12 md:gap-12">
             <div className="md:col-span-6">
+              <Ask align="left">{L.price.q}</Ask>
               <LeftHead>{L.price.h2}</LeftHead>
               <FadeIn delay={0.08} className="mt-6">
                 <p className={`text-[17px] leading-relaxed ${boneSofter}`}>{L.price.anchor}</p>
               </FadeIn>
               <FadeIn delay={0.12} className={`mt-8 border-t ${hairline} pt-6`}>
-                <p className={`font-display text-5xl font-bold leading-none ${goldLight} md:text-6xl`}>{L.hero.price}</p>
+                {L.hero.price ? (
+                  <p className={`font-display text-5xl font-bold leading-none ${goldLight} md:text-6xl`}>{L.hero.price}</p>
+                ) : null}
                 <p className={`mt-3 text-lg leading-relaxed ${boneSoft} md:text-xl`}>
                   <Hit text={L.price.priceLine} tone="bone" />
                 </p>
@@ -316,7 +343,7 @@ export function KingView({ L }: { L: Content }) {
                 </div>
               </FadeIn>
               <FadeIn delay={0.22} className="mt-8">
-                <Cta label={`${L.price.ctaLabel} — ${L.hero.price}`} href={checkout} id="price" track="king" />
+                <Cta label={withPrice(L.price.ctaLabel)} href={checkout} id="price" track="king" />
                 <p className={`mt-3 text-sm ${text2}`}>{L.hero.after}</p>
               </FadeIn>
             </div>
@@ -327,6 +354,7 @@ export function KingView({ L }: { L: Content }) {
       {/* 8 — TWO ROADS. Failure beside success. */}
       <Scene id="contrast" bg="bg-[#0A0706]">
         <Container>
+          <Ask>{L.contrast.q}</Ask>
           <Head tone="bright">{L.contrast.h2}</Head>
           <div className="mx-auto mt-12 grid max-w-5xl gap-10 md:grid-cols-2 md:gap-16">
             <FadeIn>
@@ -365,6 +393,7 @@ export function KingView({ L }: { L: Content }) {
         <Container>
           <div className="grid gap-12 md:grid-cols-12 md:gap-12">
             <div className="md:col-span-5">
+              <Ask align="left">{L.fit.q}</Ask>
               <LeftHead>{L.fit.h2}</LeftHead>
               <p className={`mt-6 font-display text-sm font-semibold uppercase tracking-[0.16em] ${goldLight}`}>{L.fit.forTitle}</p>
               <p className={`mt-3 text-[17px] leading-relaxed ${bone}`}>{L.fit.forBody}</p>
@@ -384,6 +413,7 @@ export function KingView({ L }: { L: Content }) {
               </p>
             </div>
             <div className="md:col-span-6 md:col-start-7">
+              <Ask align="left">{L.faq.q}</Ask>
               <LeftHead>{L.faq.h2}</LeftHead>
               <dl className="mt-6">
                 {L.faq.items.map((f) => (
@@ -409,7 +439,7 @@ export function KingView({ L }: { L: Content }) {
             <p className={`mx-auto max-w-lg text-balance font-display text-2xl font-bold uppercase leading-tight ${bone} md:text-3xl`}>{L.final.sub}</p>
           </FadeIn>
           <FadeIn delay={0.18} className="mt-8">
-            <Cta label={`${L.final.ctaLabel} — ${L.hero.price}`} href={checkout} id="final" track="king" />
+            <Cta label={withPrice(L.final.ctaLabel)} href={checkout} id="final" track="king" />
             <p className={`mt-4 text-sm ${text2}`}>{L.final.micro}</p>
           </FadeIn>
           <FadeIn delay={0.26} className="mx-auto mt-14 max-w-2xl">
