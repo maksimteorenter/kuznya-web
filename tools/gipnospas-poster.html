@@ -1,0 +1,81 @@
+<!--
+  Постер «Гипноспас» для карточки в блоке «что внутри» на главной.
+
+  Обложка курса жёлтая, а страница держится двух цветов, поэтому постер
+  собирается из неё заново: фигура вырезается с жёлтого фона скриптом ниже
+  (фон ровный, rgb 255,233,89), переводится в ч/б и кладётся на чёрный;
+  подписи набираются заново в Oswald под стиль остальных постеров.
+
+  Как пересобрать:
+    chrome --headless --screenshot=out.png --window-size=940,1568            --virtual-time-budget=9000 --allow-file-access-from-files            file://<путь>/tools/gipnospas-poster.html
+    sips out.png --resampleWidth 620 -s format jpeg -s formatOptions 76          --out public/images/mod-gipnospas.jpg
+
+  Срез Y0=376 выбран так, чтобы не захватить надпись «коды жизни» с обложки,
+  но не срезать макушку: при Y0=352 её хвост попадал в кадр.
+-->
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:940px;height:1568px;overflow:hidden;background:#000}
+  .poster{position:relative;width:940px;height:1568px;background:#070605;overflow:hidden}
+  /* свет за фигурой — как на остальных постерах */
+  .glow{position:absolute;inset:0;
+    background:radial-gradient(58% 42% at 50% 46%,rgba(255,255,255,.17) 0%,rgba(255,255,255,.05) 42%,rgba(0,0,0,0) 72%),
+               radial-gradient(120% 90% at 50% 100%,rgba(0,0,0,.95) 10%,rgba(0,0,0,0) 70%)}
+  #fig{position:absolute;left:50%;transform:translateX(-50%);top:352px;width:700px}
+  /* низ фигуры уходит в черноту, чтобы не было видно обреза */
+  .fade{position:absolute;left:0;right:0;bottom:0;height:430px;
+    background:linear-gradient(to bottom,rgba(7,6,5,0) 0%,rgba(7,6,5,.86) 46%,#070605 78%)}
+  .t{position:absolute;left:0;right:0;text-align:center;z-index:3}
+  .chrome{font-family:Oswald,sans-serif;font-weight:700;text-transform:uppercase;
+    background-image:linear-gradient(180deg,#ffffff 0%,#e8e4dd 26%,#9c968d 48%,#6e6962 54%,
+                                     #f6f3ee 64%,#cdc7bd 82%,#8f8980 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 2px 0 rgba(0,0,0,.85)) drop-shadow(0 0 26px rgba(255,255,255,.18))}
+  .kick{top:74px;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.42em;
+    font-size:26px;color:rgba(243,238,229,.72)}
+  .name{top:136px;font-size:150px;letter-spacing:.015em;line-height:1}
+  .rule{position:absolute;top:300px;left:50%;transform:translateX(-50%);width:300px;height:1px;z-index:3;
+    background:linear-gradient(to right,rgba(224,192,120,0),rgba(224,192,120,.75),rgba(224,192,120,0))}
+  .sub{bottom:208px;font-size:104px;letter-spacing:.02em;line-height:.98}
+  .site{bottom:92px;font-family:"EB Garamond",serif;font-style:italic;font-size:34px;
+    color:rgba(224,192,120,.88);letter-spacing:.06em}
+</style></head><body>
+<div class="poster">
+  <div class="glow"></div>
+  <canvas id="fig"></canvas>
+  <div class="fade"></div>
+  <p class="t kick">Максим Теорентер</p>
+  <h1 class="t name chrome">Гипноспас</h1>
+  <span class="rule"></span>
+  <h2 class="t sub chrome">Коды<br>жизни</h2>
+  <p class="t site">Gipnospas.com</p>
+</div>
+<script>
+var im=new Image(); im.src='../public/images/cover-gipnospas.png';
+im.onload=function(){
+  // берём только фигуру: текст обложки остаётся за кадром
+  var X0=90,X1=812,Y0=376,Y1=1118, w=X1-X0, h=Y1-Y0;
+  var src=document.createElement('canvas'); src.width=w; src.height=h;
+  var sx=src.getContext('2d'); sx.drawImage(im,X0,Y0,w,h,0,0,w,h);
+  var img=sx.getImageData(0,0,w,h), d=img.data;
+  for(var i=0;i<d.length;i+=4){
+    var r=d[i],g=d[i+1],b=d[i+2];
+    // «жёлтость»: фон 255,233,89 — высокие R и G при низком B
+    var yellow=(r>170 && g>140 && b<160 && (r-b)>70 && (g-b)>50);
+    if(yellow){
+      // мягкий край: чем ближе к чистому фону, тем прозрачнее
+      var dist=Math.abs(r-255)+Math.abs(g-233)+Math.abs(b-89);
+      d[i+3]=dist<90?0:Math.min(255,Math.round((dist-90)*1.7));
+    }
+    var v=Math.round(0.26*r+0.63*g+0.11*b);     // в ч/б, заодно гасит жёлтую кайму
+    v=Math.max(0,Math.min(255,Math.round((v-128)*1.14+128)));
+    d[i]=d[i+1]=d[i+2]=v;
+  }
+  sx.putImageData(img,0,0);
+  var c=document.getElementById('fig');
+  c.width=w; c.height=h; c.style.width='700px';
+  c.getContext('2d').drawImage(src,0,0);
+};
+</script></body></html>
