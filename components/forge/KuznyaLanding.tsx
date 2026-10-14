@@ -252,7 +252,7 @@ export function KuznyaLanding() {
           </div>
 
           <div className="mod">
-            <div className="modim plate"><span>ЭКЗОРЦИЗМ</span></div>
+            <div className="modim"><img src="/images/mod-ekzorcizm.jpg" width={620} height={1100} alt="" /></div>
             <h3>Экзорцизм</h3><p className="sub">работа с родом</p>
             <ul>
             <li>Решение родовых сценариев</li>
@@ -261,7 +261,7 @@ export function KuznyaLanding() {
           </div>
 
           <div className="mod">
-            <div className="modim plate"><span>ТЕЛО</span></div>
+            <div className="modim"><img src="/images/mod-telo.jpg" width={620} height={1100} alt="" /></div>
             <h3>Тело</h3><p className="sub">мастер спорта</p>
             <ul>
             <li>Мои рекомендации по силовой работе</li>
