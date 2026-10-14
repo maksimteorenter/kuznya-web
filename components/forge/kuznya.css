@@ -53,7 +53,8 @@
 
 
  .kz /* 1 HEADER */
- .kz .hero{min-height:88vh;display:flex;align-items:center}
+ /* шапка сайта фиксированная, 64px — иначе она накрывает заголовок */
+ .kz .hero{min-height:88vh;display:flex;align-items:center;padding-top:64px}
 
  .kz .hero .g{display:grid;grid-template-columns:1.2fr .8fr;gap:52px;align-items:center;width:100%}
 
@@ -135,7 +136,7 @@
    .kz .wrap{padding:0 20px}
  .kz .pad{padding:60px 0}
 
-   .kz .hero{min-height:auto;padding:60px 0}
+   .kz .hero{min-height:auto;padding:116px 0 56px}
    .kz .heroph{aspect-ratio:1/1}
 
  }
