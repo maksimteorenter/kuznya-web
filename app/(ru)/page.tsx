@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { KingView } from "@/components/forge/KingView";
-import { KING_LANDING } from "@/lib/content.king";
+import { KuznyaLanding } from "@/components/forge/KuznyaLanding";
 
-// The home page is the Кузня — from 2026-09-22 the men's programme «Из пешки
-// в короля» (lib/content.king.ts). A visitor who types the domain lands on
-// the offer, not on a poster. /forge redirects here (next.config.mjs).
-const L = KING_LANDING;
+// Главная — это оффер клуба «Кузня силы», а не афиша: кто набрал домен,
+// попадает сразу на страницу входа. Текст и вёрстка — макет, утверждённый
+// Максимом (см. docs/kuznya-offer-v2.md и комментарий в KuznyaLanding).
+// /forge редиректит сюда (next.config.mjs).
 
 export const metadata: Metadata = {
-  title: L.meta.title,
-  description: L.meta.description,
+  title: "Кузня силы — закрытый мужской клуб Максима Теорентера",
+  description:
+    "Помогу мужчине стать неуязвимым и сильным: сексуальное кунг-фу, кодекс мужчины, гипноз и НЛП, работа с телом и психикой. Закрытый клуб, подписка $15 в месяц.",
   alternates: {
     canonical: "/",
     languages: { "ru-UA": "/", "uk-UA": "/ua" },
@@ -17,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <KingView L={L} />;
+  return <KuznyaLanding />;
 }
