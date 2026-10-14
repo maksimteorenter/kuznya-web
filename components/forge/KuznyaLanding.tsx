@@ -74,7 +74,7 @@ export function KuznyaLanding() {
           <p className="ctawrap"><a className="cta" href="#price">Войти в Кузню — $15 / мес</a></p>
           <p className="micro">Отменить можно в любой момент</p>
         </div>
-        <div className="heroph"><img src="/images/kuznya-hero.jpg" alt="Максим Теорентер" width={680} height={850} /></div>
+        <div className="heroph"><img src="/images/kuznya-hero.jpg" width={680} height={850} alt="Максим Теорентер" /></div>
       </div></section>
 
       <div className="map"><div className="wrap">
@@ -145,7 +145,7 @@ export function KuznyaLanding() {
       <section className="pad alt" id="guide"><div className="wrap">
         <p className="bridge">Хорошо. А кто мне это говорит?</p>
       <div className="guide">
-        <div className="ph"><img src="/images/kuznya-guide.jpg" alt="Максим Теорентер" width={680} height={850} /></div>
+        <div className="ph"><img src="/images/kuznya-guide.jpg" width={680} height={850} alt="Максим Теорентер" /></div>
         <div>
           <p className="kick">Кто тебя ведёт</p>
           <h2 className="sec disp">Я был там.<br />Я знаю все эти боли</h2>
@@ -177,50 +177,112 @@ export function KuznyaLanding() {
           <h2 className="sec disp">Инструменты, проверенные на себе</h2>
         </div>
         <div className="mods">
-          <div className="mod"><h3>Сексуальное кунг-фу</h3><p className="sub">шесть лет у даосов</p>
-            <ul><li>Как не кончать быстро — а только тогда, когда сам хочешь</li>
+          <div className="mod">
+            <div className="modim"><img src="/images/mod-kungfu.jpg" width={620} height={1100} alt="" /></div>
+            <h3>Сексуальное кунг-фу</h3><p className="sub">шесть лет у даосов</p>
+            <ul>
+            <li>Как не кончать быстро — а только тогда, когда сам хочешь</li>
             <li>Как усиливать потенцию</li>
             <li>Работа с телом и уверенностью в себе</li>
             <li>Секреты женского тела и движения</li>
             <li>Как воспитывать мальчика и с какого возраста</li>
-            <li>Как продлить потенцию до глубокой старости</li></ul></div>
+            <li>Как продлить потенцию до глубокой старости</li>
+            </ul>
+          </div>
 
-          <div className="mod"><h3>Гипноспас</h3><p className="sub">флагманский курс</p>
-            <ul><li>Сознание, подсознание, сверх-Я</li>
+          <div className="mod">
+            <div className="modim"><img src="/images/mod-gipnospas.jpg" width={620} height={1100} alt="" /></div>
+            <h3>Гипноспас</h3><p className="sub">флагманский курс</p>
+            <ul>
+            <li>Сознание, подсознание, сверх-Я</li>
             <li>Гипноз, НЛП, ПЭАТ Славинского</li>
             <li>Раскрыть свои таланты</li>
-            <li>Снять блоки, слабости, ограничения</li></ul></div>
+            <li>Снять блоки, слабости, ограничения</li>
+            </ul>
+          </div>
 
-          <div className="mod"><h3>Кодекс мужчины</h3><p className="sub">психология</p>
-            <ul><li>То, что защитит тебя от поражения</li>
+          <div className="mod">
+            <div className="modim"><img src="/images/mod-kodeks.jpg" width={620} height={1100} alt="" /></div>
+            <h3>Кодекс мужчины</h3><p className="sub">психология</p>
+            <ul>
+            <li>То, что защитит тебя от поражения</li>
             <li>Кто я, кто она, кто они</li>
-            <li>Фокус, поле, оскал, бесценность, ожидания</li></ul></div>
+            <li>Фокус, поле, оскал, бесценность, ожидания</li>
+            </ul>
+          </div>
 
-          <div className="mod"><h3>ГНМ</h3><p className="sub">новая германская медицина</p>
-            <ul><li>Психосоматика: суть и причина</li>
+          <div className="mod">
+            <div className="modim"><img src="/images/mod-perezagruzka.jpg" width={620} height={1100} alt="" /></div>
+            <h3>Перезагрузка</h3><p className="sub">чат практики</p>
+            <ul>
+            <li>Отрабатываем инструменты друг на друге и на себе</li>
+            <li>Дальше они становятся твоими доспехами</li>
+            </ul>
+          </div>
+
+          <div className="mod">
+            <div className="modim"><img src="/images/mod-biohacking.jpg" width={620} height={1100} alt="" /></div>
+            <h3>Биохакинг</h3><p className="sub">образовательно</p>
+            <ul>
+            <li>Атлетизм, БАДы, пептиды, гормоны — как это устроено</li>
+            <li>О чём говорить с врачом</li>
+            </ul>
+          </div>
+
+          <div className="mod">
+            <div className="modim plate"><span>ЧИСТИЛИЩЕ</span></div>
+            <h3>Чистилище</h3><p className="sub">очищение</p>
+            <ul>
+            <li>Научишься очищать своё тело</li>
+            <li>Яды бьют по качеству жизни</li>
+            </ul>
+          </div>
+
+          <div className="mod">
+            <div className="modim plate"><span>ГНМ</span></div>
+            <h3>ГНМ</h3><p className="sub">новая германская медицина</p>
+            <ul>
+            <li>Психосоматика: суть и причина</li>
             <li>Как состояние отражается в теле</li>
-            <li>Не заменяет врача</li></ul></div>
+            <li>Не заменяет врача</li>
+            </ul>
+          </div>
 
-          <div className="mod"><h3>Экзорцизм</h3><p className="sub">работа с родом</p>
-            <ul><li>Решение родовых сценариев</li>
-            <li>Работа с тенями и сущностями</li></ul></div>
+          <div className="mod">
+            <div className="modim plate"><span>ЭКЗОРЦИЗМ</span></div>
+            <h3>Экзорцизм</h3><p className="sub">работа с родом</p>
+            <ul>
+            <li>Решение родовых сценариев</li>
+            <li>Работа с тенями и сущностями</li>
+            </ul>
+          </div>
 
-          <div className="mod"><h3>Перезагрузка</h3><p className="sub">чат практики</p>
-            <ul><li>Отрабатываем инструменты друг на друге и на себе</li>
-            <li>Дальше они становятся твоими доспехами</li></ul></div>
+          <div className="mod">
+            <div className="modim plate"><span>ТЕЛО</span></div>
+            <h3>Тело</h3><p className="sub">мастер спорта</p>
+            <ul>
+            <li>Мои рекомендации по силовой работе</li>
+            <li>Соберём твоё профессиональное красивое тело</li>
+            </ul>
+          </div>
 
-          <div className="mod"><h3>Чистилище</h3><p className="sub">очищение</p>
-            <ul><li>Научишься очищать своё тело</li>
-            <li>Яды бьют по качеству жизни</li></ul></div>
+          <div className="mod">
+            <div className="modim"><img src="/images/mod-plen.jpg" width={620} height={1100} alt="" /></div>
+            <h3>1341 день в плену</h3><p className="sub">книга</p>
+            <ul>
+            <li>Как выжить в аду</li>
+            <li>Реальная история выживания, 2016–2019</li>
+            </ul>
+          </div>
 
-          <div className="mod"><h3>Биохакинг</h3><p className="sub">образовательно</p>
-            <ul><li>БАДы, пептиды, гормоны — как это устроено</li>
-            <li>О чём говорить с врачом</li></ul></div>
-
-          <div className="mod"><h3>Тело</h3><p className="sub">мастер спорта</p>
-            <ul><li>Мои рекомендации по силовой работе</li>
-            <li>Соберём твоё профессиональное красивое тело</li></ul></div>
-
+          <div className="mod">
+            <div className="modim"><img src="/images/mod-gita.jpg" width={620} height={1100} alt="" /></div>
+            <h3>33 мудрости Бхагавад-гиты</h3><p className="sub">книга</p>
+            <ul>
+            <li>Между страхом, долгом и слабостью</li>
+            <li>Когда рождается твоя Бхагавад-гита</li>
+            </ul>
+          </div>
         </div>
       </div></section>
 
