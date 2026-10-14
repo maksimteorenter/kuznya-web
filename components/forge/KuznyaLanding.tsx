@@ -145,7 +145,10 @@ export function KuznyaLanding() {
       <section className="pad alt" id="guide"><div className="wrap">
         <p className="bridge">Хорошо. А кто мне это говорит?</p>
       <div className="guide">
-        <div className="ph"><img src="/images/kuznya-guide.jpg" width={680} height={850} alt="Максим Теорентер" /></div>
+        <div>
+          <div className="ph"><img src="/images/kuznya-guide.jpg" width={680} height={1020} alt="Максим Теорентер" /></div>
+          <p className="phcap"><b>Максим Теорентер</b><span>твой коуч</span></p>
+        </div>
         <div>
           <p className="kick">Кто тебя ведёт</p>
           <h2 className="sec disp">Я был там.<br />Я знаю все эти боли</h2>
@@ -230,7 +233,7 @@ export function KuznyaLanding() {
           </div>
 
           <div className="mod">
-            <div className="modim plate"><span>ЧИСТИЛИЩЕ</span></div>
+            <div className="modim"><img src="/images/mod-chistilishche.jpg" width={620} height={1100} alt="" /></div>
             <h3>Чистилище</h3><p className="sub">очищение</p>
             <ul>
             <li>Научишься очищать своё тело</li>
@@ -239,7 +242,7 @@ export function KuznyaLanding() {
           </div>
 
           <div className="mod">
-            <div className="modim plate"><span>ГНМ</span></div>
+            <div className="modim"><img src="/images/mod-gnm.jpg" width={620} height={1100} alt="" /></div>
             <h3>ГНМ</h3><p className="sub">новая германская медицина</p>
             <ul>
             <li>Психосоматика: суть и причина</li>
