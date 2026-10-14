@@ -71,11 +71,30 @@ export function KuznyaLanding() {
           <div className="pillars3">
             <span>Сила</span><span>Неуязвимость</span><span>Проявленность</span>
           </div>
+          <p className="deal1">Я собирал это тридцать лет и заплатил около ста тысяч долларов.{" "}
+            <b>Ты получаешь всё — за пятнадцать в месяц.</b></p>
           <p className="ctawrap"><a className="cta" href="#price">Войти в Кузню — $15 / мес</a></p>
           <p className="micro">Отменить можно в любой момент</p>
         </div>
         <div className="heroph"><img src="/images/kuznya-hero.jpg" width={680} height={850} alt="Максим Теорентер" /></div>
       </div></section>
+
+      <div className="chain"><div className="wrap">
+        <p className="chaink">Одиннадцать направлений — целиком, за $15</p>
+        <div className="chainrow">
+          <a href="#inside" title="Сексуальное кунг-фу"><img src="/images/thumb-kungfu.jpg" width={170} height={283} loading="lazy" alt="Сексуальное кунг-фу" /></a>
+          <a href="#inside" title="Гипноспас"><img src="/images/thumb-gipnospas.jpg" width={170} height={283} loading="lazy" alt="Гипноспас" /></a>
+          <a href="#inside" title="Кодекс мужчины"><img src="/images/thumb-kodeks.jpg" width={170} height={283} loading="lazy" alt="Кодекс мужчины" /></a>
+          <a href="#inside" title="Перезагрузка"><img src="/images/thumb-perezagruzka.jpg" width={170} height={283} loading="lazy" alt="Перезагрузка" /></a>
+          <a href="#inside" title="Биохакинг"><img src="/images/thumb-biohacking.jpg" width={170} height={283} loading="lazy" alt="Биохакинг" /></a>
+          <a href="#inside" title="Чистилище"><img src="/images/thumb-chistilishche.jpg" width={170} height={283} loading="lazy" alt="Чистилище" /></a>
+          <a href="#inside" title="ГНМ"><img src="/images/thumb-gnm.jpg" width={170} height={283} loading="lazy" alt="ГНМ" /></a>
+          <a href="#inside" title="Экзорцизм"><img src="/images/thumb-ekzorcizm.jpg" width={170} height={283} loading="lazy" alt="Экзорцизм" /></a>
+          <a href="#inside" title="Тело"><img src="/images/thumb-telo.jpg" width={170} height={283} loading="lazy" alt="Тело" /></a>
+          <a href="#inside" title="1341 день в плену"><img src="/images/thumb-plen.jpg" width={170} height={283} loading="lazy" alt="1341 день в плену" /></a>
+          <a href="#inside" title="33 мудрости Бхагавад-гиты"><img src="/images/thumb-gita.jpg" width={170} height={283} loading="lazy" alt="33 мудрости Бхагавад-гиты" /></a>
+        </div>
+      </div></div>
 
       <div className="map"><div className="wrap">
         <a className="st" href="#foes"><i className="d" /><span>Три врага</span></a>
