@@ -29,7 +29,7 @@
  .kz .micro{margin-top:13px;font-size:13px;color:var(--b6)}
 
 
- .kz /* КАРТА — полоса станций */
+ /* КАРТА — полоса станций */
  /* шапка сайта зафиксирована сверху и занимает 64px */
  .kz .map{position:sticky;top:64px;z-index:9;background:rgba(10,7,6,.92);border-bottom:1px solid var(--hair);
       backdrop-filter:blur(6px)}
@@ -52,7 +52,7 @@
  .kz .st:last-child:after{display:none}
 
 
- .kz /* 1 HEADER */
+ /* 1 HEADER */
  /* шапка сайта фиксированная, 64px — иначе она накрывает заголовок */
  .kz .hero{min-height:88vh;display:flex;align-items:center;padding-top:64px}
 
@@ -63,7 +63,7 @@
  .kz .hero .lead{max-width:520px;margin:22px 0 0;font-size:19.5px;line-height:1.62;color:var(--b8)}
 
 
- .kz /* 3 ПРОВОДНИК */
+ /* 3 ПРОВОДНИК */
  .kz .guide{display:grid;grid-template-columns:.88fr 1.12fr;gap:52px;align-items:center}
 
  .kz .guide .ph{aspect-ratio:4/5;border-radius:4px;overflow:hidden;position:relative}
@@ -80,7 +80,7 @@
  .kz li:before{content:"";position:absolute;left:0;top:16px;width:8px;height:1px;background:var(--gold)}
 
 
- .kz /* 6 ЦЕНА */
+ /* 6 ЦЕНА */
  .kz .price{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:start;margin-top:44px}
 
  .kz .pbox{border:1px solid var(--hair);padding:34px;border-radius:4px}
@@ -92,7 +92,7 @@
  .kz .note{font-size:14.5px;line-height:1.62;color:var(--b8);margin-top:16px}
 
 
- .kz /* 8 ФИЛЬТР */
+ /* 8 ФИЛЬТР */
  .kz .two{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:40px;text-align:left}
 
  .kz .ct{font-family:var(--font-oswald),Oswald,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;margin-bottom:14px}
@@ -104,7 +104,7 @@
  .kz .no li:before{background:rgba(243,238,229,.22)}
 
 
- .kz /* 10 JUNK DRAWER */
+ /* 10 JUNK DRAWER */
  .kz .q{border-top:1px solid rgba(224,192,120,.12);padding:20px 0}
 
  .kz .q>b{font-family:var(--font-oswald),Oswald,sans-serif;text-transform:uppercase;font-size:16px;display:block}
@@ -149,7 +149,7 @@
 
 
 
- .kz /* ТЕЗИСЫ О ПРОВОДНИКЕ */
+ /* ТЕЗИСЫ О ПРОВОДНИКЕ */
  .kz .theses{display:grid;grid-template-columns:1fr 1fr;gap:4px 34px;margin-top:26px}
 
  .kz .theses p{font-size:16.5px;line-height:1.52;color:var(--b8);padding:8px 0 8px 20px;position:relative}
