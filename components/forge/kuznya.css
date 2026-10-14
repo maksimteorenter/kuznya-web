@@ -61,10 +61,10 @@
 .kz .hero .g, .kz .guide, .kz .price{grid-template-columns:1fr!important;gap:30px!important}
 .kz .two{grid-template-columns:1fr!important;gap:22px!important}
 .kz .map .wrap{overflow-x:auto}
-.kz .st span{font-size:9px}
+.kz .st span{font-size:10px}
 .kz .wrap{padding:0 20px}
 .kz .pad{padding:60px 0}
-.kz .hero{min-height:auto;padding:116px 0 56px}
+.kz .hero{min-height:auto;padding:94px 0 50px}
 .kz .heroph{aspect-ratio:1/1}
 }
 .kz *:focus-visible, .kz:focus-visible{outline:2px solid #E0C078;outline-offset:3px}
@@ -186,25 +186,33 @@
 .kz .chainrow a:hover img{opacity:1}
 @media (max-width:820px){
 .kz .foe .body, .kz .inout, .kz .mods, .kz .valgrid, .kz .faq{grid-template-columns:1fr!important}
+.kz .mods{gap:38px}
+.kz .modim{aspect-ratio:auto!important;height:330px;margin-bottom:18px}
+.kz .modim img{object-fit:contain}
+.kz .modim.plate span{font-size:20px}
 .kz .bridge{padding-top:40px;font-size:18px}
 .kz .pad{padding:52px 0!important}
 .kz .deal1{max-width:none}
+.kz .cta{display:block;text-align:center;padding:17px 24px}
 .kz .chain .wrap{padding:0}
 .kz .chaink{padding:0 20px;font-size:10px;letter-spacing:.14em;line-height:1.5}
 .kz .chainrow{justify-content:flex-start;overflow-x:auto;padding:0 20px 4px;
      scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .kz .chainrow::-webkit-scrollbar{display:none}
+.kz .chain{position:relative}
+.kz .chain:after{content:"";position:absolute;right:0;bottom:28px;width:44px;height:123px;
+     pointer-events:none;background:linear-gradient(to right,rgba(14,12,9,0),var(--ink2))}
 .kz .dnums{grid-template-columns:1fr!important;gap:20px}
 .kz .deal{padding:26px 22px}
 .kz .val{padding:30px 24px}
 .kz .steps4{grid-template-columns:1fr 1fr!important}
 .kz .s4{padding:22px 18px}
 .kz .arw{display:none}
-.kz .pillars3 span{border:none;padding:6px 14px 6px 0}
+.kz .pillars3 span{padding:5px 12px!important}
+.kz .pillars3 span:first-child{padding-left:0!important}
+.kz .pillars3 span:last-child{border-right:none!important}
 }
 @media (max-width:520px){
 .kz .steps4{grid-template-columns:1fr!important}
-}
-@media (max-width:520px){
-.kz .mods{grid-template-columns:1fr!important}
+.kz .modim{height:300px}
 }

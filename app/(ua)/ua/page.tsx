@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { ForgeView } from "@/components/forge/ForgeView";
-import { KUZNYA_LANDING_UK } from "@/lib/content.uk";
+import { KuznyaLandingUk } from "@/components/forge/KuznyaLandingUk";
 
-// Ukrainian home: the Кузня, same as the Russian root.
-const L = KUZNYA_LANDING_UK;
+// Украинская главная — тот же клуб «Кузня силы», что и на корне.
+// Вёрстка общая: оба компонента генерируются из одного макета, украинские
+// тексты подставляются из словаря (см. комментарий в KuznyaLandingUk).
 
 export const metadata: Metadata = {
-  title: L.meta.title,
-  description: L.meta.description,
+  title: "Кузня сили — закритий чоловічий клуб Максима Теорентера",
+  description:
+    "Допоможу чоловікові стати невразливим і сильним: сексуальне кунг-фу, кодекс чоловіка, гіпноз і НЛП, робота з тілом і психікою. Закритий клуб, підписка $15 на місяць.",
   alternates: {
     canonical: "/ua",
     languages: { "ru-UA": "/", "uk-UA": "/ua" },
@@ -15,5 +16,5 @@ export const metadata: Metadata = {
 };
 
 export default function HomePageUk() {
-  return <ForgeView L={L} locale="uk" />;
+  return <KuznyaLandingUk />;
 }

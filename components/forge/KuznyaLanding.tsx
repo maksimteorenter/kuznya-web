@@ -80,7 +80,7 @@ export function KuznyaLanding() {
       </div></section>
 
       <div className="chain"><div className="wrap">
-        <p className="chaink">Одиннадцать направлений — целиком, за $15</p>
+        <p className="chaink">Всё, что внутри — целиком, за $15</p>
         <div className="chainrow">
           <a href="#inside" title="Сексуальное кунг-фу"><img src="/images/thumb-kungfu.jpg" width={170} height={283} loading="lazy" alt="Сексуальное кунг-фу" /></a>
           <a href="#inside" title="Гипноспас"><img src="/images/thumb-gipnospas.jpg" width={170} height={283} loading="lazy" alt="Гипноспас" /></a>
@@ -433,12 +433,13 @@ export function KuznyaLanding() {
 
         <div className="price">
           <div>
-            <p className="plead">Все девять направлений выше — целиком, без тарифов и доплат:</p>
+            <p className="plead">Всё, что выше — целиком, без тарифов и доплат:</p>
             <ul>
               <li><b>Девять направлений</b> — кунг-фу, кодекс, Гипноспас, ГНМ, экзорцизм, чистилище, биохакинг, тело, перезагрузка</li>
               <li><b>Чат «Перезагрузка»</b> — практикуете инструменты друг на друге</li>
               <li><b>Живой разбор с Максимом</b> — раз в неделю</li>
               <li><b>Закрытое мужское сообщество</b> — мужчины, которые идут тем же путём</li>
+              <li><b>Две мои книги</b> — «1341 день в плену» и «33 мудрости Бхагавад-гиты»</li>
               <li><b>Все новые материалы</b> — пока ты в клубе, они твои</li>
             </ul>
           </div>
