@@ -1,0 +1,67 @@
+/* Страница-ссылка для био в TikTok и Instagram. Отдельные стили, а не общие
+   с главной: здесь одна задача — довести до кнопки, и всё лишнее мешает.
+   Всё вложено в .kzl, чтобы не протекало на остальные страницы. */
+
+.kzl{--ink:#070605;--bone:#F3EEE5;--b8:rgba(243,238,229,.93);--b6:rgba(243,238,229,.80);
+     --b4:rgba(243,238,229,.64);--gold:#C9A227;--gl:#E0C078;--hair:rgba(224,192,120,.22)}
+.kzl *, .kzl{box-sizing:border-box;margin:0;padding:0}
+
+.kzl{min-height:100svh;background:var(--ink);color:var(--bone);
+     font-family:var(--font-inter),Inter,sans-serif;-webkit-font-smoothing:antialiased;
+     display:flex;align-items:center;justify-content:center;padding:40px 20px}
+
+/* мягкий свет сверху, чтобы портрет не висел в пустоте */
+.kzl:before{content:"";position:fixed;inset:0;pointer-events:none;
+     background:radial-gradient(70% 45% at 50% 0%,rgba(224,192,120,.10) 0%,rgba(7,6,5,0) 70%)}
+
+.kzl .card{position:relative;width:100%;max-width:440px;text-align:center}
+
+.kzl .ph{width:104px;height:104px;margin:0 auto;border-radius:50%;overflow:hidden;
+     border:1px solid rgba(224,192,120,.45)}
+.kzl .ph img{width:100%;height:100%;object-fit:cover;object-position:center 18%;
+     filter:grayscale(1) contrast(1.08)}
+
+.kzl .name{font-family:var(--font-oswald),Oswald,sans-serif;text-transform:uppercase;
+     font-weight:700;font-size:25px;letter-spacing:.13em;margin-top:20px;line-height:1.1}
+.kzl .kick{font-family:var(--font-garamond),Garamond,serif;font-style:italic;
+     font-size:17px;color:var(--gl);margin-top:9px}
+
+.kzl .offer{font-size:18px;line-height:1.55;color:var(--b8);margin-top:26px}
+.kzl .offer b{color:var(--bone);font-weight:600}
+
+/* главная кнопка — единственное, что должно хотеться нажать */
+.kzl .go{display:flex;align-items:center;justify-content:center;gap:11px;
+     margin-top:30px;padding:19px 22px;border-radius:4px;background:var(--gl);
+     color:#15120C;font-family:var(--font-oswald),Oswald,sans-serif;font-weight:700;
+     text-transform:uppercase;letter-spacing:.09em;font-size:16px;text-decoration:none;
+     transition:transform .15s ease,box-shadow .15s ease;
+     box-shadow:0 0 0 rgba(224,192,120,0)}
+.kzl .go:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(224,192,120,.18)}
+.kzl .go svg{width:21px;height:21px;flex:none}
+
+.kzl .under{font-family:var(--font-oswald),Oswald,sans-serif;text-transform:uppercase;
+     letter-spacing:.2em;font-size:11px;color:var(--gold);margin-top:14px}
+.kzl .free{font-size:14.5px;line-height:1.6;color:var(--b6);margin-top:10px}
+
+.kzl .sep{display:flex;align-items:center;gap:14px;margin:30px 0 0;
+     font-family:var(--font-oswald),Oswald,sans-serif;text-transform:uppercase;
+     letter-spacing:.2em;font-size:10px;color:var(--b4)}
+.kzl .sep:before, .kzl .sep:after{content:"";flex:1;height:1px;background:var(--hair)}
+
+/* вторая ссылка нарочно тише первой: две равные кнопки = нет выбора */
+.kzl .more{display:block;margin-top:22px;padding:15px 20px;border-radius:4px;
+     border:1px solid rgba(224,192,120,.38);color:var(--gl);text-decoration:none;
+     font-family:var(--font-oswald),Oswald,sans-serif;text-transform:uppercase;
+     letter-spacing:.09em;font-size:13.5px;transition:border-color .15s ease,color .15s ease}
+.kzl .more:hover{border-color:var(--gl);color:var(--bone)}
+
+.kzl .legal{font-size:12.5px;line-height:1.6;color:var(--b4);margin-top:30px}
+
+.kzl a:focus-visible{outline:2px solid #E0C078;outline-offset:3px}
+
+@media (max-width:380px){
+  .kzl{padding:28px 16px}
+  .kzl .name{font-size:22px;letter-spacing:.1em}
+  .kzl .offer{font-size:17px}
+  .kzl .go{font-size:15px;padding:18px 16px}
+}
