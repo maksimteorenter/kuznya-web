@@ -1,4 +1,4 @@
-import { KUZNYA_TELEGRAM_URL } from "@/lib/site";
+import { FREE_CHANNEL_BOT_URL } from "@/lib/site";
 import "./link.css";
 
 /**
@@ -29,7 +29,7 @@ export function LinkHub() {
           сниму блоки и слабости.
         </p>
 
-        <a className="go" href={KUZNYA_TELEGRAM_URL} rel="noopener">
+        <a className="go" href={FREE_CHANNEL_BOT_URL} rel="noopener">
           {/* иконка Телеграма: инлайном, чтобы не тянуть лишний запрос ради 2 КБ */}
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M21.94 4.3 18.7 19.6c-.24 1.08-.88 1.35-1.78.84l-4.92-3.63-2.37 2.29c-.26.26-.48.48-.99.48l.35-5.02 9.13-8.25c.4-.35-.09-.55-.62-.2L7.2 12.01l-4.86-1.52c-1.06-.33-1.08-1.06.22-1.57l19-7.32c.88-.33 1.65.2 1.38 2.7z" />

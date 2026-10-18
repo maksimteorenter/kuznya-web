@@ -14,7 +14,23 @@ export type NavItem = {
 
 // Real Telegram bot, confirmed 2026-08-25 (visible on the book's own back-cover
 // QR spread: "@teorenter_bot"). Still overridable via env for staging.
+// Осторожно: в SendPulse этот бот называется «перезагрузка» (id
+// 69d5438fd51076b81a0004dd) — он от программы ПТСР, хотя публично
+// переименован в «Кузня Силы». Воронку клуба ведёт другой бот, ниже.
 export const KUZNYA_TELEGRAM_URL = process.env.NEXT_PUBLIC_TELEGRAM_URL || "https://t.me/teorenter_bot";
+
+// Вход в бесплатный канал для страницы-ссылки /start (био в TikTok/Instagram).
+// Бот «Кузня сили» @KuznyaSyly_bot (SendPulse 6ac69736e9a4a5fa670f0565) —
+// именно он принимает заявку и заводит в канал, где идёт прогрев.
+//
+// Метка после ?start= — имя сценария в SendPulse. Там заведены две ветки:
+// «вхід channel_*» → цепочка «Канал» (бесплатный канал) и «вхід club_*» →
+// «Прямий» (сразу клуб). Суффикс — источник: site, yt, ig, tiktok. Нам нужен
+// бесплатный канал, а клик приходит со страницы на сайте → channel_site.
+// По этой же метке в SendPulse считается, откуда пришёл человек.
+export const FREE_CHANNEL_BOT_URL =
+  process.env.NEXT_PUBLIC_FREE_CHANNEL_BOT_URL ||
+  "https://t.me/KuznyaSyly_bot?start=channel_site";
 
 // Deep link that auto-starts the "1341 книга после оплаты" chain in SendPulse
 // (bot «Кузня Макса» 6ab3cbab681cacf8dd0f2872, chain 6aba4bbfe67b854caa00de09).
