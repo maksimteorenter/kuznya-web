@@ -17,7 +17,9 @@ export type NavItem = {
 // Осторожно: в SendPulse этот бот называется «перезагрузка» (id
 // 69d5438fd51076b81a0004dd) — он от программы ПТСР, хотя публично
 // переименован в «Кузня Силы». Воронку клуба ведёт другой бот, ниже.
-export const KUZNYA_TELEGRAM_URL = process.env.NEXT_PUBLIC_TELEGRAM_URL || "https://t.me/teorenter_bot";
+// 2026-10-19: старый бот @teorenter_bot («перезагрузка») отключаем от воронки, чтобы он
+// нигде не путался. Все кнопки «Написать в Telegram» ведут в бот клуба.
+export const KUZNYA_TELEGRAM_URL = process.env.NEXT_PUBLIC_TELEGRAM_URL || "https://t.me/KuznyaSyly_bot";
 
 // Вход в бесплатный канал для страницы-ссылки /start (био в TikTok/Instagram).
 // Бот «Кузня сили» @KuznyaSyly_bot (SendPulse 6ac69736e9a4a5fa670f0565) —
