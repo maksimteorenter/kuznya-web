@@ -70,7 +70,7 @@ export function KuznyaLandingUk() {
         <div>
           <p className="kick">Кузня сили · закритий чоловічий клуб</p>
           <h1 className="disp">Допоможу чоловікові стати<br />невразливим і сильним</h1>
-          <p className="lead"><b>Розкрию твою унікальність.</b> Позбавлю блоків і слабкостей. Навчу сексуального кунг-фу.</p>
+          <p className="lead"><b>Розкрию твою унікальність.</b> Позбавлю блоків і слабкостей.</p>
           <div className="pillars3">
             <span>Сила</span><span>Невразливість</span><span>Проявленість</span>
           </div>

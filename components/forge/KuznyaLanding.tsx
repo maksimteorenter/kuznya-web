@@ -66,8 +66,7 @@ export function KuznyaLanding() {
         <div>
           <p className="kick">Кузня силы · закрытый мужской клуб</p>
           <h1 className="disp">Помогу мужчине стать<br />неуязвимым и сильным</h1>
-          <p className="lead"><b>Раскрою твою уникальность.</b> Избавлю от блоков и слабостей.
-            Научу сексуальному кунг-фу.</p>
+          <p className="lead"><b>Раскрою твою уникальность.</b> Избавлю от блоков и слабостей.</p>
           <div className="pillars3">
             <span>Сила</span><span>Неуязвимость</span><span>Проявленность</span>
           </div>
